@@ -17,8 +17,8 @@ const scene = new THREE.Scene()
 /**
  *  Textures
  */
-const textureLoader = new THREE.TextureLoader()
-const particleTexture = textureLoader.load('/textures/particles/9.png')
+// const textureLoader = new THREE.TextureLoader()
+// const particleTexture = textureLoader.load('/textures/particles/9.png')
 
 /**
  * Galaxy
@@ -95,8 +95,8 @@ const generateGalaxy =  () =>
     particlesMaterial = new THREE.PointsMaterial({
     size : parameters.size,
     sizeAttenuation : true,
-    transparent: true,
-    alphaMap : particleTexture,
+    // transparent: true,
+    // alphaMap : particleTexture,
     // color : new THREE.Color('red'),
     depthWrite: false,
     blending: THREE.AdditiveBlending,
