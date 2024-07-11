@@ -6,13 +6,13 @@ const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     console.log(window.scrollY)
- scrollTop = window.scrollY
+ scrollTop = scrollTop+window.scrollY
 
   if (scrollTop > lastScrollTop) {
     // Downscroll
     gsap.to('.navbar',
         {
-            top: '10%'
+            top: '-10%'
         })
   } else {
     // Upscroll
@@ -22,8 +22,12 @@ window.addEventListener('scroll', () => {
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
 });
 // if (scrollTop > lastScrollTop) {
-//     // Downscroll
-    gsap.from('.navbar',
+//     // Downscroll\
+const tl = gsap.timeline()
+// tl.from(({
+//     duration: 1.5
+// }))
+tl.from('.navbar',
         {
             top: '-30%',
             duration: 1.5
@@ -31,7 +35,7 @@ window.addEventListener('scroll', () => {
 
         gsap.from('.logo',
             {
-                delay: 1,
+                // delay: .5,
                 scale: 0,
                 x: '5000%',
                 rotate: "150%",
@@ -39,13 +43,22 @@ window.addEventListener('scroll', () => {
             }
         )
 
-        gsap.from('body',
+        tl.from('.content-frame',
             {
-                backgroundColor: '#171717',
-                // delay: 2,
-                duration: 3
-            }
-        )
+                // delay:1,
+                // backdropFilter:'blur(10px)',
+                // duration:3
+            })
+
+        // gsap.from('.webgl',
+        //     {
+        //         // backgroundColor: '#171717',
+        //         scale: 0,
+        //         y: '100%',
+        //         // delay: 2,
+        //         duration: 3
+        //     }
+        // )
 //   } else {
 //     // Upscroll
 //     navbar.style.top = '1%';
