@@ -233,6 +233,12 @@ section
   }
 
 @media (max-width: 768px) {
+
+    .navbar
+    {
+        padding: 0 1.5vmin;
+        height: clamp(40px,7vh,200px);
+    }
     .mask-container
     {
         width: 100%;
