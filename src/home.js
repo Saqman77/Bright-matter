@@ -83,7 +83,7 @@ const tl = gsap.timeline()
 tl.from('.navbar',
         {
             top: '-30%',
-            duration: 1.5
+            duration: 2
         })
 
         gsap.from('.logo',
@@ -92,15 +92,15 @@ tl.from('.navbar',
                 scale: 0,
                 x: '5000%',
                 rotate: "150%",
-                duration: 2
+                duration: 2.5
             }
         )
 
-        tl.from('.content-frame',
+        gsap.from('.content-frame',
             {
                 // delay:1,
-                // backdropFilter:'blur(10px)',
-                // duration:3
+                backdropFilter:'blur(10px)',
+                duration:1.4
             })
 
         // gsap.from('.webgl',
