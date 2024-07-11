@@ -1,25 +1,78 @@
 import {gsap} from 'gsap';
 
 let lastScrollTop = 0;
-let scrollTop = 0
-const navbar = document.querySelector('.navbar');
+const body = document.body
+// let scrollTop = 0
+// const debounce = (func, wait = 10, immediate = true) => {
+//     let timeout;
+//     return function () {
+//         const context = this, args = arguments;
+//         const later = function () {
+//             timeout = null;
+//             if (!immediate) func.apply(context, args);
+//         };
+//         const callNow = immediate && !timeout;
+//         clearTimeout(timeout);
+//         timeout = setTimeout(later, wait);
+//         if (callNow) func.apply(context, args);
+//     };
+// };
 
 window.addEventListener('scroll', () => {
-    console.log(window.scrollY)
- scrollTop = scrollTop+window.scrollY
+    // console.log(window.scrollY)
+ const scrollTop = window.scrollY
+ if (scrollTop <= 0) 
+    {
+        body.classList.remove("scroll-up")
+    }
+if (scrollTop > lastScrollTop && !body.classList.contains("scroll-down"))
+    {
+        body.classList.remove("scroll-up")
+        body.classList.add("scroll-down")
+    }
+if (scrollTop < lastScrollTop && body.classList.contains("scroll-down"))
+    {
+        body.classList.remove("scroll-down")
+        body.classList.add("scroll-up")
+    }
+    lastScrollTop = scrollTop
+//   if (scrollTop > lastScrollTop) {
+//     // Downscroll
+//     gsap.to('.navbar',
+//         {
+//             // duration: 1,
+//             delay:1,
+//             top: '-10%',
+//             // width: '10%'
+//         })
+//     gsap.to('.navbar',
+//         {
+//             // duration: 1,
+//             // top: '-10%',
+//             left:'95%',
+//             width: '6vw'
+//         })
+//   } else {
+//     // Upscroll
+//     gsap.to('.navbar',
+//         {
+//             top: '1%',
+            
+//             // left:'0',
+//             // width: '100%',
+//             // duration: 1
+//         })
+//     gsap.to('.navbar',
+//         {
+//             // top: '1%',
+//             left:'0',
+//             width: '100%',
+//             delay:1,
+            
+//         })
+//   }
 
-  if (scrollTop > lastScrollTop) {
-    // Downscroll
-    gsap.to('.navbar',
-        {
-            top: '-10%'
-        })
-  } else {
-    // Upscroll
-    navbar.style.top = '1%';
-  }
-
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+//   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
 });
 // if (scrollTop > lastScrollTop) {
 //     // Downscroll\

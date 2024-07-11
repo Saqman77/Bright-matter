@@ -13,7 +13,7 @@ html
 html,
 body
 {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     width: 100%;
     height: 100%;
     position: relative;
@@ -45,9 +45,21 @@ body
     top: 1%;
     left: 0;
     width: 100%;
-    height: clamp(60px,5vh,200px);
+    height: clamp(40px,5vh,200px);
     z-index: 0;
     padding: 0 2.5vmin 0 1.5vmin;
+}
+
+.scroll-down .navbar
+{
+    transform: translate3d(0, -130%, 0);
+    /* width: fit-content; */
+    transition: transform 0.5s ease;
+}
+.scroll-up .navbar
+{
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.5s ease;
 }
 
 .nav-container
@@ -157,6 +169,7 @@ section
     .navbar
     {
         padding: 0 1.5vmin;
+        height: clamp(40px,8vh,200px);
     }
     .logo
 {
