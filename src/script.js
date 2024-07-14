@@ -1,127 +1,160 @@
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GUI } from 'lil-gui';
+import gsap from 'gsap';
 
-
+const gui = new GUI();
 // Canvas
-const canvas = document.querySelector('canvas.webgl')
+const canvas = document.querySelector('canvas.webgl');
 
 // Scene
-const scene = new THREE.Scene()
+const scene = new THREE.Scene();
 
 /**
- *  Textures
+ * Galaxy Parameters
  */
-// const textureLoader = new THREE.TextureLoader()
-// const particleTexture = textureLoader.load('/textures/particles/9.png')
+const parameters = {
+    count: 90000,
+    size: 0.01,
+    radius: 1.5,
+    branches: 3,
+    spin: 0,
+    randomness: 0.5,
+    randomnessPower: 10,
+    insideColor: '#312eff',
+    outsideColor: '#1b8360'
+};
 
-/**
- * Galaxy
- */
-const parameters = {}
-parameters.count = 450000
-parameters.size = 0.01
-parameters.radius = 5
-parameters.branches = 3
-parameters.spin = 1
-parameters.randomness = 0.5
-parameters.randomnessPower = 3
-parameters.insideColor = '#312eff'
-parameters.outsideColor = '#1b8360'
+// Create an array for workers
+const workers = [];
+const workerCount = 4; // Number of workers
 
-let particlesGeometry = null
-let particlesMaterial = null
-let particles = null
+for (let i = 0; i < workerCount; i++) {
+    const worker = new Worker('./generateGalaxyWorker.js');
+    workers.push(worker);
+}
 
-const generateGalaxy =  () =>
-    {
-        
-        /**
-         * Destroy old galaxy
-         */
-        if(particles !== null)
-            {
-                particlesGeometry.dispose()
-                particlesMaterial.dispose()
-                scene.remove(particles)
-            }
+let particlesGeometry = new THREE.BufferGeometry();
+let particlesMaterial = null;
+let particles = null;
 
-        //Geometry
-        particlesGeometry = new THREE.BufferGeometry()
-        const positions = new Float32Array(parameters.count * 3)
-        const colors = new Float32Array(parameters.count * 3)
-        const colorInside = new THREE.Color(parameters.insideColor)
-        const colorOutside = new THREE.Color(parameters.outsideColor)
+const generateGalaxy = () => {
+    const cleanParams = {
+        count: parameters.count,
+        maxRadius: parameters.radius,
+        branches: parameters.branches,
+        spin: parameters.spin,
+        randomnessPower: parameters.randomnessPower,
+        insideColor: parameters.insideColor,
+        outsideColor: parameters.outsideColor
+    };
 
-            for(let i = 0; i < parameters.count; i++)
-                {
-                    const i3 = i * 3
+    let completedWorkers = 0; // Reset completed workers count
 
-                    const radius = Math.random() * parameters.radius
-                    const spinAngle = radius * parameters.spin
-                    const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI * 2
-                    
-                    const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1)
-                    const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1)
-                    const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1)
-                    positions[i3] = Math.sin(branchAngle + spinAngle) * radius + randomX
-                    positions[i3 + 1] = randomY
-                    positions[i3 + 2] = Math.cos(branchAngle + spinAngle) * radius + randomZ
-
-                    //Colour
-                    const mixedColour = colorInside.clone()
-                    mixedColour.lerp(colorOutside, radius / parameters.radius)
-
-                    colors[i3] = mixedColour.r
-                    colors[i3 + 1] = mixedColour.g
-                    colors[i3 + 2] = mixedColour.b
-                }
-            //BufferAttribute
-            particlesGeometry.setAttribute(
-                'position',
-                new THREE.BufferAttribute(positions, 3)
-            )
-            particlesGeometry.setAttribute(
-                'color',
-                new THREE.BufferAttribute(colors, 3)
-            )
-
-    //Material
-    particlesMaterial = new THREE.PointsMaterial({
-    size : parameters.size,
-    sizeAttenuation : true,
-    // transparent: true,
-    // alphaMap : particleTexture,
-    // color : new THREE.Color('red'),
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    vertexColors: true
- })
-/**
- * Points
- */
- particles = new THREE.Points(particlesGeometry, particlesMaterial)
- scene.add(particles)
+    if (particles !== null) {
+        scene.remove(particles);
+        particlesGeometry.dispose();
+        particlesMaterial.dispose();
+        particles = null;
     }
 
-    generateGalaxy()
-    // gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'size').min(0.001).max(0.1).step(0.001).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'radius').min(0.01).max(20).step(0.01).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'spin').min(- 5).max(5).step(0.001).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(generateGalaxy)
-// gui.add(parameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy)
-// gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy)
-// gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy)
+    const positionsArray = new Float32Array(parameters.count * 3);
+    const colorsArray = new Float32Array(parameters.count * 3);
 
-/**
- * Test cube
- */
-// const cube = new THREE.Mesh(
-//     new THREE.BoxGeometry(1, 1, 1),
-//     new THREE.MeshBasicMaterial()
-// )
-// scene.add(cube)
+    particlesGeometry = new THREE.BufferGeometry();
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positionsArray, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+    workers.forEach((worker, index) => {
+        const startIndex = Math.floor((index * parameters.count) / workerCount);
+        const endIndex = Math.floor(((index + 1) * parameters.count) / workerCount);
+        
+        const workerParams = {
+            ...cleanParams,
+            startIndex,
+            endIndex
+        };
+
+        worker.postMessage(workerParams);
+    });
+
+    workers.forEach(worker => {
+        worker.onmessage = function(event) {
+            const data = event.data;
+            const positions = new Float32Array(data.positions);
+            const colors = new Float32Array(data.colors);
+
+            const startIndex = data.workerStartIndex * 3;
+            const length = positions.length;
+
+            if (checkForNaN(positions) || checkForNaN(colors)) {
+                console.error("NaN values detected in worker data.");
+                return;
+            }
+    
+
+            // Ensure we are not setting out of bounds
+            if (startIndex + length <= particlesGeometry.attributes.position.array.length) {
+                particlesGeometry.attributes.position.array.set(positions, startIndex);
+                particlesGeometry.attributes.color.array.set(colors, startIndex);
+            } else {
+                console.error("Data received from worker exceeds buffer size.");
+                console.error('rcvd:',startIndex + length,'length accepted:',particlesGeometry.attributes.position.array.length,);
+            }
+
+            // Mark the attributes as needing updates
+            particlesGeometry.attributes.position.needsUpdate = true;
+            particlesGeometry.attributes.color.needsUpdate = true;
+
+            completedWorkers++;
+            if (completedWorkers === workerCount) {
+                particlesMaterial = new THREE.PointsMaterial({
+                    size: parameters.size,
+                    sizeAttenuation: true,
+                    depthWrite: false,
+                    blending: THREE.AdditiveBlending,
+                    vertexColors: true
+                });
+
+                particles = new THREE.Points(particlesGeometry, particlesMaterial);
+                // particles.position.set(2,4,-3)
+                scene.add(particles);
+            }
+        };
+    });
+    function checkForNaN(array) {
+        for (let i = 0; i < array.length; i++) {
+            if (isNaN(array[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+
+// Initial galaxy generation
+gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy);
+gui.add(parameters, 'size').min(0.001).max(2).step(0.001).onFinishChange(generateGalaxy);
+gui.add(parameters, 'radius').min(0.01).max(20).step(0.01).onFinishChange(generateGalaxy);
+gui.add(parameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy);
+gui.add(parameters, 'spin').min(-5).max(5).step(0.001).onFinishChange(generateGalaxy);
+gui.add(parameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(generateGalaxy);
+gui.add(parameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy);
+
+generateGalaxy();
+// if(particles){
+//     gsap.to(particles.rotation, {
+//         duration: 1.5,
+//         ease: 'power2.inOut',
+//         x: '+=6',
+//         y: '+=3',
+//         z: '+=1.5'
+//     });
+// }
+
+
+
 
 /**
  * Sizes
@@ -129,66 +162,130 @@ const generateGalaxy =  () =>
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
-}
+};
 
-window.addEventListener('resize', () =>
-{
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
-   
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
+window.addEventListener('resize', () => {
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
 
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    generateGalaxy()
-})
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
 
 /**
  * Camera
  */
-// Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 3
-camera.position.y = 3
-camera.position.z = 3
-scene.add(camera)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+camera.position.set(3, 3, 3);
+// camera.lookAt(100,4,0)
+scene.add(camera);
+
+gui.add(camera.position, 'x').min(-30).max(30).step(0.5)
+gui.add(camera.position, 'y').min(-30).max(30).step(0.5)
+gui.add(camera.position, 'z').min(-30).max(30).step(0.5)
+// gui.add(camera.lookAt, 'x').min(-10).max(10).step(0.5)
+// gui.add(camera.lookAt, 'y').min(-10).max(10).step(0.5)
+// gui.add(camera.lookAt, 'z').min(-10).max(10).step(0.5)
+
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
 
 /**
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
-})
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+});
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+let scrollY = window.scrollY;
+let currentSection = 0;
+
+const debounce = (func, delay) => {
+    let timeout;
+    return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(func, delay);
+    };
+};
+
+let isUpdating = false;
+
+const updateGalaxy = () => {
+    if (!isUpdating) {
+        isUpdating = true;
+        generateGalaxy();
+        setTimeout(() => {
+            isUpdating = false;
+        }, 31); // Adjust the delay as needed
+    }
+};
+
+
+let direction = 0
+
+// Scroll Update
+window.addEventListener('scroll', debounce(() => {
+    scrollY = window.scrollY;
+    const newSection = Math.round(scrollY / sizes.height);
+    
+    if (newSection !== currentSection) {
+        direction = newSection > currentSection ? 'down' : 'up';
+        currentSection = newSection;
+
+        // Animate galaxy parameters with GSAP
+        gsap.to(parameters, {
+            // count: direction === 'down' ? 450000 : 90000,
+            ease: "power1.in",
+            radius: direction === 'down' ? 5 : 1.5,
+            spin: direction === 'down' ? 1 : 0,
+            randomnessPower: direction === 'down' ? 3 : 10,
+            duration: direction === 'down' ? 0.5 : 1,
+            onStart:()=>{
+                parameters.count = direction === 'down' ? 90000 : 40000
+                generateGalaxy()
+            },
+            onComplete:()=> {
+                parameters.count = direction === 'down' ? 450000 : 40000
+                generateGalaxy()
+            },
+            onUpdate: updateGalaxy
+            // onUpdateParams: [parameters.count]
+        });
+
+
+    }
+}, 200));
+
 
 /**
  * Animate
  */
-const clock = new THREE.Clock()
+const clock = new THREE.Clock();
 
-const tick = () =>
-{
-    const elapsedTime = clock.getElapsedTime()
+const tick = () => {
+    const elapsedTime = clock.getElapsedTime();
 
-    particles.rotation.y = elapsedTime * 0.05
+    if (particles) {
+        particles.rotation.y = elapsedTime * 0.05;
+    }
 
-    // Update controls
-    controls.update()
+    controls.update();
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick);
+};
 
-    // Render
-    renderer.render(scene, camera)
+tick();
 
-    // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
-}
+        // // Animate camera position
 
-tick()
+
+
+
