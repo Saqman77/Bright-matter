@@ -11,6 +11,36 @@ const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
 
 /**
+ * Subparticles
+ */
+// Geometry
+const subcount = 2000;
+const subpositions = new Float32Array(subcount * 3);
+
+for (let i = 0; i < subcount; i++) {
+    subpositions[i * 3 + 0] = (Math.random() - 0.5) * 10;
+    subpositions[i * 3 + 1] = 0.5 - Math.random() * 8;
+    subpositions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+}
+
+const subparticleGeometry = new THREE.BufferGeometry();
+subparticleGeometry.setAttribute('position', new THREE.BufferAttribute(subpositions, 3));
+
+// Particles material
+const subparticleMaterial = new THREE.PointsMaterial({
+    color: '#1b8360',
+    size: 0.002,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    sizeAttenuation: true,
+    transparent: true
+});
+
+// Points
+const subparticle = new THREE.Points(subparticleGeometry, subparticleMaterial);
+
+
+/**
  * Galaxy Parameters
  */
 const parameters = {
@@ -68,7 +98,7 @@ const generateGalaxy = () => {
     workers.forEach((worker, index) => {
         const startIndex = Math.floor((index * parameters.count) / workerCount);
         const endIndex = Math.floor(((index + 1) * parameters.count) / workerCount);
-        
+
         const workerParams = {
             ...cleanParams,
             startIndex,
@@ -91,7 +121,6 @@ const generateGalaxy = () => {
                 console.error("NaN values detected in worker data.");
                 return;
             }
-    
 
             // Ensure we are not setting out of bounds
             if (startIndex + length <= particlesGeometry.attributes.position.array.length) {
@@ -99,7 +128,7 @@ const generateGalaxy = () => {
                 particlesGeometry.attributes.color.array.set(colors, startIndex);
             } else {
                 console.error("Data received from worker exceeds buffer size.");
-                console.error('rcvd:',startIndex + length,'length accepted:',particlesGeometry.attributes.position.array.length,);
+                console.error('Received:', startIndex + length, 'Length accepted:', particlesGeometry.attributes.position.array.length);
             }
 
             // Mark the attributes as needing updates
@@ -117,54 +146,11 @@ const generateGalaxy = () => {
                 });
 
                 particles = new THREE.Points(particlesGeometry, particlesMaterial);
-
-                let positionChanged = false; // Track if the position has changed
-
-                // Smooth transition function
-                function smoothTransition(startPos, endPos, duration) {
-                    let startTime = null;
-                
-                    function animate(time) {
-                        if (!startTime) startTime = time;
-                        let timeElapsed = time - startTime;
-                        let progress = Math.min(timeElapsed / duration, 1);
-                
-                        // Interpolate between start and end positions
-                        particles.position.x = startPos.x + (endPos.x - startPos.x) * progress;
-                        particles.position.y = startPos.y + (endPos.y - startPos.y) * progress;
-                        particles.position.z = startPos.z + (endPos.z - startPos.z) * progress;
-                
-                        if (progress < 1) {
-                            requestAnimationFrame(animate);
-                        }
-                    }
-                
-                    requestAnimationFrame(animate);
-                }
-                
-                function onScroll() {
-                    if (!positionChanged && window.scrollY > 0) {
-                        const startPos = { x: 2, y: 4, z: -3 }; 
-                        const endPos = { x: 0, y: 0, z: 0 };
-                        const duration = 1000; // Transition duration in milliseconds
-                
-                        smoothTransition(startPos, endPos, duration);
-                        positionChanged = true;
-                
-                        // Remove the scroll event listener to avoid further impacts on performance
-                        window.removeEventListener('scroll', onScroll);
-                    }
-                }
-                
-                // Add the scroll event listener
-                window.addEventListener('scroll', onScroll);
-
-                    // particles.position.set(jomama)
                 scene.add(particles);
             }
-            
         };
     });
+
     function checkForNaN(array) {
         for (let i = 0; i < array.length; i++) {
             if (isNaN(array[i])) {
@@ -174,7 +160,6 @@ const generateGalaxy = () => {
         return false;
     }
 };
-
 
 // Initial galaxy generation
 gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy);
@@ -186,18 +171,6 @@ gui.add(parameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(gener
 gui.add(parameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy);
 
 generateGalaxy();
-// if(particles){
-//     gsap.to(particles.rotation, {
-//         duration: 1.5,
-//         ease: 'power2.inOut',
-//         x: '+=6',
-//         y: '+=3',
-//         z: '+=1.5'
-//     });
-// }
-
-
-
 
 /**
  * Sizes
@@ -216,24 +189,24 @@ window.addEventListener('resize', () => {
 
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    debounceGenerateGalaxy(); // Debounced galaxy generation on resize
 });
-
 
 /**
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(2, 10, 2);
-// camera.lookAt(100,4,0)
-scene.add(camera);
+camera.position.set(3, 4, 3);
+subparticle.position.y = camera.position.y
+scene.add(subparticle);
 
-gui.add(camera.position, 'x').min(-30).max(30).step(0.5)
-gui.add(camera.position, 'y').min(-30).max(30).step(0.5)
-gui.add(camera.position, 'z').min(-30).max(30).step(0.5)
-// gui.add(camera.lookAt, 'x').min(-10).max(10).step(0.5)
-// gui.add(camera.lookAt, 'y').min(-10).max(10).step(0.5)
-// gui.add(camera.lookAt, 'z').min(-10).max(10).step(0.5)
+const cameraGroup = new THREE.Group();
+scene.add(cameraGroup);
+cameraGroup.add(camera);
 
+gui.add(camera.position, 'x').min(-30).max(30).step(0.5);
+gui.add(camera.position, 'y').min(-30).max(30).step(0.5);
+gui.add(camera.position, 'z').min(-30).max(30).step(0.5);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
@@ -259,66 +232,89 @@ const debounce = (func, delay) => {
     };
 };
 
-let isUpdating = false;
+// let isUpdating = false;
 
-const updateGalaxy = () => {
-    if (!isUpdating) {
-        isUpdating = true;
-        generateGalaxy();
-        setTimeout(() => {
-            isUpdating = false;
-        }, 31); // Adjust the delay as needed
-    }
-};
+// const updateGalaxy = () => {
+//     if (!isUpdating) {
+//         isUpdating = true;
+//         requestIdleCallback(() => {
+//             generateGalaxy();
+//             isUpdating = false;
+//         });
+//     }
+// };
 
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.5);
 
-let direction = 0
+let direction = 0;
 
-// Scroll Update
+let isScrollEventActive = true; // Flag to control the scroll event listener
+
 window.addEventListener('scroll', debounce(() => {
+     // Exit if the scroll event is disabled
+
     scrollY = window.scrollY;
     const newSection = Math.round(scrollY / sizes.height);
-    
-    if (newSection !== currentSection) {
+    if (!isScrollEventActive) return;
+    if (Math.abs(newSection !== currentSection)) { // Trigger only if section changes significantly
         direction = newSection > currentSection ? 'down' : 'up';
         currentSection = newSection;
 
         // Animate galaxy parameters with GSAP
         gsap.to(parameters, {
-            // count: direction === 'down' ? 450000 : 90000,
-            ease: "power1.in",
             radius: direction === 'down' ? 5 : 1.5,
             spin: direction === 'down' ? 1 : 0,
             randomnessPower: direction === 'down' ? 3 : 10,
-            duration: direction === 'down' ? 0.5 : 1,
-            onStart:()=>{
-                parameters.count = direction === 'down' ? 90000 : 40000
+            duration: direction === 'down' ? 2 : 1,
+            onStart: () => {
+                parameters.count = direction === 'down' ? 100000 : 60000;
                 generateGalaxy()
             },
-            onComplete:()=> {
-                parameters.count = direction === 'down' ? 450000 : 40000
+            onComplete: () => {
+                parameters.count = direction === 'down' ? 450000 : 90000;
                 generateGalaxy()
             },
-            onUpdate: updateGalaxy
-            // onUpdateParams: [parameters.count]
+            onUpdate: debounceGenerateGalaxy
         });
-
-
+        if(currentSection >= 1.5 )
+        {isScrollEventActive = false;} // Disable the scroll event listener after the condition is met
     }
 }, 200));
 
+// Cursor
+const cursor = { x: 0, y: 0 };
+
+window.addEventListener('mousemove', (event) => {
+    cursor.x = event.clientX / sizes.width - 0.5;
+    cursor.y = event.clientY / sizes.height - 0.5;
+});
 
 /**
  * Animate
  */
 const clock = new THREE.Clock();
+let previousTime = 0;
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime();
+    const deltaTime = elapsedTime - previousTime;
+    previousTime = elapsedTime;
 
     if (particles) {
         particles.rotation.y = elapsedTime * 0.05;
     }
+
+    // subparticle.position.x = Math.sin(elapsedTime) * 0.01;
+    subparticle.position.z = Math.cos(elapsedTime) * 0.1;
+    const cameraParallaxY = (- scrollY / sizes.height + 4) * 0.5;
+    camera.position.y += (cameraParallaxY - camera.position.y) * 5 * deltaTime;
+
+    // Animate camera
+    const parallaxX = cursor.x * 0.5;
+    const parallaxY = -cursor.y * 0.5;
+
+    cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+    cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
 
     controls.update();
     renderer.render(scene, camera);
@@ -326,9 +322,3 @@ const tick = () => {
 };
 
 tick();
-
-        // // Animate camera position
-
-
-
-
