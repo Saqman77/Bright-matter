@@ -117,9 +117,52 @@ const generateGalaxy = () => {
                 });
 
                 particles = new THREE.Points(particlesGeometry, particlesMaterial);
-                // particles.position.set(2,4,-3)
+
+                let positionChanged = false; // Track if the position has changed
+
+                // Smooth transition function
+                function smoothTransition(startPos, endPos, duration) {
+                    let startTime = null;
+                
+                    function animate(time) {
+                        if (!startTime) startTime = time;
+                        let timeElapsed = time - startTime;
+                        let progress = Math.min(timeElapsed / duration, 1);
+                
+                        // Interpolate between start and end positions
+                        particles.position.x = startPos.x + (endPos.x - startPos.x) * progress;
+                        particles.position.y = startPos.y + (endPos.y - startPos.y) * progress;
+                        particles.position.z = startPos.z + (endPos.z - startPos.z) * progress;
+                
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        }
+                    }
+                
+                    requestAnimationFrame(animate);
+                }
+                
+                function onScroll() {
+                    if (!positionChanged && window.scrollY > 0) {
+                        const startPos = { x: 2, y: 4, z: -3 }; 
+                        const endPos = { x: 0, y: 0, z: 0 };
+                        const duration = 1000; // Transition duration in milliseconds
+                
+                        smoothTransition(startPos, endPos, duration);
+                        positionChanged = true;
+                
+                        // Remove the scroll event listener to avoid further impacts on performance
+                        window.removeEventListener('scroll', onScroll);
+                    }
+                }
+                
+                // Add the scroll event listener
+                window.addEventListener('scroll', onScroll);
+
+                    // particles.position.set(jomama)
                 scene.add(particles);
             }
+            
         };
     });
     function checkForNaN(array) {
@@ -180,7 +223,7 @@ window.addEventListener('resize', () => {
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(3, 3, 3);
+camera.position.set(2, 10, 2);
 // camera.lookAt(100,4,0)
 scene.add(camera);
 
