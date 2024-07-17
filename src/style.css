@@ -65,7 +65,7 @@ body
     transform: translate3d(0, 0, 0);
     transition: transform 0.5s ease;
 }
-.scroll-down-btn .contact-btn
+.scroll-up-btn .contact-btn
 {
     transform: translate3d(0, -130%, 0); /* Adjust as needed */
     /* Shrink to minimum width */
@@ -73,7 +73,7 @@ body
     opacity: 0;
     transition: transform 1s ease, opacity 0.5s;
 }
-.scroll-up-btn .contact-btn
+.scroll-down-btn .contact-btn
 {
     transform: translate3d(0, 0, 0);
     opacity: 1;
@@ -142,7 +142,7 @@ body
     border-radius: 15px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     transform: translate3d(0, 0, 0);
-    transition: transform 0.7s ease, width 0.7s ease-in-out 0.7s, background-color 0.5s;
+    transition: transform 0.5s ease, width 0.5s ease-in-out 0.7s, background-color 0.5s;
     display: flex;
     width: 69px;
     height: 69px;
@@ -170,8 +170,8 @@ body
 
 .contact-btn:hover {
     width: 210px;
-    transition-delay: 0s, 0s;
-    /* background-color:#40A5AB */
+    transition-delay: 1s, 0s;
+    background-color:#40A5AB
 }
 
 .contact-btn:hover > p {
