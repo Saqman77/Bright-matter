@@ -24,16 +24,21 @@ window.addEventListener('scroll', () => {
  if (scrollTop <= 0) 
     {
         body.classList.remove("scroll-up")
+        body.classList.remove("scroll-up-btn")
     }
 if (scrollTop > lastScrollTop && !body.classList.contains("scroll-down"))
     {
         body.classList.remove("scroll-up")
+        body.classList.remove("scroll-up-btn")
         body.classList.add("scroll-down")
+        body.classList.add("scroll-down-btn")
     }
 if (scrollTop < lastScrollTop && body.classList.contains("scroll-down"))
     {
         body.classList.remove("scroll-down")
+        body.classList.remove("scroll-down-btn")
         body.classList.add("scroll-up")
+        body.classList.add("scroll-up-btn")
     }
     lastScrollTop = scrollTop
 //   if (scrollTop > lastScrollTop) {
