@@ -2,24 +2,14 @@ importScripts('./libs/three.min.js');
 
 self.onmessage = function(event) {
     const parameters = event.data;
-    const { maxRadius, branches, spin, randomnessPower, insideColor, outsideColor, startIndex, endIndex } = parameters;
-
-    // Validate startIndex and endIndex
-    if (startIndex >= endIndex || startIndex < 0 || endIndex > parameters.count) {
-        console.error('Invalid startIndex or endIndex:', startIndex, endIndex);
-        return;
-    }
+    const { maxRadius, branches, spin, randomnessPower, insideColor, outsideColor, startIndex, endIndex, workerIndex } = parameters;
 
     const positions = new Float32Array((endIndex - startIndex) * 3);
     const colors = new Float32Array((endIndex - startIndex) * 3);
-    if (checkForNaN(positions) || checkForNaN(colors)) {
-        console.error("NaN values detected in worker data.");
-        return;
-    }
 
     const colorInside = new THREE.Color(insideColor);
     const colorOutside = new THREE.Color(outsideColor);
-
+    
     for (let i = startIndex; i < endIndex; i++) {
         const arrayIndex = i - startIndex;
         const i3 = arrayIndex * 3;
@@ -44,13 +34,5 @@ self.onmessage = function(event) {
         colors[i3 + 2] = mixedColour.b;
     }
 
-    self.postMessage({ positions, colors, workerStartIndex: startIndex });
+    self.postMessage({ positions, colors, workerIndex }, [positions.buffer, colors.buffer]);
 };
-function checkForNaN(array) {
-    for (let i = 0; i < array.length; i++) {
-        if (isNaN(array[i])) {
-            return true;
-        }
-    }
-    return false;
-}

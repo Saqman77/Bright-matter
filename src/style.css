@@ -131,52 +131,7 @@ section
     /* background-attachment: fixed; */
 }
 
-.left 
-{
-    width: 40vw;
-}
 
-.right 
-{
-    width: 10vw;
-}
-
-.mask-bar
-{
-    background-color:#171717 ;
-    height: 100%;
-}
-.frame-svg 
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom right;
-    position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-}
-.frame-svg-mob
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
-.frame-svg-tab
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
 @media (max-width: 1250px) {
     .navbar
     {
@@ -195,55 +150,8 @@ section
     height: 55vmax;
     display: flex;
 }
-    .top-bar
-    {
-        height: 5vh;
-    }
-    .bottom-bar
-    {
-        height: 100%;
-    }
-    .bar
-{
-    background-color:#171717 ;
-    width: 100%;
-    /* height: 0vh; */
-}
-    .left 
-{
-    width: 15vmax;
-}
 
-.right 
-{
-    width: 15vmax;
 }
-
-.mask-bar
-{
-    background-color:#171717 ;
-    height: 100%;
-}
-    .frame-svg 
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
-.frame-svg-tab
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-  }
-
 @media (max-width: 768px) {
 
     .navbar
@@ -257,125 +165,7 @@ section
         height: 70vmin;
         display: flex;
     }
-    .top-bar
-    {
-        height: 5vh;
-    }
-    .bottom-bar
-    {
-        height: 100%;
-    }
-    .bar
-    {
-        background-color:#171717 ;
-        width: 100%;
-        /* height: 0vmin; */
-    }
-        .left 
-    {
-        width: 15vw;
-    }
-    
-    .right 
-    {
-        width: 15vw;
-    }
-    
-    .mask-bar
-    {
-        background-color:#171717 ;
-        height: 100%;
-    }
-    .frame-svg 
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
-.frame-svg-tab
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
-.frame-svg-mob
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+ 
   }
 @media (max-width: 450px) {
-    .mask-container
-    {
-        width: 100%;
-        height: 70vmin;
-        display: flex;
-    }
-    .top-bar
-    {
-        height: 5vh;
-    }
-    .bottom-bar
-    {
-        height: 100%;
-    }
-    .bar
-    {
-        background-color:#171717 ;
-        width: 100%;
-        /* height: 0vmin; */
-    }
-    .left 
-    {
-        width: 15vw;
-    }
-    
-    .right 
-    {
-        width: 15vw;
-    }
-    
-    .mask-bar
-    {
-        background-color:#171717 ;
-        height: 100%;
-    }
-    .frame-svg 
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
 }
-.frame-svg-tab
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
-.frame-svg-mob
-{
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-  }
-
