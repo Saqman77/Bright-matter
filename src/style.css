@@ -6,7 +6,18 @@
     text-decoration: none;
     list-style: none;
 }
-
+@font-face {
+    font-family: 'azonix';
+    src: url('./assets/fontfs/Azonix.otf')format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'espial';
+    src: url('./assets/fontfs/Espial-Regular15.otf')format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
 html
 {
     background-color: black;
@@ -20,6 +31,7 @@ body
     width: 100%;
     height: 100%;
     position: relative;
+    font-family: 'espial';
     /* background-color:#17171700; */
     /* z-index: -1; */
 }
@@ -65,20 +77,6 @@ body
     transform: translate3d(0, 0, 0);
     transition: transform 0.5s ease;
 }
-.scroll-up-btn .contact-btn
-{
-    transform: translate3d(0, -130%, 0); /* Adjust as needed */
-    /* Shrink to minimum width */
-    /* width: fit-content; */
-    opacity: 0;
-    transition: transform 1s ease, opacity 0.5s;
-}
-.scroll-down-btn .contact-btn
-{
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-    transition: transform 1s ease, opacity 0.5s;
-}
 
 .nav-container
 {
@@ -120,6 +118,8 @@ body
     align-items: center;
 }
 
+
+
 .contact-us > img 
 {
     width: 26px;
@@ -129,7 +129,8 @@ body
 
 .contact-us > p 
 {
-    font-size: 20px;
+    font-size: 16px;
+    font-family: 'azonix';
     color: white;
     justify-self: right;
     margin-right: auto;
@@ -142,7 +143,7 @@ body
     border-radius: 15px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     transform: translate3d(0, 0, 0);
-    transition: transform 0.5s ease, width 0.5s ease-in-out 0.7s, background-color 0.5s;
+    transition: transform 0.1s ease, width 0.5s, background-color 0.5s, opacity 0.5s ;
     display: flex;
     width: 69px;
     height: 69px;
@@ -156,51 +157,104 @@ body
 }
 
 .contact-btn > p {
-    font-size: 20px;
+    font-size: 16px;
     color: white;
     margin-right: auto;
     margin-left: 0;
-    margin-top: -2px;
+    font-family: 'azonix';
+    font-weight: 300;
+    /* margin-top: -2px; */
     text-decoration: none;
     opacity: 0;
     width: 0;
-    transition:  opacity 0.5s ease-in, width 0.5s , margin 0.5s ;
+    transition: color 0.5s ease-in-out 0.1s, text 1.5s ease-in-out 1.5s, -webkit-background-clip 2.5s, width 0.5s ease-in-out 0.5s, margin 0.5s ease-in-out 0.5s;
     display: inline-block;
 }
 
 .contact-btn:hover {
     width: 210px;
-    transition-delay: 1s, 0s;
-    background-color:#40A5AB
+    /* background-color: #40A5AB; */
 }
 
 .contact-btn:hover > p {
     opacity: 1;
     width: fit-content;
     margin-left: 0.9vw;
-    color: linear-gradient(135deg, #00F0FF, #9ac8ce00);
-    transition-delay: 1s, 0s;
+    background: linear-gradient(185deg, #00F0FF, #9ac8ce);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition-delay: 0.5s;
+    -webkit-text-fill-color: transparent;
     
 }
 
-  
+  .hover
+  {
+    display: none;
+    /* transition: transform all 2.5s ease-in-out 1.5s; */
+  }
+  .clicked
+  {
+    display: none;
+    /* transition: transform all 1.5s ease-in-out 0.5s; */
+  }
 
 .contact-btn > img 
 {
     width: 26px;
     height: 20.5px;
     margin-left: auto;
-    transition:stroke 0.5s, color 0.5s, fill 0.5s;
+    /* transition:stroke 0.5s, color 0.5s, fill 0.5s; */
     
     /* margin-right:auto ; */
 }
 
-.contact-btn:hover > img {
+.contact-btn:hover > .hover {
     /* transition-delay: 1s, 0s; */
-    stroke: #000000;
-    fill: #000000;
-    color: #000000;
+    display:inline-block;
+    transition-delay: 0s, 0s;
+
 }
+.contact-btn:hover > .static {
+    /* transition-delay: 1s, 0s; */
+    display:none;
+}
+.contact-btn:active > .clicked
+{
+    display: inline-block;
+}
+.contact-btn:active > p
+{
+    background: #171717;
+    color: #171717;
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* transition-delay: 0.5s; */
+    -webkit-text-fill-color: transparent;
+}
+.contact-btn:active
+{
+    background-color: #40A5AB;
+}
+.contact-btn:active > .hover
+{
+    display: none;
+}
+.scroll-up-btn .contact-btn
+{
+    transform: translate3d(0, -130%, 0); /* Adjust as needed */
+    /* Shrink to minimum width */
+    /* width: fit-content; */
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s, width 0.5s, background-color 0.5s;
+}
+.scroll-down-btn .contact-btn
+{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s, width 0.5s, background-color 0.5s;
+}
+
 
 
 

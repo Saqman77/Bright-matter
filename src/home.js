@@ -24,7 +24,8 @@ window.addEventListener('scroll', () => {
  if (scrollTop <= 0) 
     {
         body.classList.remove("scroll-up")
-        // body.classList.remove("scroll-up-btn")
+        body.classList.add("scroll-up-btn")
+        body.classList.remove("scroll-down-btn")
     }
 if (scrollTop > lastScrollTop && !body.classList.contains("scroll-down"))
     {
