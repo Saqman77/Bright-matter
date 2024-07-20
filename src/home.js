@@ -1,26 +1,13 @@
-import {gsap} from 'gsap';
+import gsap from 'gsap';
 
 let lastScrollTop = 0;
 const body = document.body
-// let scrollTop = 0
-// const debounce = (func, wait = 10, immediate = true) => {
-//     let timeout;
-//     return function () {
-//         const context = this, args = arguments;
-//         const later = function () {
-//             timeout = null;
-//             if (!immediate) func.apply(context, args);
-//         };
-//         const callNow = immediate && !timeout;
-//         clearTimeout(timeout);
-//         timeout = setTimeout(later, wait);
-//         if (callNow) func.apply(context, args);
-//     };
-// };
+
 
 window.addEventListener('scroll', () => {
-    // console.log(window.scrollY)
+
  const scrollTop = window.scrollY
+ const newSection = Math.round(scrollTop / window.innerHeight);
  if (scrollTop <= 0) 
     {
         body.classList.remove("scroll-up")
@@ -42,50 +29,26 @@ if (scrollTop < lastScrollTop && body.classList.contains("scroll-down"))
         body.classList.add("scroll-up-btn")
     }
     lastScrollTop = scrollTop
-//   if (scrollTop > lastScrollTop) {
-//     // Downscroll
-//     gsap.to('.navbar',
-//         {
-//             // duration: 1,
-//             delay:1,
-//             top: '-10%',
-//             // width: '10%'
-//         })
-//     gsap.to('.navbar',
-//         {
-//             // duration: 1,
-//             // top: '-10%',
-//             left:'95%',
-//             width: '6vw'
-//         })
-//   } else {
-//     // Upscroll
-//     gsap.to('.navbar',
-//         {
-//             top: '1%',
-            
-//             // left:'0',
-//             // width: '100%',
-//             // duration: 1
-//         })
-//     gsap.to('.navbar',
-//         {
-//             // top: '1%',
-//             left:'0',
-//             width: '100%',
-//             delay:1,
-            
-//         })
-//   }
 
-//   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    if (newSection == 2)
+        {
+            gsap.fromTo('.a',
+
+                {
+                    backdropFilter:'blur(10px)',
+                    backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))',
+                    duration:1,
+                    delay:3,
+                    
+                },  {
+                    backdropFilter:'none',
+                    backgroundColor:'none',
+                })
+        }
 });
-// if (scrollTop > lastScrollTop) {
-//     // Downscroll\
+
 const tl = gsap.timeline()
-// tl.from(({
-//     duration: 1.5
-// }))
+
 tl.from('.navbar',
         {
             top: '-30%',
@@ -105,22 +68,26 @@ tl.from('.navbar',
         gsap.from('.content-frame',
             {
                 // delay:1,
-                backdropFilter:'blur(10px)',
-                duration:1.4
+                backdropFilter:'blur(20px)',
+                duration:2
             })
 
-        // gsap.from('.webgl',
-        //     {
-        //         // backgroundColor: '#171717',
-        //         scale: 0,
-        //         y: '100%',
-        //         // delay: 2,
-        //         duration: 3
-        //     }
-        // )
-//   } else {
-//     // Upscroll
-//     navbar.style.top = '1%';
-//   }
+//marquee
+        //    let marqueeDirection = body.classList.contains("scroll-down") ? 'down' : 'up';
+            gsap.to('.marquee__part',
+                {
+                    xPercent: -100,
+                    repeat:-1,
+                    duration:5,
+                    ease:"linear"
+                })
+            // gsap.from('.marquee__part__right',
+            //     {
+            //         xPercent: -100,
+            //         repeat:-1,
+            //         duration:5,
+            //         ease:"linear"
+            //     })
 
-//   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+
+                

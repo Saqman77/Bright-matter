@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { GUI } from 'lil-gui';
+import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 
 // const gui = new GUI();
@@ -90,7 +91,7 @@ const generateGalaxy = () => {
     };
 
     let completedWorkers = 0; // Reset completed workers count
-    const perf1 = performance.now();
+    // const perf1 = performance.now();
     if (particles !== null) {
         scene.remove(particles);
         particlesGeometry.dispose();
@@ -160,8 +161,8 @@ const generateGalaxy = () => {
                 particles.rotation.y = 2
                 xyz.needsUpdate = true;
                 scene.add(particles);
-                const perf2 = performance.now();
-                console.log('time taken:', perf2 - perf1);
+                // const perf2 = performance.now();
+                // console.log('time taken:', perf2 - perf1);
             }
         };
     });
@@ -250,7 +251,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-let scrollY = window.scrollY;
+
 let currentSection = 0;
 
 const debounce = (func, delay) => {
@@ -278,12 +279,20 @@ const tl = gsap.timeline()
 let direction = 0;
 
 // let isScrollEventActive = true; // Flag to control the scroll event listener
-
-window.addEventListener('scroll', debounce(() => {
+const lenis = new Lenis({
+    duration: 1.2,
+    lerp:0.05,
+    wheelMultiplier: 1,
+    easing: (t) => t * (1 - t), // Custom easing function
+    smooth: true,
+});
+let scrollY = 0;
+lenis.on('scroll', ({scroll}) => {
      // Exit if the scroll event is disabled
 
-    scrollY = window.scrollY;
-    const newSection = Math.round(scrollY / sizes.height);
+    // scrollY = window.scrollY;
+    // console.log('Scrolling at position:', scroll)
+    const newSection = Math.round(scroll / sizes.height);
     
     if (newSection !== currentSection) { // Trigger only if section changes significantly
         direction = newSection > currentSection ? 'down' : 'up';
@@ -291,15 +300,31 @@ window.addEventListener('scroll', debounce(() => {
         console.log(currentSection)
         
         // Animate galaxy parameters with GSAP
-        if (currentSection <= 1 ) {
+        if (currentSection == 0 ) {        gsap.to(camera.position,
+            {
+                x:0,
+                z:4,
+                y:6,
+                ease:'power1.inOut',
+                duration:3,
+            })
+        gsap.to(camera.rotation,
+            {
+                duration:3,
+                ease:"power1.inOut",
+                x:-0.767,
+                z:0,
+                y:0
+            })}
+        if (currentSection == 1 ) {
         gsap.to(parameters, {
-            radius: direction === 'down' ? 5 : 1.5,
-            spin: direction === 'down' ? 2 : 0,
-            randomnessPower: direction === 'down' ? 4 : 10,
-            duration: direction === 'down' ? 3 : 1,
+            radius:1.5,
+            spin:0,
+            randomnessPower:10,
+            duration:1.5,
             // branches: 4,
             onStart: () => {
-                parameters.count = direction === 'down' ? 100000 : 10000;
+                parameters.count =10000;
                 parameters.size = 0.05
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
@@ -307,8 +332,8 @@ window.addEventListener('scroll', debounce(() => {
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count = direction === 'down' ? 450000 : 90000;
-                parameters.size = direction === 'down' ? 0.01 : 0.01;
+                parameters.count =90000;
+                parameters.size =0.01;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
@@ -317,9 +342,9 @@ window.addEventListener('scroll', debounce(() => {
 
         gsap.to(camera.position,
             {
-                x: direction === 'down' ? 0 : 0,
-                z:direction === 'down' ? 4 : 4,
-                y:direction === 'down' ? 4 : 6,
+                x:0,
+                z:4,
+                y:6,
                 ease:'power1.inOut',
                 duration:3,
             })
@@ -327,83 +352,121 @@ window.addEventListener('scroll', debounce(() => {
             {
                 duration:3,
                 ease:"power1.inOut",
-                x:direction === 'down' ? -0.3: -0.767,
-                z:direction === 'down' ? 0:0,
-                y:direction === 'down' ? 0:0
+                x:-0.767,
+                z:0,
+                y:0
+            })
+    }
+        if (currentSection == 2 ) {
+        gsap.to(parameters, {
+            radius:5,
+            spin:2,
+            randomnessPower:4,
+            duration:1.5,
+            // branches: 4,
+            onStart: () => {
+                parameters.count =50000;
+                parameters.size = 0.05
+                parameters.randomnessPower = 20
+                parameters.randomness = 0
+                // parameters.branches = direction === 'down' ? 5 : 3;
+                debounceGenerateGalaxy
+            },            
+            onComplete: () => {
+                parameters.count =450000;
+                parameters.size = 0.01;
+                // parameters.branches = direction === 'down' ? 5 : 3;
+                debounceGenerateGalaxy
+            },
+            onUpdate: debounceGenerateGalaxy
+        });
+
+        gsap.to(camera.position,
+            {
+                x: 0,
+                z:4,
+                y:4,
+                ease:'power1.inOut',
+                duration:3,
+            })
+        gsap.to(camera.rotation,
+            {
+                duration:3,
+                ease:"power1.inOut",
+                x:-0.3,
+                z:0,
+                y:0
             })
     }
 
-    if(currentSection == 3)
-        {
-tl.to(camera.position,
-    {
-        x:direction === 'down' ? -6 : 0,
-        y:direction === 'down' ? 12 : 4,
-        z:direction === 'down' ? 0.5 : 4,
-        ease:'power2.inOut',
-        duration:2,
-    })
-tl.to(camera.rotation,
-    {
-        x:direction === 'down' ? -1.6 : -0.3,
-        y:direction === 'down' ? 0 : 0,
-        z:direction === 'down' ? 0 : 0,
-        duration:2,
-        ease:'power2.inOut'
-    })}
-// }
     if(currentSection == 4)
         {
 tl.to(camera.position,
     {
-        x:direction === 'down' ? 3.5 : 0,
-        y:direction === 'down' ? 7 : 2,
-        z:direction === 'down' ? 6.5 : 4,
-        ease:'power2.inOut',
-        duration:2,
+        x:-6,
+        y:12,
+        z:0.5,
+        ease:'power1.inOut',
+        duration:1
+        
     })
 tl.to(camera.rotation,
     {
-        x:direction === 'down' ? -0.93 : 11.097,
-        y:direction === 'down' ? 0 : 0,
-        z:direction === 'down' ? 0 : 0,
-        ease:'power2.inOut',
-        duration:1,
+        x:-1.6,
+        y:0,
+        z:0,
+        ease:'power1.inOut'
     })}
+// }
     if(currentSection == 5)
         {
 tl.to(camera.position,
     {
-        x:direction === 'down' ? -4.5: 3.5,
-        y:direction === 'down' ? 3.5 : 7,
-        z:direction === 'down' ? 1 : 6.5,
-        ease:'power2.inOut',
-        duration:2,
+        x:3.5,
+        y:7,
+        z:6.5,
+        ease:'power1.inOut',
+        duration:1
     })
 tl.to(camera.rotation,
     {
-        x:direction === 'down' ? - 0.895 : -0.93,
-        y:direction === 'down' ? - 0.455 : 0,
-        z:direction === 'down' ? - 0.347 : 0,
-        ease:'power2.inOut',
-        duration:1,
+        x:-0.93,
+        y:0,
+        z:0,
+        ease:'power1.inOut'
     })}
     if(currentSection == 6)
         {
 tl.to(camera.position,
     {
-        x:direction === 'down' ? 2: -4.5,
-        y:direction === 'down' ? 2 : 3.5,
-        z:direction === 'down' ? 0 : 1,
-        ease:'power2.inOut',
-        duration:2,
+        x:-4.5,
+        y:3.5,
+        z:1,
+        ease:'power1.inOut'
     })
 tl.to(camera.rotation,
     {
-        x:direction === 'down' ? 0 : - 0.895,
-        y:direction === 'down' ? 2 : - 0.455,
-        z:direction === 'down' ? 0: - 0.347,
-        ease:'power2.inOut',
+        x:- 0.895,
+        y:- 0.455,
+        z:- 0.347,
+        ease:'power1.inOut',
+        duration:1,
+    })}
+    if(currentSection == 7)
+        {
+tl.to(camera.position,
+    {
+        x:2,
+        y:2,
+        z:0,
+        ease:'power1.inOut'
+    })
+tl.to(camera.rotation,
+    {
+        x:0,
+        y:2,
+        z:0,
+        ease:'power1.inOut',
         duration:1,
     })}
     // if(currentSection == 7)
@@ -424,30 +487,36 @@ tl.to(camera.rotation,
     //                 ease:'power2.inOut',
     //                 duration:1,
     //             })}
-    if(currentSection == 7)
+    if(currentSection == 8)
         // {
             {
                 tl.to(camera.position,
                     {
-                        x:direction === 'down' ? -5: 2,
-                        y:direction === 'down' ? 2 : 2,
-                        z:direction === 'down' ? -1 : 0,
-                        ease:'power2.inOut',
-                        duration:2,
+                        x:-5,
+                        y:2,
+                        z:-1,
+                        ease:'power1.inOut',
+                        duration:1,
                     })
                 tl.to(camera.rotation,
                     {
-                        x:direction === 'down' ? 0 : 0,
-                        y:direction === 'down' ? -9 : 2 ,
-                        z:direction === 'down' ? 0: 0,
-                        ease:'power2.inOut',
+                        x:0,
+                        y:9,
+                        z:0,
+                        ease:'power1.inOut',
                         duration:1,
                     })}
 
         
             
     }
-}, 500));
+});
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 
 // Cursor
 const cursor = { x: 0, y: 0 };
