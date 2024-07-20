@@ -235,9 +235,9 @@ cameraGroup.add(camera);
 // gui.add(camera.position, 'x').min(-30).max(30).step(0.5);
 // gui.add(camera.position, 'y').min(-30).max(30).step(0.5);
 // gui.add(camera.position, 'z').min(-30).max(30).step(0.5);
-// gui.add(camera.rotation, 'x').min(-100).max(100).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(camera.rotation, 'y').min(-100).max(100).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(camera.rotation, 'z').min(-100).max(100).step(0.001).onFinishChange(generateGalaxy);
+// gui.add(camera.rotation, 'x').min(-100).max(100).step(0.01).onFinishChange(generateGalaxy);
+// gui.add(camera.rotation, 'y').min(-100).max(100).step(0.01).onFinishChange(generateGalaxy);
+// gui.add(camera.rotation, 'z').min(-100).max(100).step(0.01).onFinishChange(generateGalaxy);
 
 // Controls
 
@@ -280,9 +280,9 @@ let direction = 0;
 
 // let isScrollEventActive = true; // Flag to control the scroll event listener
 const lenis = new Lenis({
-    duration: 1.2,
+    duration: 2,
     lerp:0.05,
-    wheelMultiplier: 1,
+    wheelMultiplier: 2,
     easing: (t) => t * (1 - t), // Custom easing function
     smooth: true,
 });
@@ -316,7 +316,7 @@ lenis.on('scroll', ({scroll}) => {
                 z:0,
                 y:0
             })}
-        if (currentSection == 1 ) {
+        if (currentSection == 2 ) {
         gsap.to(parameters, {
             radius:1.5,
             spin:0,
@@ -344,10 +344,11 @@ lenis.on('scroll', ({scroll}) => {
             {
                 x:0,
                 z:4,
-                y:6,
+                y:4,
                 ease:'power1.inOut',
-                duration:3,
+                duration:10,
             })
+
         gsap.to(camera.rotation,
             {
                 duration:3,
@@ -357,7 +358,7 @@ lenis.on('scroll', ({scroll}) => {
                 y:0
             })
     }
-        if (currentSection == 2 ) {
+        if (currentSection == 3 ) {
         gsap.to(parameters, {
             radius:5,
             spin:2,
@@ -399,6 +400,26 @@ lenis.on('scroll', ({scroll}) => {
             })
     }
 
+    // if(currentSection==3)
+    //     {
+    //         gsap.to(camera.rotation,
+    //             {
+    //                 x:-1.65,
+    //                 y:0,
+    //                 z:7.7,
+    //                 duration:3,
+    //                 ease:'power1.inOut'
+    //             })
+
+    //         tl.to(camera.position,
+    //         {
+    //             x:0,
+    //             y:4,
+    //             z:,
+    //             ease:'power1.inOut'
+    //         })
+    //     }
+
     if(currentSection == 4)
         {
 tl.to(camera.position,
@@ -406,8 +427,9 @@ tl.to(camera.position,
         x:-6,
         y:12,
         z:0.5,
-        ease:'power1.inOut',
-        duration:1
+        duration:2,
+        ease:'linear',
+       
         
     })
 tl.to(camera.rotation,
@@ -415,7 +437,8 @@ tl.to(camera.rotation,
         x:-1.6,
         y:0,
         z:0,
-        ease:'power1.inOut'
+        duration:2,
+        ease:'linear'
     })}
 // }
     if(currentSection == 5)
@@ -492,7 +515,7 @@ tl.to(camera.rotation,
             {
                 tl.to(camera.position,
                     {
-                        x:-5,
+                        x:-8,
                         y:2,
                         z:-1,
                         ease:'power1.inOut',

@@ -1,9 +1,9 @@
 import gsap from 'gsap';
-
+import ScrollTrigger from 'gsap';
 let lastScrollTop = 0;
 const body = document.body
 
-
+gsap.registerPlugin(ScrollTrigger);
 window.addEventListener('scroll', () => {
 
  const scrollTop = window.scrollY
