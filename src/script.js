@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { GUI } from 'lil-gui';
+import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
+gsap.registerPlugin(ScrollTrigger);
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
+
 
 // const gui = new GUI();
 // Canvas
@@ -178,7 +181,6 @@ const generateGalaxy = () => {
 };
 
 
-
 // Initial galaxy generation
 // gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy);
 // gui.add(parameters, 'size').min(0.001).max(2).step(0.001).onFinishChange(generateGalaxy);
@@ -280,9 +282,9 @@ let direction = 0;
 
 // let isScrollEventActive = true; // Flag to control the scroll event listener
 const lenis = new Lenis({
-    duration: 2,
+    duration: 1,
     lerp:0.05,
-    wheelMultiplier: 2,
+    wheelMultiplier: 1,
     easing: (t) => t * (1 - t), // Custom easing function
     smooth: true,
 });
@@ -293,12 +295,22 @@ lenis.on('scroll', ({scroll}) => {
     // scrollY = window.scrollY;
     // console.log('Scrolling at position:', scroll)
     const newSection = Math.round(scroll / sizes.height);
-    
+    if(pageYOffset===0)
+    {
+        generateGalaxy()
+    }
     if (newSection !== currentSection) { // Trigger only if section changes significantly
         direction = newSection > currentSection ? 'down' : 'up';
         currentSection = newSection;
         console.log(currentSection)
-        
+        // if(currentSection <=1)
+        // {
+        //     generateGalaxy()
+        // }
+
+        gsap.defaults({
+            onComplete:generateGalaxy()
+        })
         // Animate galaxy parameters with GSAP
         if (currentSection == 0 ) {        gsap.to(camera.position,
             {
@@ -306,17 +318,17 @@ lenis.on('scroll', ({scroll}) => {
                 z:4,
                 y:6,
                 ease:'power1.inOut',
-                duration:3,
+                duration:1,
             })
         gsap.to(camera.rotation,
             {
-                duration:3,
+                duration:1,
                 ease:"power1.inOut",
                 x:-0.767,
                 z:0,
                 y:0
             })}
-        if (currentSection == 2 ) {
+        if (currentSection == 1 ) {
         gsap.to(parameters, {
             radius:1.5,
             spin:0,
@@ -344,21 +356,21 @@ lenis.on('scroll', ({scroll}) => {
             {
                 x:0,
                 z:4,
-                y:4,
+                y:6,
                 ease:'power1.inOut',
-                duration:10,
+                // duration:1,
             })
 
         gsap.to(camera.rotation,
             {
-                duration:3,
+
                 ease:"power1.inOut",
                 x:-0.767,
                 z:0,
                 y:0
             })
     }
-        if (currentSection == 3 ) {
+        if (currentSection == 2 ) {
         gsap.to(parameters, {
             radius:5,
             spin:2,
@@ -388,11 +400,10 @@ lenis.on('scroll', ({scroll}) => {
                 z:4,
                 y:4,
                 ease:'power1.inOut',
-                duration:3,
+                duration:1,
             })
         gsap.to(camera.rotation,
             {
-                duration:3,
                 ease:"power1.inOut",
                 x:-0.3,
                 z:0,
@@ -427,7 +438,7 @@ tl.to(camera.position,
         x:-6,
         y:12,
         z:0.5,
-        duration:2,
+        duration:1,
         ease:'linear',
        
         
@@ -437,7 +448,7 @@ tl.to(camera.rotation,
         x:-1.6,
         y:0,
         z:0,
-        duration:2,
+        // duration:1,
         ease:'linear'
     })}
 // }
@@ -449,7 +460,7 @@ tl.to(camera.position,
         y:7,
         z:6.5,
         ease:'power1.inOut',
-        duration:1
+        // duration:1
     })
 tl.to(camera.rotation,
     {
@@ -473,7 +484,7 @@ tl.to(camera.rotation,
         y:- 0.455,
         z:- 0.347,
         ease:'power1.inOut',
-        duration:1,
+        // duration:1,
     })}
     if(currentSection == 7)
         {
@@ -490,7 +501,7 @@ tl.to(camera.rotation,
         y:2,
         z:0,
         ease:'power1.inOut',
-        duration:1,
+        // duration:1,
     })}
     // if(currentSection == 7)
     //     {
@@ -515,19 +526,19 @@ tl.to(camera.rotation,
             {
                 tl.to(camera.position,
                     {
-                        x:-8,
+                        x:-3.5,
                         y:2,
-                        z:-1,
+                        z:2.5,
                         ease:'power1.inOut',
-                        duration:1,
+                        // duration:1,
                     })
                 tl.to(camera.rotation,
                     {
                         x:0,
-                        y:9,
+                        y:0,
                         z:0,
                         ease:'power1.inOut',
-                        duration:1,
+                        // duration:1,
                     })}
 
         
@@ -540,7 +551,109 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+lenis.on('scroll', () => {
+    ScrollTrigger.update();
+});
 
+// Create a simple ScrollTrigger animation
+ScrollTrigger.defaults({
+    markers: false  // Set to false for production to hide markers
+  });
+
+  gsap.to('.hero',
+    {
+        duration:4,
+        opacity:0,
+        ease:'power1.inOut',
+        // y:'50%',
+        scrollTrigger:
+            {
+                trigger: 'body',
+                start: 'top top',
+                // preventOverlaps:true,
+                end: '+=400',
+                // pin: true,
+                scrub:2,
+                markers: false  // Set to false to hide debugging markers
+            }
+    })
+
+  const heros = document.querySelectorAll('#pin-hero')
+  
+  const tweenkleKhanna = gsap.timeline()
+  heros.forEach((hero, i) => 
+    {
+
+        tweenkleKhanna.to(hero,
+        {
+            duration:4,
+            opacity:0,
+            ease:'power1.inOut',
+            y:'100%',
+            preventOverlaps:true,
+            scrollTrigger:
+                {
+                    trigger: hero,
+                    pin: true,
+                    start: 'bottom 20%',
+                    preventOverlaps:true,
+                    end: '+=400',
+                    scrub:true,
+                    markers: false  // Set to false to hide debugging markers
+                }
+        })
+    });
+  const seconds = document.querySelectorAll('#pin-second')
+  
+
+  seconds.forEach((second, i) => 
+    {
+
+    gsap.to(second,
+        {
+            duration:1,
+            opacity:0,
+            ease:'power4.inOut',
+            backdropFilter:'blur(20px)',
+            scrollTrigger:
+                {
+                    trigger: second,
+                    pin: true,
+                    start: 'center center',
+                    end: '+=400px top',
+                    scrub:true,
+                    // markers: true // Set to false to hide debugging markers
+                }
+        })
+    });
+
+  const sections = document.querySelectorAll('#pin-section')
+  
+
+  sections.forEach((section, i) => 
+    {
+
+    gsap.from(section,
+        {
+            duration:2,
+            opacity:0,
+            backdropFilter:'blur(20px)',
+            ease:'power1.inOut',
+            scrollTrigger:
+                {
+                    trigger: section,
+                    pin: true,
+                    start: 'center center',
+                    end: '+=500px',
+                    scrub: true,
+                    // markers: true // Set to false to hide debugging markers
+                }
+        })
+    });
+  
+
+
+ // This should not be undefined
 // Cursor
 const cursor = { x: 0, y: 0 };
 
@@ -573,11 +686,11 @@ const tick = () => {
     // subparticle.scale.y = Math.sin(elapsedTime)* 0.05
     // subparticle.scale.z = Math.cos(elapsedTime) * 0.05
 
-    const cameraParallaxY = (- scrollY / sizes.height + 4) * 0.5;
-    if(currentSection){
-   if (currentSection <= 2 && currentSection >= 8){
-    camera.position.y += (cameraParallaxY - camera.position.y+4) * 0.5 * deltaTime;
-   }}
+//     const cameraParallaxY = (- scrollY / sizes.height + 4) * 0.5;
+//     if(currentSection){
+//    if (currentSection <= 2 && currentSection >= 8){
+//     camera.position.y += (cameraParallaxY - camera.position.y+4) * 0.5 * deltaTime;
+//    }}
 
     // Animate camera
     const parallaxX = cursor.x * 0.5;

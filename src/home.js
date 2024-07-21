@@ -1,9 +1,13 @@
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
+// gsap.registerPlugin(ScrollTrigger);
 let lastScrollTop = 0;
 const body = document.body
 
-gsap.registerPlugin(ScrollTrigger);
+
+
+// Check if ScrollTrigger is registered correctly
+// console.log(gsap.plugins.ScrollTrigger);
 window.addEventListener('scroll', () => {
 
  const scrollTop = window.scrollY
@@ -90,4 +94,3 @@ tl.from('.navbar',
             //     })
 
 
-                
