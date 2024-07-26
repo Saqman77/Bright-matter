@@ -308,9 +308,9 @@ lenis.on('scroll', ({scroll}) => {
         //     generateGalaxy()
         // }
 
-        gsap.defaults({
-            onComplete:generateGalaxy()
-        })
+        // gsap.defaults({
+        //     onComplete:generateGalaxy()
+        // })
         // Animate galaxy parameters with GSAP
         if (currentSection == 0 ) {        gsap.to(camera.position,
             {
@@ -571,7 +571,7 @@ ScrollTrigger.defaults({
                 trigger: 'body',
                 start: 'top top',
                 // preventOverlaps:true,
-                end: '+=400',
+                end: '+=50%',
                 // pin: true,
                 scrub:2,
                 markers: false  // Set to false to hide debugging markers
@@ -597,7 +597,7 @@ ScrollTrigger.defaults({
                     pin: true,
                     start: 'bottom 20%',
                     preventOverlaps:true,
-                    end: '+=400',
+                    end: '+=50%',
                     scrub:true,
                     markers: false  // Set to false to hide debugging markers
                 }
@@ -609,9 +609,9 @@ ScrollTrigger.defaults({
   seconds.forEach((second, i) => 
     {
 
-    gsap.to(second,
+    gsap.from(second,
         {
-            duration:1,
+            // duration:2,
             opacity:0,
             ease:'power4.inOut',
             backdropFilter:'blur(20px)',
@@ -619,10 +619,11 @@ ScrollTrigger.defaults({
                 {
                     trigger: second,
                     pin: true,
+                    // pinSpacing:false,
                     start: 'center center',
-                    end: '+=400px top',
+                    end: 'bottom center',
                     scrub:true,
-                    // markers: true // Set to false to hide debugging markers
+                    markers: true // Set to false to hide debugging markers
                 }
         })
     });
@@ -633,9 +634,9 @@ ScrollTrigger.defaults({
   sections.forEach((section, i) => 
     {
 
-    gsap.from(section,
+    gsap.to(section,
         {
-            duration:2,
+            duration:1,
             opacity:0,
             backdropFilter:'blur(20px)',
             ease:'power1.inOut',
@@ -643,10 +644,10 @@ ScrollTrigger.defaults({
                 {
                     trigger: section,
                     pin: true,
-                    start: 'center center',
-                    end: '+=500px',
+                    start: 'top top',
+                    end: '+=50%',
                     scrub: true,
-                    // markers: true // Set to false to hide debugging markers
+                    markers: true // Set to false to hide debugging markers
                 }
         })
     });
