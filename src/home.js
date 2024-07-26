@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // Check if ScrollTrigger is registered correctly
 // console.log(gsap.plugins.ScrollTrigger);
+let lastScrollTop = 0;
+const body = document.body
+
 window.addEventListener('scroll', () => {
 
  const scrollTop = window.scrollY
