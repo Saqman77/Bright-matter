@@ -10,23 +10,53 @@
     <canvas class="webgl"></canvas>
     <script type="module" src="./script.js"></script>
     <div class="main-container">
+        <div class="contact-form" id="contact-form">
+            <div class="form-header">
+              <h4>Connect With Us</h4>
+              <p>Schedule a free consultation to see how you can transform your digital presence</p>
+              <button class="close-btn">&times;</button>
+            </div>
+            <form>
+              <input type="text" placeholder="Maham Shoaib Patel" class="form-input">
+              <input type="email" placeholder="mahampatel1999@gmail.com" class="form-input">
+              <div class="form-group">
+                <select class="country-code">
+                  <option value="PK">PK</option>
+                  <!-- Add other options here -->
+                </select>
+                <input type="tel" placeholder="+92 300 1111 222" class="form-input">
+              </div>
+              <textarea placeholder="Message" class="form-input"></textarea>
+              <div class="form-group">
+                <div class="date-picker">
+                  <input type="text" placeholder="Sat, 13 July 2024 11:02 PM" class="form-input">
+                  <span class="calendar-icon">&#x1F4C5;</span>
+                </div>
+              </div>
+              <div class="confirmation">
+                <input type="checkbox" checked>
+                <label>We have received your email!</label>
+              </div>
+              <button type="submit" class="submit-btn">Get in Touch</button>
+            </form>
+          </div>
         <navbar class="navbar">
             <div class="nav-container">
-                <a class="logo" href="#">
+                <div id="opn-contact" class="logo" href="">
                     <img src="./assets/images/mainLogo/logo.svg" alt="">
-                </a>
-                <a class="contact-us" href="#">
+                </div>
+                <div id="opn-contact" class="contact-us" href="">
                     <img src="./assets/images/icons/message-icon.svg" alt="">
                     <p>contact&nbsp;us</p>
-                </a>
+                </div>
             </div>
         </navbar>
-        <a class="contact-btn  scroll-up-btn" href="#">
+        <div id="opn-contact" class="contact-btn  scroll-up-btn" href="">
             <img src="./assets/images/icons/message-icon.svg" class="static" alt="">
             <img src="./assets/images/icons/message-icon.hover.svg" class="hover" alt="">
             <img src="./assets/images/icons/message-icon-clicked.svg" class="clicked" alt="">
             <p>contact&nbsp;us</p>
-        </a>
+        </div>
         <section class="hero">
             <div class="hero-wrapper">
                 <div class="content-frame">
@@ -44,10 +74,10 @@
                                     we specialize in immersive web-experiences.
                                 </div>
                             </div>
-                            <a href="#" class="bot-contact-cta">
+                            <div id="opn-contact" href="" class="bot-contact-cta">
                                 <div class="bot-contact-desc">connect&nbsp;with<br/>the&nbsp;experts!</div>
                                 <img src="./assets/images/icons/Arrow up-right.svg" class="contact-cta" alt="">
-                            </a>
+                            </div>
                         </div>
                     </div>
                     <div class="right-hero-content">
@@ -115,10 +145,10 @@
                 <div class="main__tagline" >
                     <p class="main-p" > Let us transform your digital presence</p>
                 </div>
-                <a href="#" class="build__cta">
+                <div id="opn-contact" href="" class="build__cta">
                     <p>build&nbsp;your&nbsp;own&nbsp;team!</p>
                     <img src="./assets/images/icons/Arrow up-right.svg" class="contact-cta" alt="">
-                </a>
+                </div>
             </div>
         </section>
         <!-- <section class="b-space">
@@ -135,10 +165,10 @@
                                     Lorem ipsum dolor sit amet consectetur.<br/>Varius diam massa sed tellus ipsum turpis sed.<br/> Vitae sagittis ac ullamcorper ut facilisis turpis<br/> eleifend ut suspendisse.
                                  </p>
                             </div>
-                        <a href="#" class="b-contact-btn">
+                        <div id="opn-contact" href="" class="b-contact-btn">
                             <img src="./assets/images/icons/Framedefault.svg" alt="">
                             <img src="./assets/images/icons/Frame_114.svg"  class="dp">
-                        </a>
+                        </div>
                     </div>
                 </div>
             <div class="b-marquee">
@@ -162,10 +192,10 @@
                     <p class="sub-serv">sub-service 1</p>
                 </div>
             </div>
-                <a href="#" class="c-contact-cta">
+                <div id="opn-contact" href="" class="c-contact-cta">
                     <p class="c-contact-p">Get&nbsp;Started</p>
                     <img src="./assets/images/icons/Arrow up-right.svg" alt="" class="c-contact">
-                </a>
+                </div>
             </div>
 
         </section >
@@ -185,10 +215,10 @@
                     <p class="sub-serv">sub-service 1</p>
                 </div>
             </div>
-                <a href="#" class="d-contact-cta">
+                <div id="opn-contact" href="" class="d-contact-cta">
                     <p class="d-contact-p">Get&nbsp;Started</p>
                     <img src="./assets/images/icons/Arrow up-right.svg" alt="" class="c-contact">
-                </a>
+                </div>
             </div>
         </section>
         <section class="e">
@@ -207,10 +237,10 @@
                     <p class="sub-serv">sub-service 1</p>
                 </div>
             </div>
-                <a href="#" class="c-contact-cta">
+                <div id="opn-contact" href="" class="c-contact-cta">
                     <p class="c-contact-p">Get&nbsp;Started</p>
                     <img src="./assets/images/icons/Arrow up-right.svg" alt="" class="c-contact">
-                </a>
+                </div>
             </div>
         </section>
         <section class="footer">
@@ -267,12 +297,12 @@
                         <div class="footer-contact-heading">
                             <h3>CONTACT&nbsp;US!</h3>
                         </div>
-                        <a href="#" class="footer-contact-btn">
+                        <div id="opn-contact" href="" class="footer-contact-btn">
                             <img class='vid-contact' src="./assets/images/icons/footer-contact.svg" alt="">
                             <video autoplay loop muted plays-inline>
                                 <source src="./assets/images/footer_button_video/contact-bg.mp4" type="video/mp4">
                             </video>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div class="footer-bottom-row">

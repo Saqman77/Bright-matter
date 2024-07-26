@@ -63,7 +63,110 @@ body
     position: relative;
     /* overflow-y: scroll; */
 }
+.contact-form {
+    position: fixed; /* Position the form relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the form */
+    background-color: #111;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
+    z-index: 1000; /* Ensure it's above other content */
+    display: none;
+  }
 
+  #opn-contact
+  {
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+  }
+  .contact-form.hidden {
+    display: none;
+  }
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .form-header p {
+    font-size: 14px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .form-input {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: white;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .country-code {
+    width: 30%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: white;
+  }
+  
+  .date-picker {
+    display: flex;
+    align-items: center;
+  }
+  
+  .calendar-icon {
+    margin-left: 10px;
+  }
+  
+  .confirmation {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008c7a;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #007b6b;
+  }
 .navbar
 {
     position: fixed;
@@ -165,7 +268,7 @@ body
     border-radius: .9375rem;
     box-shadow: 0 .5rem 2rem 0 rgba(0, 0, 0, 0.37);
     transform: translate3d(0, 0, 0);
-    transition: transform 0.1s ease, width 0.5s, background-color 0.5s, opacity 0.5s, border 0.2s ;
+    transition: transform 0.1s ease, width 0.5s, background-color 0.1s, opacity 0.5s, border 0.2s ;
     border: .0313rem solid rgba(255, 255, 255, 0.11);
     display: flex;
     width: 4.3125rem;

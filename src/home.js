@@ -1,11 +1,25 @@
 import gsap from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 // gsap.registerPlugin(ScrollTrigger);
-let lastScrollTop = 0;
-const body = document.body
-
-
-
+document.addEventListener("DOMContentLoaded", function() {
+    const contactForm = document.getElementById("contact-form");
+    const closeBtn = document.getElementsByClassName("close-btn");
+    const openBtn = document.getElementById(".contact-btn");
+  
+    // Open the form
+    openBtn.addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default anchor click behavior
+      contactForm.style.display = "block"; // Show the form
+      openBtn.style.display = "none"; // Hide the open button
+    });
+  
+    // Close the form
+    closeBtn.addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default anchor click behavior
+      contactForm.style.display = "none"; // Hide the form
+      openBtn.style.display = "block"; // Show the open button
+    });
+});
 // Check if ScrollTrigger is registered correctly
 // console.log(gsap.plugins.ScrollTrigger);
 window.addEventListener('scroll', () => {
@@ -94,3 +108,4 @@ tl.from('.navbar',
             //     })
 
 
+          

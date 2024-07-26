@@ -622,8 +622,8 @@ ScrollTrigger.defaults({
                     // pinSpacing:false,
                     start: 'center center',
                     end: 'bottom center',
-                    scrub:true,
-                    markers: true // Set to false to hide debugging markers
+                    scrub:true
+                    // markers: true // Set to false to hide debugging markers
                 }
         })
     });
@@ -646,8 +646,8 @@ ScrollTrigger.defaults({
                     pin: true,
                     start: 'top top',
                     end: '+=50%',
-                    scrub: true,
-                    markers: true // Set to false to hide debugging markers
+                    scrub: true
+                    // markers: true // Set to false to hide debugging markers
                 }
         })
     });
