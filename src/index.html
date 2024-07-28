@@ -10,39 +10,37 @@
     <canvas class="webgl"></canvas>
     <script type="module" src="./script.js"></script>
     <div class="main-container">
+        <div id="overlay" class="overlay"></div>
         <div class="contact-form" id="contact-form">
-            <div class="form-header">
-              <h4>Connect With Us</h4>
-              <p>Schedule a free consultation to see how you can transform your digital presence</p>
-              <button class="close-btn">&times;</button>
-            </div>
-            <form>
-              <input type="text" placeholder="Maham Shoaib Patel" class="form-input">
-              <input type="email" placeholder="mahampatel1999@gmail.com" class="form-input">
-              <div class="form-group">
-                <select class="country-code">
-                  <option value="PK">PK</option>
-                  <!-- Add other options here -->
-                </select>
-                <input type="tel" placeholder="+92 300 1111 222" class="form-input">
-              </div>
-              <textarea placeholder="Message" class="form-input"></textarea>
-              <div class="form-group">
-                <div class="date-picker">
-                  <input type="text" placeholder="Sat, 13 July 2024 11:02 PM" class="form-input">
-                  <span class="calendar-icon">&#x1F4C5;</span>
+            <div class="contact-form-wrapper">
+                <div class="form-header">
+                  <h4>Connect With Us</h4>
+                  <p>Schedule a free consultation to see how you can transform your digital presence</p>
+                  <button class="close-btn">&times;</button>
                 </div>
-              </div>
-              <div class="confirmation">
-                <input type="checkbox" checked>
-                <label>We have received your email!</label>
-              </div>
-              <button type="submit" class="submit-btn">Get in Touch</button>
-            </form>
+                <form>
+                  <input type="text" placeholder="Maham Shoaib Patel" class="form-input">
+                  <input type="email" placeholder="mahampatel1999@gmail.com" class="form-input">
+                  <div class="form-group">
+                    <input type="tel" placeholder="+92 300 1111 222" class="form-input">
+                  </div>
+                  <textarea placeholder="Message" class="form-input message"></textarea>
+                  <div class="form-group">
+                    <div class="date-picker">
+                      <input type="text" placeholder="Sat, 13 July 2024 11:02 PM" class="form-input">
+                    </div>
+                  </div>
+                  <div class="confirmation">
+                    <input type="checkbox" checked>
+                    <label>We have received your email!</label>
+                  </div>
+                  <button type="submit" class="submit-btn">Get in Touch</button>
+                </form>
+            </div>
           </div>
-        <navbar class="navbar">
+        <nav class="navbar">
             <div class="nav-container">
-                <div id="opn-contact" class="logo" href="">
+                <div  class="logo" href="">
                     <img src="./assets/images/mainLogo/logo.svg" alt="">
                 </div>
                 <div id="opn-contact" class="contact-us" href="">
@@ -50,7 +48,7 @@
                     <p>contact&nbsp;us</p>
                 </div>
             </div>
-        </navbar>
+        </nav>
         <div id="opn-contact" class="contact-btn  scroll-up-btn" href="">
             <img src="./assets/images/icons/message-icon.svg" class="static" alt="">
             <img src="./assets/images/icons/message-icon.hover.svg" class="hover" alt="">
@@ -151,9 +149,6 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="b-space">
-
-        </section> -->
         <section class="b">
           <div class="b-content-wrapper" id="pin-second">
                 <div class="b-desc-main" >
@@ -242,6 +237,9 @@
                     <img src="./assets/images/icons/Arrow up-right.svg" alt="" class="c-contact">
                 </div>
             </div>
+        </section>
+        <section class="e-space">
+
         </section>
         <section class="footer">
             <div class="footer-wrapper">

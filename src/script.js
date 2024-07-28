@@ -277,6 +277,9 @@ const debounce = (func, delay) => {
 // };
 
 const debounceGenerateGalaxy = debounce(generateGalaxy, 0.012);
+gsap.defaults({preventOverlaps:true,
+    fastScrollEnd:true
+})
 const tl = gsap.timeline()
 let direction = 0;
 
@@ -557,7 +560,8 @@ lenis.on('scroll', () => {
 
 // Create a simple ScrollTrigger animation
 ScrollTrigger.defaults({
-    markers: false  // Set to false for production to hide markers
+    markers: false,
+    preventOverlaps:true
   });
 
   gsap.to('.hero',
@@ -619,7 +623,7 @@ ScrollTrigger.defaults({
                 {
                     trigger: second,
                     pin: true,
-                    // pinSpacing:false,
+                    pinSpacer:false,
                     start: 'center center',
                     end: 'bottom center',
                     scrub:true
@@ -634,9 +638,9 @@ ScrollTrigger.defaults({
   sections.forEach((section, i) => 
     {
 
-    gsap.to(section,
+    gsap.from(section,
         {
-            duration:1,
+            duration:2,
             opacity:0,
             backdropFilter:'blur(20px)',
             ease:'power1.inOut',
@@ -645,9 +649,10 @@ ScrollTrigger.defaults({
                     trigger: section,
                     pin: true,
                     start: 'top top',
-                    end: '+=50%',
-                    scrub: true
-                    // markers: true // Set to false to hide debugging markers
+                    end: 'bottom',
+                    pinSpacer:false,
+                    scrub: true,
+                    markers: true // Set to false to hide debugging markers
                 }
         })
     });

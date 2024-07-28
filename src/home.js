@@ -1,29 +1,48 @@
 import gsap from 'gsap';
+gsap.defaults({
+    markers: false,
+    preventOverlaps:true
+  });
 // import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 // gsap.registerPlugin(ScrollTrigger);
+let lastScrollTop = 0;
+const body = document.body
 document.addEventListener("DOMContentLoaded", function() {
     const contactForm = document.getElementById("contact-form");
-    const closeBtn = document.getElementsByClassName("close-btn");
-    const openBtn = document.getElementById(".contact-btn");
-  
+    const overlay = document.getElementById("overlay");
+    const closeBtns = document.getElementsByClassName("close-btn");
+    const openBtns = document.querySelectorAll("#opn-contact");
+
     // Open the form
-    openBtn.addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent the default anchor click behavior
-      contactForm.style.display = "block"; // Show the form
-      openBtn.style.display = "none"; // Hide the open button
+    openBtns.forEach(function(openBtn) {
+        openBtn.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            contactForm.style.display = "block"; // Show the form
+            overlay.style.display = "block"; // Show the overlay
+            document.body.classList.add("no-scroll"); // Disable scrolling
+        });
     });
-  
+
     // Close the form
-    closeBtn.addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent the default anchor click behavior
-      contactForm.style.display = "none"; // Hide the form
-      openBtn.style.display = "block"; // Show the open button
+    Array.from(closeBtns).forEach(function(closeBtn) {
+        closeBtn.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            contactForm.style.display = "none"; // Hide the form
+            overlay.style.display = "none"; // Hide the overlay
+            document.body.classList.remove("no-scroll"); // Enable scrolling
+        });
+    });
+
+    // Close form and overlay when clicking on the overlay
+    overlay.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior
+        contactForm.style.display = "none"; // Hide the form
+        overlay.style.display = "none"; // Hide the overlay
+        document.body.classList.remove("no-scroll"); // Enable scrolling
     });
 });
 // Check if ScrollTrigger is registered correctly
 // console.log(gsap.plugins.ScrollTrigger);
-let lastScrollTop = 0;
-const body = document.body
 
 window.addEventListener('scroll', () => {
 
