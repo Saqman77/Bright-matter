@@ -207,17 +207,6 @@ const sizes = {
     height: window.innerHeight
 };
 
-window.addEventListener('resize', () => {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    debounceGenerateGalaxy(); // Debounced galaxy generation on resize
-});
 
 /**
  * Camera
@@ -252,6 +241,19 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+window.addEventListener('resize', () => {
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    debounceGenerateGalaxy(); // Debounced galaxy generation on resize
+});
+
 
 
 let currentSection = 0;
@@ -561,7 +563,7 @@ lenis.on('scroll', () => {
 // Create a simple ScrollTrigger animation
 ScrollTrigger.defaults({
     markers: false,
-    preventOverlaps:true
+    // preventOverlaps:true
   });
 
   gsap.to('.hero',
@@ -600,10 +602,10 @@ ScrollTrigger.defaults({
                     trigger: hero,
                     pin: true,
                     start: 'bottom 20%',
-                    preventOverlaps:true,
+                    // preventOverlaps:true,
                     end: '+=50%',
                     scrub:true,
-                    markers: false  // Set to false to hide debugging markers
+                    // markers: false  // Set to false to hide debugging markers
                 }
         })
     });
@@ -613,9 +615,9 @@ ScrollTrigger.defaults({
   seconds.forEach((second, i) => 
     {
 
-    gsap.from(second,
+    gsap.to(second,
         {
-            // duration:2,
+            duration:2,
             opacity:0,
             ease:'power4.inOut',
             backdropFilter:'blur(20px)',
@@ -623,10 +625,10 @@ ScrollTrigger.defaults({
                 {
                     trigger: second,
                     pin: true,
-                    pinSpacer:false,
-                    start: 'center center',
-                    end: 'bottom center',
-                    scrub:true
+                    // pinSpacer:false,
+                    start: 'top top',
+                    end: 'center',
+                    scrub:true,
                     // markers: true // Set to false to hide debugging markers
                 }
         })
@@ -638,7 +640,7 @@ ScrollTrigger.defaults({
   sections.forEach((section, i) => 
     {
 
-    gsap.from(section,
+    gsap.to(section,
         {
             duration:2,
             opacity:0,
@@ -650,12 +652,29 @@ ScrollTrigger.defaults({
                     pin: true,
                     start: 'top top',
                     end: 'bottom',
-                    pinSpacer:false,
+                    // pinSpacer:false,
+                    scrub: true,
+                    // markers: true // Set to false to hide debugging markers
+                }
+        })
+    });
+
+    gsap.to('.footer',
+        {
+            duration:3,
+            backdropFilter:'blur(5px)',
+            ease:'power1.inOut',
+            scrollTrigger:
+                {
+                    trigger: '.footer',
+                    // pin: true,
+                    start: 'top center',
+                    end: 'center top',
+                    // pinSpacer:false,
                     scrub: true,
                     markers: true // Set to false to hide debugging markers
                 }
         })
-    });
   
 
 
