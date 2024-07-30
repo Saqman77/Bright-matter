@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 1; // Number of workers
+const workerCount = 4; // Number of workers
 
 
 let xyz = {}
@@ -223,8 +223,14 @@ const sizes = {
 
 /**
  * Camera
- */
-const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100);
+ */// Define a function to check if the user is on a mobile device
+const isMobile = () => {
+    return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+
+if(isMobile){camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 100);}
 camera.position.set(0, 6, 4);
 camera.rotation.set(-0.767, 0,0);
 subparticle.position.y = camera.position.y
