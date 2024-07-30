@@ -16,8 +16,8 @@ const scene = new THREE.Scene();
 
 //texture loader
 const loader = new THREE.TextureLoader()
-const startTexture = loader.load('./textures/particles/8.png')
-const subTexture = loader.load('./textures/particles/4.png')
+const startTexture = loader.load('./textures/particles/8.webp')
+const subTexture = loader.load('./textures/particles/4.webp')
 
 /**
  * Subparticles
@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 4; // Number of workers
+const workerCount = 8; // Number of workers
 
 
 let xyz = {}
@@ -253,7 +253,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
@@ -263,7 +263,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 
     renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     debounceGenerateGalaxy(); // Debounced galaxy generation on resize
 });
 
