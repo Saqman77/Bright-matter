@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 4; // Number of workers
+const workerCount = 8; // Number of workers
 
 
 let xyz = {}
@@ -291,7 +291,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.5);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -313,10 +313,10 @@ lenis.on('scroll', ({scroll}) => {
     // scrollY = window.scrollY;
     // console.log('Scrolling at position:', scroll)
     const newSection = Math.round(scroll / sizes.height);
-    if(pageYOffset===0)
-    {
-        generateGalaxy()
-    }
+    // if(pageYOffset===0)
+    // {
+    //     generateGalaxy()
+    // }
     if (newSection !== currentSection) { // Trigger only if section changes significantly
         direction = newSection > currentSection ? 'down' : 'up';
         currentSection = newSection;
@@ -391,9 +391,9 @@ lenis.on('scroll', ({scroll}) => {
         if (currentSection == 2 ) {
         gsap.to(parameters, {
             radius:5,
-            spin:2,
+            spin:1.7,
             randomnessPower:4,
-            duration:3,
+            duration:1.5,
             // branches: 4,
             onStart: () => {
                 parameters.count =50000;
@@ -404,7 +404,7 @@ lenis.on('scroll', ({scroll}) => {
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count =450000;
+                parameters.count =400000;
                 parameters.size = 0.01;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy

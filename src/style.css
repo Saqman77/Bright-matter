@@ -9,9 +9,9 @@
 @font-face {
     font-family: 'azonix';
     src: url('./assets/fontfs/Azonix.otf')format('otf');
-    src: url('./assets/fontfs/Azonix.ttf')format('ttf');
-    src: url('./assets/fontfs/Azonix.woff')format('woff');
-    src: url('./assets/fontfs/Azonix.woff2')format('woff2');
+    src: url('./assets/fontfs/AzonixRegular.ttf')format('ttf');
+    src: url('./assets/fontfs/AzonixRegular.woff')format('woff');
+    src: url('./assets/fontfs/AzonixRegular.woff2')format('woff2');
     font-weight: normal;
     font-style: normal;
 }
