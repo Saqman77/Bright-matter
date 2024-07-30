@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 1; // Number of workers
+const workerCount = 2; // Number of workers
 
 
 let xyz = {}
@@ -230,7 +230,7 @@ const isMobile = () => {
 
 let camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
 
-if(isMobile){camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 1, 50);}
+if(isMobile){camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 50);}
 camera.position.set(0, 6, 4);
 camera.rotation.set(-0.767, 0,0);
 subparticle.position.y = camera.position.y
