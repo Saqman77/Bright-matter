@@ -253,7 +253,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(window.devicePixelRatio);
 
 window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
@@ -263,7 +263,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 
     renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(window.devicePixelRatio);
     debounceGenerateGalaxy(); // Debounced galaxy generation on resize
 });
 

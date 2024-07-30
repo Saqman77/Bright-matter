@@ -2771,7 +2771,7 @@ source
         margin-right: auto;
         margin-left: 0;
         font-family: 'azonix';
-        font-weight: 300;
+        font-weight: 700;
         /* margin-top: -0.125rem; */
         text-decoration: none;
         opacity: 0;
@@ -2918,7 +2918,7 @@ source
     h1
     {
         font-size: 1.8rem;
-        font-weight: 100;
+        font-weight: 700;
         color: white;
         font-family: 'azonix';
         letter-spacing: .2em;
@@ -2928,7 +2928,7 @@ source
     {
         font-size: 1rem;
         color: white;
-        font-weight: 100;
+        font-weight: 700;
         font-family: 'espial';
         width: fit-content;
         margin-top: 5px;
@@ -2945,8 +2945,8 @@ source
         display: none;
         /* flex-direction: column; */
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.0));
-        backdrop-filter: blur(.9375rem);
-        -webkit-backdrop-filter: blur(.9375rem);
+        backdrop-filter: blur(0);
+        -webkit-backdrop-filter: blur(0);
         /* border:.0313rem solid rgba(255, 255, 255, 0.18); */
         box-shadow: 0 .5rem 2rem 0 rgba(0, 0, 0, 0.37);
         padding: 1.67vw;
@@ -3035,7 +3035,7 @@ source
     .right-hero-tag
     {
         font-size: 2.7rem;
-        font-weight: 100;
+        font-weight: 700;
         font-family: 'azonix';
         text-align: right;
         margin-top: 1rem;
@@ -3045,7 +3045,7 @@ source
         font-size: 1rem;
         width: 100%;
         margin-left: auto;
-        font-weight: 100;
+        font-weight: 700;
         text-align: right;
         margin-top: 2rem;
     }
@@ -3053,7 +3053,7 @@ source
     {
         font-size: 1rem;
         text-align: right;
-        font-weight: 100;
+        font-weight: 700;
         margin-top: 2rem;
     }
     
@@ -3117,7 +3117,7 @@ source
     .main-p
     {
         font-size: 1.5rem;
-        font-weight: 100;
+        font-weight: 700;
         font-family: 'azonix';
         text-align: center;
         letter-spacing: 0.2em;
@@ -3160,7 +3160,7 @@ source
         font-size: 2rem;
         font-family: 'azonix';
         letter-spacing: .15em;
-        font-weight: 100;
+        font-weight: 700;
     }
     
     .b-bottom-bar
@@ -3168,7 +3168,7 @@ source
         display: flex;
         margin-top: 16px;
         /* width: 20%; */
-        font-weight: 100;
+        font-weight: 700;
     }
     
     .b-sup
@@ -3300,7 +3300,7 @@ source
         /* height: 100%; */
         letter-spacing: 0.4em;
         margin-left: .625rem;
-        font-weight: 100;
+        font-weight: 700;
         align-self: center;
     
     }
