@@ -228,9 +228,9 @@ const isMobile = () => {
     return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
 
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+let camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
 
-if(isMobile){camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 100);}
+if(isMobile){camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 1, 50);}
 camera.position.set(0, 6, 4);
 camera.rotation.set(-0.767, 0,0);
 subparticle.position.y = camera.position.y
