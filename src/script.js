@@ -291,7 +291,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.5);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.12);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -355,7 +355,7 @@ lenis.on('scroll', ({scroll}) => {
             // branches: 4,
             onStart: () => {
                 parameters.count =10000;
-                parameters.size = 0.01
+                parameters.size = 0.03
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
