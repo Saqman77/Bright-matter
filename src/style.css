@@ -18,9 +18,9 @@
 @font-face {
     font-family: 'espial';
     src: url('./assets/fontfs/Espial-Regular15.otf')format('otf');
-    src: url('./assets/fontfs/Espial-Regular15.ttf')format('ttf');
-    src: url('./assets/fontfs/Espial-Regular15.woff')format('woff');
-    src: url('./assets/fontfs/Espial-Regular15.woff2')format('woff2');
+    src: url('./assets/fontfs/EspialRegular15.ttf')format('ttf');
+    src: url('./assets/fontfs/EspialRegular15.woff')format('woff');
+    src: url('./assets/fontfs/EspialRegular15.woff2')format('woff2');
     font-weight: normal;
     font-style: normal;
 }
