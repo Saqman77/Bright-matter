@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 4; // Number of workers
+const workerCount = 2; // Number of workers
 
 
 let xyz = {}
@@ -291,7 +291,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0012);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -404,8 +404,8 @@ lenis.on('scroll', ({scroll}) => {
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count =300000;
-                parameters.size = 0.005;
+                parameters.count =800000;
+                parameters.size = 0.00001;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
