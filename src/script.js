@@ -404,7 +404,7 @@ lenis.on('scroll', ({scroll}) => {
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count =800000;
+                parameters.count =600000;
                 parameters.size = 0.000005;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
