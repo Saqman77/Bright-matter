@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 12; // Number of workers
+const workerCount = 14; // Number of workers
 
 
 let xyz = {}
@@ -153,8 +153,8 @@ const generateGalaxy = () => {
             if (completedWorkers === workerCount) {
                 particlesMaterial = new THREE.PointsMaterial({
                     size: parameters.size,
-                    // alphaMap: startTexture,
-                    // transparent: true,
+                    alphaMap: startTexture,
+                    transparent: true,
                     sizeAttenuation: true,
                     depthWrite: false,
                     blending: THREE.AdditiveBlending,
@@ -404,8 +404,8 @@ lenis.on('scroll', ({scroll}) => {
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count =300000;
-                parameters.size = 0.01;
+                parameters.count =200000;
+                parameters.size = 0.02;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
@@ -672,22 +672,22 @@ ScrollTrigger.defaults({
         })
     });
 
-    gsap.to('.footer',
-        {
-            duration:3,
-            backdropFilter:'blur(5px)',
-            ease:'power1.inOut',
-            scrollTrigger:
-                {
-                    trigger: '.footer',
-                    // pin: true,
-                    start: 'top center',
-                    end: 'center top',
-                    // pinSpacer:false,
-                    scrub: true,
-                    // markers: true // Set to false to hide debugging markers
-                }
-        })
+    // gsap.to('.footer',
+    //     {
+    //         duration:3,
+    //         backdropFilter:'blur(5px)',
+    //         ease:'power1.inOut',
+    //         scrollTrigger:
+    //             {
+    //                 trigger: '.footer',
+    //                 // pin: true,
+    //                 start: 'top center',
+    //                 end: 'center top',
+    //                 // pinSpacer:false,
+    //                 scrub: true,
+    //                 // markers: true // Set to false to hide debugging markers
+    //             }
+    //     })
   
 
 
