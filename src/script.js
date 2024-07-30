@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 4; // Number of workers
+const workerCount = 2; // Number of workers
 
 
 let xyz = {}
@@ -391,7 +391,7 @@ lenis.on('scroll', ({scroll}) => {
         if (currentSection == 2 ) {
         gsap.to(parameters, {
             radius:4,
-            spin:2,
+            spin:1.5,
             randomnessPower:4,
             duration:2,
             // branches: 4,
