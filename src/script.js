@@ -253,7 +253,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio));
 
 window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
@@ -397,7 +397,7 @@ lenis.on('scroll', ({scroll}) => {
             // branches: 4,
             onStart: () => {
                 parameters.count =10000;
-                parameters.size = 0.01
+                parameters.size = 0.03
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
