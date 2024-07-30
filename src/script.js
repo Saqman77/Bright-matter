@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 8; // Number of workers
+const workerCount = 10; // Number of workers
 
 
 let xyz = {}
@@ -291,7 +291,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.5);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 1);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
