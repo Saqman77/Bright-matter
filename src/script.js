@@ -16,8 +16,8 @@ const scene = new THREE.Scene();
 
 //texture loader
 const loader = new THREE.TextureLoader()
-const startTexture = loader.load('./textures/particles/8.webp')
-const subTexture = loader.load('./textures/particles/4.webp')
+const startTexture = loader.load('./textures/particles/8.png')
+const subTexture = loader.load('./textures/particles/4.png')
 
 /**
  * Subparticles
