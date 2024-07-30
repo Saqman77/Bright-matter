@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 5; // Number of workers
+const workerCount = 12; // Number of workers
 
 
 let xyz = {}
@@ -405,7 +405,7 @@ lenis.on('scroll', ({scroll}) => {
             },            
             onComplete: () => {
                 parameters.count =250000;
-                parameters.size = 0.01;
+                parameters.size = 0.005;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
