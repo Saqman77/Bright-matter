@@ -16,8 +16,8 @@ const scene = new THREE.Scene();
 
 //texture loader
 const loader = new THREE.TextureLoader()
-const startTexture = loader.load('../assets/images/textures/8.png')
-const subTexture = loader.load('../assets/images/textures/4.png')
+const startTexture = loader.load('./textures/particles/8.png')
+const subTexture = loader.load('./textures/particles/4.png')
 
 /**
  * Subparticles
@@ -74,7 +74,7 @@ const workerCount = 4; // Number of workers
 let xyz = {}
 
 for (let i = 0; i < workerCount; i++) {
-    const worker = new Worker('../generateGalaxyWorker.js');
+    const worker = new Worker('/generateGalaxyWorker.js');
     workers.push(worker);
 }
 
