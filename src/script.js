@@ -672,7 +672,7 @@ ScrollTrigger.defaults({
                     end: 'center top',
                     // pinSpacer:false,
                     scrub: true,
-                    markers: true // Set to false to hide debugging markers
+                    // markers: true // Set to false to hide debugging markers
                 }
         })
   

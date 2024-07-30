@@ -213,9 +213,9 @@ body
     width: 100%;
   }
   
-  .calendar-icon {
+  /* .calendar-icon {
     /* margin-left: 10px; */
-  }
+  /* } */ 
   
   .confirmation {
     display: flex;
@@ -1399,10 +1399,9 @@ source
         width: 100%;
       }
       
-      .calendar-icon {
+      /* .calendar-icon {
         /* margin-left: 10px; */
-      }
-      
+      /* } */
       .confirmation {
         display: flex;
         align-items: center;
@@ -2622,9 +2621,9 @@ source
         width: 100%;
       }
       
-      .calendar-icon {
-        /* margin-left: 10px; */
-      }
+      /* .calendar-icon {
+        margin-left: 10px;
+      } */
       
       .confirmation {
         display: flex;

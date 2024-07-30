@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 gsap.defaults({
     markers: false,
-    preventOverlaps:true
+    // preventOverlaps:true
   });
 // import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 // gsap.registerPlugin(ScrollTrigger);
