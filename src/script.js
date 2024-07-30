@@ -50,8 +50,6 @@ const subparticleMaterial = new THREE.PointsMaterial({
 // Points
 const subparticle = new THREE.Points(subparticleGeometry, subparticleMaterial);
 
-// Function to determine if the device is mobile
-const isMobile = () => window.innerWidth <= 768;
 
 /**
  * Galaxy Parameters
@@ -69,27 +67,9 @@ const parameters = {
     position:{x:0, y:2, z:0}
 };
 
-
-function mobile() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-}
-
-// Function to adjust parameters for mobile devices
-function adjustForMobile() {
-    parameters.count = 45000; // Reduce the number of particles
-    parameters.size = 0.2;  // Reduce the size of particles
-    parameters.radius = 1;    // Reduce the radius
-    // Adjust other parameters as needed
-}
-
-// Apply mobile adjustments if necessary
-if (mobile()) {
-    adjustForMobile();
-}
-
 // Create an array for workers
 const workers = [];
-const workerCount = 8; // Number of workers
+const workerCount = 2; // Number of workers
 
 
 let xyz = {}
@@ -174,7 +154,7 @@ const generateGalaxy = () => {
                 particlesMaterial = new THREE.PointsMaterial({
                     size: parameters.size,
                     alphaMap: startTexture,
-                    transparent: true,
+                    // transparent: true,
                     sizeAttenuation: true,
                     depthWrite: false,
                     blending: THREE.AdditiveBlending,
@@ -272,32 +252,18 @@ cameraGroup.add(camera);
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-
-// Set initial sizes
-const updateSizes = () => {
+window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
 
-    // Slightly increase sizes on mobile devices
-    if (isMobile()) {
-        sizes.width *= 1.1; // Increase width by 10%
-        sizes.height *= 1.1; // Increase height by 10%
-    }
-
-    // Update renderer size and camera aspect ratio
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     camera.aspect = sizes.width / sizes.height;
     camera.updateProjectionMatrix();
-};
 
-// Initial update of sizes
-updateSizes();
-
-// Listen for resize events to update sizes
-window.addEventListener('resize', () => {
-    updateSizes();
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     debounceGenerateGalaxy(); // Debounced galaxy generation on resize
 });
 
