@@ -252,18 +252,34 @@ cameraGroup.add(camera);
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
-renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-window.addEventListener('resize', () => {
+// Function to determine if the device is mobile
+const isMobile = () => window.innerWidth <= 768;
+
+// Set initial sizes
+const updateSizes = () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
 
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
+    // Slightly increase sizes on mobile devices
+    if (isMobile()) {
+        sizes.width *= 1.1; // Increase width by 10%
+        sizes.height *= 1.1; // Increase height by 10%
+    }
 
+    // Update renderer size and camera aspect ratio
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+};
+
+// Initial update of sizes
+updateSizes();
+
+// Listen for resize events to update sizes
+window.addEventListener('resize', () => {
+    updateSizes();
     debounceGenerateGalaxy(); // Debounced galaxy generation on resize
 });
 
@@ -291,7 +307,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.012);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
