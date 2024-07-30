@@ -50,6 +50,8 @@ const subparticleMaterial = new THREE.PointsMaterial({
 // Points
 const subparticle = new THREE.Points(subparticleGeometry, subparticleMaterial);
 
+// Function to determine if the device is mobile
+const isMobile = () => window.innerWidth <= 768;
 
 /**
  * Galaxy Parameters
@@ -66,6 +68,24 @@ const parameters = {
     outsideColor: '#1b8360',
     position:{x:0, y:2, z:0}
 };
+
+
+function mobile() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
+// Function to adjust parameters for mobile devices
+function adjustForMobile() {
+    parameters.count = 45000; // Reduce the number of particles
+    parameters.size = 0.2;  // Reduce the size of particles
+    parameters.radius = 1;    // Reduce the radius
+    // Adjust other parameters as needed
+}
+
+// Apply mobile adjustments if necessary
+if (mobile()) {
+    adjustForMobile();
+}
 
 // Create an array for workers
 const workers = [];
@@ -253,8 +273,6 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
 
-// Function to determine if the device is mobile
-const isMobile = () => window.innerWidth <= 768;
 
 // Set initial sizes
 const updateSizes = () => {
