@@ -153,7 +153,7 @@ const generateGalaxy = () => {
             if (completedWorkers === workerCount) {
                 particlesMaterial = new THREE.PointsMaterial({
                     size: parameters.size,
-                    alphaMap: startTexture,
+                    // alphaMap: startTexture,
                     // transparent: true,
                     sizeAttenuation: true,
                     depthWrite: false,
@@ -355,7 +355,7 @@ lenis.on('scroll', ({scroll}) => {
             // branches: 4,
             onStart: () => {
                 parameters.count =10000;
-                parameters.size = 0.05
+                parameters.size = 0.01
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
@@ -391,13 +391,13 @@ lenis.on('scroll', ({scroll}) => {
         if (currentSection == 2 ) {
         gsap.to(parameters, {
             radius:5,
-            spin:1,
-            randomnessPower:3,
-            duration:1.5,
+            spin:2,
+            randomnessPower:4,
+            duration:3,
             // branches: 4,
             onStart: () => {
                 parameters.count =50000;
-                parameters.size = 0.05
+                parameters.size = 0.01
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
@@ -406,7 +406,6 @@ lenis.on('scroll', ({scroll}) => {
             onComplete: () => {
                 parameters.count =450000;
                 parameters.size = 0.01;
-                parameters.randomness = 0.2
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
