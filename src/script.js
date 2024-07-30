@@ -74,7 +74,7 @@ const workerCount = 4; // Number of workers
 let xyz = {}
 
 for (let i = 0; i < workerCount; i++) {
-    const worker = new Worker('/generateGalaxyWorker.js');
+    const worker = new Worker('./generateGalaxyWorker.js');
     workers.push(worker);
 }
 
