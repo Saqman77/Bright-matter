@@ -291,7 +291,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 1);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.5);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
