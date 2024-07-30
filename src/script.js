@@ -397,15 +397,15 @@ lenis.on('scroll', ({scroll}) => {
             // branches: 4,
             onStart: () => {
                 parameters.count =50000;
-                parameters.size = 0.002
+                parameters.size = 0.03
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count =600000;
-                parameters.size = 0.000005;
+                parameters.count =450000;
+                parameters.size = 0.01;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
