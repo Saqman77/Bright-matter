@@ -13,7 +13,7 @@ export default {
         emptyOutDir: true, // Empty the folder first
         sourcemap: true // Add sourcemap
     },
-    worker: {
-        format: 'es' // Output format for worker files, could also be 'iife', 'cjs', etc.
-    }
+    // worker: {
+    //     format: 'es' // Output format for worker files, could also be 'iife', 'cjs', etc.
+    // }
 }

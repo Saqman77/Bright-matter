@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger);
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
-
+// import generateGalaxyWorker from './generateGalaxyWorker.js';
 
 // const gui = new GUI();
 // Canvas
@@ -71,7 +71,9 @@ const parameters = {
 const workers = [];
 const workerCount = 4; // Number of workers
 
+
 let xyz = {}
+
 
 for (let i = 0; i < workerCount; i++) {
     const worker = new Worker('./generateGalaxyWorker.js');
@@ -164,9 +166,14 @@ const generateGalaxy = () => {
                 particles.rotation.y = 2
                 xyz.needsUpdate = true;
                 scene.add(particles);
+                
+                
                 // const perf2 = performance.now();
                 // console.log('time taken:', perf2 - perf1);
+                
             }
+
+            
         };
     });
 
@@ -197,6 +204,12 @@ const generateGalaxy = () => {
 
 
 generateGalaxy();
+// workers.forEach(worker => worker.terminate());
+
+// window.addEventListener('beforeunload', () => {
+//     workers.forEach(worker => worker.terminate());
+// });
+
 
 
 /**
