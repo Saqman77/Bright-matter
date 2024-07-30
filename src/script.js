@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 1; // Number of workers
+const workerCount = 3; // Number of workers
 
 
 let xyz = {}
@@ -224,7 +224,7 @@ const sizes = {
 /**
  * Camera
  */
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100);
 camera.position.set(0, 6, 4);
 camera.rotation.set(-0.767, 0,0);
 subparticle.position.y = camera.position.y
@@ -405,7 +405,7 @@ lenis.on('scroll', ({scroll}) => {
             },            
             onComplete: () => {
                 parameters.count =300000;
-                parameters.size = 0.001;
+                parameters.size = 0.02;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
