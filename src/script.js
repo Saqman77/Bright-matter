@@ -69,7 +69,7 @@ const parameters = {
 
 // Create an array for workers
 const workers = [];
-const workerCount = 8; // Number of workers
+const workerCount = 1; // Number of workers
 
 
 let xyz = {}
