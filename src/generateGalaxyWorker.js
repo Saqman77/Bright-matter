@@ -1,4 +1,4 @@
-importScripts('./libs/three.min.js');
+import * as THREE from 'three';
 
 self.onmessage = function(event) {
     const parameters = event.data;

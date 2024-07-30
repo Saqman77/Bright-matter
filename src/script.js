@@ -73,11 +73,11 @@ const workerCount = 4; // Number of workers
 
 
 let xyz = {}
-
+import Worker from './generateGalaxyWorker.js?worker';
 
 for (let i = 0; i < workerCount; i++) {
-    const worker = new Worker('generateGalaxyWorker.js');
-    workers.push(worker);
+    // const worker = new Worker();
+    workers.push(new Worker());
 }
 
 let particlesGeometry = new THREE.BufferGeometry();
