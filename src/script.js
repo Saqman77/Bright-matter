@@ -73,7 +73,7 @@ const workerCount = 4; // Number of workers
 
 
 let xyz = {}
-import Worker from './generateGalaxyWorker.js?worker';
+import Worker from '/generateGalaxyWorker.js?worker';
 
 for (let i = 0; i < workerCount; i++) {
     // const worker = new Worker();
