@@ -396,8 +396,8 @@ lenis.on('scroll', ({scroll}) => {
             duration:2,
             // branches: 4,
             onStart: () => {
-                parameters.count =50000;
-                parameters.size = 0.03
+                parameters.count =10000;
+                parameters.size = 0.04
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
