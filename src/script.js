@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 8
+    workerCount = 2
 }
 
 else
