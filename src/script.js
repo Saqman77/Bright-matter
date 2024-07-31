@@ -304,18 +304,21 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio));
+if(window.innerHeight>=1250)
+    {
+        window.addEventListener('resize', () => {
+            sizes.width = window.innerWidth;
+            sizes.height = window.innerHeight;
+        
+            camera.aspect = sizes.width / sizes.height;
+            camera.updateProjectionMatrix();
+        
+            renderer.setSize(sizes.width, sizes.height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio));
+            debounceGenerateGalaxy(); // Debounced galaxy generation on resize
+        });
+    }
 
-window.addEventListener('resize', () => {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio));
-    if(window.innerHeight>=1250){debounceGenerateGalaxy();} // Debounced galaxy generation on resize
-});
 
 
 
