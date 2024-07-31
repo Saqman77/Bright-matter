@@ -197,8 +197,8 @@ const generateGalaxy = () => {
             if (completedWorkers === workerCount) {
                 particlesMaterial = new THREE.PointsMaterial({
                     size: parameters.size,
-                    // alphaMap: startTexture,
-                    // transparent: false,
+                    alphaMap: startTexture,
+                    transparent: true,
                     sizeAttenuation: true,
                     depthWrite: false,
                     blending: THREE.AdditiveBlending,
