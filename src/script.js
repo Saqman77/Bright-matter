@@ -155,7 +155,7 @@ const generateGalaxy = () => {
                     size: parameters.size,
                     // alphaMap: startTexture,
                     // transparent: false,
-                    sizeAttenuation: false,
+                    sizeAttenuation: true,
                     depthWrite: false,
                     blending: THREE.AdditiveBlending,
                     vertexColors: true
@@ -411,7 +411,7 @@ lenis.on('scroll', ({scroll}) => {
             },            
             onComplete: () => {
                 parameters.count =250000;
-                parameters.size = 0.02;
+                parameters.size = 0.01;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
             },
