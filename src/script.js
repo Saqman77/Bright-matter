@@ -230,7 +230,7 @@ const sizes = {
 
 let camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
 
-if(window.innerWidth <= 768){camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 50);}
+if(window.innerWidth <= 768){camera = new THREE.PerspectiveCamera(55, sizes.width / sizes.height, 0.1, 50);}
 camera.position.set(0, 6, 4);
 camera.rotation.set(-0.767, 0,0);
 subparticle.position.y = camera.position.y
