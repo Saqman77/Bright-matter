@@ -1138,6 +1138,7 @@ h3
 .vid-contact
 {
     width: 5vw;
+    max-width: 100%;
     position: absolute;
     top: 20%;
     opacity: 0.2;
@@ -2358,6 +2359,7 @@ source
     .vid-contact
     {
         width: 8vw;
+        max-width: 100%;
         position: absolute;
         top: 20%;
         opacity: 0.2;
