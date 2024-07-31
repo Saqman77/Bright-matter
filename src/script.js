@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 1
+    workerCount = 8
 }
 
 else
@@ -314,7 +314,7 @@ window.addEventListener('resize', () => {
 
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio));
-    debounceGenerateGalaxy(); // Debounced galaxy generation on resize
+    if(window.innerHeight>=1250){debounceGenerateGalaxy();} // Debounced galaxy generation on resize
 });
 
 
