@@ -3584,7 +3584,7 @@ source
         top: 20%;
         opacity: 0.2;
         /* left: 0; */
-        border-radius: 10px;
+        border-radius: 5px;
         box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.5), 0 0 5px rgb(0, 0, 0);
         /* backdrop-filter: blur(10px); */
         /* border-radius: box-shadow 0.5s, ease-in-out 0.5s, opacity  0.5s, ease-in-out 0.5s, background-color 0.5s, ease-in-out 0.5s; */
@@ -3645,6 +3645,7 @@ source
     source
     {
         width: 100%;
+        max-width: 100%;
         position: absolute;
         object-fit: cover;
         top:0;

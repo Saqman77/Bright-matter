@@ -268,9 +268,7 @@ const sizes = {
 /**
  * Camera
  */// Define a function to check if the user is on a mobile device
-// const isMobile = () => {
-//     return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-// };
+
 
 let camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
 
@@ -398,7 +396,7 @@ lenis.on('scroll', ({scroll}) => {
             })}
         if (currentSection == 1 ) {
         gsap.to(parameters, {
-            radius:1,
+            radius:1.5,
             spin:0,
             randomnessPower:10,
             // duration:1.5,
@@ -874,11 +872,22 @@ ScrollTrigger.defaults({
  // This should not be undefined
 // Cursor
 const cursor = { x: 0, y: 0 };
+let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+let orientation = { alpha: 0, beta: 0, gamma: 0 };
 
-window.addEventListener('mousemove', (event) => {
-    cursor.x = event.clientX / sizes.width - 0.5;
-    cursor.y = event.clientY / sizes.height - 0.5;
-});
+
+if (isMobile && window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (event) => {
+        orientation.alpha = event.alpha;  // Rotation around z-axis
+        orientation.beta = event.beta;    // Rotation around x-axis
+        orientation.gamma = event.gamma;  // Rotation around y-axis
+    });
+} else {
+    window.addEventListener('mousemove', (event) => {
+        cursor.x = event.clientX / sizes.width - 0.5;
+        cursor.y = event.clientY / sizes.height - 0.5;
+    });
+}
 
 /**
  * Animate
@@ -911,12 +920,21 @@ const tick = () => {
 //    }}
 
     // Animate camera
-    const parallaxX = cursor.x * 0.5;
-    const parallaxY = -cursor.y * 0.5;
+    if (isMobile) {
+        // Apply orientation data to camera group on mobile
+        const parallaxX = orientation.gamma / 90;  // Normalize gamma to [-1, 1]
+        const parallaxY = orientation.beta / 90;   // Normalize beta to [-1, 1]
 
-    cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-    cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+    } else {
+        // Apply cursor movement to camera group on desktop
+        const parallaxX = cursor.x * 0.5;
+        const parallaxY = -cursor.y * 0.5;
 
+        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+    }
     
     renderer.render(scene, camera);
     window.requestAnimationFrame(tick);
