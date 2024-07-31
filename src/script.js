@@ -75,7 +75,7 @@ if(window.innerWidth <= 768)
  {
      parameters = {
         count: 40000,
-        size: 0.01,
+        size: 0.03,
         radius: 1,
         branches: 3,
         spin: 0,
@@ -394,48 +394,96 @@ lenis.on('scroll', ({scroll}) => {
                 z:0,
                 y:0
             })}
-        if (currentSection == 1 ) {
-        gsap.to(parameters, {
-            radius:1.5,
-            spin:0,
-            randomnessPower:10,
-            // duration:1.5,
-            // branches: 4,
-            onStart: () => {
-                parameters.count =10000;
-                parameters.size = 0.005
-                parameters.randomnessPower = 20
-                parameters.randomness = 0
-                // parameters.branches = direction === 'down' ? 5 : 3;
-                debounceGenerateGalaxy
-            },            
-            onComplete: () => {
-                parameters.count = 40000;
-                parameters.size =0.01;
-                // parameters.branches = direction === 'down' ? 5 : 3;
-                debounceGenerateGalaxy
-            },
-            onUpdate: debounceGenerateGalaxy
-        });
-
-        gsap.to(camera.position,
-            {
-                x:0,
-                z:4,
-                y:6,
-                ease:'power1.inOut',
-                // duration:1,
-            })
-
-        gsap.to(camera.rotation,
-            {
-
-                ease:"power1.inOut",
-                x:-0.767,
-                z:0,
-                y:0
-            })
-    }
+        if (currentSection == 1 ) 
+        {
+            if(window.innerWidth <= 768)
+                {
+                    gsap.to(parameters, {
+                        radius:1.5,
+                        spin:0,
+                        randomnessPower:10,
+                        // duration:1.5,
+                        // branches: 4,
+                        onStart: () => {
+                            parameters.count =10000;
+                            parameters.size = 0.03
+                            parameters.randomnessPower = 20
+                            parameters.randomness = 0
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },            
+                        onComplete: () => {
+                            parameters.count = 40000;
+                            parameters.size =0.03;
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },
+                        onUpdate: debounceGenerateGalaxy
+                    });
+            
+                    gsap.to(camera.position,
+                        {
+                            x:0,
+                            z:4,
+                            y:6,
+                            ease:'power1.inOut',
+                            // duration:1,
+                        })
+            
+                    gsap.to(camera.rotation,
+                        {
+            
+                            ease:"power1.inOut",
+                            x:-0.767,
+                            z:0,
+                            y:0
+                        })
+                }
+            
+            else
+                {
+                    gsap.to(parameters, {
+                        radius:1.5,
+                        spin:0,
+                        randomnessPower:10,
+                        // duration:1.5,
+                        // branches: 4,
+                        onStart: () => {
+                            parameters.count =10000;
+                            parameters.size = 0.005
+                            parameters.randomnessPower = 20
+                            parameters.randomness = 0
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },            
+                        onComplete: () => {
+                            parameters.count = 40000;
+                            parameters.size =0.01;
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },
+                        onUpdate: debounceGenerateGalaxy
+                    });
+            
+                    gsap.to(camera.position,
+                        {
+                            x:0,
+                            z:4,
+                            y:6,
+                            ease:'power1.inOut',
+                            // duration:1,
+                        })
+            
+                    gsap.to(camera.rotation,
+                        {
+            
+                            ease:"power1.inOut",
+                            x:-0.767,
+                            z:0,
+                            y:0
+                        })
+                }
+        }
         if (currentSection == 2 ) {
             if(window.innerWidth <= 768)
                 {
