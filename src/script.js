@@ -53,8 +53,11 @@ const subparticle = new THREE.Points(subparticleGeometry, subparticleMaterial);
 
 /**
  * Galaxy Parameters
+ * 
+ * 
  */
-const parameters = {
+
+let parameters = {
     count: 90000,
     size: 0.01,
     radius: 1.5,
@@ -67,9 +70,41 @@ const parameters = {
     position:{x:0, y:2, z:0}
 };
 
+
+if(window.innerWidth <= 768)
+ {
+     parameters = {
+        count: 40000,
+        size: 0.01,
+        radius: 1,
+        branches: 3,
+        spin: 0,
+        randomness: 0.5,
+        randomnessPower: 10,
+        insideColor: '#312eff',
+        outsideColor: '#1b8360',
+        position:{x:0, y:2, z:0}
+    };
+    
+ }
+ else
+{ parameters = {
+    count: 90000,
+    size: 0.01,
+    radius: 1.5,
+    branches: 3,
+    spin: 0,
+    randomness: 0.5,
+    randomnessPower: 10,
+    insideColor: '#312eff',
+    outsideColor: '#1b8360',
+    position:{x:0, y:2, z:0}
+};}
+
+
 // Create an array for workers
 const workers = [];
-const workerCount = 2; // Number of workers
+const workerCount = 4; // Number of workers
 
 
 let xyz = {}
@@ -354,7 +389,7 @@ lenis.on('scroll', ({scroll}) => {
             })}
         if (currentSection == 1 ) {
         gsap.to(parameters, {
-            radius:1.5,
+            radius:1,
             spin:0,
             randomnessPower:10,
             // duration:1.5,
@@ -368,7 +403,7 @@ lenis.on('scroll', ({scroll}) => {
                 debounceGenerateGalaxy
             },            
             onComplete: () => {
-                parameters.count =90000;
+                parameters.count = 40000;
                 parameters.size =0.01;
                 // parameters.branches = direction === 'down' ? 5 : 3;
                 debounceGenerateGalaxy
@@ -395,7 +430,48 @@ lenis.on('scroll', ({scroll}) => {
             })
     }
         if (currentSection == 2 ) {
-        gsap.to(parameters, {
+            if(window.innerWidth <= 768)
+                {
+                    gsap.to(parameters, {
+                        radius:1.2,
+                        spin:5,
+                        randomnessPower:7,
+                        duration:2,
+                        // branches: 4,
+                        onStart: () => {
+                            parameters.count = 7000;
+                            parameters.size = 0.02
+                            parameters.randomnessPower = 20
+                            parameters.randomness = 0.1
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },            
+                        onComplete: () => {
+                            parameters.count =50000;
+                            parameters.size = 0.01;
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },
+                        onUpdate: debounceGenerateGalaxy
+                    });
+            
+                    gsap.to(camera.position,
+                        {
+                            x: 0,
+                            z:2,
+                            y:3,
+                            ease:'power1.inOut',
+                            duration:1,
+                        })
+                    gsap.to(camera.rotation,
+                        {
+                            ease:"power1.inOut",
+                            x:-0.3,
+                            z:0,
+                            y:0
+                        })
+                }
+        else{gsap.to(parameters, {
             radius:4,
             spin:1.5,
             randomnessPower:4,
@@ -403,7 +479,7 @@ lenis.on('scroll', ({scroll}) => {
             // branches: 4,
             onStart: () => {
                 parameters.count =10000;
-                parameters.size = 0.01
+                parameters.size = 0.02
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
@@ -432,7 +508,7 @@ lenis.on('scroll', ({scroll}) => {
                 x:-0.3,
                 z:0,
                 y:0
-            })
+            })}
     }
 
     // if(currentSection==3)
@@ -457,7 +533,28 @@ lenis.on('scroll', ({scroll}) => {
 
     if(currentSection == 4)
         {
-tl.to(camera.position,
+            if (window.innerWidth <= 768)
+                {
+            tl.to(camera.position,
+                {
+                    x:-.5,
+                    y:6,
+                    z:0.5,
+                    duration:1,
+                    ease:'linear',
+                   
+                    
+                })
+            tl.to(camera.rotation,
+                {
+                    x:-1.6,
+                    y:0,
+                    z:0,
+                    // duration:1,
+                    ease:'linear'
+                })}
+    else
+{tl.to(camera.position,
     {
         x:-6,
         y:12,
@@ -474,11 +571,31 @@ tl.to(camera.rotation,
         z:0,
         // duration:1,
         ease:'linear'
-    })}
+    })}}
 // }
     if(currentSection == 5)
         {
-tl.to(camera.position,
+            if (window.innerWidth <= 768)
+                {
+                    tl.to(camera.position,
+                        {
+                            x:.5,
+                            y:5,
+                            z:3.5,
+                            ease:'power1.inOut',
+                            // duration:1
+                        })
+                    tl.to(camera.rotation,
+                        {
+                            x:-0.93,
+                            y:0,
+                            z:0,
+                            ease:'power1.inOut'
+                        })
+                }
+else
+{
+    tl.to(camera.position,
     {
         x:3.5,
         y:7,
@@ -486,30 +603,53 @@ tl.to(camera.position,
         ease:'power1.inOut',
         // duration:1
     })
-tl.to(camera.rotation,
+    tl.to(camera.rotation,
     {
         x:-0.93,
         y:0,
         z:0,
         ease:'power1.inOut'
-    })}
+    })}}
     if(currentSection == 6)
         {
-tl.to(camera.position,
-    {
-        x:-4.5,
-        y:3.5,
-        z:1,
-        ease:'power1.inOut'
-    })
-tl.to(camera.rotation,
-    {
-        x:- 0.895,
-        y:- 0.455,
-        z:- 0.347,
-        ease:'power1.inOut',
-        // duration:1,
-    })}
+            if (window.innerWidth <= 768)
+            {
+                tl.to(camera.position,
+                    {
+                        x:-1.5,
+                        y:3.5,
+                        z:1,
+                        ease:'power1.inOut'
+                    })
+                tl.to(camera.rotation,
+                    {
+                        x:- 0.895,
+                        y:- 0.455,
+                        z:- 0.347,
+                        ease:'power1.inOut',
+                        // duration:1,
+                    })
+            }
+
+            else
+            {
+                tl.to(camera.position,
+                    {
+                        x:-4.5,
+                        y:3.5,
+                        z:1,
+                        ease:'power1.inOut'
+                    })
+                tl.to(camera.rotation,
+                    {
+                        x:- 0.895,
+                        y:- 0.455,
+                        z:- 0.347,
+                        ease:'power1.inOut',
+                        // duration:1,
+                    })
+            }
+        }
     if(currentSection == 7)
         {
 tl.to(camera.position,
@@ -548,22 +688,47 @@ tl.to(camera.rotation,
     if(currentSection == 8)
         // {
             {
-                tl.to(camera.position,
+                if (window.innerWidth <= 768)
+                
                     {
-                        x:-3.5,
-                        y:2,
-                        z:2.5,
-                        ease:'power1.inOut',
-                        // duration:1,
-                    })
-                tl.to(camera.rotation,
-                    {
-                        x:0,
-                        y:0,
-                        z:0,
-                        ease:'power1.inOut',
-                        // duration:1,
-                    })}
+                        tl.to(camera.position,
+                            {
+                                x:-.5,
+                                y:2,
+                                z:2.5,
+                                ease:'power1.inOut',
+                                // duration:1,
+                            })
+                        tl.to(camera.rotation,
+                            {
+                                x:0,
+                                y:0,
+                                z:0,
+                                ease:'power1.inOut',
+                                // duration:1,
+                            })
+                    }
+
+                else 
+                {
+                    tl.to(camera.position,
+                        {
+                            x:-3.5,
+                            y:2,
+                            z:2.5,
+                            ease:'power1.inOut',
+                            // duration:1,
+                        })
+                    tl.to(camera.rotation,
+                        {
+                            x:0,
+                            y:0,
+                            z:0,
+                            ease:'power1.inOut',
+                            // duration:1,
+                        })
+                }
+            }
 
         
             
