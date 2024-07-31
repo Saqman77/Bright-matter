@@ -104,7 +104,16 @@ if(window.innerWidth <= 768)
 
 // Create an array for workers
 const workers = [];
-const workerCount = 2; // Number of workers
+let workerCount = 4; // Number of workers
+if (window.innerWidth <= 768)
+{
+    workerCount = 1
+}
+
+else
+{
+    workerCount = 4
+}
 
 
 let xyz = {}
