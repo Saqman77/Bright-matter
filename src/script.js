@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 1
+    workerCount = 2
 }
 
 else
@@ -354,7 +354,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0012);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 1);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
