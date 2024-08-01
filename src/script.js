@@ -195,15 +195,30 @@ const generateGalaxy = () => {
 
             completedWorkers++;
             if (completedWorkers === workerCount) {
-                particlesMaterial = new THREE.PointsMaterial({
-                    size: parameters.size,
-                    alphaMap: startTexture,
-                    transparent: true,
-                    sizeAttenuation: true,
-                    depthWrite: false,
-                    blending: THREE.AdditiveBlending,
-                    vertexColors: true
-                });
+                if (window.innerWidth<= 768)
+                {
+                    particlesMaterial = new THREE.PointsMaterial({
+                        size: parameters.size,
+                        // alphaMap: startTexture,
+                        // transparent: true,
+                        sizeAttenuation: true,
+                        depthWrite: false,
+                        blending: THREE.AdditiveBlending,
+                        vertexColors: true
+                    });
+                }
+                else
+                {
+                    particlesMaterial = new THREE.PointsMaterial({
+                        size: parameters.size,
+                        alphaMap: startTexture,
+                        transparent: true,
+                        sizeAttenuation: true,
+                        depthWrite: false,
+                        blending: THREE.AdditiveBlending,
+                        vertexColors: true
+                    });
+                }
 
                 particles = new THREE.Points(particlesGeometry, particlesMaterial);
                 xyz = particles.position.set(parameters.position.x, parameters.position.y, parameters.position.z);
@@ -923,13 +938,31 @@ const cursor = { x: 0, y: 0 };
 let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 let orientation = { alpha: 0, beta: 0, gamma: 0 };
 
+// Function to handle device orientation
+function handleDeviceOrientation(event) {
+    orientation.alpha = event.alpha;  // Rotation around z-axis
+    orientation.beta = event.beta;    // Rotation around x-axis
+    orientation.gamma = event.gamma;  // Rotation around y-axis
+}
 
-if (isMobile && window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', (event) => {
-        orientation.alpha = event.alpha;  // Rotation around z-axis
-        orientation.beta = event.beta;    // Rotation around x-axis
-        orientation.gamma = event.gamma;  // Rotation around y-axis
-    });
+// Request permission for iOS devices
+function requestDeviceOrientationPermission() {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    window.addEventListener('deviceorientation', handleDeviceOrientation);
+                }
+            })
+            .catch(console.error);
+    } else {
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
+    }
+}
+
+if (isMobile) {
+    // Request permission to access device orientation data
+    requestDeviceOrientationPermission();
 } else {
     window.addEventListener('mousemove', (event) => {
         cursor.x = event.clientX / sizes.width - 0.5;
@@ -952,20 +985,9 @@ const tick = () => {
         particles.rotation.y = elapsedTime * 0.05;
     }
 
-    // subparticle.position.x = Math.sin(elapsedTime) * 0.01;
-    subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x
-    subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5
-    subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y
-
-    // subparticle.scale.x = Math.sin(elapsedTime)* 0.05
-    // subparticle.scale.y = Math.sin(elapsedTime)* 0.05
-    // subparticle.scale.z = Math.cos(elapsedTime) * 0.05
-
-//     const cameraParallaxY = (- scrollY / sizes.height + 4) * 0.5;
-//     if(currentSection){
-//    if (currentSection <= 2 && currentSection >= 8){
-//     camera.position.y += (cameraParallaxY - camera.position.y+4) * 0.5 * deltaTime;
-//    }}
+    subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x;
+    subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5;
+    subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y;
 
     // Animate camera
     if (isMobile) {
@@ -988,4 +1010,5 @@ const tick = () => {
     window.requestAnimationFrame(tick);
 };
 
+// Start the animation
 tick();
