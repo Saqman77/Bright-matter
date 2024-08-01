@@ -74,7 +74,7 @@ let parameters = {
 if(window.innerWidth <= 768)
  {
      parameters = {
-        count: 20000,
+        count: 30000,
         size: 0.005,
         radius: 1,
         branches: 3,
@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 1
+    workerCount = 4
 }
 
 else
