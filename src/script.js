@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 1
+    workerCount = 2
 }
 
 else
@@ -354,7 +354,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 1);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.012);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -512,7 +512,7 @@ lenis.on('scroll', ({scroll}) => {
                             parameters.count = 50000;
                             parameters.size = 0.01
                             parameters.randomnessPower = 20
-                            parameters.randomness = 0.01
+                            parameters.randomness = 0.05
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },            
