@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 4
+    workerCount = 2
 }
 
 else
@@ -428,7 +428,7 @@ lenis.on('scroll', ({scroll}) => {
                             debounceGenerateGalaxy
                         },            
                         onComplete: () => {
-                            parameters.count = 40000;
+                            parameters.count = 80000;
                             parameters.size =0.005;
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
@@ -509,10 +509,10 @@ lenis.on('scroll', ({scroll}) => {
                         duration:1.5,
                         // branches: 4,
                         onStart: () => {
-                            parameters.count = 40000;
-                            parameters.size = 0.01
+                            parameters.count = 80000;
+                            parameters.size = 0.005
                             // parameters.randomnessPower = 20
-                            parameters.randomness = 0.05
+                            parameters.randomness = 0.5
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },            
