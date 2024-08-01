@@ -74,7 +74,7 @@ let parameters = {
 if(window.innerWidth <= 768)
  {
      parameters = {
-        count: 40000,
+        count: 20000,
         size: 0.005,
         radius: 1,
         branches: 3,
@@ -473,7 +473,7 @@ lenis.on('scroll', ({scroll}) => {
                         },            
                         onComplete: () => {
                             parameters.count = 40000;
-                            parameters.size =0.01;
+                            parameters.size =0.005;
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },
@@ -512,13 +512,13 @@ lenis.on('scroll', ({scroll}) => {
                             parameters.count = 7000;
                             parameters.size = 0.01
                             parameters.randomnessPower = 20
-                            parameters.randomness = 0.1
+                            parameters.randomness = 0.01
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },            
                         onComplete: () => {
                             parameters.count =50000;
-                            parameters.size = 0.01;
+                            parameters.size = 0.05;
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },
