@@ -107,7 +107,7 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 4
+    workerCount = 1
 }
 
 else
@@ -629,7 +629,7 @@ lenis.on('scroll', ({scroll}) => {
         x:-6,
         y:12,
         z:0.5,
-        duration:1,
+        // duration:1,
         ease:'linear',
        
         
