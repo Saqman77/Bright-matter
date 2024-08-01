@@ -74,8 +74,8 @@ let parameters = {
 if(window.innerWidth <= 768)
  {
      parameters = {
-        count: 30000,
-        size: 0.01,
+        count: 80000,
+        size: 0.005,
         radius: 1,
         branches: 3,
         spin: 0,
@@ -354,7 +354,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.5);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -429,7 +429,7 @@ lenis.on('scroll', ({scroll}) => {
                         },            
                         onComplete: () => {
                             parameters.count = 40000;
-                            parameters.size =0.01;
+                            parameters.size =0.005;
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },
