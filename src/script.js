@@ -503,8 +503,8 @@ lenis.on('scroll', ({scroll}) => {
             if(window.innerWidth <= 768)
                 {
                     gsap.to(parameters, {
-                        radius:1.2,
-                        spin:5,
+                        radius:1.4,
+                        spin:4,
                         randomnessPower:7,
                         duration:1.5,
                         // branches: 4,
