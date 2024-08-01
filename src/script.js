@@ -354,7 +354,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.00);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.0012);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -531,7 +531,7 @@ lenis.on('scroll', ({scroll}) => {
                             z:2,
                             y:3,
                             ease:'power1.inOut',
-                            duration:1,
+                            // duration:1,
                         })
                     gsap.to(camera.rotation,
                         {
@@ -570,7 +570,7 @@ lenis.on('scroll', ({scroll}) => {
                 z:4,
                 y:4,
                 ease:'power1.inOut',
-                duration:1,
+                // duration:1,
             })
         gsap.to(camera.rotation,
             {
@@ -610,7 +610,7 @@ lenis.on('scroll', ({scroll}) => {
                     x:-.5,
                     y:6,
                     z:0.5,
-                    duration:1,
+                    // duration:1,
                     ease:'linear',
                    
                     
