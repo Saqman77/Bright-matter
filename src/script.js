@@ -505,11 +505,11 @@ lenis.on('scroll', ({scroll}) => {
                     gsap.to(parameters, {
                         radius:1.4,
                         spin:4,
-                        randomnessPower:4,
+                        randomnessPower:6,
                         duration:1.5,
                         // branches: 4,
                         onStart: () => {
-                            parameters.count = 80000;
+                            parameters.count = 30000;
                             parameters.size = 0.005
                             parameters.randomnessPower = 20
                             parameters.randomness = 0
@@ -517,7 +517,7 @@ lenis.on('scroll', ({scroll}) => {
                             debounceGenerateGalaxy
                         },            
                         onComplete: () => {
-                            parameters.count =100000;
+                            parameters.count =60000;
                             parameters.size = 0.005;
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
