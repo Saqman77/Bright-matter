@@ -933,109 +933,130 @@ ScrollTrigger.defaults({
 
 
  // This should not be undefined
-// Cursor position object
-const cursor = { x: 0, y: 0 };
-let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-let orientation = { alpha: 0, beta: 0, gamma: 0 };
+  // Cursor position object
+  const cursor = { x: 0, y: 0 };
+  let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  let orientation = { alpha: 0, beta: 0, gamma: 0 };
 
-// Function to handle device orientation
-function handleDeviceOrientation(event) {
-    orientation.alpha = event.alpha;  // Rotation around z-axis
-    orientation.beta = event.beta;    // Rotation around x-axis
-    orientation.gamma = event.gamma;  // Rotation around y-axis
-}
+  // Function to handle device orientation
+  function handleDeviceOrientation(event) {
+      orientation.alpha = event.alpha;  // Rotation around z-axis
+      orientation.beta = event.beta;    // Rotation around x-axis
+      orientation.gamma = event.gamma;  // Rotation around y-axis
+      console.log(`Orientation updated: alpha=${orientation.alpha}, beta=${orientation.beta}, gamma=${orientation.gamma}`);
+  }
 
-// Request permission for iOS devices
-function requestDeviceOrientationPermission() {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        DeviceOrientationEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    window.addEventListener('deviceorientation', handleDeviceOrientation);
-                } else {
-                    console.error('Permission not granted for device orientation');
-                }
-            })
-            .catch(console.error);
-    } else {
-        window.addEventListener('deviceorientation', handleDeviceOrientation);
-    }
-}
+  // Request permission for iOS devices
+  function requestDeviceOrientationPermission() {
+      const statusDiv = document.getElementById('status');
+      const requestButton = document.getElementById('requestButton');
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+          console.log('Requesting device orientation permission...');
+          DeviceOrientationEvent.requestPermission()
+              .then(permissionState => {
+                  if (permissionState === 'granted') {
+                      console.log('Device orientation permission granted.');
+                      statusDiv.textContent = 'Device orientation permission granted.';
+                      window.addEventListener('deviceorientation', handleDeviceOrientation);
+                      statusDiv.remove();
+                      requestButton.remove();
+                  } else {
+                      console.log('Device orientation permission denied.');
+                      statusDiv.textContent = 'Device orientation permission denied.';
+                  }
+              })
+              .catch(error => {
+                  console.error('Error requesting device orientation permission:', error);
+                  statusDiv.textContent = 'Error requesting device orientation permission.';
+              });
+      } else {
+          console.log('Device orientation permission request not required.');
+          statusDiv.textContent = 'Device orientation permission request not required.';
+          window.addEventListener('deviceorientation', handleDeviceOrientation);
+          statusDiv.remove();
+          requestButton.remove();
+      }
+  }
 
-// Throttle function to limit the frequency of event handling
-function throttle(func, limit) {
-    let lastFunc;
-    let lastRan;
-    return function() {
-        const context = this;
-        const args = arguments;
-        if (!lastRan) {
-            func.apply(context, args);
-            lastRan = Date.now();
-        } else {
-            clearTimeout(lastFunc);
-            lastFunc = setTimeout(function() {
-                if ((Date.now() - lastRan) >= limit) {
-                    func.apply(context, args);
-                    lastRan = Date.now();
-                }
-            }, limit - (Date.now() - lastRan));
-        }
-    };
-}
+  // Add event listener to the button
+  document.getElementById('requestButton').addEventListener('click', requestDeviceOrientationPermission);
 
-// Add mousemove event listener for desktop
-if (!isMobile) {
-    window.addEventListener('mousemove', (event) => {
-        cursor.x = event.clientX / sizes.width - 0.5;
-        cursor.y = event.clientY / sizes.height - 0.5;
-    });
-}
+  // Throttle function to limit the frequency of event handling
+  function throttle(func, limit) {
+      let lastFunc;
+      let lastRan;
+      return function() {
+          const context = this;
+          const args = arguments;
+          if (!lastRan) {
+              func.apply(context, args);
+              lastRan = Date.now();
+          } else {
+              clearTimeout(lastFunc);
+              lastFunc = setTimeout(function() {
+                  if ((Date.now() - lastRan) >= limit) {
+                      func.apply(context, args);
+                      lastRan = Date.now();
+                  }
+              }, limit - (Date.now() - lastRan));
+          }
+      };
+  }
 
-// Request permission and add event listeners for mobile
-if (isMobile) {
-    requestDeviceOrientationPermission();
-}
+  // Add mousemove event listener for desktop
+  if (!isMobile) {
+      window.addEventListener('mousemove', (event) => {
+          cursor.x = event.clientX / sizes.width - 0.5;
+          cursor.y = event.clientY / sizes.height - 0.5;
+      });
+  }
 
-/**
- * Animate
- */
-const clock = new THREE.Clock();
-let previousTime = 0;
+  // Display status if not on a mobile device
+  if (!isMobile) {
+      document.getElementById('status').textContent = 'Not a mobile device.';
+  }
 
-const tick = () => {
-    const elapsedTime = clock.getElapsedTime();
-    const deltaTime = elapsedTime - previousTime;
-    previousTime = elapsedTime;
+  /**
+   * Animate
+html
+Copy code
+   */
+  const clock = new THREE.Clock();
+  let previousTime = 0;
 
-    if (particles) {
-        particles.rotation.y = elapsedTime * 0.05;
-    }
+  const tick = () => {
+      const elapsedTime = clock.getElapsedTime();
+      const deltaTime = elapsedTime - previousTime;
+      previousTime = elapsedTime;
 
-    subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x;
-    subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5;
-    subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y;
+      if (particles) {
+          particles.rotation.y = elapsedTime * 0.05;
+      }
 
-    // Animate camera
-    if (isMobile) {
-        // Apply orientation data to camera group on mobile
-        const parallaxX = orientation.gamma / 90;  // Normalize gamma to [-1, 1]
-        const parallaxY = orientation.beta / 90;   // Normalize beta to [-1, 1]
+      subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x;
+      subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5;
+      subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y;
 
-        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
-    } else {
-        // Apply cursor movement to camera group on desktop
-        const parallaxX = cursor.x * 0.5;
-        const parallaxY = -cursor.y * 0.5;
+      // Animate camera
+      if (isMobile) {
+          // Apply orientation data to camera group on mobile
+          const parallaxX = orientation.gamma / 90;  // Normalize gamma to [-1, 1]
+          const parallaxY = orientation.beta / 90;   // Normalize beta to [-1, 1]
 
-        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
-    }
-    
-    renderer.render(scene, camera);
-    window.requestAnimationFrame(tick);
-};
+          cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+          cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+      } else {
+          // Apply cursor movement to camera group on desktop
+          const parallaxX = cursor.x * 0.5;
+          const parallaxY = -cursor.y * 0.5;
 
-// Start the animation
-tick();
+          cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+          cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+      }
+      
+      renderer.render(scene, camera);
+      window.requestAnimationFrame(tick);
+  };
+
+  // Start the animation
+  tick();
