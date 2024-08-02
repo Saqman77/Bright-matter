@@ -1531,15 +1531,15 @@ source
     .navbar
     {
         position: fixed;
-        top: env(safe-area-inset-top, 0);
+        top: env(safe-area-inset-top, 1%);
         left: 0;
         width: fit-content;
         height: fit-content;
         /* height: 3.375rem; */
-        padding-top: env(safe-area-inset-top);
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: env(safe-area-inset-bottom);
+        /* padding-top: env(safe-area-inset-top); */
+        /* padding-left: env(safe-area-inset-left); */
+        /* padding-right: env(safe-area-inset-right); */
+        /* padding-bottom: env(safe-area-inset-bottom); */
         z-index: 1;
         padding: 0 2.6vw 0 2.5vw;
         transition: transform 0.5s ease;
