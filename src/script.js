@@ -834,7 +834,7 @@ ScrollTrigger.defaults({
                 end: '+=50%',
                 // pin: true,
                 scrub:2,
-                markers: false  // Set to false to hide debugging markers
+                markers: false// Set to false to hide debugging markers
             }
     })
 
