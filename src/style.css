@@ -1543,6 +1543,7 @@ source
         z-index: 1;
         padding: 0 2.6vw 0 2.5vw;
         transition: transform 0.5s ease;
+        -webkit-transition: -webkit-transform 0.5s ease;
     }
     
     .scroll-down .navbar
@@ -1551,13 +1552,15 @@ source
         -webkit-transform: translate3d(0, calc(-150% - env(safe-area-inset-top)), 0);
         /* width: fit-content; */
         transition: transform 0.5s ease;
+        -webkit-transition: -webkit-transform 0.5s ease;
     }
     .scroll-up .navbar
     {
         transform: translate3d(0, calc(1% - env(safe-area-inset-top)), 0);
 
-        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 1%, 0);
         transition: transform 0.5s ease;
+        -webkit-transition: -webkit-transform 0.5s ease;
     }
     
     .nav-container
