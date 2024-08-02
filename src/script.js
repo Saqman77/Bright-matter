@@ -107,12 +107,12 @@ const workers = [];
 let workerCount = 4; // Number of workers
 if (window.innerWidth <= 768)
 {
-    workerCount = 2
+    workerCount = 3
 }
 
 else
 {
-    workerCount = 4
+    workerCount = 3
 }
 
 
@@ -354,7 +354,7 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 1);
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.005);
 gsap.defaults({preventOverlaps:true,
     fastScrollEnd:true
 })
@@ -505,14 +505,14 @@ lenis.on('scroll', ({scroll}) => {
                     gsap.to(parameters, {
                         radius:1.4,
                         spin:4,
-                        randomnessPower:7,
+                        randomnessPower:4,
                         duration:1.5,
                         // branches: 4,
                         onStart: () => {
                             parameters.count = 80000;
                             parameters.size = 0.005
-                            // parameters.randomnessPower = 20
-                            parameters.randomness = 0.5
+                            parameters.randomnessPower = 20
+                            parameters.randomness = 0
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },            
@@ -545,11 +545,11 @@ lenis.on('scroll', ({scroll}) => {
             radius:4,
             spin:1.5,
             randomnessPower:4,
-            duration:2,
+            duration:1.5,
             // branches: 4,
             onStart: () => {
-                parameters.count =10000;
-                parameters.size = 0.02
+                parameters.count =90000;
+                parameters.size = 0.01
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
