@@ -1160,6 +1160,30 @@ h3
     
 }
 
+
+.footer-contact-btn:hover
+{
+    
+    /* background-color: #00F0FF; */
+    border-radius: 55% 45% 53% 47% / 0% 100% 0% 100% ;
+    /* width: 100%; */
+    /* height:100%; */
+    box-shadow:  5px 15px 15px rgba(0, 255, 179, 0.5), -15px -15px 15px rgba(0, 202, 238, 0.9);
+    border: 4px solid #f9f9f9;
+}
+
+
+.footer-contact-btn:active
+{
+    
+    /* background-color: #00F0FF; */
+    border-radius: 25% 75% 69% 31% / 72% 21% 79% 28%  ;
+    box-shadow:  10px 10px 25px rgb(255, 255, 255), -10px -10px 25px rgb(255, 255, 255);
+    transition: border-radius 0.01s, ease-in-out 0.01s, width 0.1s, ease-in-out 0.1s,box-shadow 0.1s, ease-in-out 0.1s, border  0.1s, ease-in-out 0.1s;
+    /* width:100%; */
+    /* height:100%; */
+}
+
 .vid-contact
 {
     width: 5vw;
@@ -1177,16 +1201,6 @@ h3
     /* bottom: 0; */
     z-index: 5;
 }
-.footer-contact-btn:hover
-{
-    
-    /* background-color: #00F0FF; */
-    border-radius: 55% 45% 53% 47% / 0% 100% 0% 100% ;
-    /* width: 100%; */
-    /* height:100%; */
-    box-shadow:  5px 15px 15px rgba(0, 255, 179, 0.5), -15px -15px 15px rgba(0, 202, 238, 0.9);
-    border: 4px solid #f9f9f9;
-}
 
 .footer-contact-btn:hover> .vid-contact
 {
@@ -1195,16 +1209,6 @@ h3
     backdrop-filter: blur(3px);
 }
 
-.footer-contact-btn:active
-{
-    
-    /* background-color: #00F0FF; */
-    border-radius: 25% 75% 69% 31% / 72% 21% 79% 28%  ;
-    box-shadow:  10px 10px 25px rgb(255, 255, 255), -10px -10px 25px rgb(255, 255, 255);
-    transition: border-radius 0.01s, ease-in-out 0.01s, width 0.1s, ease-in-out 0.1s,box-shadow 0.1s, ease-in-out 0.1s, border  0.1s, ease-in-out 0.1s;
-    /* width:100%; */
-    /* height:100%; */
-}
 
 .footer-contact-btn:active > .vid-contact
 {
@@ -2445,6 +2449,30 @@ source
         
     }
     
+
+    .footer-contact-btn:hover
+    {
+        
+        /* background-color: #00F0FF; */
+        border-radius: 55% 45% 53% 47% / 0% 100% 0% 100% ;
+        /* width: 100%; */
+        /* height:100%; */
+        box-shadow:  5px 15px 15px rgba(0, 255, 179, 0.5), -15px -15px 15px rgba(0, 202, 238, 0.9);
+        border: 4px solid #f9f9f9;
+    }
+    
+
+    .footer-contact-btn:active
+    {
+        
+        /* background-color: #00F0FF; */
+        border-radius: 25% 75% 69% 31% / 72% 21% 79% 28%  ;
+        box-shadow:  10px 10px 25px rgb(255, 255, 255), -10px -10px 25px rgb(255, 255, 255);
+        transition: border-radius 0.01s, ease-in-out 0.01s, width 0.1s, ease-in-out 0.1s,box-shadow 0.1s, ease-in-out 0.1s, border  0.1s, ease-in-out 0.1s;
+        /* width:100%; */
+        /* height:100%; */
+    }
+
     .vid-contact
     {
         width: 8vw;
@@ -2462,17 +2490,7 @@ source
         /* bottom: 0; */
         z-index: 5;
     }
-    .footer-contact-btn:hover
-    {
-        
-        /* background-color: #00F0FF; */
-        border-radius: 55% 45% 53% 47% / 0% 100% 0% 100% ;
-        /* width: 100%; */
-        /* height:100%; */
-        box-shadow:  5px 15px 15px rgba(0, 255, 179, 0.5), -15px -15px 15px rgba(0, 202, 238, 0.9);
-        border: 4px solid #f9f9f9;
-    }
-    
+
     .footer-contact-btn:hover> .vid-contact
     {
         opacity: 1;
@@ -2480,16 +2498,6 @@ source
         backdrop-filter: blur(3px);
     }
     
-    .footer-contact-btn:active
-    {
-        
-        /* background-color: #00F0FF; */
-        border-radius: 25% 75% 69% 31% / 72% 21% 79% 28%  ;
-        box-shadow:  10px 10px 25px rgb(255, 255, 255), -10px -10px 25px rgb(255, 255, 255);
-        transition: border-radius 0.01s, ease-in-out 0.01s, width 0.1s, ease-in-out 0.1s,box-shadow 0.1s, ease-in-out 0.1s, border  0.1s, ease-in-out 0.1s;
-        /* width:100%; */
-        /* height:100%; */
-    }
     
     .footer-contact-btn:active > .vid-contact
     {
@@ -3674,6 +3682,31 @@ source
         
     }
     
+
+    .footer-contact-btn:hover
+    {
+        
+        /* background-color: #00F0FF; */
+        border-radius: 55% 45% 53% 47% / 0% 100% 0% 100% ;
+        /* width: 100%; */
+        /* height:100%; */
+        box-shadow:  5px 15px 15px rgba(0, 255, 179, 0.5), -15px -15px 15px rgba(0, 202, 238, 0.9);
+        border: 4px solid #f9f9f9;
+    }
+    
+
+    
+    .footer-contact-btn:active
+    {
+        
+        /* background-color: #00F0FF; */
+        border-radius: 25% 75% 69% 31% / 72% 21% 79% 28%  ;
+        box-shadow:  10px 10px 25px rgb(255, 255, 255), -10px -10px 25px rgb(255, 255, 255);
+        transition: border-radius 0.01s, ease-in-out 0.01s, width 0.1s, ease-in-out 0.1s,box-shadow 0.1s, ease-in-out 0.1s, border  0.1s, ease-in-out 0.1s;
+        /* width:100%; */
+        /* height:100%; */
+    }
+
     .vid-contact
     {
         width: 10vw;
@@ -3692,33 +3725,12 @@ source
         object-fit: cover;
         z-index: 5;
     }
-    .footer-contact-btn:hover
-    {
-        
-        /* background-color: #00F0FF; */
-        border-radius: 55% 45% 53% 47% / 0% 100% 0% 100% ;
-        /* width: 100%; */
-        /* height:100%; */
-        box-shadow:  5px 15px 15px rgba(0, 255, 179, 0.5), -15px -15px 15px rgba(0, 202, 238, 0.9);
-        border: 4px solid #f9f9f9;
-    }
-    
+
     .footer-contact-btn:hover> .vid-contact
     {
         opacity: 1;
         box-shadow:  5px 5px 10px rgb(0, 255, 179), 0 0 5px rgb(0, 238, 238);
         backdrop-filter: blur(3px);
-    }
-    
-    .footer-contact-btn:active
-    {
-        
-        /* background-color: #00F0FF; */
-        border-radius: 25% 75% 69% 31% / 72% 21% 79% 28%  ;
-        box-shadow:  10px 10px 25px rgb(255, 255, 255), -10px -10px 25px rgb(255, 255, 255);
-        transition: border-radius 0.01s, ease-in-out 0.01s, width 0.1s, ease-in-out 0.1s,box-shadow 0.1s, ease-in-out 0.1s, border  0.1s, ease-in-out 0.1s;
-        /* width:100%; */
-        /* height:100%; */
     }
     
     .footer-contact-btn:active > .vid-contact
