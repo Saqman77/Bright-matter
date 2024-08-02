@@ -3676,6 +3676,7 @@ source
     {
         width: 10vw;
         position: absolute;
+        max-width: 100%;
         top: 20%;
         opacity: 0.2;
         /* left: 0; */
@@ -3686,6 +3687,7 @@ source
         background-color: #f9f9f97c;
         right: 40%;
         /* bottom: 0; */
+        object-fit: cover;
         z-index: 5;
     }
     .footer-contact-btn:hover
