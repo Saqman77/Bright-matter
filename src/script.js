@@ -933,7 +933,7 @@ ScrollTrigger.defaults({
 
 
  // This should not be undefined
-// Cursor
+// Cursor position object
 const cursor = { x: 0, y: 0 };
 let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 let orientation = { alpha: 0, beta: 0, gamma: 0 };
@@ -952,6 +952,8 @@ function requestDeviceOrientationPermission() {
             .then(permissionState => {
                 if (permissionState === 'granted') {
                     window.addEventListener('deviceorientation', handleDeviceOrientation);
+                } else {
+                    console.error('Permission not granted for device orientation');
                 }
             })
             .catch(console.error);
@@ -960,14 +962,39 @@ function requestDeviceOrientationPermission() {
     }
 }
 
-if (isMobile) {
-    // Request permission to access device orientation data
-    requestDeviceOrientationPermission();
-} else {
+// Throttle function to limit the frequency of event handling
+function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+}
+
+// Add mousemove event listener for desktop
+if (!isMobile) {
     window.addEventListener('mousemove', (event) => {
         cursor.x = event.clientX / sizes.width - 0.5;
         cursor.y = event.clientY / sizes.height - 0.5;
     });
+}
+
+// Request permission and add event listeners for mobile
+if (isMobile) {
+    requestDeviceOrientationPermission();
 }
 
 /**
