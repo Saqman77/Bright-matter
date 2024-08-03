@@ -3792,15 +3792,16 @@ source
         width: 100%;
     }
     
-    source
+    /* source
     {
         width: 100%;
         max-width: 100%;
         position: absolute;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         object-fit: cover;
         top:0;
         left:0;
-    }
+    } */
     
     .footer-bottom-row
     {
