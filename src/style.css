@@ -1534,7 +1534,7 @@ source
         top: env(safe-area-inset-top, 1%);
         left: 0;
         width: fit-content;
-        height: fit-content;
+        height: auto;
         /* height: 3.375rem; */
         /* padding-top: env(safe-area-inset-top); */
         /* padding-left: env(safe-area-inset-left); */
@@ -2793,7 +2793,7 @@ source
         top: 0%;
         left: 0;
         width: fit-content;
-        height: fit-content;
+        height: auto;
         /* height: 3.375rem; */
         z-index: 1;
         padding: 0 2.6vw 0 2.5vw;
