@@ -1017,7 +1017,7 @@ ScrollTrigger.defaults({
   }
 
   // Display status if not on a mobile device
-  if (!isMobile) {
+  if (window.innerWidth>1250) {
       document.getElementById('status').textContent = 'Not a mobile device.';
   }
 
