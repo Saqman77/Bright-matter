@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bright-Mattr.</title>
     
-  <script type="module" crossorigin src="./assets/index-c8cf90fc.js"></script>
-  <link rel="stylesheet" href="./assets/index-862306b7.css">
+  <script type="module" crossorigin src="./assets/index-d773da0d.js"></script>
+  <link rel="stylesheet" href="./assets/index-ea91b7d9.css">
 </head>
 <body>
     <canvas class="webgl"></canvas>
@@ -21,11 +21,9 @@
                   <button class="close-btn">&times;</button>
                 </div>
                 <form>
-                  <input type="text" placeholder="your name" class="form-input">
-                  <input type="email" placeholder="your email" class="form-input">
-                  <div class="form-group">
-                    <input type="tel" placeholder="+92 300 1111 222" class="form-input">
-                  </div>
+                  <input type="text" placeholder="Name *" class="form-input" required>
+                  <input type="email" placeholder="Email *" class="form-input" required>
+                  <input type="text" class="form-input" id="phone" required>
                   <textarea placeholder="Message" class="form-input message"></textarea>
                   <div class="form-group">
                     <div class="date-picker">
@@ -139,8 +137,12 @@
             </div>
         </section>
         <section class="a-space">
-            <div id="status">Click the button to request device orientation permission...</div>
-            <button id="requestButton">Request Device Orientation</button>
+            <div id="status">
+                <p class="gyro">
+                    We use your device's gyroscopic sensor for an enhanced User Experience.
+                </p>
+                <button id="requestButton">Activate dynamic pov</button>
+            </div>
             <div class="a-space-content-wrapper">
                 <p class="a-space-center display-desktop"> move your cursor for dynamic pov</p>
                 <p class="a-space-center display-mobile">move and tilt your device for dynamic pov</p>
