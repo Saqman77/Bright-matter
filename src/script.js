@@ -894,21 +894,26 @@ ScrollTrigger.defaults({
   sections.forEach((section, i) => 
     {
 
-    gsap.to(section,
+    gsap.fromTo(section,
         {
-            duration:2,
+            opacity:1,
+            backdropFilter:'blur(10px)',
+            
+        },
+        {
+            duration:1,
             opacity:0,
-            backdropFilter:'blur(20px)',
+            backdropFilter:'blur(0px)',
             ease:'power1.inOut',
             scrollTrigger:
                 {
                     trigger: section,
                     pin: true,
                     start: 'top top',
-                    end: 'bottom',
+                    end: '30%',
                     // pinSpacer:false,
                     scrub: true,
-                    // markers: true // Set to false to hide debugging markers
+                    markers: true // Set to false to hide debugging markers
                 }
         })
     });
