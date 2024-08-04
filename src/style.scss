@@ -271,11 +271,11 @@ form {
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0)
   );
-  backdrop-filter: blur(0.625rem);
-  -webkit-backdrop-filter: blur(0.625rem);
-  border-radius: 0.9375rem;
-  border: 0.0625rem solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0.5rem 32px 0 rgba(0, 0, 0, 0.37);
   height: 100%;
   width: 100%;
   display: flex;
@@ -533,12 +533,12 @@ h1 {
     rgba(255, 255, 255, 0.05),
     rgba(255, 255, 255, 0)
   );
-  backdrop-filter: blur(0.9375rem);
-  -webkit-backdrop-filter: blur(0.9375rem);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   /* border:.0313rem solid rgba(255, 255, 255, 0.18); */
   box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.37);
   padding: 1.67vw;
-  border-radius: 0.9375rem;
+  border-radius: 15px;
   margin-bottom: 2rem;
   width: 25vw;
 }
@@ -1188,7 +1188,7 @@ source {
   display: none;
 }
 #requestButton {
-  position: fixed;
+  // position: fixed;
   top: 50%;
   left: 50%;
   padding: 10px;
@@ -1205,29 +1205,63 @@ source {
 
 @media (max-width: 1250px) {
   #status {
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    padding: 10px;
-    background: rgb(4, 1, 20);
-    border: 1px solid rgb(68, 68, 68);
-    font-size: 0.5rem;
-    color: rgb(177, 177, 177);
-    border-radius: 5px;
-    display: block;
+    position: fixed;
+    top: 50%;
+    // left: 0%;
+    right: 0%;
+    width: fit-content;
+    padding: 5%;
+    height: 20%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0.5rem 32px 0 rgba(0, 0, 0, 0.37);
+    // border: 1px solid rgb(68, 68, 68);
+    align-items: center;
+    // font-size: 0.8rem;
+    // color: rgb(177, 177, 177);
+    // border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gyro
+  {
+    font-size: 1rem;
+    text-align: center;
+    color: #f9f9f9;
+    font-family: 'espial';
   }
   #requestButton {
-    position: absolute;
-    top: 20%;
-    left: 42.5%;
-    padding: 10px;
+    // position: absolute;
+    // top: 20%;
+    // left: 42.5%;
+    padding: 2%;
     background: rgb(177, 177, 177);
     color: rgb(0, 107, 86);
-    font-size: 0.6rem;
-    border: 2px solid blueviolet;
-    border-radius: 5px;
+    font-size: 1rem;
+    border: 2px solid rgb(126, 126, 126);
+    box-shadow: 16px 16px 36px 5px rgba(15, 15, 15, 0.562);
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
     cursor: pointer;
     display: block;
+  }
+
+  #requestButton:active
+  {
+    background: rgb(44, 44, 44);
+    color: rgb(0, 250, 200);
   }
 
   .display-desktop {
@@ -1618,7 +1652,7 @@ source {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
+    // position: relative;
   }
 
   .hero-wrapper {
@@ -1681,12 +1715,12 @@ source {
       rgba(255, 255, 255, 0.05),
       rgba(255, 255, 255, 0)
     );
-    backdrop-filter: blur(0.9375rem);
-    -webkit-backdrop-filter: blur(0.9375rem);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     /* border:.0313rem solid rgba(255, 255, 255, 0.18); */
     box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.37);
     padding: 1.67vw;
-    border-radius: 0.9375rem;
+    border-radius: 15px;
     margin-bottom: 2rem;
     width: 40vw;
   }
@@ -2371,6 +2405,26 @@ source {
     font-size: 0.8rem;
     font-family: "azonix";
     color: #f9f9f9;
+  }
+
+  #requestButton {
+    // position: absolute;
+    // top: 20%;
+    // left: 42.5%;
+    padding: 4%;
+    background: rgb(177, 177, 177);
+    color: rgb(0, 107, 86);
+    font-size: 1rem;
+    border: 2px solid rgb(126, 126, 126);
+    box-shadow: 16px 16px 36px 5px rgba(15, 15, 15, 0.562);
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+    display: block;
   }
 
   .main-container {
