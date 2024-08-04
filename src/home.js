@@ -1,4 +1,13 @@
 import gsap from 'gsap';
+import 'intl-tel-input/build/css/intlTelInput.css';
+import intlTelInput from "intl-tel-input/intlTelInputWithUtils"
+
+const input = document.querySelector("#phone");
+intlTelInput(input, {
+    separateDialCode: true,
+    initialCountry: 'pk'
+});
+
 gsap.defaults({
     markers: false,
     // preventOverlaps:true

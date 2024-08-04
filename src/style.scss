@@ -4,6 +4,15 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
+
+.iti {
+    --iti-path-flags-1x: url('./assets/images/flags.webp');
+    --iti-path-flags-2x: url('./assets/images/flags@2x.webp');
+    --iti-path-globe-1x: url('./assets/images/globe.webp');
+    --iti-path-globe-2x: url('./assets/images/globe@2x.webp');
+    color: #2E2E2E;
+}
+
 @font-face {
   font-family: "azonix";
   src: url("./assets/fontfs/Azonix.otf") format("otf");
@@ -176,11 +185,10 @@ form {
 .form-input {
   width: 100%;
   padding: 15px;
-  /* margin: 10px 0; */
   border-radius: 20px;
-  /* border: 1px solid #ffffff; */
+  border: 1px solid #ffffff;
   background-color: #ebebeb;
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0) !important;
 }
 
 .message {
