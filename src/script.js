@@ -913,7 +913,7 @@ ScrollTrigger.defaults({
                     end: '30%',
                     // pinSpacer:false,
                     scrub: true,
-                    markers: true // Set to false to hide debugging markers
+                    markers: false // Set to false to hide debugging markers
                 }
         })
     });
