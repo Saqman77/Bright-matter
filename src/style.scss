@@ -115,7 +115,7 @@ body.no-scroll {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent repeating */
   border-radius: 10px;
-  padding: 35px 35px 10px 35px;
+  padding: 35px 35px 24px 35px;
   width: 418px;
   height: 647px;
   color: #f9f9f9;
@@ -144,13 +144,13 @@ body.no-scroll {
 form {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: 100%;
 }
 
 .form-header {
   /* text-align: center; */
-  margin-bottom: 20px;
+  margin-bottom: 36px;
   margin-top: 30px;
 }
 
@@ -192,7 +192,7 @@ form {
 }
 
 .message {
-  height: 100px;
+  height: 152px;
 }
 
 .form-group {
@@ -220,7 +220,7 @@ form {
     /* margin-left: 10px; */
 /* } */
 
-.confirmation {
+.form-message {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -244,6 +244,51 @@ form {
   background-color: #00ffdd;
   color: #000;
 }
+
+.lds-ring {
+    /* change color here */
+    color: #f9f9f9
+}
+
+.lds-ring,
+.lds-ring div {
+  box-sizing: border-box;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 4px solid currentColor;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .navbar {
   position: fixed;
   top: 1%;
