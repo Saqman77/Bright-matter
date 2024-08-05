@@ -21,7 +21,9 @@
                 <form>
                   <input type="text" placeholder="Name *" class="form-input" required>
                   <input type="email" placeholder="Email *" class="form-input" required>
-                  <input type="text" class="form-input" id="phone" required>
+                  <div class="phone-wrapper" data-lenis-prevent>
+                    <input type="text" class="form-input" id="phone" required>
+                  </div>
                   <textarea placeholder="Message" class="form-input message"></textarea>
                   <div class="form-group">
                     <div class="date-picker">

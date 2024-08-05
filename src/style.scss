@@ -12,7 +12,10 @@
     --iti-path-globe-2x: url('./assets/images/globe@2x.webp');
     color: #2E2E2E;
 }
-
+.intl-tel-input .iti__country-list {
+  overflow-y: scroll;
+  max-height: 200px; /* or any appropriate height */
+}
 @font-face {
   font-family: "azonix";
   src: url("./assets/fontfs/Azonix.otf") format("otf");
@@ -34,21 +37,21 @@
 html {
   background-color: black;
   font-size: calc(0.4vmin + 0.6vmax);
-  scroll-snap-type: mandatory;
+  // scroll-snap-type: mandatory;
 }
 
 @media (max-width: 1200px) {
   html {
     background-color: black;
     font-size: calc(1vmin + 1vmax);
-    scroll-snap-type: mandatory;
+    // scroll-snap-type: mandatory;
   }
 }
 @media (max-width: 768px) {
   html {
     background-color: black;
     font-size: calc(2vmin + 1vmax);
-    scroll-snap-type: mandatory;
+    // scroll-snap-type: mandatory;
   }
 }
 
@@ -58,7 +61,7 @@ a {
   color: inherit;
 }
 
-html,
+
 body {
   /* overflow-x: hidden; */
   width: 100%;
@@ -120,7 +123,7 @@ body.no-scroll {
   height: 647px;
   color: #f9f9f9;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
-  z-index: 9999; /* Ensure it's above other content */
+  z-index: 9998; /* Ensure it's above other content */
   display: none;
 }
 
@@ -209,6 +212,23 @@ form {
     background-color: #ebebeb;
     color: rgb(0, 0, 0);
   } */
+
+  .phone-wrapper
+  {
+    width: 100%;
+    position: relative;
+    z-index: 9999;
+  }
+
+  .iti 
+  { 
+    width: 100%; 
+  }
+
+  .iti__country-list
+  {
+    overflow-y: scroll !important; 
+  }
 
 .date-picker {
   display: flex;
@@ -1304,7 +1324,7 @@ source {
     height: 647px;
     color: #f9f9f9;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
-    z-index: 9999; /* Ensure it's above other content */
+    z-index: 9998; /* Ensure it's above other content */
     display: none;
   }
 

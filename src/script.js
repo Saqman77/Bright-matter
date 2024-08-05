@@ -355,9 +355,7 @@ const debounce = (func, delay) => {
 // };
 
 const debounceGenerateGalaxy = debounce(generateGalaxy, 0.005);
-gsap.defaults({preventOverlaps:true,
-    fastScrollEnd:true
-})
+gsap.defaults({})
 const tl = gsap.timeline()
 let direction = 0;
 
@@ -810,6 +808,7 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+
 lenis.on('scroll', () => {
     ScrollTrigger.update();
 });
@@ -850,7 +849,7 @@ ScrollTrigger.defaults({
             opacity:0,
             ease:'power1.inOut',
             y:'100%',
-            preventOverlaps:true,
+            // preventOverlaps:true,
             scrollTrigger:
                 {
                     trigger: hero,
