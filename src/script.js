@@ -74,8 +74,8 @@ let parameters = {
 if(window.innerWidth <= 768)
  {
      parameters = {
-        count: 40000,
-        size: 0.01,
+        count: 80000,
+        size: 0.005,
         radius: 1,
         branches: 3,
         spin: 0,
@@ -112,7 +112,7 @@ if (window.innerWidth <= 768)
 
 else
 {
-    workerCount = 4
+    workerCount = 3
 }
 
 
@@ -195,15 +195,30 @@ const generateGalaxy = () => {
 
             completedWorkers++;
             if (completedWorkers === workerCount) {
-                particlesMaterial = new THREE.PointsMaterial({
-                    size: parameters.size,
-                    // alphaMap: startTexture,
-                    // transparent: false,
-                    sizeAttenuation: true,
-                    depthWrite: false,
-                    blending: THREE.AdditiveBlending,
-                    vertexColors: true
-                });
+                if (window.innerWidth<= 768)
+                {
+                    particlesMaterial = new THREE.PointsMaterial({
+                        size: parameters.size,
+                        // alphaMap: startTexture,
+                        // transparent: true,
+                        sizeAttenuation: true,
+                        depthWrite: false,
+                        blending: THREE.AdditiveBlending,
+                        vertexColors: true
+                    });
+                }
+                else
+                {
+                    particlesMaterial = new THREE.PointsMaterial({
+                        size: parameters.size,
+                        alphaMap: startTexture,
+                        transparent: true,
+                        sizeAttenuation: true,
+                        depthWrite: false,
+                        blending: THREE.AdditiveBlending,
+                        vertexColors: true
+                    });
+                }
 
                 particles = new THREE.Points(particlesGeometry, particlesMaterial);
                 xyz = particles.position.set(parameters.position.x, parameters.position.y, parameters.position.z);
@@ -339,10 +354,8 @@ const debounce = (func, delay) => {
 //     }
 // };
 
-const debounceGenerateGalaxy = debounce(generateGalaxy, 0.00);
-gsap.defaults({preventOverlaps:true,
-    fastScrollEnd:true
-})
+const debounceGenerateGalaxy = debounce(generateGalaxy, 0.005);
+gsap.defaults({})
 const tl = gsap.timeline()
 let direction = 0;
 
@@ -394,68 +407,116 @@ lenis.on('scroll', ({scroll}) => {
                 z:0,
                 y:0
             })}
-        if (currentSection == 1 ) {
-        gsap.to(parameters, {
-            radius:1.5,
-            spin:0,
-            randomnessPower:10,
-            // duration:1.5,
-            // branches: 4,
-            onStart: () => {
-                parameters.count =10000;
-                parameters.size = 0.005
-                parameters.randomnessPower = 20
-                parameters.randomness = 0
-                // parameters.branches = direction === 'down' ? 5 : 3;
-                debounceGenerateGalaxy
-            },            
-            onComplete: () => {
-                parameters.count = 40000;
-                parameters.size =0.01;
-                // parameters.branches = direction === 'down' ? 5 : 3;
-                debounceGenerateGalaxy
-            },
-            onUpdate: debounceGenerateGalaxy
-        });
-
-        gsap.to(camera.position,
-            {
-                x:0,
-                z:4,
-                y:6,
-                ease:'power1.inOut',
-                // duration:1,
-            })
-
-        gsap.to(camera.rotation,
-            {
-
-                ease:"power1.inOut",
-                x:-0.767,
-                z:0,
-                y:0
-            })
-    }
-        if (currentSection == 2 ) {
+        if (currentSection == 1 ) 
+        {
             if(window.innerWidth <= 768)
                 {
                     gsap.to(parameters, {
-                        radius:1.2,
-                        spin:5,
-                        randomnessPower:7,
-                        duration:1.5,
+                        radius:1.5,
+                        spin:0,
+                        randomnessPower:10,
+                        // duration:1.5,
                         // branches: 4,
                         onStart: () => {
-                            parameters.count = 7000;
-                            parameters.size = 0.01
+                            parameters.count =40000;
+                            parameters.size = 0.005
                             parameters.randomnessPower = 20
-                            parameters.randomness = 0.1
+                            parameters.randomness = 0
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },            
                         onComplete: () => {
-                            parameters.count =50000;
-                            parameters.size = 0.01;
+                            parameters.count = 80000;
+                            parameters.size =0.005;
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },
+                        onUpdate: debounceGenerateGalaxy
+                    });
+            
+                    gsap.to(camera.position,
+                        {
+                            x:0,
+                            z:4,
+                            y:6,
+                            ease:'power1.inOut',
+                            // duration:1,
+                        })
+            
+                    gsap.to(camera.rotation,
+                        {
+            
+                            ease:"power1.inOut",
+                            x:-0.767,
+                            z:0,
+                            y:0
+                        })
+                }
+            
+            else
+                {
+                    gsap.to(parameters, {
+                        radius:1.5,
+                        spin:0,
+                        randomnessPower:10,
+                        // duration:1.5,
+                        // branches: 4,
+                        onStart: () => {
+                            parameters.count =10000;
+                            parameters.size = 0.03
+                            parameters.randomnessPower = 20
+                            parameters.randomness = 0
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },            
+                        onComplete: () => {
+                            parameters.count = 40000;
+                            parameters.size =0.01;
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },
+                        onUpdate: debounceGenerateGalaxy
+                    });
+            
+                    gsap.to(camera.position,
+                        {
+                            x:0,
+                            z:4,
+                            y:6,
+                            ease:'power1.inOut',
+                            // duration:1,
+                        })
+            
+                    gsap.to(camera.rotation,
+                        {
+            
+                            ease:"power1.inOut",
+                            x:-0.767,
+                            z:0,
+                            y:0
+                        })
+                }
+        }
+        if (currentSection == 2 ) {
+            if(window.innerWidth <= 768)
+                {
+                    gsap.to(parameters, {
+                        radius:1.4,
+                        spin:4,
+                        randomnessPower:6,
+                        duration:1.5,
+                        // branches: 4,
+                        onStart: () => {
+                            parameters.count = 30000;
+                            parameters.size = 0.005
+                            parameters.randomnessPower = 20
+                            parameters.randomness = 0
+                            // parameters.branches = direction === 'down' ? 5 : 3;
+                            debounceGenerateGalaxy
+                        },            
+                        onComplete: () => {
+                            parameters.count =60000;
+                            parameters.size = 0.005;
                             // parameters.branches = direction === 'down' ? 5 : 3;
                             debounceGenerateGalaxy
                         },
@@ -468,7 +529,7 @@ lenis.on('scroll', ({scroll}) => {
                             z:2,
                             y:3,
                             ease:'power1.inOut',
-                            duration:1,
+                            // duration:1,
                         })
                     gsap.to(camera.rotation,
                         {
@@ -482,11 +543,11 @@ lenis.on('scroll', ({scroll}) => {
             radius:4,
             spin:1.5,
             randomnessPower:4,
-            duration:2,
+            duration:1.5,
             // branches: 4,
             onStart: () => {
-                parameters.count =10000;
-                parameters.size = 0.02
+                parameters.count =90000;
+                parameters.size = 0.01
                 parameters.randomnessPower = 20
                 parameters.randomness = 0
                 // parameters.branches = direction === 'down' ? 5 : 3;
@@ -507,7 +568,7 @@ lenis.on('scroll', ({scroll}) => {
                 z:4,
                 y:4,
                 ease:'power1.inOut',
-                duration:1,
+                // duration:1,
             })
         gsap.to(camera.rotation,
             {
@@ -547,7 +608,7 @@ lenis.on('scroll', ({scroll}) => {
                     x:-.5,
                     y:6,
                     z:0.5,
-                    duration:1,
+                    // duration:1,
                     ease:'linear',
                    
                     
@@ -566,7 +627,7 @@ lenis.on('scroll', ({scroll}) => {
         x:-6,
         y:12,
         z:0.5,
-        duration:1,
+        // duration:1,
         ease:'linear',
        
         
@@ -747,6 +808,7 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+
 lenis.on('scroll', () => {
     ScrollTrigger.update();
 });
@@ -771,7 +833,7 @@ ScrollTrigger.defaults({
                 end: '+=50%',
                 // pin: true,
                 scrub:2,
-                markers: false  // Set to false to hide debugging markers
+                markers: false// Set to false to hide debugging markers
             }
     })
 
@@ -787,7 +849,7 @@ ScrollTrigger.defaults({
             opacity:0,
             ease:'power1.inOut',
             y:'100%',
-            preventOverlaps:true,
+            // preventOverlaps:true,
             scrollTrigger:
                 {
                     trigger: hero,
@@ -831,21 +893,26 @@ ScrollTrigger.defaults({
   sections.forEach((section, i) => 
     {
 
-    gsap.to(section,
+    gsap.fromTo(section,
         {
-            duration:2,
+            opacity:1,
+            backdropFilter:'blur(10px)',
+            
+        },
+        {
+            duration:1,
             opacity:0,
-            backdropFilter:'blur(20px)',
+            backdropFilter:'blur(0px)',
             ease:'power1.inOut',
             scrollTrigger:
                 {
                     trigger: section,
                     pin: true,
                     start: 'top top',
-                    end: 'bottom',
+                    end: '30%',
                     // pinSpacer:false,
                     scrub: true,
-                    // markers: true // Set to false to hide debugging markers
+                    markers: false // Set to false to hide debugging markers
                 }
         })
     });
@@ -870,74 +937,130 @@ ScrollTrigger.defaults({
 
 
  // This should not be undefined
-// Cursor
-const cursor = { x: 0, y: 0 };
-let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-let orientation = { alpha: 0, beta: 0, gamma: 0 };
+  // Cursor position object
+  const cursor = { x: 0, y: 0 };
+  let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  let orientation = { alpha: 0, beta: 0, gamma: 0 };
 
+  // Function to handle device orientation
+  function handleDeviceOrientation(event) {
+      orientation.alpha = event.alpha;  // Rotation around z-axis
+      orientation.beta = event.beta;    // Rotation around x-axis
+      orientation.gamma = event.gamma;  // Rotation around y-axis
+      console.log(`Orientation updated: alpha=${orientation.alpha}, beta=${orientation.beta}, gamma=${orientation.gamma}`);
+  }
 
-if (isMobile && window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', (event) => {
-        orientation.alpha = event.alpha;  // Rotation around z-axis
-        orientation.beta = event.beta;    // Rotation around x-axis
-        orientation.gamma = event.gamma;  // Rotation around y-axis
-    });
-} else {
-    window.addEventListener('mousemove', (event) => {
-        cursor.x = event.clientX / sizes.width - 0.5;
-        cursor.y = event.clientY / sizes.height - 0.5;
-    });
-}
+  // Request permission for iOS devices
+  function requestDeviceOrientationPermission() {
+      const statusDiv = document.getElementById('status');
+      const requestButton = document.getElementById('requestButton');
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+          console.log('Requesting device orientation permission...');
+          DeviceOrientationEvent.requestPermission()
+              .then(permissionState => {
+                  if (permissionState === 'granted') {
+                      console.log('Device orientation permission granted.');
+                      statusDiv.textContent = 'Device orientation permission granted.';
+                      window.addEventListener('deviceorientation', handleDeviceOrientation);
+                      statusDiv.remove();
+                      requestButton.remove();
+                  } else {
+                      console.log('Device orientation permission denied.');
+                      statusDiv.textContent = 'Device orientation permission denied.';
+                  }
+              })
+              .catch(error => {
+                  console.error('Error requesting device orientation permission:', error);
+                  statusDiv.textContent = 'Error requesting device orientation permission.';
+              });
+      } else {
+          console.log('Device orientation permission request not required.');
+          statusDiv.textContent = 'Device orientation permission request not required.';
+          window.addEventListener('deviceorientation', handleDeviceOrientation);
+          statusDiv.remove();
+          requestButton.remove();
+      }
+  }
 
-/**
- * Animate
- */
-const clock = new THREE.Clock();
-let previousTime = 0;
+  // Add event listener to the button
+  document.getElementById('requestButton').addEventListener('click', requestDeviceOrientationPermission);
 
-const tick = () => {
-    const elapsedTime = clock.getElapsedTime();
-    const deltaTime = elapsedTime - previousTime;
-    previousTime = elapsedTime;
+  // Throttle function to limit the frequency of event handling
+  function throttle(func, limit) {
+      let lastFunc;
+      let lastRan;
+      return function() {
+          const context = this;
+          const args = arguments;
+          if (!lastRan) {
+              func.apply(context, args);
+              lastRan = Date.now();
+          } else {
+              clearTimeout(lastFunc);
+              lastFunc = setTimeout(function() {
+                  if ((Date.now() - lastRan) >= limit) {
+                      func.apply(context, args);
+                      lastRan = Date.now();
+                  }
+              }, limit - (Date.now() - lastRan));
+          }
+      };
+  }
 
-    if (particles) {
-        particles.rotation.y = elapsedTime * 0.05;
-    }
+  // Add mousemove event listener for desktop
+  if (!isMobile) {
+      window.addEventListener('mousemove', (event) => {
+          cursor.x = event.clientX / sizes.width - 0.5;
+          cursor.y = event.clientY / sizes.height - 0.5;
+      });
+  }
 
-    // subparticle.position.x = Math.sin(elapsedTime) * 0.01;
-    subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x
-    subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5
-    subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y
+  // Display status if not on a mobile device
+  if (window.innerWidth>1250) {
+      document.getElementById('status').textContent = 'Not a mobile device.';
+  }
 
-    // subparticle.scale.x = Math.sin(elapsedTime)* 0.05
-    // subparticle.scale.y = Math.sin(elapsedTime)* 0.05
-    // subparticle.scale.z = Math.cos(elapsedTime) * 0.05
+  /**
+   * Animate
+html
+Copy code
+   */
+  const clock = new THREE.Clock();
+  let previousTime = 0;
 
-//     const cameraParallaxY = (- scrollY / sizes.height + 4) * 0.5;
-//     if(currentSection){
-//    if (currentSection <= 2 && currentSection >= 8){
-//     camera.position.y += (cameraParallaxY - camera.position.y+4) * 0.5 * deltaTime;
-//    }}
+  const tick = () => {
+      const elapsedTime = clock.getElapsedTime();
+      const deltaTime = elapsedTime - previousTime;
+      previousTime = elapsedTime;
 
-    // Animate camera
-    if (isMobile) {
-        // Apply orientation data to camera group on mobile
-        const parallaxX = orientation.gamma / 90;  // Normalize gamma to [-1, 1]
-        const parallaxY = orientation.beta / 90;   // Normalize beta to [-1, 1]
+      if (particles) {
+          particles.rotation.y = elapsedTime * 0.05;
+      }
 
-        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
-    } else {
-        // Apply cursor movement to camera group on desktop
-        const parallaxX = cursor.x * 0.5;
-        const parallaxY = -cursor.y * 0.5;
+      subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x;
+      subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5;
+      subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y;
 
-        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
-    }
-    
-    renderer.render(scene, camera);
-    window.requestAnimationFrame(tick);
-};
+      // Animate camera
+      if (isMobile) {
+          // Apply orientation data to camera group on mobile
+          const parallaxX = orientation.gamma / 90;  // Normalize gamma to [-1, 1]
+          const parallaxY = orientation.beta / 90;   // Normalize beta to [-1, 1]
 
-tick();
+          cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+          cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+      } else {
+          // Apply cursor movement to camera group on desktop
+          const parallaxX = cursor.x * 0.5;
+          const parallaxY = -cursor.y * 0.5;
+
+          cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+          cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+      }
+      
+      renderer.render(scene, camera);
+      window.requestAnimationFrame(tick);
+  };
+
+  // Start the animation
+  tick();

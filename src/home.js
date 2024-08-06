@@ -1,8 +1,54 @@
 import gsap from 'gsap';
-gsap.defaults({
-    markers: false,
-    // preventOverlaps:true
-  });
+import 'intl-tel-input/build/css/intlTelInput.css';
+import intlTelInput from "intl-tel-input/intlTelInputWithUtils"
+
+const input = document.querySelector("#phone");
+const phoneWrapper = document.querySelector(".phone-wrapper");
+function fetchUserIP() {
+    return fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => data.ip);
+  }
+
+  // Function to fetch GeoIP data using the user's IP address
+  function fetchGeoIPData(ip) {
+    return fetch(`https://ipapi.co/${ip}/json/`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      });
+  }
+
+  // Initialize intl-tel-input with GeoIP lookup
+  function initializeIntlTelInput(countryCode) {
+    intlTelInput(input, {
+      separateDialCode: true,
+      strictMode:true,
+      initialCountry: countryCode
+    });
+  }
+
+  // Fetch user's IP address and then fetch GeoIP data
+  fetchUserIP()
+    .then(ip => {
+      console.log(`User IP: ${ip}`);
+      return fetchGeoIPData(ip);
+    })
+    .then(geoData => {
+      console.log(`GeoIP Data:`, geoData);
+      initializeIntlTelInput(geoData.country_code);
+    })
+    .catch(error => {
+      console.error('Error fetching IP or GeoIP data:', error);
+      // Initialize intl-tel-input without initial country if there's an error
+      initializeIntlTelInput("auto");
+    });
+
+
+
+gsap.defaults({});
 // import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 // gsap.registerPlugin(ScrollTrigger);
 let lastScrollTop = 0;
