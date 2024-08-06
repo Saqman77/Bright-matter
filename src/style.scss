@@ -114,13 +114,13 @@ body.no-scroll {
   transform: translate(-50%, -50%); /* Center the form */
   /* background-color: #111; */
   background-image: url(./assets/images/Modal-Shape.svg);
-  background-size: cover; /* Cover the entire container */
+  background-size: contain; /* Cover the entire container */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent repeating */
   border-radius: 10px;
   padding: 35px 35px 10px 35px;
-  width: 418px;
-  height: 647px;
+  width: 28vw;
+  height: 45vw;
   color: #f9f9f9;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
   z-index: 9998; /* Ensure it's above other content */
@@ -130,7 +130,7 @@ body.no-scroll {
 .contact-form-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
 }
@@ -147,21 +147,22 @@ body.no-scroll {
 form {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
+  // justify-content: space-evenly;
+  height: fit-content;
 }
 
 .form-header {
   /* text-align: center; */
-  margin-bottom: 20px;
-  margin-top: 30px;
+  margin-bottom: 3.5rem;
+  margin-top: 2.7rem;
+  padding-right:0.5rem ;
 }
 
 .form-header h4 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2.45rem;
   font-weight: 100;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   letter-spacing: 2.5px;
   font-family: "azonix";
 }
@@ -176,8 +177,8 @@ form {
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 40px;
+  top: 2vw;
+  right: 2vw;
   background: none;
   border: none;
   color: #f9f9f9;
@@ -187,20 +188,28 @@ form {
 
 .form-input {
   width: 100%;
-  padding: 15px;
-  border-radius: 20px;
+  padding: 1.3rem;
+  margin-bottom: 1rem;
+  border-radius: 25px;
   border: 1px solid #ffffff;
   background-color: #ebebeb;
   color: rgb(0, 0, 0) !important;
 }
 
 .message {
-  height: 100px;
+  height: 10rem;
+  margin-top: 1rem;
 }
 
 .form-group {
   display: flex;
   align-items: center;
+}
+
+.submit-wrapper
+{
+  margin-top: auto;
+  margin-bottom: 2rem;
 }
 
 /* .country-code {
@@ -249,9 +258,10 @@ form {
 
 .submit-btn {
   width: 100%;
-  padding: 15px;
+  padding: 1.3rem;
   border: none;
-  border-radius: 15px;
+  border-radius: 25px;
+  margin-top: 2.5rem;
   background-color: #008c7a;
   color: #f9f9f9;
   cursor: pointer;
