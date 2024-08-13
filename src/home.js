@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         contactForm.classList.remove("form-default")
         contactForm.classList.add("form-success")
-        defaultBtn.style.display = "none";
+        defaultBtn.style.display = "none"
         sucessBtn.style.display = "block"
     })
 
@@ -109,6 +109,8 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         contactForm.classList.remove("form-success")
         contactForm.classList.add("form-default")
+        defaultBtn.style.display = "block";
+        sucessBtn.style.display = "none"
     })
     })
 
