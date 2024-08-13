@@ -11,7 +11,7 @@
     <script type="module" src="./script.js"></script>
     <div class="main-container">
         <div id="overlay" class="overlay"></div>
-        <div class="contact-form" id="contact-form">
+        <div class="contact-form form-default" id="contact-form">
             <div class="contact-form-wrapper">
                 <div class="form-header">
                   <h4>Connect With Us</h4>
@@ -25,18 +25,13 @@
                     <input type="text" class="form-input" id="phone" required>
                   </div>
                   <textarea placeholder="Message" class="form-input message"></textarea>
-                  <div class="form-group">
-                    <div class="date-picker">
-                      <input type="text" placeholder="Sat, 13 July 2024 11:02 PM" class="form-input">
-                    </div>
-                  </div>
                 </form>
                 <div class="submit-wrapper">
-                  <div class="confirmation">
-                    <input type="checkbox" checked>
-                    <label>We have received your email!</label>
-                  </div>
-                  <button type="submit" class="submit-btn">Get in Touch</button>
+                  <button type="submit" class="submit-btn">
+                    <p class="default-text">Get in Touch</p>
+                    <p class="success-text">Success!</p>
+                    <p class="failure-text">oops..! An error occured</p>
+                </button>
                 </div>
             </div>
           </div>

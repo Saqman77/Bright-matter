@@ -40,7 +40,7 @@ html {
   // scroll-snap-type: mandatory;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   html {
     background-color: black;
     font-size: calc(1vmin + 1vmax);
@@ -50,7 +50,7 @@ html {
 @media (max-width: 768px) {
   html {
     background-color: black;
-    font-size: calc(2vmin + 1vmax);
+    font-size: calc(1.5vmin + 1.5vmax);
     // scroll-snap-type: mandatory;
   }
 }
@@ -60,6 +60,25 @@ a {
   list-style: none;
   color: inherit;
 }
+
+input::placeholder
+{
+  font-size: 1rem;
+}
+
+.iti__selected-dial-code
+{
+  font-size: 1rem;
+}
+
+input:focus-visible
+{
+  outline-offset: 1px;
+  outline: 2px solid #00ffdd;;
+  // border: 2px solid #00ffdd;
+}
+
+
 
 
 body {
@@ -113,18 +132,36 @@ body.no-scroll {
   left: 50%;
   transform: translate(-50%, -50%); /* Center the form */
   /* background-color: #111; */
-  background-image: url(./assets/images/Modal-Shape.svg);
-  background-size: contain; /* Cover the entire container */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent repeating */
   border-radius: 20px;
-  padding: 4.2rem 3.5rem 2rem;
+  padding: 4.2rem 3.1rem 2rem;
   width: 34rem;
   // height: 45vw;
   color: #f9f9f9;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
   z-index: 9998; /* Ensure it's above other content */
   display: none;
+}
+
+.form-default
+{
+  background-image: url(./assets/images/Modal-Shape.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
+.form-success
+{
+  background-image: url(./assets/images/Modal-success.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
+.form-failure
+{
+  background-image: url(./assets/images/Modal-failure.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
 }
 
 .contact-form-wrapper {
@@ -197,14 +234,28 @@ form {
   padding: 1.3rem;
   margin-bottom: 1rem;
   border-radius: 20px;
-  // border: 1px solid #ffffff;
+  border: 1px solid #ffffff;
   background-color: #ebebeb;
   color: rgb(0, 0, 0) !important;
 }
 
+
+// .form-input:empty
+// {
+//   background-color: #2E2E2E;
+// }
+
 .message {
-  height: 7rem;
+  height: 11rem;
   margin-top: 1rem;
+  resize: none;
+}
+
+.message:focus-visible
+{
+  outline-offset: 1px;
+  outline: 2px solid #00ffdd;
+  // border: 2px solid #00ffdd;
 }
 
 .form-group {
@@ -245,35 +296,46 @@ form {
     overflow-y: scroll !important; 
   }
 
-.date-picker {
-  display: flex;
-  align-items: center;
-  width: 100%;
+.iti__tel-input
+{
+  padding-left: 6em!important;
 }
 
-/* .calendar-icon {
-    /* margin-left: 10px; */
-/* } */
-
-.confirmation {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  margin-left: 20px;
-}
 
 .submit-btn {
   width: 100%;
   padding: 1.3rem;
   border: none;
   border-radius: 20px;
-  margin-top: 3rem;
+  margin-top: 7rem;
   background-color: #008c7a;
   color: #f9f9f9;
   cursor: pointer;
-  font-size: 1rem;
+  
   font-family: "azonix";
   font-weight: 100;
+}
+
+.submit-btn > .default-text
+{
+  color: #f9f9f9;
+  font-size: 2rem;
+}
+
+.submit-btn > .success-text
+{
+  font-size: 2rem;
+  font-family: "azonix";
+  font-weight: 100;
+  display: none;
+}
+
+.submit-btn > .failure-text
+{
+  font-size: 0.5rem;
+  font-family: "azonix";
+  font-weight: 100;
+  display: none;
 }
 
 .submit-btn:hover {
@@ -1241,6 +1303,28 @@ source {
 }
 
 @media (max-width: 1250px) {
+
+
+  .iti__selected-country-primary
+  {
+    font-size: .5rem;
+  }
+
+  .iti__selected-dial-code
+  {
+    font-size: .5rem;
+  }
+
+  input::placeholder
+{
+  font-size: 0.6rem;
+}
+
+.iti__selected-dial-code
+{
+  font-size: 0.6rem;
+}
+
   #status {
     position: fixed;
     top: 50%;
@@ -1331,19 +1415,38 @@ source {
     left: 50%;
     transform: translate(-50%, -50%); /* Center the form */
     /* background-color: #111; */
-    background-image: url(./assets/images/Modal-Shape.svg);
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent repeating */
     border-radius: 10px;
-    padding: 35px 35px 10px 35px;
-    width: 418px;
-    height: 647px;
+    padding: 2.2rem 1.5rem 1rem;
+    width: 16.5rem;
+    // height: 647px;
     color: #f9f9f9;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
     z-index: 9998; /* Ensure it's above other content */
     display: none;
   }
+
+  .form-default
+{
+  background-image: url(./assets/images/Modal-Shape.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
+.form-success
+{
+  background-image: url(./assets/images/Modal-success.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
+
+.form-failure
+{
+  background-image: url(./assets/images/Modal-failure.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
 
   .contact-form-wrapper {
     display: flex;
@@ -1372,12 +1475,12 @@ source {
   .form-header {
     /* text-align: center; */
     margin-bottom: 20px;
-    margin-top: 30px;
+    // margin-top: 30px;
   }
 
   .form-header h4 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 100;
     margin-bottom: 10px;
     letter-spacing: 2.5px;
@@ -1385,28 +1488,29 @@ source {
   }
 
   .form-header p {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
     font-family: "espial";
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     line-height: 1.2em;
     font-weight: 0;
   }
 
   .close-btn {
     position: absolute;
-    top: 10px;
-    right: 40px;
+    top: .5rem;
+    right: 1.5rem;
     background: none;
     border: none;
     color: #f9f9f9;
-    font-size: 40px;
+    font-size: 1.2rem;
     cursor: pointer;
   }
 
   .form-input {
     width: 100%;
-    padding: 15px;
+    padding: .55rem;
     /* margin: 10px 0; */
+    margin-bottom: .5rem;
     border-radius: 20px;
     /* border: 1px solid #ffffff; */
     background-color: #ebebeb;
@@ -1414,7 +1518,7 @@ source {
   }
 
   .message {
-    height: 100px;
+    height: 6rem;
   }
 
   .form-group {
@@ -1422,43 +1526,42 @@ source {
     align-items: center;
   }
 
-  /* .country-code {
-        width: 30%;
-        padding: 10px;
-        margin-right: 10px;
-        border-radius: 5px;
-        border: 1px solid #555;
-        background-color: #ebebeb;
-        color: rgb(0, 0, 0);
-      } */
 
-  .date-picker {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-
-  /* .calendar-icon {
-        /* margin-left: 10px; */
-  /* } */
-  .confirmation {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    margin-left: 20px;
-  }
 
   .submit-btn {
     width: 100%;
-    padding: 15px;
+    padding: .55rem;
     border: none;
     border-radius: 15px;
     background-color: #008c7a;
     color: #f9f9f9;
     cursor: pointer;
-    font-size: 1rem;
+    margin-top: 3rem;
+    
+
+  }
+
+  .submit-btn > .default-text
+  {
+    font-size: .7rem;
     font-family: "azonix";
     font-weight: 100;
+  }
+
+  .submit-btn > .success-text
+  {
+    font-size: .7rem;
+    font-family: "azonix";
+    font-weight: 100;
+    display: none;
+  }
+
+  .submit-btn > .failure-text
+  {
+    font-size: .3rem;
+    font-family: "azonix";
+    font-weight: 100;
+    display: none;
   }
 
   .submit-btn:hover {
@@ -2439,6 +2542,16 @@ source {
   }
 }
 @media (max-width: 768px) {
+
+  input::placeholder
+  {
+    font-size: 0.5rem;
+  }
+
+  .iti__selected-dial-code
+  {
+    font-size: 0.5rem;
+  }
   .a-space {
     font-size: 0.8rem;
     font-family: "azonix";
@@ -2488,19 +2601,37 @@ source {
     left: 50%;
     transform: translate(-50%, -50%); /* Center the form */
     /* background-color: #111; */
-    background-image: url(./assets/images/Modal-Shape.svg);
-    background-size: contain; /* Cover the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent repeating */
     border-radius: 20px;
-    padding: 4.2rem 3.5rem 2rem;
-    width: 34rem;
+    padding: 2rem 1.5rem 1rem;
+    width: 15.5rem;
     // height: 45vw;
     color: #f9f9f9;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for emphasis */
     z-index: 9998; /* Ensure it's above other content */
     display: none;
   }
+
+  .form-default
+{
+  background-image: url(./assets/images/Modal-Shape.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
+.form-success
+{
+  background-image: url(./assets/images/Modal-success.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
+.form-failure
+{
+  background-image: url(./assets/images/Modal-failure.svg);
+  background-size: contain; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
+}
   
   .contact-form-wrapper {
     display: flex;
@@ -2528,7 +2659,7 @@ source {
   
   .form-header {
     /* text-align: center; */
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     // margin-top: 2.7rem;
     display: flex;
     flex-direction: column;
@@ -2540,46 +2671,46 @@ source {
   
   .form-header h4 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: .8rem;
     font-weight: 100;
-    margin-bottom: 0.5rem;
-    letter-spacing: 4px;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.1rem;
     font-family: "azonix";
   }
   
   .form-header p {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     font-family: "espial";
-    letter-spacing: 3px;
+    letter-spacing: 0.01rem;
     line-height: 1.2em;
     font-weight: 0;
-    padding-right: 22px;
+    padding-right: 0.1rem;
   }
   
   .close-btn {
     position: absolute;
-    top: 1vw;
-    right: 3vw;
+    top: 0.5rem;
+    right: 1.5rem;
     background: none;
     border: none;
     color: #f9f9f9;
-    font-size: 2rem;
+    font-size: 1rem;
     cursor: pointer;
   }
   
   .form-input {
     width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 20px;
+    padding: .3rem;
+    margin-bottom: .5rem;
+    border-radius: 15px;
     // border: 1px solid #ffffff;
     background-color: #ebebeb;
     color: rgb(0, 0, 0) !important;
   }
   
   .message {
-    height: 3rem;
-    margin-top: 1rem;
+    height: 6rem;
+    margin-top: .5rem;
   }
   
   .form-group {
@@ -2593,15 +2724,7 @@ source {
     // margin-bottom: 2rem;
   }
   
-  /* .country-code {
-      width: 30%;
-      padding: 10px;
-      margin-right: 10px;
-      border-radius: 5px;
-      border: 1px solid #555;
-      background-color: #ebebeb;
-      color: rgb(0, 0, 0);
-    } */
+
   
     .phone-wrapper
     {
@@ -2620,35 +2743,40 @@ source {
       overflow-y: scroll !important; 
     }
   
-  .date-picker {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-  
-  /* .calendar-icon {
-      /* margin-left: 10px; */
-  /* } */
-  
-  .confirmation {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    margin-left: 20px;
-  }
+
   
   .submit-btn {
     width: 100%;
-    padding: 1.3rem;
+    padding: .4rem;
     border: none;
-    border-radius: 20px;
-    margin-top: 3rem;
+    border-radius: 15px;
+    margin-top: 2.5rem;
     background-color: #008c7a;
     color: #f9f9f9;
     cursor: pointer;
-    font-size: 1rem;
+  }
+
+  .submit-btn > .default-text
+  {
+    font-size: .5rem;
     font-family: "azonix";
     font-weight: 100;
+  }
+
+  .submit-btn > .success-text
+  {
+    font-size: .5rem;
+    font-family: "azonix";
+    font-weight: 100;
+    display: none;
+  }
+
+  .submit-btn > .failure-text
+  {
+    font-size: .2rem;
+    font-family: "azonix";
+    font-weight: 100;
+    display: none;
   }
   
   .submit-btn:hover {

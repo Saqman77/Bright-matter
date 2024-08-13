@@ -26,6 +26,7 @@ function fetchUserIP() {
     intlTelInput(input, {
       separateDialCode: true,
       strictMode:true,
+      useFullscreenPopup: false,
       initialCountry: countryCode
     });
   }
@@ -58,6 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const overlay = document.getElementById("overlay");
     const closeBtns = document.getElementsByClassName("close-btn");
     const openBtns = document.querySelectorAll("#opn-contact");
+    const sbmtBtn = document.getElementsByClassName("submit-btn");
+    const defaultBtn = document.getElementsByClassName("default-text")[0];
+    const sucessBtn = document.getElementsByClassName("success-text")[0];
+    const failureBtn = document.getElementsByClassName("failure-text")[0];
 
     // Open the form
     openBtns.forEach(function(openBtn) {
@@ -76,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function() {
             contactForm.style.display = "none"; // Hide the form
             overlay.style.display = "none"; // Hide the overlay
             document.body.classList.remove("no-scroll"); // Enable scrolling
+            contactForm.classList.remove("form-success")
+            contactForm.classList.add("form-default")
         });
     });
 
@@ -86,6 +93,25 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
     });
+    Array.from(sbmtBtn).forEach(function(sbmtBtns) 
+    {
+    sbmtBtns.addEventListener("click", function(event) 
+    {
+        event.preventDefault();
+        contactForm.classList.remove("form-default")
+        contactForm.classList.add("form-success")
+        defaultBtn.style.display = "none";
+        sucessBtn.style.display = "block"
+    })
+
+    sbmtBtns.addEventListener("blur", function(event) 
+    {
+        event.preventDefault();
+        contactForm.classList.remove("form-success")
+        contactForm.classList.add("form-default")
+    })
+    })
+
 });
 // Check if ScrollTrigger is registered correctly
 // console.log(gsap.plugins.ScrollTrigger);
