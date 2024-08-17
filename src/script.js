@@ -141,12 +141,7 @@ const generateGalaxy = () => {
 
     let completedWorkers = 0; // Reset completed workers count
     // const perf1 = performance.now();
-    if (particles !== null) {
-        scene.remove(particles);
-        particlesGeometry.dispose();
-        particlesMaterial.dispose();
-        particles = null;
-    }
+
 
     const positionsArray = new Float32Array(parameters.count * 3);
     const colorsArray = new Float32Array(parameters.count * 3);
@@ -169,11 +164,11 @@ const generateGalaxy = () => {
         worker.postMessage(workerParams);
 
         worker.onmessage = function(event) {
+
             const data = event.data;
             const positions = new Float32Array(data.positions);
             const colors = new Float32Array(data.colors);
             const workerIndex = data.workerIndex;
-
             const startIndex = Math.floor((workerIndex * parameters.count) / workerCount) * 3;
             const length = positions.length;
 
@@ -195,6 +190,12 @@ const generateGalaxy = () => {
 
             completedWorkers++;
             if (completedWorkers === workerCount) {
+                if (particles !== null) {
+                    scene.remove(particles);
+                    particlesGeometry.dispose();
+                    particlesMaterial.dispose();
+                    particles = null;
+                }
                 if (window.innerWidth<= 768)
                 {
                     particlesMaterial = new THREE.PointsMaterial({
