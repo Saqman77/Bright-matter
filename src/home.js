@@ -1,55 +1,8 @@
 import gsap from 'gsap';
-import 'intl-tel-input/build/css/intlTelInput.css';
-import intlTelInput from "intl-tel-input/intlTelInputWithUtils"
-
-const input = document.querySelector("#phone");
-const phoneWrapper = document.querySelector(".phone-wrapper");
-function fetchUserIP() {
-    return fetch('https://api.ipify.org?format=json')
-      .then(response => response.json())
-      .then(data => data.ip);
-  }
-
-  // Function to fetch GeoIP data using the user's IP address
-  function fetchGeoIPData(ip) {
-    return fetch(`https://ipapi.co/${ip}/json/`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      });
-  }
-
-  // Initialize intl-tel-input with GeoIP lookup
-  function initializeIntlTelInput(countryCode) {
-    intlTelInput(input, {
-      separateDialCode: true,
-      strictMode:true,
-      useFullscreenPopup: false,
-      initialCountry: countryCode
-    });
-  }
-
-  // Fetch user's IP address and then fetch GeoIP data
-  fetchUserIP()
-    .then(ip => {
-      console.log(`User IP: ${ip}`);
-      return fetchGeoIPData(ip);
-    })
-    .then(geoData => {
-      console.log(`GeoIP Data:`, geoData);
-      initializeIntlTelInput(geoData.country_code);
-    })
-    .catch(error => {
-      console.error('Error fetching IP or GeoIP data:', error);
-      // Initialize intl-tel-input without initial country if there's an error
-      initializeIntlTelInput("auto");
-    });
-
-
-
-gsap.defaults({});
+gsap.defaults({
+    markers: false,
+    // preventOverlaps:true
+  });
 // import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 // gsap.registerPlugin(ScrollTrigger);
 let lastScrollTop = 0;
@@ -59,10 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const overlay = document.getElementById("overlay");
     const closeBtns = document.getElementsByClassName("close-btn");
     const openBtns = document.querySelectorAll("#opn-contact");
-    const sbmtBtn = document.getElementsByClassName("submit-btn");
-    const defaultBtn = document.getElementsByClassName("default-text")[0];
-    const sucessBtn = document.getElementsByClassName("success-text")[0];
-    const failureBtn = document.getElementsByClassName("failure-text")[0];
 
     // Open the form
     openBtns.forEach(function(openBtn) {
@@ -81,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
             contactForm.style.display = "none"; // Hide the form
             overlay.style.display = "none"; // Hide the overlay
             document.body.classList.remove("no-scroll"); // Enable scrolling
-            contactForm.classList.remove("form-success")
-            contactForm.classList.add("form-default")
         });
     });
 
@@ -93,27 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
     });
-    Array.from(sbmtBtn).forEach(function(sbmtBtns) 
-    {
-    sbmtBtns.addEventListener("click", function(event) 
-    {
-        event.preventDefault();
-        contactForm.classList.remove("form-default")
-        contactForm.classList.add("form-success")
-        defaultBtn.style.display = "none"
-        sucessBtn.style.display = "block"
-    })
-
-    sbmtBtns.addEventListener("blur", function(event) 
-    {
-        event.preventDefault();
-        contactForm.classList.remove("form-success")
-        contactForm.classList.add("form-default")
-        defaultBtn.style.display = "block";
-        sucessBtn.style.display = "none"
-    })
-    })
-
 });
 // Check if ScrollTrigger is registered correctly
 // console.log(gsap.plugins.ScrollTrigger);
