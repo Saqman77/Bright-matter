@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright-Mattr.</title>
+  <script type="module" crossorigin src="/static/assets/index-CK7WcQ74.js"></script>
+  <link rel="stylesheet" crossorigin href="/static/assets/index-C1cBX3uD.css">
+</head>
+<body>
+    <canvas class="webgl"></canvas>
+    <div class="main-container">
+        <div id="overlay" class="overlay"></div>
+        <div class="contact-form form-default" id="contact-form">
+            <div class="contact-form-wrapper">
+                <div class="form-header">
+                  <h4>Connect With Us</h4>
+                  <p>Schedule a free consultation to see how you can transform your digital presence</p>
+                  <button class="close-btn">&times;</button>
+                </div>
+                <form id="submitForm">
+                  <input id="name" name="name" type="text" placeholder="Name *" class="form-input" required>
+                  <input id="email" name="email" type="email" placeholder="Email *" class="form-input" required>
+                  <div class="phone-wrapper" data-lenis-prevent>
+                    <input id="phone" name="phone" type="text" class="form-input" required>
+                  </div>
+                  <textarea id="message" name="message" placeholder="Message" class="form-input message"></textarea>
+                  <div class="submit-wrapper">
+                    <button type="submit" class="submit-btn">
+                        <p class="default-text">Get in Touch</p>
+                        <p class="success-text">Success!</p>
+                        <p class="failure-text">oops..! An error occured</p>
+                    </button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div  class="logo" href="">
+                    <img src="data:image/svg+xml,%3csvg%20width='665'%20height='539'%20viewBox='0%200%20665%20539'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M325.701%200L197.201%20206.5L243.631%20246.771L207.744%20305.935L137.035%20281.5L22.4506%20496.035L147.484%20405.282L103.975%20477.011L33.2988%20508.518L83.8506%20510.189L-46.2549%20724.683C-64.1599%20754.201%20-61.3869%20791.824%20-39.3477%20818.399L276.489%201199.23C309.043%201238.48%20369.334%201238.25%20401.583%201198.74L712.418%20817.991C733.975%20791.585%20736.693%20754.509%20719.218%20725.242L590.553%20509.752L630.897%20508.419L574.835%20483.427L543.135%20430.335L633.652%20496.035L519.067%20281.5L465.352%20300.063L429.52%20240.05L468.201%20206.5L339.701%200L357.192%20167.169C340.825%20163.41%20323.461%20164.737%20307.792%20171.157L325.701%200ZM357.192%20167.169L370.201%20291.5L429.52%20240.05L408.33%20204.561C396.231%20184.298%20377.477%20171.828%20357.192%20167.169ZM465.352%20300.063L396.455%20323.871L543.135%20430.335L465.352%20300.063ZM574.835%20483.427L363.2%20389.082L387.813%20516.453L590.553%20509.752L574.835%20483.427ZM83.8506%20510.189L276.383%20516.552L300.995%20389.182L103.975%20477.011L83.8506%20510.189ZM147.484%20405.282L207.744%20305.935L259.647%20323.871L147.484%20405.282ZM307.792%20171.157L295.201%20291.5L243.631%20246.771L269.528%20204.078C279.077%20188.336%20292.642%20177.365%20307.792%20171.157ZM408.33%201410.56C377.031%201358.14%20301.192%201357.88%20269.528%201410.08L-46.2549%201930.68C-64.1599%201960.2%20-61.3869%201997.82%20-39.3477%202024.4L276.489%202405.23C309.043%202444.48%20369.334%202444.25%20401.583%202404.74L712.418%202023.99C733.975%201997.59%20736.693%201960.51%20719.218%201931.24L408.33%201410.56Z'%20fill='%23D9D9D9'/%3e%3c/svg%3e" alt="">
+                </div>
+                <div id="opn-contact" class="contact-us" href="">
+                    <img src="data:image/svg+xml,%3csvg%20width='20'%20height='16'%20viewBox='0%200%2020%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M2%2016C1.45%2016%200.979167%2015.8042%200.5875%2015.4125C0.195833%2015.0208%200%2014.55%200%2014V2C0%201.45%200.195833%200.979167%200.5875%200.5875C0.979167%200.195833%201.45%200%202%200H18C18.55%200%2019.0208%200.195833%2019.4125%200.5875C19.8042%200.979167%2020%201.45%2020%202V14C20%2014.55%2019.8042%2015.0208%2019.4125%2015.4125C19.0208%2015.8042%2018.55%2016%2018%2016H2ZM10%209L2%204V14H18V4L10%209ZM10%207L18%202H2L10%207ZM2%204V2V14V4Z'%20fill='white'/%3e%3c/svg%3e" alt="">
+                    <p>contact&nbsp;us</p>
+                </div>
+            </div>
+        </nav>
+        <div id="opn-contact" class="contact-btn  scroll-up-btn" href="">
+            <img src="data:image/svg+xml,%3csvg%20width='20'%20height='16'%20viewBox='0%200%2020%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M2%2016C1.45%2016%200.979167%2015.8042%200.5875%2015.4125C0.195833%2015.0208%200%2014.55%200%2014V2C0%201.45%200.195833%200.979167%200.5875%200.5875C0.979167%200.195833%201.45%200%202%200H18C18.55%200%2019.0208%200.195833%2019.4125%200.5875C19.8042%200.979167%2020%201.45%2020%202V14C20%2014.55%2019.8042%2015.0208%2019.4125%2015.4125C19.0208%2015.8042%2018.55%2016%2018%2016H2ZM10%209L2%204V14H18V4L10%209ZM10%207L18%202H2L10%207ZM2%204V2V14V4Z'%20fill='white'/%3e%3c/svg%3e" class="static" alt="">
+            <img src="data:image/svg+xml,%3csvg%20width='20'%20height='16'%20viewBox='0%200%2020%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M2%2016C1.45%2016%200.979167%2015.8042%200.5875%2015.4125C0.195833%2015.0208%200%2014.55%200%2014V2C0%201.45%200.195833%200.979167%200.5875%200.5875C0.979167%200.195833%201.45%200%202%200H18C18.55%200%2019.0208%200.195833%2019.4125%200.5875C19.8042%200.979167%2020%201.45%2020%202V14C20%2014.55%2019.8042%2015.0208%2019.4125%2015.4125C19.0208%2015.8042%2018.55%2016%2018%2016H2ZM10%209L2%204V14H18V4L10%209ZM10%207L18%202H2L10%207ZM2%204V2V14V4Z'%20fill='url(%23paint0_linear_71_3589)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_71_3589'%20x1='10'%20y1='0'%20x2='10'%20y2='16'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" class="hover" alt="">
+            <img src="data:image/svg+xml,%3csvg%20width='20'%20height='16'%20viewBox='0%200%2020%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M2%2016C1.45%2016%200.979167%2015.8042%200.5875%2015.4125C0.195833%2015.0208%200%2014.55%200%2014V2C0%201.45%200.195833%200.979167%200.5875%200.5875C0.979167%200.195833%201.45%200%202%200H18C18.55%200%2019.0208%200.195833%2019.4125%200.5875C19.8042%200.979167%2020%201.45%2020%202V14C20%2014.55%2019.8042%2015.0208%2019.4125%2015.4125C19.0208%2015.8042%2018.55%2016%2018%2016H2ZM10%209L2%204V14H18V4L10%209ZM10%207L18%202H2L10%207ZM2%204V2V14V4Z'%20fill='black'/%3e%3c/svg%3e" class="clicked" alt="">
+            <p>contact&nbsp;us</p>
+        </div>
+        <section class="hero">
+            <div class="hero-wrapper">
+                <div class="content-frame">
+                    <div class="left-hero-content">
+                        <div class="heading-wrapper" id="pin-hero">
+                            <h1>Bright-mattr.</h1>
+                            <div class="support-heading-left"> Digital studios.</div>
+                        </div>
+                        <div class="bot-content-wrapper">
+                            <div class="bot-card">
+                                <div class="bot-card-heading">
+                                    What We Offer
+                                </div>
+                                <div class="bot-card-sup" >
+                                    Unleashing the Power of 3D for a New Era
+                                </div>
+                            </div>
+                            <div id="opn-contact" href="" class="bot-contact-cta">
+                                <div class="bot-contact-desc">connect&nbsp;with<br/>the&nbsp;experts!</div>
+                                <img src="data:image/svg+xml,%3csvg%20width='38'%20height='38'%20viewBox='0%200%2038%2038'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.5%2019C0.5%208.78273%208.78273%200.5%2019%200.5C29.2173%200.5%2037.5%208.78273%2037.5%2019C37.5%2029.2173%2029.2173%2037.5%2019%2037.5C8.78273%2037.5%200.5%2029.2173%200.5%2019Z'%20stroke='url(%23paint0_linear_112_770)'/%3e%3cpath%20d='M11.084%2026.9163L26.9173%2011.083M26.9173%2011.083H11.084M26.9173%2011.083V26.9163'%20stroke='url(%23paint1_linear_112_770)'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_112_770'%20x1='19'%20y1='0'%20x2='19'%20y2='38'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3clinearGradient%20id='paint1_linear_112_770'%20x1='19.0007'%20y1='11.083'%20x2='19.0007'%20y2='26.9163'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" class="contact-cta" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-hero-content">
+                        <div class="container-right">
+                            <div class="right-hero-tag">
+                            websites <br/>into living <br/>worlds.
+                            </div>
+                            <div class="right-sup-tag">
+                                Creating dynamic, interactive 3D environments that engage and inspire. 
+                            </div>
+                            <div class="right-sup-tag-2">
+                                Where Imagination Meets Innovation.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bright">
+                        <div class="marquee__inner">
+                        <div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <section class="a-space">
+            <div id="status">
+                <p class="gyro">
+                    We use your device's gyroscopic sensor for an enhanced User Experience.
+                </p>
+                <button id="requestButton">Activate dynamic pov</button>
+            </div>
+            <div class="a-space-content-wrapper">
+                <p class="a-space-center display-desktop"> move your cursor for dynamic pov</p>
+                <p class="a-space-center display-mobile">move and tilt your device for dynamic pov</p>
+            </div>
+        </section>
+        <section class="a" id="pin-second">
+            <div class="a__content" >
+                <div class="main__tagline" >
+                    <p class="main-p" > Experience the Future of the Web</p>
+                </div>
+                <div id="opn-contact" href="" class="build__cta">
+                    <p>build&nbsp;your&nbsp;own&nbsp;team!</p>
+                    <img src="data:image/svg+xml,%3csvg%20width='38'%20height='38'%20viewBox='0%200%2038%2038'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.5%2019C0.5%208.78273%208.78273%200.5%2019%200.5C29.2173%200.5%2037.5%208.78273%2037.5%2019C37.5%2029.2173%2029.2173%2037.5%2019%2037.5C8.78273%2037.5%200.5%2029.2173%200.5%2019Z'%20stroke='url(%23paint0_linear_112_770)'/%3e%3cpath%20d='M11.084%2026.9163L26.9173%2011.083M26.9173%2011.083H11.084M26.9173%2011.083V26.9163'%20stroke='url(%23paint1_linear_112_770)'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_112_770'%20x1='19'%20y1='0'%20x2='19'%20y2='38'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3clinearGradient%20id='paint1_linear_112_770'%20x1='19.0007'%20y1='11.083'%20x2='19.0007'%20y2='26.9163'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" class="contact-cta" alt="">
+                </div>
+            </div>
+        </section>
+        <!-- <section class="b-space">
+
+        </section> -->
+        <section class="b">
+          <div class="b-content-wrapper" id="pin-second">
+                <div class="b-desc-main" >
+                    <h2 >Redefining the<br/> Web with<br/>Cutting-Edge<br/>3D Technology.</h2>
+                    
+                    <div class="b-bottom-bar" >
+                            <div class="b-left-sup">
+                                <p class="b-sup">
+                                    At the forefront of digital innovation,<br/>we are passionate about<br/>pushing the boundaries of what's possible on the web.<br/>Our team of creatives and technologists<br/>harness the latest 3D technologies<br/> to craft experiences that captivate and inspire.
+                                 </p>
+                            </div>
+                        <div id="opn-contact" href="" class="b-contact-btn">
+                            <img src="/static/assets/Framedefault-eqBvT9bj.svg" alt="">
+                            <img src="/static/assets/Frame_114-BCkCpp0l.svg"  class="dp">
+                        </div>
+                    </div>
+                </div>
+            <div class="b-marquee">
+
+            </div>
+          </div>
+        </section>
+        <section class="c">
+            <div id="pin-section" class="c-content-wrapper">
+                <div class="c-main-content">
+                    <div class="c-sup-heading">High-Performance Solutions</div>
+                    <div class="c-main-heading">Immersive Experiences</div>
+                </div>
+            <div class="c-serv-list">
+                <div class="c-sub-serv">
+                    <img src="data:image/svg+xml,%3csvg%20width='23'%20height='19'%20viewBox='0%200%2023%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_151_2186)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M11.265%200L6.82062%207.14129L8.42646%208.53396L7.18526%2010.58L4.7397%209.73498L0.776635%2017.1541L5.10109%2014.0157L3.59627%2016.4962L1.15184%2017.5858L2.90024%2017.6436L-1.59964%2025.0614C-2.21891%2026.0822%20-2.123%2027.3833%20-1.36074%2028.3023L9.5629%2041.4724C10.6888%2042.8298%2012.7741%2042.8218%2013.8895%2041.4554L24.6401%2028.2882C25.3857%2027.375%2025.4797%2026.0928%2024.8753%2025.0807L20.4252%2017.6285L21.8206%2017.5824L19.8816%2016.7181L18.7852%2014.8821L21.9159%2017.1541L17.9528%209.73498L16.095%2010.3769L14.8557%208.30153L16.1935%207.14129L11.7492%200L12.3541%205.78113C11.7881%205.65113%2011.1875%205.69702%2010.6456%205.91904L11.265%200ZM12.3541%205.78113L12.8041%2010.0808L14.8557%208.30153L14.1228%207.07423C13.7043%206.37349%2013.0557%205.94225%2012.3541%205.78113ZM16.095%2010.3769L13.7121%2011.2003L18.7852%2014.8821L16.095%2010.3769ZM19.8816%2016.7181L12.5619%2013.4554L13.4132%2017.8602L20.4252%2017.6285L19.8816%2016.7181ZM2.90024%2017.6436L9.55924%2017.8637L10.4105%2013.4589L3.59627%2016.4962L2.90024%2017.6436ZM5.10109%2014.0157L7.18526%2010.58L8.9804%2011.2003L5.10109%2014.0157ZM10.6456%205.91904L10.2101%2010.0808L8.42646%208.53396L9.32215%207.05753C9.65241%206.51313%2010.1216%206.13373%2010.6456%205.91904ZM14.1228%2048.7807C13.0403%2046.9679%2010.4173%2046.9589%209.32215%2048.7641L-1.59964%2066.7678C-2.21891%2067.7887%20-2.123%2069.0896%20-1.36074%2070.0089L9.5629%2083.1789C10.6888%2084.5363%2012.7741%2084.5283%2013.8895%2083.162L24.6401%2069.9947C25.3857%2069.0817%2025.4797%2067.7994%2024.8753%2066.7871L14.1228%2048.7807Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_151_2186'%3e%3crect%20width='23'%20height='18.64'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" class="sub-serv-img">
+                    <p class="sub-serv">Optimizing for Performance and Quality</p>
+                </div>
+                <div class="c-sub-serv">
+                    <img src="data:image/svg+xml,%3csvg%20width='23'%20height='19'%20viewBox='0%200%2023%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_151_2186)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M11.265%200L6.82062%207.14129L8.42646%208.53396L7.18526%2010.58L4.7397%209.73498L0.776635%2017.1541L5.10109%2014.0157L3.59627%2016.4962L1.15184%2017.5858L2.90024%2017.6436L-1.59964%2025.0614C-2.21891%2026.0822%20-2.123%2027.3833%20-1.36074%2028.3023L9.5629%2041.4724C10.6888%2042.8298%2012.7741%2042.8218%2013.8895%2041.4554L24.6401%2028.2882C25.3857%2027.375%2025.4797%2026.0928%2024.8753%2025.0807L20.4252%2017.6285L21.8206%2017.5824L19.8816%2016.7181L18.7852%2014.8821L21.9159%2017.1541L17.9528%209.73498L16.095%2010.3769L14.8557%208.30153L16.1935%207.14129L11.7492%200L12.3541%205.78113C11.7881%205.65113%2011.1875%205.69702%2010.6456%205.91904L11.265%200ZM12.3541%205.78113L12.8041%2010.0808L14.8557%208.30153L14.1228%207.07423C13.7043%206.37349%2013.0557%205.94225%2012.3541%205.78113ZM16.095%2010.3769L13.7121%2011.2003L18.7852%2014.8821L16.095%2010.3769ZM19.8816%2016.7181L12.5619%2013.4554L13.4132%2017.8602L20.4252%2017.6285L19.8816%2016.7181ZM2.90024%2017.6436L9.55924%2017.8637L10.4105%2013.4589L3.59627%2016.4962L2.90024%2017.6436ZM5.10109%2014.0157L7.18526%2010.58L8.9804%2011.2003L5.10109%2014.0157ZM10.6456%205.91904L10.2101%2010.0808L8.42646%208.53396L9.32215%207.05753C9.65241%206.51313%2010.1216%206.13373%2010.6456%205.91904ZM14.1228%2048.7807C13.0403%2046.9679%2010.4173%2046.9589%209.32215%2048.7641L-1.59964%2066.7678C-2.21891%2067.7887%20-2.123%2069.0896%20-1.36074%2070.0089L9.5629%2083.1789C10.6888%2084.5363%2012.7741%2084.5283%2013.8895%2083.162L24.6401%2069.9947C25.3857%2069.0817%2025.4797%2067.7994%2024.8753%2066.7871L14.1228%2048.7807Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_151_2186'%3e%3crect%20width='23'%20height='18.64'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" class="sub-serv-img">
+                    <p class="sub-serv">Cutting-Edge Tools and Techniques</p>
+                </div>
+            </div>
+                <div id="opn-contact" href="" class="c-contact-cta">
+                    <p class="c-contact-p">Get&nbsp;Started</p>
+                    <img src="data:image/svg+xml,%3csvg%20width='38'%20height='38'%20viewBox='0%200%2038%2038'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.5%2019C0.5%208.78273%208.78273%200.5%2019%200.5C29.2173%200.5%2037.5%208.78273%2037.5%2019C37.5%2029.2173%2029.2173%2037.5%2019%2037.5C8.78273%2037.5%200.5%2029.2173%200.5%2019Z'%20stroke='url(%23paint0_linear_112_770)'/%3e%3cpath%20d='M11.084%2026.9163L26.9173%2011.083M26.9173%2011.083H11.084M26.9173%2011.083V26.9163'%20stroke='url(%23paint1_linear_112_770)'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_112_770'%20x1='19'%20y1='0'%20x2='19'%20y2='38'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3clinearGradient%20id='paint1_linear_112_770'%20x1='19.0007'%20y1='11.083'%20x2='19.0007'%20y2='26.9163'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="" class="c-contact">
+                </div>
+            </div>
+
+        </section >
+        <section class="d">
+            <div id="pin-section" class="d-content-wrapper">
+                <div class="d-main-content">
+                    <div class="d-sup-heading">Where Imagination Meets Innovation</div>
+                    <div class="d-main-heading">Driving the Web Forward</div>
+                </div>
+            <div class="d-serv-list">
+                <div class="d-sub-serv">
+                    <img src="data:image/svg+xml,%3csvg%20width='23'%20height='19'%20viewBox='0%200%2023%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_151_2186)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M11.265%200L6.82062%207.14129L8.42646%208.53396L7.18526%2010.58L4.7397%209.73498L0.776635%2017.1541L5.10109%2014.0157L3.59627%2016.4962L1.15184%2017.5858L2.90024%2017.6436L-1.59964%2025.0614C-2.21891%2026.0822%20-2.123%2027.3833%20-1.36074%2028.3023L9.5629%2041.4724C10.6888%2042.8298%2012.7741%2042.8218%2013.8895%2041.4554L24.6401%2028.2882C25.3857%2027.375%2025.4797%2026.0928%2024.8753%2025.0807L20.4252%2017.6285L21.8206%2017.5824L19.8816%2016.7181L18.7852%2014.8821L21.9159%2017.1541L17.9528%209.73498L16.095%2010.3769L14.8557%208.30153L16.1935%207.14129L11.7492%200L12.3541%205.78113C11.7881%205.65113%2011.1875%205.69702%2010.6456%205.91904L11.265%200ZM12.3541%205.78113L12.8041%2010.0808L14.8557%208.30153L14.1228%207.07423C13.7043%206.37349%2013.0557%205.94225%2012.3541%205.78113ZM16.095%2010.3769L13.7121%2011.2003L18.7852%2014.8821L16.095%2010.3769ZM19.8816%2016.7181L12.5619%2013.4554L13.4132%2017.8602L20.4252%2017.6285L19.8816%2016.7181ZM2.90024%2017.6436L9.55924%2017.8637L10.4105%2013.4589L3.59627%2016.4962L2.90024%2017.6436ZM5.10109%2014.0157L7.18526%2010.58L8.9804%2011.2003L5.10109%2014.0157ZM10.6456%205.91904L10.2101%2010.0808L8.42646%208.53396L9.32215%207.05753C9.65241%206.51313%2010.1216%206.13373%2010.6456%205.91904ZM14.1228%2048.7807C13.0403%2046.9679%2010.4173%2046.9589%209.32215%2048.7641L-1.59964%2066.7678C-2.21891%2067.7887%20-2.123%2069.0896%20-1.36074%2070.0089L9.5629%2083.1789C10.6888%2084.5363%2012.7741%2084.5283%2013.8895%2083.162L24.6401%2069.9947C25.3857%2069.0817%2025.4797%2067.7994%2024.8753%2066.7871L14.1228%2048.7807Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_151_2186'%3e%3crect%20width='23'%20height='18.64'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" class="sub-serv-img">
+                    <p class="sub-serv">Crafting Immersive Worlds, One Pixel at a Time</p>
+                </div>
+                <div class="d-sub-serv">
+                    <img src="data:image/svg+xml,%3csvg%20width='23'%20height='19'%20viewBox='0%200%2023%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_151_2186)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M11.265%200L6.82062%207.14129L8.42646%208.53396L7.18526%2010.58L4.7397%209.73498L0.776635%2017.1541L5.10109%2014.0157L3.59627%2016.4962L1.15184%2017.5858L2.90024%2017.6436L-1.59964%2025.0614C-2.21891%2026.0822%20-2.123%2027.3833%20-1.36074%2028.3023L9.5629%2041.4724C10.6888%2042.8298%2012.7741%2042.8218%2013.8895%2041.4554L24.6401%2028.2882C25.3857%2027.375%2025.4797%2026.0928%2024.8753%2025.0807L20.4252%2017.6285L21.8206%2017.5824L19.8816%2016.7181L18.7852%2014.8821L21.9159%2017.1541L17.9528%209.73498L16.095%2010.3769L14.8557%208.30153L16.1935%207.14129L11.7492%200L12.3541%205.78113C11.7881%205.65113%2011.1875%205.69702%2010.6456%205.91904L11.265%200ZM12.3541%205.78113L12.8041%2010.0808L14.8557%208.30153L14.1228%207.07423C13.7043%206.37349%2013.0557%205.94225%2012.3541%205.78113ZM16.095%2010.3769L13.7121%2011.2003L18.7852%2014.8821L16.095%2010.3769ZM19.8816%2016.7181L12.5619%2013.4554L13.4132%2017.8602L20.4252%2017.6285L19.8816%2016.7181ZM2.90024%2017.6436L9.55924%2017.8637L10.4105%2013.4589L3.59627%2016.4962L2.90024%2017.6436ZM5.10109%2014.0157L7.18526%2010.58L8.9804%2011.2003L5.10109%2014.0157ZM10.6456%205.91904L10.2101%2010.0808L8.42646%208.53396L9.32215%207.05753C9.65241%206.51313%2010.1216%206.13373%2010.6456%205.91904ZM14.1228%2048.7807C13.0403%2046.9679%2010.4173%2046.9589%209.32215%2048.7641L-1.59964%2066.7678C-2.21891%2067.7887%20-2.123%2069.0896%20-1.36074%2070.0089L9.5629%2083.1789C10.6888%2084.5363%2012.7741%2084.5283%2013.8895%2083.162L24.6401%2069.9947C25.3857%2069.0817%2025.4797%2067.7994%2024.8753%2066.7871L14.1228%2048.7807Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_151_2186'%3e%3crect%20width='23'%20height='18.64'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" class="sub-serv-img">
+                    <p class="sub-serv">Uncompromising Quality</p>
+                </div>
+            </div>
+                <div id="opn-contact" href="" class="d-contact-cta">
+                    <p class="d-contact-p">Get&nbsp;Started</p>
+                    <img src="data:image/svg+xml,%3csvg%20width='38'%20height='38'%20viewBox='0%200%2038%2038'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.5%2019C0.5%208.78273%208.78273%200.5%2019%200.5C29.2173%200.5%2037.5%208.78273%2037.5%2019C37.5%2029.2173%2029.2173%2037.5%2019%2037.5C8.78273%2037.5%200.5%2029.2173%200.5%2019Z'%20stroke='url(%23paint0_linear_112_770)'/%3e%3cpath%20d='M11.084%2026.9163L26.9173%2011.083M26.9173%2011.083H11.084M26.9173%2011.083V26.9163'%20stroke='url(%23paint1_linear_112_770)'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_112_770'%20x1='19'%20y1='0'%20x2='19'%20y2='38'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3clinearGradient%20id='paint1_linear_112_770'%20x1='19.0007'%20y1='11.083'%20x2='19.0007'%20y2='26.9163'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="" class="c-contact">
+                </div>
+            </div>
+        </section>
+        <section class="e">
+            <div id="pin-section" class="c-content-wrapper">
+                <div class="c-main-content">
+                    <div class="c-sup-heading">Our Passion for Innovation</div>
+                    <div class="c-main-heading">Passionate About the Web</div>
+                </div>
+            <div class="c-serv-list">
+                <div class="c-sub-serv">
+                    <img src="data:image/svg+xml,%3csvg%20width='23'%20height='19'%20viewBox='0%200%2023%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_151_2186)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M11.265%200L6.82062%207.14129L8.42646%208.53396L7.18526%2010.58L4.7397%209.73498L0.776635%2017.1541L5.10109%2014.0157L3.59627%2016.4962L1.15184%2017.5858L2.90024%2017.6436L-1.59964%2025.0614C-2.21891%2026.0822%20-2.123%2027.3833%20-1.36074%2028.3023L9.5629%2041.4724C10.6888%2042.8298%2012.7741%2042.8218%2013.8895%2041.4554L24.6401%2028.2882C25.3857%2027.375%2025.4797%2026.0928%2024.8753%2025.0807L20.4252%2017.6285L21.8206%2017.5824L19.8816%2016.7181L18.7852%2014.8821L21.9159%2017.1541L17.9528%209.73498L16.095%2010.3769L14.8557%208.30153L16.1935%207.14129L11.7492%200L12.3541%205.78113C11.7881%205.65113%2011.1875%205.69702%2010.6456%205.91904L11.265%200ZM12.3541%205.78113L12.8041%2010.0808L14.8557%208.30153L14.1228%207.07423C13.7043%206.37349%2013.0557%205.94225%2012.3541%205.78113ZM16.095%2010.3769L13.7121%2011.2003L18.7852%2014.8821L16.095%2010.3769ZM19.8816%2016.7181L12.5619%2013.4554L13.4132%2017.8602L20.4252%2017.6285L19.8816%2016.7181ZM2.90024%2017.6436L9.55924%2017.8637L10.4105%2013.4589L3.59627%2016.4962L2.90024%2017.6436ZM5.10109%2014.0157L7.18526%2010.58L8.9804%2011.2003L5.10109%2014.0157ZM10.6456%205.91904L10.2101%2010.0808L8.42646%208.53396L9.32215%207.05753C9.65241%206.51313%2010.1216%206.13373%2010.6456%205.91904ZM14.1228%2048.7807C13.0403%2046.9679%2010.4173%2046.9589%209.32215%2048.7641L-1.59964%2066.7678C-2.21891%2067.7887%20-2.123%2069.0896%20-1.36074%2070.0089L9.5629%2083.1789C10.6888%2084.5363%2012.7741%2084.5283%2013.8895%2083.162L24.6401%2069.9947C25.3857%2069.0817%2025.4797%2067.7994%2024.8753%2066.7871L14.1228%2048.7807Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_151_2186'%3e%3crect%20width='23'%20height='18.64'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" class="sub-serv-img">
+                    <p class="sub-serv">Leveraging Advanced 3D Capabilities</p>
+                </div>
+                <div class="c-sub-serv">
+                    <img src="data:image/svg+xml,%3csvg%20width='23'%20height='19'%20viewBox='0%200%2023%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_151_2186)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M11.265%200L6.82062%207.14129L8.42646%208.53396L7.18526%2010.58L4.7397%209.73498L0.776635%2017.1541L5.10109%2014.0157L3.59627%2016.4962L1.15184%2017.5858L2.90024%2017.6436L-1.59964%2025.0614C-2.21891%2026.0822%20-2.123%2027.3833%20-1.36074%2028.3023L9.5629%2041.4724C10.6888%2042.8298%2012.7741%2042.8218%2013.8895%2041.4554L24.6401%2028.2882C25.3857%2027.375%2025.4797%2026.0928%2024.8753%2025.0807L20.4252%2017.6285L21.8206%2017.5824L19.8816%2016.7181L18.7852%2014.8821L21.9159%2017.1541L17.9528%209.73498L16.095%2010.3769L14.8557%208.30153L16.1935%207.14129L11.7492%200L12.3541%205.78113C11.7881%205.65113%2011.1875%205.69702%2010.6456%205.91904L11.265%200ZM12.3541%205.78113L12.8041%2010.0808L14.8557%208.30153L14.1228%207.07423C13.7043%206.37349%2013.0557%205.94225%2012.3541%205.78113ZM16.095%2010.3769L13.7121%2011.2003L18.7852%2014.8821L16.095%2010.3769ZM19.8816%2016.7181L12.5619%2013.4554L13.4132%2017.8602L20.4252%2017.6285L19.8816%2016.7181ZM2.90024%2017.6436L9.55924%2017.8637L10.4105%2013.4589L3.59627%2016.4962L2.90024%2017.6436ZM5.10109%2014.0157L7.18526%2010.58L8.9804%2011.2003L5.10109%2014.0157ZM10.6456%205.91904L10.2101%2010.0808L8.42646%208.53396L9.32215%207.05753C9.65241%206.51313%2010.1216%206.13373%2010.6456%205.91904ZM14.1228%2048.7807C13.0403%2046.9679%2010.4173%2046.9589%209.32215%2048.7641L-1.59964%2066.7678C-2.21891%2067.7887%20-2.123%2069.0896%20-1.36074%2070.0089L9.5629%2083.1789C10.6888%2084.5363%2012.7741%2084.5283%2013.8895%2083.162L24.6401%2069.9947C25.3857%2069.0817%2025.4797%2067.7994%2024.8753%2066.7871L14.1228%2048.7807Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_151_2186'%3e%3crect%20width='23'%20height='18.64'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" class="sub-serv-img">
+                    <p class="sub-serv">Building the Future with 3D Technology</p>
+                </div>
+            </div>
+                <div id="opn-contact" href="" class="c-contact-cta">
+                    <p class="c-contact-p">Get&nbsp;Started</p>
+                    <img src="data:image/svg+xml,%3csvg%20width='38'%20height='38'%20viewBox='0%200%2038%2038'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0.5%2019C0.5%208.78273%208.78273%200.5%2019%200.5C29.2173%200.5%2037.5%208.78273%2037.5%2019C37.5%2029.2173%2029.2173%2037.5%2019%2037.5C8.78273%2037.5%200.5%2029.2173%200.5%2019Z'%20stroke='url(%23paint0_linear_112_770)'/%3e%3cpath%20d='M11.084%2026.9163L26.9173%2011.083M26.9173%2011.083H11.084M26.9173%2011.083V26.9163'%20stroke='url(%23paint1_linear_112_770)'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_112_770'%20x1='19'%20y1='0'%20x2='19'%20y2='38'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3clinearGradient%20id='paint1_linear_112_770'%20x1='19.0007'%20y1='11.083'%20x2='19.0007'%20y2='26.9163'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%2300F0FF'/%3e%3cstop%20offset='1'%20stop-color='%239AC8CE'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="" class="c-contact">
+                </div>
+            </div>
+        </section>
+        <!-- <section class="e-space">
+
+        </section> -->
+        
+        <section class="footer">
+            <div class="footer-wrapper">
+                <div class="marquee">
+                    <div class="bright">
+                        <div class="marquee__inner">
+                        <div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div><div class="marquee__part">
+                            <div class="marquee-img">
+                                <img src="/static/assets/Component%2034-jcRA1uaI.svg" alt="">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-center-row">
+                    <div class="left-logo-wrapper">
+                        <img class="footer-logo" src="data:image/svg+xml,%3csvg%20width='309'%20height='250'%20viewBox='0%200%20309%20250'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_189_759)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M151.077%200L91.4718%2095.7791L113.008%20114.458L96.3622%20141.899L63.5638%20130.566L10.4137%20230.072L68.4106%20187.978L48.2289%20221.248L15.4457%20235.861L38.8942%20236.637L-21.4554%20336.123C-29.7606%20349.814%20-28.4743%20367.265%20-18.2514%20379.591L128.25%20556.228C143.35%20574.433%20171.316%20574.327%20186.275%20556.001L330.456%20379.402C340.455%20367.154%20341.716%20349.957%20333.61%20336.383L273.928%20236.434L292.642%20235.816L266.638%20224.224L251.934%20199.599L293.92%20230.072L240.77%20130.566L215.854%20139.176L199.233%20111.34L217.175%2095.7791L157.571%200L165.684%2077.5366C158.092%2075.793%20150.038%2076.4085%20142.77%2079.3863L151.077%200ZM165.684%2077.5366L171.718%20135.204L199.233%20111.34L189.404%2094.8798C183.792%2085.4813%20175.093%2079.6975%20165.684%2077.5366ZM215.854%20139.176L183.896%20150.218L251.934%20199.599L215.854%20139.176ZM266.638%20224.224L168.471%20180.465L179.887%20239.542L273.928%20236.434L266.638%20224.224ZM38.8942%20236.637L128.2%20239.588L139.617%20180.511L48.2289%20221.248L38.8942%20236.637ZM68.4106%20187.978L96.3622%20141.899L120.437%20150.218L68.4106%20187.978ZM142.77%2079.3863L136.929%20135.204L113.008%20114.458L125.021%2094.6557C129.45%2087.3543%20135.742%2082.2657%20142.77%2079.3863ZM189.404%20654.248C174.886%20629.934%20139.708%20629.814%20125.021%20654.025L-21.4554%20895.491C-29.7606%20909.183%20-28.4743%20926.632%20-18.2514%20938.96L128.25%201115.6C143.35%201133.8%20171.316%201133.7%20186.275%201115.37L330.456%20938.77C340.455%20926.525%20341.716%20909.326%20333.61%20895.75L189.404%20654.248Z'%20fill='%23FFFFFB'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_189_759'%3e%3crect%20width='308.462'%20height='250'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="">
+                    </div>
+                    <div class="right-footer-contact">
+                        <div class="footer-contact-heading">
+                            <h3>CONTACT&nbsp;US!</h3>
+                        </div>
+                        <div id="opn-contact" href="" class="footer-contact-btn">
+                            <img class='vid-contact' src="data:image/svg+xml,%3csvg%20width='22'%20height='16'%20viewBox='0%200%2022%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M2.2%2016C1.595%2016%201.07708%2015.8042%200.64625%2015.4125C0.215417%2015.0208%200%2014.55%200%2014V2C0%201.45%200.215417%200.979167%200.64625%200.5875C1.07708%200.195833%201.595%200%202.2%200H19.8C20.405%200%2020.9229%200.195833%2021.3538%200.5875C21.7846%200.979167%2022%201.45%2022%202V14C22%2014.55%2021.7846%2015.0208%2021.3538%2015.4125C20.9229%2015.8042%2020.405%2016%2019.8%2016H2.2ZM11%209L2.2%204V14H19.8V4L11%209ZM11%207L19.8%202H2.2L11%207ZM2.2%204V2V14V4Z'%20fill='%230F030D'/%3e%3c/svg%3e" alt="">
+                            <video src="/static/assets/contact-bg-DAzAU2Vb.mp4" playsinline loop muted autoplay>
+                                <!-- <source src="./assets/images/footer_button_video/contact-bg.webm" type="video/mp4"> -->
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-row">
+                    <div class="social-icon-row">
+                        <div class="social-icon">
+                            <img class="social-img" src="data:image/svg+xml,%3csvg%20width='36'%20height='34'%20viewBox='0%200%2036%2034'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M24.6673%2010.833C27.3195%2010.833%2029.863%2011.8866%2031.7384%2013.7619C33.6137%2015.6373%2034.6673%2018.1808%2034.6673%2020.833V32.4997H28.0007V20.833C28.0007%2019.949%2027.6495%2019.1011%2027.0243%2018.476C26.3992%2017.8509%2025.5514%2017.4997%2024.6673%2017.4997C23.7833%2017.4997%2022.9354%2017.8509%2022.3103%2018.476C21.6852%2019.1011%2021.334%2019.949%2021.334%2020.833V32.4997H14.6673V20.833C14.6673%2018.1808%2015.7209%2015.6373%2017.5962%2013.7619C19.4716%2011.8866%2022.0152%2010.833%2024.6673%2010.833Z'%20fill='white'/%3e%3cpath%20d='M8.00065%2012.4997H1.33398V32.4997H8.00065V12.4997Z'%20fill='white'/%3e%3cpath%20d='M4.66732%207.49967C6.50827%207.49967%208.00065%206.00729%208.00065%204.16634C8.00065%202.32539%206.50827%200.833008%204.66732%200.833008C2.82637%200.833008%201.33398%202.32539%201.33398%204.16634C1.33398%206.00729%202.82637%207.49967%204.66732%207.49967Z'%20fill='white'/%3e%3cpath%20d='M24.6673%2010.833C27.3195%2010.833%2029.863%2011.8866%2031.7384%2013.7619C33.6137%2015.6373%2034.6673%2018.1808%2034.6673%2020.833V32.4997H28.0007V20.833C28.0007%2019.949%2027.6495%2019.1011%2027.0243%2018.476C26.3992%2017.8509%2025.5514%2017.4997%2024.6673%2017.4997C23.7833%2017.4997%2022.9354%2017.8509%2022.3103%2018.476C21.6852%2019.1011%2021.334%2019.949%2021.334%2020.833V32.4997H14.6673V20.833C14.6673%2018.1808%2015.7209%2015.6373%2017.5962%2013.7619C19.4716%2011.8866%2022.0152%2010.833%2024.6673%2010.833Z'%20stroke='white'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M8.00065%2012.4997H1.33398V32.4997H8.00065V12.4997Z'%20stroke='white'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M4.66732%207.49967C6.50827%207.49967%208.00065%206.00729%208.00065%204.16634C8.00065%202.32539%206.50827%200.833008%204.66732%200.833008C2.82637%200.833008%201.33398%202.32539%201.33398%204.16634C1.33398%206.00729%202.82637%207.49967%204.66732%207.49967Z'%20stroke='white'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="">
+                        </div>
+                        <div class="social-icon">
+                            <img class="social-img" src="data:image/svg+xml,%3csvg%20width='28'%20height='38'%20viewBox='0%200%2028%2038'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20filter='url(%23filter0_d_278_706)'%3e%3cpath%20d='M22.9993%200.833008H17.9993C15.7892%200.833008%2013.6696%201.71098%2012.1068%203.27378C10.544%204.83659%209.66602%206.9562%209.66602%209.16634V14.1663H4.66602V20.833H9.66602V34.1663H16.3327V20.833H21.3327L22.9993%2014.1663H16.3327V9.16634C16.3327%208.72431%2016.5083%208.30039%2016.8208%207.98783C17.1334%207.67527%2017.5573%207.49967%2017.9993%207.49967H22.9993V0.833008Z'%20fill='white'/%3e%3cpath%20d='M22.9993%200.833008H17.9993C15.7892%200.833008%2013.6696%201.71098%2012.1068%203.27378C10.544%204.83659%209.66602%206.9562%209.66602%209.16634V14.1663H4.66602V20.833H9.66602V34.1663H16.3327V20.833H21.3327L22.9993%2014.1663H16.3327V9.16634C16.3327%208.72431%2016.5083%208.30039%2016.8208%207.98783C17.1334%207.67527%2017.5573%207.49967%2017.9993%207.49967H22.9993V0.833008Z'%20stroke='white'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/g%3e%3cdefs%3e%3cfilter%20id='filter0_d_278_706'%20x='0.166016'%20y='0.333008'%20width='27.334'%20height='42.333'%20filterUnits='userSpaceOnUse'%20color-interpolation-filters='sRGB'%3e%3cfeFlood%20flood-opacity='0'%20result='BackgroundImageFix'/%3e%3cfeColorMatrix%20in='SourceAlpha'%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200'%20result='hardAlpha'/%3e%3cfeOffset%20dy='4'/%3e%3cfeGaussianBlur%20stdDeviation='2'/%3e%3cfeComposite%20in2='hardAlpha'%20operator='out'/%3e%3cfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.25%200'/%3e%3cfeBlend%20mode='normal'%20in2='BackgroundImageFix'%20result='effect1_dropShadow_278_706'/%3e%3cfeBlend%20mode='normal'%20in='SourceGraphic'%20in2='effect1_dropShadow_278_706'%20result='shape'/%3e%3c/filter%3e%3c/defs%3e%3c/svg%3e" alt="">
+                        </div>
+                        <div class="social-icon">
+                            <img class="social-img" src="data:image/svg+xml,%3csvg%20width='40'%20height='41'%20viewBox='0%200%2040%2041'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M29.1673%2011.333H29.184M11.6673%203.83301H28.334C32.9364%203.83301%2036.6673%207.56397%2036.6673%2012.1663V28.833C36.6673%2033.4354%2032.9364%2037.1663%2028.334%2037.1663H11.6673C7.06494%2037.1663%203.33398%2033.4354%203.33398%2028.833V12.1663C3.33398%207.56397%207.06494%203.83301%2011.6673%203.83301ZM26.6673%2019.4497C26.873%2020.8368%2026.6361%2022.2534%2025.9902%2023.498C25.3444%2024.7427%2024.3226%2025.752%2023.07%2026.3825C21.8175%2027.0129%2020.3981%2027.2323%2019.0136%2027.0096C17.6292%2026.7868%2016.3503%2026.1331%2015.3587%2025.1416C14.3672%2024.1501%2013.7135%2022.8711%2013.4908%2021.4867C13.268%2020.1023%2013.4874%2018.6828%2014.1179%2017.4303C14.7483%2016.1778%2015.7576%2015.1559%2017.0023%2014.5101C18.247%2013.8642%2019.6636%2013.6273%2021.0506%2013.833C22.4655%2014.0428%2023.7754%2014.7021%2024.7868%2015.7135C25.7982%2016.7249%2026.4575%2018.0348%2026.6673%2019.4497Z'%20stroke='white'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="">
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p> © Copyright 2024 Bright-Mattr, All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+{
+  "assets/fontfs/Azonix.otf": {
+    "file": "assets/Azonix-J-QyKkJG.otf",
+    "src": "assets/fontfs/Azonix.otf"
+  },
+  "assets/fontfs/AzonixRegular.ttf": {
+    "file": "assets/AzonixRegular-BLvxVeFP.ttf",
+    "src": "assets/fontfs/AzonixRegular.ttf"
+  },
+  "assets/fontfs/AzonixRegular.woff": {
+    "file": "assets/AzonixRegular-DO2e7lwP.woff",
+    "src": "assets/fontfs/AzonixRegular.woff"
+  },
+  "assets/fontfs/AzonixRegular.woff2": {
+    "file": "assets/AzonixRegular-D8nBu7St.woff2",
+    "src": "assets/fontfs/AzonixRegular.woff2"
+  },
+  "assets/fontfs/Espial-Regular15.otf": {
+    "file": "assets/Espial-Regular15-xT2_esKo.otf",
+    "src": "assets/fontfs/Espial-Regular15.otf"
+  },
+  "assets/fontfs/EspialRegular15.ttf": {
+    "file": "assets/EspialRegular15-CueSCgNb.ttf",
+    "src": "assets/fontfs/EspialRegular15.ttf"
+  },
+  "assets/fontfs/EspialRegular15.woff": {
+    "file": "assets/EspialRegular15-D2RBtHH4.woff",
+    "src": "assets/fontfs/EspialRegular15.woff"
+  },
+  "assets/fontfs/EspialRegular15.woff2": {
+    "file": "assets/EspialRegular15-Dj_qIV5h.woff2",
+    "src": "assets/fontfs/EspialRegular15.woff2"
+  },
+  "assets/images/Modal-Shape.svg": {
+    "file": "assets/Modal-Shape-C-2bLFpZ.svg",
+    "src": "assets/images/Modal-Shape.svg"
+  },
+  "assets/images/Modal-failure.svg": {
+    "file": "assets/Modal-failure-C8yNlQLx.svg",
+    "src": "assets/images/Modal-failure.svg"
+  },
+  "assets/images/Modal-success.svg": {
+    "file": "assets/Modal-success-CFWNO6rb.svg",
+    "src": "assets/images/Modal-success.svg"
+  },
+  "assets/images/flags.webp": {
+    "file": "assets/flags-CK0k7MkN.webp",
+    "src": "node_modules/intl-tel-input/build/img/flags.webp"
+  },
+  "assets/images/flags@2x.webp": {
+    "file": "assets/flags@2x-CZ76gT6N.webp",
+    "src": "node_modules/intl-tel-input/build/img/flags@2x.webp"
+  },
+  "assets/images/footer_button_video/contact-bg.mp4": {
+    "file": "assets/contact-bg-DAzAU2Vb.mp4",
+    "src": "assets/images/footer_button_video/contact-bg.mp4"
+  },
+  "assets/images/icons/Component 34.svg": {
+    "file": "assets/Component 34-jcRA1uaI.svg",
+    "src": "assets/images/icons/Component 34.svg"
+  },
+  "assets/images/icons/Frame_114.svg": {
+    "file": "assets/Frame_114-BCkCpp0l.svg",
+    "src": "assets/images/icons/Frame_114.svg"
+  },
+  "assets/images/icons/Framedefault.svg": {
+    "file": "assets/Framedefault-eqBvT9bj.svg",
+    "src": "assets/images/icons/Framedefault.svg"
+  },
+  "index.html": {
+    "file": "assets/index-CK7WcQ74.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index-C1cBX3uD.css"
+    ],
+    "assets": [
+      "assets/flags-CK0k7MkN.webp",
+      "assets/flags@2x-CZ76gT6N.webp",
+      "assets/Azonix-J-QyKkJG.otf",
+      "assets/AzonixRegular-BLvxVeFP.ttf",
+      "assets/AzonixRegular-DO2e7lwP.woff",
+      "assets/AzonixRegular-D8nBu7St.woff2",
+      "assets/Espial-Regular15-xT2_esKo.otf",
+      "assets/EspialRegular15-CueSCgNb.ttf",
+      "assets/EspialRegular15-D2RBtHH4.woff",
+      "assets/EspialRegular15-Dj_qIV5h.woff2",
+      "assets/Modal-Shape-C-2bLFpZ.svg",
+      "assets/Modal-success-CFWNO6rb.svg",
+      "assets/Modal-failure-C8yNlQLx.svg",
+      "assets/Component 34-jcRA1uaI.svg",
+      "assets/Framedefault-eqBvT9bj.svg",
+      "assets/Frame_114-BCkCpp0l.svg",
+      "assets/contact-bg-DAzAU2Vb.mp4"
+    ]
+  },
+  "node_modules/intl-tel-input/build/img/flags.webp": {
+    "file": "assets/flags-CK0k7MkN.webp",
+    "src": "node_modules/intl-tel-input/build/img/flags.webp"
+  },
+  "node_modules/intl-tel-input/build/img/flags@2x.webp": {
+    "file": "assets/flags@2x-CZ76gT6N.webp",
+    "src": "node_modules/intl-tel-input/build/img/flags@2x.webp"
+  }
+}
