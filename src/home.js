@@ -55,7 +55,8 @@ gsap.defaults({});
 let lastScrollTop = 0;
 const body = document.body
 document.addEventListener("DOMContentLoaded", function() {
-    const contactForm = document.getElementById("contact-form");
+    const contactFormModal = document.getElementById("contact-form");
+    const submitForm = document.getElementById("submitForm");
     const overlay = document.getElementById("overlay");
     const closeBtns = document.getElementsByClassName("close-btn");
     const openBtns = document.querySelectorAll("#opn-contact");
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
     openBtns.forEach(function(openBtn) {
         openBtn.addEventListener("click", function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
-            contactForm.style.display = "block"; // Show the form
+            contactFormModal.style.display = "block"; // Show the form
             overlay.style.display = "block"; // Show the overlay
             document.body.classList.add("no-scroll"); // Disable scrolling
         });
@@ -78,18 +79,18 @@ document.addEventListener("DOMContentLoaded", function() {
     Array.from(closeBtns).forEach(function(closeBtn) {
         closeBtn.addEventListener("click", function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
-            contactForm.style.display = "none"; // Hide the form
+            contactFormModal.style.display = "none"; // Hide the form
             overlay.style.display = "none"; // Hide the overlay
             document.body.classList.remove("no-scroll"); // Enable scrolling
-            contactForm.classList.remove("form-success")
-            contactForm.classList.add("form-default")
+            contactFormModal.classList.remove("form-success")
+            contactFormModal.classList.add("form-default")
         });
     });
 
     // Close form and overlay when clicking on the overlay
     overlay.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the default behavior
-        contactForm.style.display = "none"; // Hide the form
+        contactFormModal.style.display = "none"; // Hide the form
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
     });
@@ -98,8 +99,8 @@ document.addEventListener("DOMContentLoaded", function() {
     sbmtBtns.addEventListener("click", function(event) 
     {
         event.preventDefault();
-        contactForm.classList.remove("form-default")
-        contactForm.classList.add("form-success")
+        contactFormModal.classList.remove("form-default")
+        contactFormModal.classList.add("form-success")
         defaultBtn.style.display = "none"
         sucessBtn.style.display = "block"
     })
@@ -107,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
     sbmtBtns.addEventListener("blur", function(event) 
     {
         event.preventDefault();
-        contactForm.classList.remove("form-success")
-        contactForm.classList.add("form-default")
+        contactFormModal.classList.remove("form-success")
+        contactFormModal.classList.add("form-default")
         defaultBtn.style.display = "block";
         sucessBtn.style.display = "none"
     })

@@ -66,6 +66,11 @@ input::placeholder
   font-size: 1rem;
 }
 
+textarea::placeholder
+{
+  font-size: 1rem;
+}
+
 .iti__selected-dial-code
 {
   font-size: 1rem;
@@ -205,7 +210,7 @@ form {
   font-size: 2.1rem;
   font-weight: 100;
   margin-bottom: 1rem;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   font-family: "azonix";
 }
 
@@ -230,6 +235,7 @@ form {
 }
 
 .form-input {
+  font-family: 'espial';
   width: 100%;
   padding: 1.3rem;
   margin-bottom: 1rem;
@@ -247,7 +253,7 @@ form {
 
 .message {
   height: 11rem;
-  margin-top: 1rem;
+  // margin-top: 1rem;
   resize: none;
 }
 
@@ -281,6 +287,7 @@ form {
 
   .phone-wrapper
   {
+    margin-bottom: 1rem;
     width: 100%;
     position: relative;
     z-index: 9999;
@@ -1320,6 +1327,11 @@ source {
   font-size: 0.6rem;
 }
 
+textarea::placeholder
+{
+  font-size: 0.6rem;
+}
+
 .iti__selected-dial-code
 {
   font-size: 0.6rem;
@@ -1507,6 +1519,7 @@ source {
   }
 
   .form-input {
+    font-family: 'espial';
     width: 100%;
     padding: .55rem;
     /* margin: 10px 0; */
@@ -1526,6 +1539,13 @@ source {
     align-items: center;
   }
 
+  .phone-wrapper
+  {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    position: relative;
+    z-index: 9999;
+  }
 
 
   .submit-btn {
@@ -2548,6 +2568,11 @@ source {
     font-size: 0.5rem;
   }
 
+  textarea::placeholder
+  {
+    font-size: 0.5rem;
+  }
+
   .iti__selected-dial-code
   {
     font-size: 0.5rem;
@@ -2699,8 +2724,9 @@ source {
   }
   
   .form-input {
+    font-family: 'espial';
     width: 100%;
-    padding: .3rem;
+    padding: .4rem;
     margin-bottom: .5rem;
     border-radius: 15px;
     // border: 1px solid #ffffff;
@@ -2710,7 +2736,7 @@ source {
   
   .message {
     height: 6rem;
-    margin-top: .5rem;
+    // margin-top: .5rem;
   }
   
   .form-group {
@@ -2728,6 +2754,7 @@ source {
   
     .phone-wrapper
     {
+      margin-bottom: 0.5rem;
       width: 100%;
       position: relative;
       z-index: 9999;
