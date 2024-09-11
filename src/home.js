@@ -24,7 +24,9 @@ function fetchUserIP() {
   // Initialize intl-tel-input with GeoIP lookup
   function initializeIntlTelInput(countryCode) {
     intlTelInput(input, {
-      separateDialCode: true,
+    //   separateDialCode: true,
+      autoInsertDialCode: true,
+      showSelectedDialCode: true,
       strictMode:true,
       useFullscreenPopup: false,
       initialCountry: countryCode
@@ -40,6 +42,7 @@ function fetchUserIP() {
     .then(geoData => {
       console.log(`GeoIP Data:`, geoData);
       initializeIntlTelInput(geoData.country_code);
+      console.log(geoData.country_code)
     })
     .catch(error => {
       console.error('Error fetching IP or GeoIP data:', error);
