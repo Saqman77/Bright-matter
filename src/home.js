@@ -24,8 +24,11 @@ function fetchUserIP() {
   // Initialize intl-tel-input with GeoIP lookup
   function initializeIntlTelInput(countryCode) {
     intlTelInput(input, {
-      separateDialCode: true,
+    //   separateDialCode: true,
+      autoInsertDialCode: true,
+      showSelectedDialCode: true,
       strictMode:true,
+      useFullscreenPopup: false,
       initialCountry: countryCode
     });
   }
@@ -39,6 +42,7 @@ function fetchUserIP() {
     .then(geoData => {
       console.log(`GeoIP Data:`, geoData);
       initializeIntlTelInput(geoData.country_code);
+      console.log(geoData.country_code)
     })
     .catch(error => {
       console.error('Error fetching IP or GeoIP data:', error);
@@ -58,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const overlay = document.getElementById("overlay");
     const closeBtns = document.getElementsByClassName("close-btn");
     const openBtns = document.querySelectorAll("#opn-contact");
+    const sbmtBtn = document.getElementsByClassName("submit-btn");
+    const defaultBtn = document.getElementsByClassName("default-text")[0];
+    const sucessBtn = document.getElementsByClassName("success-text")[0];
+    const failureBtn = document.getElementsByClassName("failure-text")[0];
 
     // Open the form
     openBtns.forEach(function(openBtn) {
@@ -76,6 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
             contactForm.style.display = "none"; // Hide the form
             overlay.style.display = "none"; // Hide the overlay
             document.body.classList.remove("no-scroll"); // Enable scrolling
+            contactForm.classList.remove("form-success")
+            contactForm.classList.add("form-default")
         });
     });
 
@@ -86,6 +96,62 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
     });
+    Array.from(sbmtBtn).forEach(function(sbmtBtns) 
+    {
+        sbmtBtns.addEventListener("click", async function(event) {
+            event.preventDefault();
+    
+            // Collect form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            const phone = input.value; // intl-tel-input field
+    
+            if (!name || !email || !message) {
+                alert("Please fill in all fields.");
+                return;
+            }
+    
+            // Send form data to backend
+            try {
+                const response = await fetch("https://mailchimp-2n89qr66p-saqman77s-projects.vercel.app/api/submit-form", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message, phone }),
+                });
+    
+                const data = await response.json();
+    
+                if (response.ok) {
+                    console.log("Form submitted successfully:", data);
+                    contactForm.classList.remove("form-default");
+                    contactForm.classList.add("form-success");
+                    defaultBtn.style.display = "none";
+                    sucessBtn.style.display = "block";
+                } else {
+                    console.error("Error:", data);
+                    contactForm.classList.remove("form-success");
+                    contactForm.classList.add("form-default");
+                    defaultBtn.style.display = "none";
+                    failureBtn.style.display = "block";
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    
+
+    sbmtBtns.addEventListener("blur", function(event) 
+    {
+        event.preventDefault();
+        contactForm.classList.remove("form-success")
+        contactForm.classList.add("form-default")
+        defaultBtn.style.display = "block";
+        sucessBtn.style.display = "none"
+    })
+    })
+
 });
 // Check if ScrollTrigger is registered correctly
 // console.log(gsap.plugins.ScrollTrigger);

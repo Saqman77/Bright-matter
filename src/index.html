@@ -11,37 +11,34 @@
     <script type="module" src="./script.js"></script>
     <div class="main-container">
         <div id="overlay" class="overlay"></div>
-        <div class="contact-form" id="contact-form">
+        <div class="contact-form form-default" id="contact-form">
             <div class="contact-form-wrapper">
                 <div class="form-header">
-                  <h4>Connect With Us</h4>
-                  <p>Schedule a free consultation to see how you can transform your digital presence</p>
-                  <button class="close-btn">&times;</button>
+                    <h4>Connect With Us</h4>
+                    <p>Schedule a free consultation to see how you can transform your digital presence</p>
+                    <button class="close-btn">&times;</button>
                 </div>
-                <form>
-                  <input type="text" placeholder="Name *" class="form-input" required>
-                  <input type="email" placeholder="Email *" class="form-input" required>
-                  <div class="phone-wrapper" data-lenis-prevent>
-                    <input type="text" class="form-input" id="phone" required>
-                  </div>
-                  <textarea placeholder="Message" class="form-input message"></textarea>
-                  <div class="form-group">
-                    <div class="date-picker">
-                      <input type="text" placeholder="Sat, 13 July 2024 11:02 PM" class="form-input">
+                <form id="contact-form-element">  <!-- Added ID for JS targeting -->
+                    <input type="text" name="name" placeholder="Name *" class="form-input" id="name" required>
+                    <input type="email" name="email" placeholder="Email *" class="form-input" id="email" required>
+                    <div class="phone-wrapper" data-lenis-prevent>
+                        <input type="text" name="phone" class="form-input" id="phone" required>
                     </div>
-                  </div>
-                  <div class="confirmation">
-                    <input type="checkbox" checked>
-                    <label>We have received your email!</label>
-                  </div>
-                  <button type="submit" class="submit-btn">Get in Touch</button>
+                    <textarea name="message" placeholder="Message" class="form-input message" id="message"></textarea>
+                    <div class="submit-wrapper">
+                        <button type="submit" class="submit-btn" id="submit-btn">  <!-- Added ID for JS targeting -->
+                            <p class="default-text">Get in Touch</p>
+                            <p class="success-text">Success!</p>
+                            <p class="failure-text">Oops..! An error occurred</p>
+                        </button>
+                    </div>
                 </form>
             </div>
-          </div>
+        </div>
         <nav class="navbar">
             <div class="nav-container">
                 <div  class="logo" href="">
-                    <img src="./assets/images/mainLogo/logo.svg" alt="">
+                    <img src="./assets/images/mainLogo/Asset2.svg" alt="">
                 </div>
                 <div id="opn-contact" class="contact-us" href="">
                     <img src="./assets/images/icons/message-icon.svg" alt="">
@@ -96,40 +93,40 @@
                         <div class="marquee__inner">
                         <div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div>
                         <div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div>
                         </div>
@@ -262,40 +259,40 @@
                         <div class="marquee__inner">
                         <div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div>
                         <div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div><div class="marquee__part">
                             <div class="marquee-img">
-                                <img src="./assets/images/icons/Component 34.svg" alt="">
+                                <img src="./assets/images/icons/asset5.svg" alt="">
                             </div>
                         </div>
                         </div>
@@ -303,7 +300,7 @@
                 </div>
                 <div class="footer-center-row">
                     <div class="left-logo-wrapper">
-                        <img class="footer-logo" src="./assets/images/mainLogo/Logo xxl.svg" alt="">
+                        <img class="footer-logo" src="./assets/images/mainLogo/Asset4.png" alt="">
                     </div>
                     <div class="right-footer-contact">
                         <div class="footer-contact-heading">
