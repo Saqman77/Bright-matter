@@ -96,46 +96,44 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
     });
-    Array.from(sbmtBtn).forEach((sbmtBtns) =>
-    {
-        sbmtBtns.addEventListener("click", async function(event) {
-            event.preventDefault();
+    contactForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
     
-            // Collect form data
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
-            const phone = input.value; // intl-tel-input field
+        // Collect form data
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+        const phone = input.value; // intl-tel-input field
     
-            if (!name || !email || !message) {
-                alert("Please fill in all fields.");
-                return;
+        if (!name || !email || !message) {
+            alert("Please fill in all fields.");
+            return;
+        }
+    
+        // Send form data to backend
+        fetch("https://mailchimp-fwhys3bpr-saqman77s-projects.vercel.app/api/submit-form", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, message, phone }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                contactForm.classList.add("form-success");
+                defaultBtn.style.display = "none";
+                sucessBtn.style.display = "block";
+            } else {
+                throw new Error(data.error || "Submission failed!");
             }
-    
-            // Send form data to backend
-            fetch("https://mailchimp-2n89qr66p-saqman77s-projects.vercel.app/api/submit-form", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, message, phone }),
-              })
-              .then(response => response.json())
-              .then(data => {
-                if (data.success) {
-                  contactForm.classList.add("form-success");
-                  defaultBtn.style.display = "none";
-                  sucessBtn.style.display = "block";
-                } else {
-                  throw new Error(data.error || "Submission failed!");
-                }
-              })
-              .catch(error => {
-                console.error("Error submitting form:", error);
-                alert("Failed to send message. Please try again later.");
-              });
+        })
+        .catch(error => {
+            console.error("Error submitting form:", error);
+            alert("Failed to send message. Please try again later.");
         });
     
+    
 
-    sbmtBtns.addEventListener("blur", function(event) 
+    sbmtBtn.addEventListener("blur", function(event) 
     {
         event.preventDefault();
         contactForm.classList.remove("form-success")
