@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
     });
-    Array.from(sbmtBtn).forEach(function(sbmtBtns) 
+    Array.from(sbmtBtn).forEach((sbmtBtns) =>
     {
         sbmtBtns.addEventListener("click", async function(event) {
             event.preventDefault();
@@ -113,32 +113,25 @@ document.addEventListener("DOMContentLoaded", function() {
             }
     
             // Send form data to backend
-            try {
-                const response = await fetch("https://mailchimp-2n89qr66p-saqman77s-projects.vercel.app/api/submit-form", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, message, phone }),
-                });
-    
-                const data = await response.json();
-    
-                if (response.ok) {
-                    console.log("Form submitted successfully:", data);
-                    contactForm.classList.remove("form-default");
-                    contactForm.classList.add("form-success");
-                    defaultBtn.style.display = "none";
-                    sucessBtn.style.display = "block";
+            fetch("https://mailchimp-2n89qr66p-saqman77s-projects.vercel.app/api/submit-form", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, message, phone }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  contactForm.classList.add("form-success");
+                  defaultBtn.style.display = "none";
+                  sucessBtn.style.display = "block";
                 } else {
-                    console.error("Error:", data);
-                    contactForm.classList.remove("form-success");
-                    contactForm.classList.add("form-default");
-                    defaultBtn.style.display = "none";
-                    failureBtn.style.display = "block";
+                  throw new Error(data.error || "Submission failed!");
                 }
-            } catch (error) {
+              })
+              .catch(error => {
                 console.error("Error submitting form:", error);
-                alert("An error occurred. Please try again.");
-            }
+                alert("Failed to send message. Please try again later.");
+              });
         });
     
 
