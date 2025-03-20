@@ -98,14 +98,49 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     Array.from(sbmtBtn).forEach(function(sbmtBtns) 
     {
-    sbmtBtns.addEventListener("click", function(event) 
-    {
-        event.preventDefault();
-        contactForm.classList.remove("form-default")
-        contactForm.classList.add("form-success")
-        defaultBtn.style.display = "none"
-        sucessBtn.style.display = "block"
-    })
+        sbmtBtns.addEventListener("click", async function(event) {
+            event.preventDefault();
+    
+            // Collect form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            const phone = input.value; // intl-tel-input field
+    
+            if (!name || !email || !message) {
+                alert("Please fill in all fields.");
+                return;
+            }
+    
+            // Send form data to backend
+            try {
+                const response = await fetch("https://mailchimp-2n89qr66p-saqman77s-projects.vercel.app/api/submit-form", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message, phone }),
+                });
+    
+                const data = await response.json();
+    
+                if (response.ok) {
+                    console.log("Form submitted successfully:", data);
+                    contactForm.classList.remove("form-default");
+                    contactForm.classList.add("form-success");
+                    defaultBtn.style.display = "none";
+                    sucessBtn.style.display = "block";
+                } else {
+                    console.error("Error:", data);
+                    contactForm.classList.remove("form-success");
+                    contactForm.classList.add("form-default");
+                    defaultBtn.style.display = "none";
+                    failureBtn.style.display = "block";
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    
 
     sbmtBtns.addEventListener("blur", function(event) 
     {

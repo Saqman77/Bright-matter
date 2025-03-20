@@ -14,27 +14,27 @@
         <div class="contact-form form-default" id="contact-form">
             <div class="contact-form-wrapper">
                 <div class="form-header">
-                  <h4>Connect With Us</h4>
-                  <p>Schedule a free consultation to see how you can transform your digital presence</p>
-                  <button class="close-btn">&times;</button>
+                    <h4>Connect With Us</h4>
+                    <p>Schedule a free consultation to see how you can transform your digital presence</p>
+                    <button class="close-btn">&times;</button>
                 </div>
-                <form>
-                  <input type="text" placeholder="Name *" class="form-input" required>
-                  <input type="email" placeholder="Email *" class="form-input" required>
-                  <div class="phone-wrapper" data-lenis-prevent>
-                    <input type="text" class="form-input" id="phone" required>
-                  </div>
-                  <textarea placeholder="Message" class="form-input message"></textarea>
+                <form id="contact-form-element">  <!-- Added ID for JS targeting -->
+                    <input type="text" name="name" placeholder="Name *" class="form-input" id="name" required>
+                    <input type="email" name="email" placeholder="Email *" class="form-input" id="email" required>
+                    <div class="phone-wrapper" data-lenis-prevent>
+                        <input type="text" name="phone" class="form-input" id="phone" required>
+                    </div>
+                    <textarea name="message" placeholder="Message" class="form-input message" id="message"></textarea>
+                    <div class="submit-wrapper">
+                        <button type="submit" class="submit-btn" id="submit-btn">  <!-- Added ID for JS targeting -->
+                            <p class="default-text">Get in Touch</p>
+                            <p class="success-text">Success!</p>
+                            <p class="failure-text">Oops..! An error occurred</p>
+                        </button>
+                    </div>
                 </form>
-                <div class="submit-wrapper">
-                  <button type="submit" class="submit-btn">
-                    <p class="default-text">Get in Touch</p>
-                    <p class="success-text">Success!</p>
-                    <p class="failure-text">oops..! An error occured</p>
-                </button>
-                </div>
             </div>
-          </div>
+        </div>
         <nav class="navbar">
             <div class="nav-container">
                 <div  class="logo" href="">
