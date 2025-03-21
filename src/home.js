@@ -260,13 +260,20 @@ tl.from('.navbar',
 
 //marquee
         //    let marqueeDirection = body.classList.contains("scroll-down") ? 'down' : 'up';
-            gsap.to('.marquee__part',
-                {
-                    xPercent: -100,
-                    repeat:-1,
-                    duration:5,
-                    ease:"linear"
-                })
+        document.addEventListener("DOMContentLoaded", function () {
+            const marqueeInner = document.querySelector('.marquee__inner');
+            const marqueeContent = marqueeInner.innerHTML;
+        
+            // Duplicate content for smooth looping
+            marqueeInner.innerHTML += marqueeContent; 
+        
+            gsap.to(".marquee__inner", {
+                xPercent: window.innerWidth < 1250 ? -50 : -50, // Moves by half its width
+                repeat: -1,
+                duration: window.innerWidth < 1250 ? 10 : 6,
+                ease: "linear"
+            });
+        });
             // gsap.from('.marquee__part__right',
             //     {
             //         xPercent: -100,

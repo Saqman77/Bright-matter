@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 351.8883 38.4942">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        letter-spacing: -.198em;
+      }
+
+      .cls-2 {
+        font-family: AzonixRegular, Azonix;
+        font-size: 36.6866px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-2" transform="translate(44.7896 31.781)"><tspan x="0" y="0">BRIGHT-M</tspan><tspan class="cls-3" x="201.9199" y="0">A</tspan><tspan x="221.6201" y="0">TTR</tspan></text>
+      <g>
+        <path class="cls-1" d="M26.0784,19.4312c-.2998,7.8149-12.5838,7.214-11.6339-1.0165.8862-7.1943,11.945-6.2737,11.6339,1.0165Z"/>
+        <path class="cls-1" d="M0,29.7662c8.106,19.8576,35.3896-4.7106,28.1397-12.3264,1.8432,16.9689-16.9198,16.6777-28.1397,12.3264Z"/>
+        <path class="cls-1" d="M38.4212,5.817C30.1459-10.2517,2.0527,10.7061,13.3511,23.6409,4.3745,7.6655,26.7148,1.3497,38.4212,5.817Z"/>
+        <path class="cls-1" d="M35.1521,35.6296C50.5859,25.9316,27.5738.7497,14.9637,12.1407c15.9088-8.5227,23.2467,10.478,20.1883,23.4889Z"/>
+        <path class="cls-1" d="M6.2422.8687c-15.283,9.0828,5.692,36.5453,18.6783,25.1116C8.8684,34.6762,2.4912,12.7662,6.2422.8687Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
