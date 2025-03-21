@@ -99,29 +99,57 @@ document.addEventListener("DOMContentLoaded", function() {
     contactForm.addEventListener("submit", async function (event) {
         event.preventDefault();
     
-        // Collect form data
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-        const phone = input.value; // intl-tel-input field
+        // Get form input elements
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const message = document.getElementById("message");
+        const phoneInput = input; // intl-tel-input field
     
-        if (!name || !email || !message) {
+        if (!name.value || !email.value || !message.value) {
             alert("Please fill in all fields.");
             return;
         }
     
         // Send form data to backend
-        fetch("https://mailchimp-fwhys3bpr-saqman77s-projects.vercel.app/api/submit-form", {
+        fetch("https://mailchimp-api-nine.vercel.app/api/submit.js", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, message, phone }),
+            body: JSON.stringify({ 
+                name: name.value, 
+                email: email.value, 
+                message: message.value, 
+                phone: phoneInput.value 
+            }),
         })
         .then(response => response.json())
         .then(data => {
+            console.log("API Response:", data);
+    
             if (data.success) {
                 contactForm.classList.add("form-success");
                 defaultBtn.style.display = "none";
                 sucessBtn.style.display = "block";
+    
+                // ✅ Clear form fields properly
+                name.value = "";
+                email.value = "";
+                message.value = "";
+    
+                // ✅ Check if intlTelInput instance exists before resetting
+                const itiInstance = window.intlTelInputGlobals?.getInstance(phoneInput);
+                if (itiInstance) {
+                    itiInstance.setNumber(""); // Reset phone field safely
+                } else {
+                    console.warn("intlTelInput instance not found, skipping phone reset.");
+                }
+    
+                // ✅ Reset form state after a short delay
+                setTimeout(() => {
+                    contactForm.classList.remove("form-success");
+                    contactForm.classList.add("form-default");
+                    defaultBtn.style.display = "block";
+                    sucessBtn.style.display = "none";
+                }, 3000);
             } else {
                 throw new Error(data.error || "Submission failed!");
             }
@@ -130,6 +158,21 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Error submitting form:", error);
             alert("Failed to send message. Please try again later.");
         });
+    });
+    
+    // ✅ Fix sbmtBtn.addEventListener issue
+    Array.from(sbmtBtn).forEach(button => {
+        button.addEventListener("blur", function(event) {
+            event.preventDefault();
+            contactForm.classList.remove("form-success");
+            contactForm.classList.add("form-default");
+            defaultBtn.style.display = "block";
+            sucessBtn.style.display = "none";
+        });
+    
+    
+    
+    
     
     
 
