@@ -888,7 +888,10 @@ ScrollTrigger.defaults({
         })
     });
 
-  const sections = document.querySelectorAll('#pin-section')
+  const sections = document.querySelectorAll('#pin-section');
+  const horiSection = document.querySelectorAll('#hori-section');
+  const horizontal = document.querySelector('.services-container');
+  const xWidth = horizontal.getBoundingClientRect().width;
   
 
   sections.forEach((section, i) => 
@@ -917,7 +920,50 @@ ScrollTrigger.defaults({
                 }
         })
     });
+    gsap.fromTo(horiSection,
+        {
+            opacity:1,
+            backdropFilter:'blur(10px)',
+            
+        },
+        {
+            // duration:2,
+            // opacity: 0.5,
+            // backdropFilter:'blur(0px)',
+            ease:'power1.inOut',
+            scrollTrigger:
+                {
+                    trigger: horiSection,
+                    // pin: true,
+                    start: 'top top',
+                    end: `+=1000vh`,
+                    pinSpacer:true,
+                    scrub: 1,
+                    markers: false, // Set to false to hide debugging markers
 
+
+                }
+        })
+
+        ScrollTrigger.create({
+            trigger:horiSection,
+           
+            start:'top top',
+            end: '+=900vh',
+            pin:horiSection,
+            pinSpacer: true,
+            scrub: 1,
+            ease:'power2.out',
+            markers: false,
+            onUpdate: (self)=>{
+                gsap.to(horizontal,{
+                    x:`${-xWidth * self.progress}px`,
+                });
+                gsap.to(horiSection,{
+                    opacity: self.progress >= 0.9 ? 0 : 1 
+                })
+            }
+        })
     // gsap.to('.footer',
     //     {
     //         duration:3,

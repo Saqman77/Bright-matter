@@ -84,7 +84,7 @@ input:focus-visible
 body {
   /* overflow-x: hidden; */
   width: 100%;
-  height: 100%;
+  height: auto;
   position: relative;
   font-family: "espial";
   color: #f9f9f9;
@@ -110,7 +110,7 @@ body.no-scroll {
 
 .main-container {
   width: 100%;
-  height: 100%;
+  height: auto;
   position: relative;
   /* overflow-x: hidden; */
   /* overflow-y: scroll; */
@@ -808,6 +808,7 @@ h2 {
   font-family: "azonix";
   letter-spacing: 0.15em;
   font-weight: 100;
+  text-align: justify;
 }
 
 .b-bottom-bar {
@@ -855,14 +856,32 @@ h2 {
   z-index: -1;
 }
 
+
+.c.hori{
+  height: auto;
+}
+
 .c-content-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 5rem;
   justify-content: end;
-  padding-right: 4vw;
-  padding-bottom: 7.194vw;
+}
+.hori-content-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: start;
+  padding: 5rem;
+  width: 100%;
+}
+.hori-container{
+  height: 80lvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .c-main-content {
@@ -870,65 +889,95 @@ h2 {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: end;
-  margin-left: auto;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .c-sup-heading {
   width: fit-content;
   height: fit-content;
-  margin-left: 1.55vw;
   font-size: 1rem;
   font-family: "azonix";
   letter-spacing: 0.2em;
-  margin-bottom: 1vw;
-  margin-right: auto;
+  
 }
 .c-main-heading {
   font-size: 7.125rem;
-  margin-left: 1.55vw;
   font-family: "azonix";
   letter-spacing: 0.2em;
   width: fit-content;
   height: fit-content;
+  text-shadow: 4px 5px 7px #000000;;
+}
+.c-para{
+  font-size: 1.5rem;
+  
+}
+.space{
+  display: inline-block;
+  width: 100%;
+  height: 1rem;
 }
 
-.c-serv-list {
+.services-container{
+  display: flex;
+  justify-content: space-between;
+  width: max-content;
+}
+
+.services{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: 1.55vw;
+  width: 150vw;
+  justify-content: space-evenly;
+  
 }
-.c-sub-serv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  margin-top: 1vw;
 
-  margin-left: auto;
-  /* margin-right: auto; */
-}
-.sub-serv-img {
-  height: 2vw;
-}
-.sub-serv {
-  font-size: 1rem;
-  letter-spacing: 0.2em;
-  font-family: "azonix";
-  width: fit-content;
-  /* height: 100%; */
-  letter-spacing: 0.4em;
-  margin-left: 0.625rem;
-  font-weight: 100;
-  align-self: center;
-}
-.c-contact-cta {
-  /* margin-top:1.7rem; */
+.serv-top{
   display: flex;
-  margin-left: 4vw;
+  align-items: start;
+  flex-direction: column;
+  margin-bottom: 5em;
+}
+
+.serv-bottom {
+  text-align: right;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  // align-items: start;
+}
+
+.serv-heading{
+  margin-bottom: 1em;
+}
+
+.serv-head{
+  font-family: "azonix";
+  font-size: 4rem;
+}
+
+.serv-desc{
+  width: 50%;
+  // margin: 0 2em;
+}
+
+.serv-text{
+ font-size: 2rem;
+}
+
+.c-contact-cta {
+  margin-top:auto; 
+  display: flex;
+  margin-left: auto;
+  width: 10vw;
+  align-items: center;
+}
+.hori-container.c-contact-cta {
+  margin-top:auto; 
+  // margin-bottom:auto; 
+  display: flex;
+  margin-left: auto;
   width: 10vw;
   align-items: center;
 }
