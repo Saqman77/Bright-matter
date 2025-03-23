@@ -893,77 +893,81 @@ ScrollTrigger.defaults({
   const horizontal = document.querySelector('.services-container');
   const xWidth = horizontal.getBoundingClientRect().width;
   
-
+  const tl2 = gsap.timeline()
+  ScrollTrigger.create({
+      trigger:horiSection,
+     
+      start:'top top',
+      end: '+=900vh',
+      pin:horiSection,
+      pinSpacer: true,
+      scrub: 1,
+      ease:'power2.out',
+    //   refresh:true,
+      markers: false,
+      onUpdate: (self)=>{
+          gsap.to(horizontal,{
+              x:`${-xWidth * self.progress}px`,
+          });
+          gsap.to(horiSection,{
+              opacity: self.progress >= 0.9 ? 0 : 1 
+          })
+      }
+  });  
   sections.forEach((section, i) => 
     {
-
-    gsap.fromTo(section,
-        {
-            opacity:1,
-            backdropFilter:'blur(10px)',
+        
+    tl2.to(section,
+        // {
+        //     opacity:1,
+        //     backdropFilter:'blur(10px)',
             
-        },
+        // },
         {
             duration:1,
             opacity:0,
             backdropFilter:'blur(0px)',
-            ease:'power1.inOut',
+            webkitBackdropFilter:'blur(0px)',
+            ease:'power1.out',
             scrollTrigger:
                 {
                     trigger: section,
                     pin: true,
                     start: 'top top',
-                    end: '30%',
+                    end: '40%',
                     // pinSpacer:false,
+                    
                     scrub: true,
-                    markers: false // Set to false to hide debugging markers
+                    markers: true // Set to false to hide debugging markers
                 }
         })
     });
-    gsap.fromTo(horiSection,
-        {
-            opacity:1,
-            backdropFilter:'blur(10px)',
+    // gsap.fromTo(horiSection,
+    //     {
+    //         opacity:1,
+    //         backdropFilter:'blur(10px)',
             
-        },
-        {
-            // duration:2,
-            // opacity: 0.5,
-            // backdropFilter:'blur(0px)',
-            ease:'power1.inOut',
-            scrollTrigger:
-                {
-                    trigger: horiSection,
-                    // pin: true,
-                    start: 'top top',
-                    end: `+=1000vh`,
-                    pinSpacer:true,
-                    scrub: 1,
-                    markers: false, // Set to false to hide debugging markers
+    //     },
+    //     {
+    //         // duration:2,
+    //         // opacity: 0.5,
+    //         // backdropFilter:'blur(0px)',
+    //         ease:'power1.inOut',
+    //         scrollTrigger:
+    //             {
+    //                 trigger: horiSection,
+    //                 // pin: true,
+    //                 start: 'top top',
+    //                 end: `+=1000vh`,
+    //                 pinSpacer:true,
+    //                 scrub: 1,
+    //                 refresh:true,
+    //                 markers: false, // Set to false to hide debugging markers
 
 
-                }
-        })
+    //             }
+    //     })
 
-        ScrollTrigger.create({
-            trigger:horiSection,
-           
-            start:'top top',
-            end: '+=900vh',
-            pin:horiSection,
-            pinSpacer: true,
-            scrub: 1,
-            ease:'power2.out',
-            markers: false,
-            onUpdate: (self)=>{
-                gsap.to(horizontal,{
-                    x:`${-xWidth * self.progress}px`,
-                });
-                gsap.to(horiSection,{
-                    opacity: self.progress >= 0.9 ? 0 : 1 
-                })
-            }
-        })
     // gsap.to('.footer',
     //     {
     //         duration:3,
