@@ -873,6 +873,7 @@ h2 {
   opacity: 1;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  position: relative;
 }
 .hori-content-wrapper {
   height: 100vh;
@@ -900,6 +901,7 @@ h2 {
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;
+  position: relative;
 }
 .c-sup-heading {
   width: fit-content;
@@ -907,6 +909,7 @@ h2 {
   font-size: 1rem;
   font-family: "azonix";
   letter-spacing: 0.2em;
+  position: relative;
   
 }
 .c-main-heading {
@@ -919,12 +922,12 @@ h2 {
 }
 .c-para{
   font-size: 1.5rem;
-  
+  will-change: transform;
 }
 .space{
   display: inline-block;
   width: 100%;
-  height: 1rem;
+  height: 1em;
 }
 
 .services-container{
@@ -1103,6 +1106,81 @@ row-gap: 10px;
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.c.team{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  position: relative;
+}
+
+.c.team .c-content-wrapper{
+  position: relative;
+  z-index: 1;
+  grid-area: 1/1;
+  display: none;
+}
+.c-content-wrapper.raf .c-contact-cta,.c-content-wrapper.naqi .c-contact-cta,.c-content-wrapper.saq .c-contact-cta{
+  // background-color: #000000;
+  border-radius: 30px;
+  color: #000000;
+  padding: 1em;
+  display: none;
+  width:300px;
+  box-shadow: inset 4px 4px 4px 4px  rgba(0, 0, 0, 0.164);
+}
+.c-content-wrapper.raf *,.c-content-wrapper.naqi *,.c-content-wrapper.saq *{
+  text-shadow: none;
+  
+}
+.c-content-wrapper.raf .profile,.c-content-wrapper.naqi .profile,.c-content-wrapper.saq .profile{
+  background: none;
+  // width: 50%;
+  // margin-left: auto;
+  // margin-right: 0;
+}
+
+.c-content-wrapper.raf .team-grid,.c-content-wrapper.naqi .team-grid,.c-content-wrapper.saq .team-grid{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.c-content-wrapper.raf .team-grid .card,.c-content-wrapper.naqi .team-grid .card,.c-content-wrapper.saq .team-grid .card{
+  width: max-content;
+  height: fit-content;
+  margin-left: auto;
+  width: 30%;
+}
+.c-content-wrapper.raf .team-grid .card-wrapper,.c-content-wrapper.naqi .team-grid .card-wrapper,.c-content-wrapper.saq .team-grid .card-wrapper{
+  width: 100%;
+  height: max-content;
+  padding: 0;
+}
+.c.team .c-content-wrapper.raf{
+  position: relative;
+  z-index: 1;
+  grid-area: 1/1;
+  display: none;
+  color: #2E2E2E;
+  background-color: #d3d3d3;
+}
+.c.team .c-content-wrapper.naqi{
+  position: relative;
+  z-index: 1;
+  grid-area: 1/1;
+  color: #2E2E2E;
+  display: none;
+  background-color: #d3d3d3;
+}
+.c.team .c-content-wrapper.saq{
+  position: relative;
+  color: #2E2E2E;
+  z-index: 1;
+  grid-area: 1/1;
+  display: flex;
+  background-color: #d3d3d3;
 }
 
 
@@ -1327,4 +1405,17 @@ source {
   display: none;
 }
 
+.word{
+  position: relative;
+  margin-right: 0.75em;
+  margin-bottom: 0.5em;
+  display: inline-block;
+  will-change: transform;
+}
+.letter{
+  position: relative;
+
+  display: inline-block;
+  will-change: transform;
+}
 
