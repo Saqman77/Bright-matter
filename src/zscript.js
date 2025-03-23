@@ -844,9 +844,9 @@ ScrollTrigger.defaults({
       trigger:horiSection,
      
       start:'top top',
-      end: '+=900vh',
+      end: window.innerWidth > 1250 ? "+=1500vh": '+=900vh',
       pin:horiSection,
-      pinSpacer: true,
+    //   pinSpacer: true,
       scrub: 1,
       ease:'power2.out',
     //   refresh:true,
@@ -867,20 +867,20 @@ ScrollTrigger.defaults({
 
         {
             duration:1,
-            opacity:0,
-            backdropFilter:'blur(0px)',
+            opacity:window.innerWidth < 1250 ? 1 : 0,
+            backdropFilter:window.innerWidth < 1250 ?'blur(10px)'  : 'blur(0px)',
             // webkitBackdropFilter:'blur(0px)',
             ease:'power1.out',
             scrollTrigger:
                 {
                     trigger: section,
-                    pin: true,
+                    pin: window.innerWidth < 1250 ? false : true,
                     start: 'top top',
-                    end: '40%',
-                    // pinSpacer:false,
+                    end: window.innerWidth < 1250 ? 'bottom top':'40%',
+                    pinSpacer:false,
                     
                     scrub: true,
-                    markers:true
+                    // markers:true
                     // Set to false to hide debugging markers
                 }
         })

@@ -399,18 +399,23 @@ form {
 
 .logo {
   width: 5vw;
-  height: 100%;
+  height: 5vw;
   padding: 0.5rem 0 0.5rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: filter 0.5s ease 0.1s;
+  @media screen and (max-width:1250px) {
+    width: 2vw;
+  }
 }
 
 .logo > img {
-  width: 4rem;
+  // width: 4rem;
+  width: 100%;
   object-fit: contain;
-  height: 3.125rem;
+  // height: 3.125rem;
+  height: 100%;
 }
 
 .contact-us {
@@ -629,6 +634,9 @@ h1 {
   font-family: "azonix";
   letter-spacing: 0.2em;
   width: fit-content;
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 .support-heading-left {
   font-size: 20px;
@@ -726,6 +734,9 @@ h1 {
   font-family: "azonix";
   text-align: right;
   margin-top: 2rem;
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 .right-sup-tag {
   font-size: 1.25rem;
@@ -792,6 +803,9 @@ h1 {
   font-family: "azonix";
   text-align: center;
   letter-spacing: 0.2em;
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 
 .build__cta {
@@ -827,6 +841,9 @@ h2 {
   letter-spacing: 0.15em;
   font-weight: 100;
   text-align: justify;
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 
 .b-bottom-bar {
@@ -890,6 +907,10 @@ h2 {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
+  z-index: 9999;
+  @media screen and (max-width:1250px) {
+    padding: 2em;
+  }
 }
 .hori-content-wrapper {
   height: 100vh;
@@ -900,6 +921,9 @@ h2 {
   opacity: 1;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  @media screen and (max-width:1250px) {
+    padding: 1em;
+  }
 }
 .hori-container{
   height: 80lvh;
@@ -918,6 +942,9 @@ h2 {
   margin-top: auto;
   margin-bottom: auto;
   position: relative;
+  @media screen and (max-width:1250px) {
+    margin-top: 0;
+  }
 }
 .c-sup-heading {
   width: fit-content;
@@ -925,7 +952,11 @@ h2 {
   font-size: 1rem;
   font-family: "azonix";
   letter-spacing: 0.2em;
+  margin-bottom: .5em;
   position: relative;
+  @media screen and (max-width:1250px) {
+    font-size: .5rem;
+  }
   
 }
 .c-main-heading {
@@ -936,12 +967,20 @@ h2 {
   height: fit-content;
   text-shadow: 4px 5px 7px #000000;;
   user-select: none;
+  @media screen and (max-width:1250px) {
+    font-size: 1.8rem;
+  }
 }
 
 .c-para{
   font-size: 1.5rem;
+  font-weight: 700;
   will-change: transform;
   user-select: none;
+  text-align: left;
+  @media screen and (max-width:1250px) {
+    font-size: 20px;
+  }
 }
 .space{
   display: inline-block;
@@ -960,7 +999,11 @@ h2 {
   flex-direction: column;
   width: 150vw;
   justify-content: space-evenly;
-  
+  @media screen and (max-width:1250px) {
+    // flex-direction: row;
+    align-items: center;
+    width: 50%;
+  }
 }
 
 .serv-top{
@@ -968,6 +1011,9 @@ h2 {
   align-items: start;
   flex-direction: column;
   margin-bottom: 5em;
+  @media screen and (max-width:1250px) {
+    margin-bottom: 0;
+  }
 }
 
 .serv-bottom {
@@ -985,15 +1031,24 @@ h2 {
 .serv-head{
   font-family: "azonix";
   font-size: 4rem;
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 
 .serv-desc{
   width: 50%;
+  @media screen and (max-width:1250px) {
+    width: 30%;
+  }
   // margin: 0 2em;
 }
 
 .serv-text{
  font-size: 2rem;
+ @media screen and (max-width:1250px) {
+  font-size: 1rem;
+}
 }
 
 .c-contact-cta {
@@ -1002,6 +1057,9 @@ h2 {
   margin-left: auto;
   width: 10vw;
   align-items: center;
+  @media screen and (max-width:1250px) {
+    width:auto;
+  }
 }
 .hori-container.c-contact-cta {
   margin-top:auto; 
@@ -1042,6 +1100,10 @@ h2 {
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(3, 1fr);
+  @media screen and (max-width:1250px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .card{
@@ -1055,6 +1117,12 @@ h2 {
   width: 100%;
   height: 100%;
   padding: 1em;
+  @media screen and (max-width:1250px) {
+    padding: 0em;
+    justify-content: center;
+    // align-items: center;
+    margin-bottom: 2em;
+  }
 }
 
 .card-wrapper .profile{
@@ -1071,6 +1139,11 @@ h2 {
   backdrop-filter: blur(10px);
   overflow: hidden;
   cursor: pointer;
+  @media screen and (max-width:1250px) {
+    height:400px;
+    // width: 200px;
+    // width:400px;
+  }
 }
 .card-wrapper .profile.saq{
   background-image: url('./assets/images/team/saqlain.jpg');
@@ -1118,6 +1191,9 @@ row-gap: 10px;
   display: flex;
   justify-content: right;
   align-items: center;
+  @media screen and (max-width:1250px) {
+    justify-content: space-evenly;
+  }
 }
 .social ul li{
   width: 3rem;
@@ -1125,6 +1201,11 @@ row-gap: 10px;
   list-style: none;
   padding: 0.5em;
   transition: scale 0.2s ease-out 0.1s;
+  @media screen and (max-width:1250px) {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
 }
 
 .social ul li:hover{
@@ -1142,6 +1223,7 @@ row-gap: 10px;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   position: relative;
+  height: auto;
 }
 
 .c.team .c-content-wrapper{
@@ -1149,6 +1231,9 @@ row-gap: 10px;
   z-index: 1;
   grid-area: 1/1;
   display: flex;
+  @media screen and (max-width:1250px) {
+    justify-content: start;
+  }
 }
 .c-content-wrapper.raf .c-contact-cta,.c-content-wrapper.naqi .c-contact-cta,.c-content-wrapper.saq .c-contact-cta{
   // background-color: #000000;

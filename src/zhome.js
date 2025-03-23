@@ -86,13 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 element.targetX = 0;
                 element.targetY = 0;
             });
-        }, 100);
+        }, 300);
 
         document.addEventListener("mousemove", (e) => {
             const mouseX = mouse.x;
             const mouseY = mouse.y;
 
-            const radius = 150;
+            const radius = 100;
             const maxDisplacement = 300;
 
             animatedElements.forEach((element) => {
