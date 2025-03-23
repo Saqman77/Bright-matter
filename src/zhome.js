@@ -1,9 +1,12 @@
 import gsap from 'gsap';
 import 'intl-tel-input/build/css/intlTelInput.css';
+import Lenis from '@studio-freight/lenis';
+import { mouse } from './amouse';
 import intlTelInput from "intl-tel-input/intlTelInputWithUtils"
+gsap.registerPlugin()
 
+window.addEventListener("DOMContentLoaded",  () => {
 
-document.addEventListener("DOMContentLoaded",  () => {
     const animateTextElements = (selector, splitBy) =>{
         const textContainers = document.querySelectorAll(selector);
 
@@ -49,7 +52,7 @@ document.addEventListener("DOMContentLoaded",  () => {
                 textContainer.appendChild(elementSpan);
 
                 if(splitBy === "words" && index < elements.length -1){
-                    textContainer.appendChild(document.creatTextNode(" "));
+                    textContainer.appendChild(document.createTextNode(" "));
                 }
 
                 animatedElements.push({
@@ -63,8 +66,11 @@ document.addEventListener("DOMContentLoaded",  () => {
                 });
             });
 
-            setTimeout(()=>{
-                animatedElements.forEach((element)=>{
+            setTimeout(() => {
+                // Force reflow
+                document.body.offsetHeight; 
+            
+                animatedElements.forEach((element) => {
                     const rect = element.element.getBoundingClientRect();
                     element.originalX = rect.left + rect.width / 2;
                     element.originalY = rect.top + rect.height / 2;
@@ -73,11 +79,11 @@ document.addEventListener("DOMContentLoaded",  () => {
                     element.targetX = 0;
                     element.targetY = 0;
                 });
-            }, 100);
+            }, 3000);
 
-            document.addEventListener("mousemove",(e) =>{
-                const mouseX = e.clientX;
-                const mouseY = e.clienY;
+            document.addEventListener("mousemove", (e) => {
+                const mouseX = mouse.x;
+                const mouseY = mouse.y;
 
                 const radius = 150;
                 const maxDisplacement = 300;
@@ -91,7 +97,7 @@ document.addEventListener("DOMContentLoaded",  () => {
 
                     const distance  = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < radius){
+                    if (distance < radius && distance !== 0){
                         const force = (1 - distance / radius) * maxDisplacement;
 
                         element.targetX = (dx / distance) * force;
@@ -116,11 +122,17 @@ document.addEventListener("DOMContentLoaded",  () => {
                requestAnimationFrame(animate);
             }
             animate();
-            animateTextElements(".c-para","words");
-            animateTextElements(".c-main-heading","letters");
+
         })
     }
+    animateTextElements(".c-paramorph","words");
+    animateTextElements(".c-main-headinghmorph","letters");
+
+    
 })
+
+
+
 
 const input = document.querySelector("#phone");
 const phoneWrapper = document.querySelector(".phone-wrapper");
@@ -173,8 +185,7 @@ function fetchUserIP() {
 
 
 gsap.defaults({});
-// import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
-// gsap.registerPlugin(ScrollTrigger);
+
 let lastScrollTop = 0;
 const body = document.body
 document.addEventListener("DOMContentLoaded", function() {

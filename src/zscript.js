@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { GUI } from 'lil-gui';
+import { mouse } from "./amouse.js";
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger);
 import Lenis from '@studio-freight/lenis';
@@ -117,7 +118,7 @@ else
 
 
 let xyz = {}
-import Worker from './generateGalaxyWorker.js?worker';
+import Worker from './zgenerateGalaxyWorker.js?worker';
 
 for (let i = 0; i < workerCount; i++) {
     // const worker = new Worker();
@@ -248,27 +249,13 @@ const generateGalaxy = () => {
 };
 
 
-// Initial galaxy generation
-// gui.add(parameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy);
-// gui.add(parameters, 'size').min(0.001).max(2).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(parameters, 'radius').min(0.01).max(20).step(0.01).onFinishChange(generateGalaxy);
-// gui.add(parameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy);
-// gui.add(parameters, 'spin').min(-5).max(5).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(parameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(parameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(parameters.position, 'x').min(-10).max(10).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(parameters.position, 'y').min(-10).max(10).step(0.001).onFinishChange(generateGalaxy);
-// gui.add(parameters.position, 'z').min(-10).max(10).step(0.001).onFinishChange(generateGalaxy);
+
 
 
 
 
 generateGalaxy();
-// workers.forEach(worker => worker.terminate());
 
-// window.addEventListener('beforeunload', () => {
-//     workers.forEach(worker => worker.terminate());
-// });
 
 
 
@@ -300,14 +287,7 @@ const cameraGroup = new THREE.Group();
 scene.add(cameraGroup);
 cameraGroup.add(camera);
 
-// gui.add(camera.position, 'x').min(-30).max(30).step(0.5);
-// gui.add(camera.position, 'y').min(-30).max(30).step(0.5);
-// gui.add(camera.position, 'z').min(-30).max(30).step(0.5);
-// gui.add(camera.rotation, 'x').min(-100).max(100).step(0.01).onFinishChange(generateGalaxy);
-// gui.add(camera.rotation, 'y').min(-100).max(100).step(0.01).onFinishChange(generateGalaxy);
-// gui.add(camera.rotation, 'z').min(-100).max(100).step(0.01).onFinishChange(generateGalaxy);
 
-// Controls
 
 
 /**
@@ -499,6 +479,7 @@ lenis.on('scroll', ({scroll}) => {
                 }
         }
         if (currentSection == 2 ) {
+            
             if(window.innerWidth <= 768)
                 {
                     gsap.to(parameters, {
@@ -580,25 +561,7 @@ lenis.on('scroll', ({scroll}) => {
             })}
     }
 
-    // if(currentSection==3)
-    //     {
-    //         gsap.to(camera.rotation,
-    //             {
-    //                 x:-1.65,
-    //                 y:0,
-    //                 z:7.7,
-    //                 duration:3,
-    //                 ease:'power1.inOut'
-    //             })
 
-    //         tl.to(camera.position,
-    //         {
-    //             x:0,
-    //             y:4,
-    //             z:,
-    //             ease:'power1.inOut'
-    //         })
-    //     }
 
     if(currentSection == 4)
         {
@@ -736,24 +699,7 @@ tl.to(camera.rotation,
         ease:'power1.inOut',
         // duration:1,
     })}
-    // if(currentSection == 7)
-    //     {
-    //         tl.to(camera.position,
-    //             {
-    //                 x:direction === 'down' ? -1: 2,
-    //                 y:direction === 'down' ? 1.5 : 2,
-    //                 z:direction === 'down' ? -1 : 0,
-    //                 ease:'power2.inOut',
-    //                 duration:2,
-    //             })
-    //         tl.to(camera.rotation,
-    //             {
-    //                 x:direction === 'down' ? 0.787 : 0,
-    //                 y:direction === 'down' ? -10 : 2 ,
-    //                 z:direction === 'down' ? 0: 0,
-    //                 ease:'power2.inOut',
-    //                 duration:1,
-    //             })}
+
     if(currentSection == 8)
         // {
             {
@@ -918,16 +864,12 @@ ScrollTrigger.defaults({
     {
         
     tl2.to(section,
-        // {
-        //     opacity:1,
-        //     backdropFilter:'blur(10px)',
-            
-        // },
+
         {
             duration:1,
             opacity:0,
             backdropFilter:'blur(0px)',
-            webkitBackdropFilter:'blur(0px)',
+            // webkitBackdropFilter:'blur(0px)',
             ease:'power1.out',
             scrollTrigger:
                 {
@@ -938,11 +880,11 @@ ScrollTrigger.defaults({
                     // pinSpacer:false,
                     
                     scrub: true,
-                    markers: true // Set to false to hide debugging markers
+                    // Set to false to hide debugging markers
                 }
         })
     });
-    // gsap.fromTo(horiSection,
+  
     //     {
     //         opacity:1,
     //         backdropFilter:'blur(10px)',
@@ -1061,10 +1003,13 @@ ScrollTrigger.defaults({
   // Add mousemove event listener for desktop
   if (!isMobile) {
       window.addEventListener('mousemove', (event) => {
-          cursor.x = event.clientX / sizes.width - 0.5;
-          cursor.y = event.clientY / sizes.height - 0.5;
-      });
+          cursor.x = mouse.x / sizes.width - 0.5;
+          cursor.y = mouse.y / sizes.height - 0.5;
+          
+          
+      });  
   }
+  
 
   // Display status if not on a mobile device
   if (window.innerWidth>1250) {
