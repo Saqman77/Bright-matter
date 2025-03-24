@@ -7,6 +7,8 @@ gsap.registerPlugin()
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    let animatedElements = [];
+
     const animateTextElements = (selector, splitBy) => {
         const textContainers = document.querySelectorAll(selector);
 
@@ -14,14 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     processTextContainer(entry.target, splitBy);
-                    observer.unobserve(entry.target); // Run animation once per element
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 1.0 });
+        }, { threshold: 0.5 });
 
-        textContainers.forEach((textContainer) => {
-            observer.observe(textContainer);
-        });
+        textContainers.forEach((textContainer) => observer.observe(textContainer));
     };
 
     const processTextContainer = (textContainer, splitBy) => {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         textContainer.textContent = "";
-        const animatedElements = [];
+        let localAnimatedElements = [];
 
         elements.forEach((element, index) => {
             if (splitBy === "letters" && element === " ") {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 textContainer.appendChild(document.createTextNode(" "));
             }
 
-            animatedElements.push({
+            localAnimatedElements.push({
                 element: elementSpan,
                 originalX: 0,
                 originalY: 0,
@@ -76,65 +76,70 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        setTimeout(() => {
-            animatedElements.forEach((element) => {
-                const rect = element.element.getBoundingClientRect();
-                element.originalX = rect.left + rect.width / 2;
-                element.originalY = rect.top + rect.height / 2;
-                element.currentX = 0;
-                element.currentY = 0;
-                element.targetX = 0;
-                element.targetY = 0;
-            });
-        }, 300);
-
-        document.addEventListener("mousemove", (e) => {
-            const mouseX = mouse.x;
-            const mouseY = mouse.y;
-
-            const radius = 100;
-            const maxDisplacement = 300;
-
-            animatedElements.forEach((element) => {
-                const originalX = element.originalX;
-                const originalY = element.originalY;
-
-                const dx = originalX - mouseX;
-                const dy = originalY - mouseY;
-
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < radius && distance !== 0) {
-                    const force = (1 - distance / radius) * maxDisplacement;
-
-                    element.targetX = (dx / distance) * force;
-                    element.targetY = (dy / distance) * force;
-                } else {
-                    element.targetX = 0;
-                    element.targetY = 0;
-                }
-            });
-        });
-
-        const animate = () => {
-            const lerpFactor = 0.1;
-
-            animatedElements.forEach((element) => {
-                element.currentX += (element.targetX - element.currentX) * lerpFactor;
-                element.currentY += (element.targetY - element.currentY) * lerpFactor;
-
-                element.element.style.transform = `translate(${element.currentX}px, ${element.currentY}px)`;
-            });
-
-            requestAnimationFrame(animate);
-        };
-
-        animate();
+        animatedElements = animatedElements.concat(localAnimatedElements);
+        updateElementPositions(); // Update positions when elements are added
     };
 
+    const mouse = { x: 0, y: 0 };
+
+    document.addEventListener("mousemove", (e) => {
+        mouse.x = e.clientX + window.scrollX;
+        mouse.y = e.clientY + window.scrollY;
+
+        const radius = 100;
+        const maxDisplacement = 300;
+
+        animatedElements.forEach((element) => {
+            const dx = element.originalX - mouse.x;
+            const dy = element.originalY - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < radius && distance !== 0) {
+                const force = (1 - distance / radius) * maxDisplacement;
+                element.targetX = (dx / distance) * force;
+                element.targetY = (dy / distance) * force;
+            } else {
+                element.targetX = 0;
+                element.targetY = 0;
+            }
+        });
+    });
+
+    const animate = () => {
+        const lerpFactor = 0.1;
+
+        animatedElements.forEach((element) => {
+            element.currentX += (element.targetX - element.currentX) * lerpFactor;
+            element.currentY += (element.targetY - element.currentY) * lerpFactor;
+
+            element.element.style.transform = `translate(${element.currentX}px, ${element.currentY}px)`;
+        });
+
+        requestAnimationFrame(animate);
+    };
+
+    // **🔥 New Fix: Update Bounding Client Rect on Scroll**
+    const updateElementPositions = () => {
+        animatedElements.forEach((element) => {
+            const rect = element.element.getBoundingClientRect();
+            element.originalX = rect.left + rect.width / 2 + window.scrollX;
+            element.originalY = rect.top + rect.height / 2 + window.scrollY;
+        });
+    };
+
+    window.addEventListener("scroll", () => {
+        updateElementPositions();
+    });
+
+    window.addEventListener("resize", () => {
+        updateElementPositions();
+    });
+
+    animate();
     animateTextElements(".c-para", "words");
     animateTextElements(".c-main-heading", "letters");
 });
+
 
 
 
