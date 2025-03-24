@@ -856,7 +856,7 @@ ScrollTrigger.defaults({
               x:`${-xWidth * self.progress}px`,
           });
           gsap.to(horiSection,{
-              opacity: self.progress >= 0.9 ? 0 : 1 
+              opacity: self.progress >= 0.95 ? 0 : 1 
           })
       }
   });  
@@ -867,67 +867,26 @@ ScrollTrigger.defaults({
 
         {
             duration:1,
-            opacity:window.innerWidth < 1250 ? 1 : 0,
-            backdropFilter:window.innerWidth < 1250 ?'blur(10px)'  : 'blur(0px)',
+            opacity: window.innerWidth < 1250 ? (i >= sections.length - 1 ? 1 : 0) : 0,
+            backdropFilter:window.innerWidth < 1250 ? (i >= sections.length - 1 ? 'blur(10px)' : 'blur(0px)') : 'blur(0px)',
             // webkitBackdropFilter:'blur(0px)',
             ease:'power1.out',
             scrollTrigger:
                 {
                     trigger: section,
-                    pin: window.innerWidth < 1250 ? false : true,
+                    pin:  window.innerWidth < 1250 ? (i >= sections.length - 1 ? false : true) : true,
                     start: 'top top',
-                    end: window.innerWidth < 1250 ? 'bottom top':'40%',
+                    end: '40%',
                     pinSpacer:false,
                     
                     scrub: true,
-                    // markers:true
+                    markers:true
                     // Set to false to hide debugging markers
                 }
         })
     });
   
-    //     {
-    //         opacity:1,
-    //         backdropFilter:'blur(10px)',
-            
-    //     },
-    //     {
-    //         // duration:2,
-    //         // opacity: 0.5,
-    //         // backdropFilter:'blur(0px)',
-    //         ease:'power1.inOut',
-    //         scrollTrigger:
-    //             {
-    //                 trigger: horiSection,
-    //                 // pin: true,
-    //                 start: 'top top',
-    //                 end: `+=1000vh`,
-    //                 pinSpacer:true,
-    //                 scrub: 1,
-    //                 refresh:true,
-    //                 markers: false, // Set to false to hide debugging markers
 
-
-    //             }
-    //     })
-
-    // gsap.to('.footer',
-    //     {
-    //         duration:3,
-    //         backdropFilter:'blur(5px)',
-    //         ease:'power1.inOut',
-    //         scrollTrigger:
-    //             {
-    //                 trigger: '.footer',
-    //                 // pin: true,
-    //                 start: 'top center',
-    //                 end: 'center top',
-    //                 // pinSpacer:false,
-    //                 scrub: true,
-    //                 // markers: true // Set to false to hide debugging markers
-    //             }
-    //     })
-  
 
 
  // This should not be undefined
