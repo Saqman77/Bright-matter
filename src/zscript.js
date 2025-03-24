@@ -880,7 +880,7 @@ ScrollTrigger.defaults({
                     pinSpacer:false,
                     
                     scrub: true,
-                    markers:true
+                    // markers:true
                     // Set to false to hide debugging markers
                 }
         })
