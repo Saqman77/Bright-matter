@@ -8,7 +8,7 @@ gsap.registerPlugin()
 
 document.addEventListener("DOMContentLoaded", () => {
     let animatedElements = [];
-
+    const cClose = document.querySelectorAll('.close-c')
     const animateTextElements = (selector, splitBy) => {
         const textContainers = document.querySelectorAll(selector);
 
@@ -134,6 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
         updateElementPositions();
     });
+
+    cClose.forEach(close=>{close.addEventListener("click", (e) => {
+        e.preventDefault()
+        updateElementPositions();
+    })})
 
     animate();
     animateTextElements(".c-para", "words");
@@ -419,7 +424,7 @@ tl.from('.navbar',
 document.addEventListener("DOMContentLoaded", () => {
     const profiles = document.querySelectorAll(".profile");
     const contentWrappers = document.querySelectorAll(".c-content-wrapper");
-
+    const cClose = document.querySelectorAll('.close-c')
     profiles.forEach(profile => {
         profile.addEventListener("click", () => {
             const profileClass = profile.classList[1]; // 'saq', 'raf', 'naqi'
@@ -438,10 +443,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Reset to default state on scroll
-    let isScrolling;
-    window.addEventListener("scroll", () => {
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
+    
+    cClose.forEach(close=>{close.addEventListener("click", (e) => {
+        e.preventDefault()
             contentWrappers.forEach(wrapper => {
                 if (wrapper.classList.contains("saq") || 
                     wrapper.classList.contains("raf") || 
@@ -451,8 +455,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     wrapper.style.display = "flex"; // Show default content
                 }
             });
-        }, 200);
-    });
+        
+    });})
 });
 document.addEventListener("DOMContentLoaded", () => {
     const profiles = document.querySelectorAll(".profile");

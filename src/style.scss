@@ -573,7 +573,7 @@ section {
   width: 100%;
   height: 100lvh;
   overflow: hidden;
-
+  
 }
 
 .a-space {
@@ -860,9 +860,24 @@ h1 {
     // margin-top: 12vh;
   }
 }
+.b-sup-head{
+  margin-bottom: 1em;
 
+}
+.b-bottom-bar .b-sup-head .c-para .word{
+  font-size: 2rem;
+  font-family: "AZONIX";
+  margin-right: 0 ;
+  margin-bottom: 0 ;
+  @media screen and (max-width:1250px) {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
 .b-bottom-bar .c-main-heading{
   font-size: 2rem;
+  
   @media screen and (max-width:1250px) {
     font-size: 1.5rem;
     margin-top: auto;
@@ -1319,6 +1334,9 @@ row-gap: 10px;
   flex-direction: column;
   justify-content: space-evenly;
 }
+.c-content-wrapper.raf.disabled,.c-content-wrapper.naqi.disabled,.c-content-wrapper.saq.disabled{
+  display: none;
+}
 
 .c-content-wrapper.raf .team-grid .card,.c-content-wrapper.naqi .team-grid .card,.c-content-wrapper.saq .team-grid .card{
   width: max-content;
@@ -1332,28 +1350,57 @@ row-gap: 10px;
   padding: 0;
 }
 .c.team .c-content-wrapper.raf{
-  position: relative;
+  position: fixed;
   z-index: 1;
   grid-area: 1/1;
-  
+  top: 0;
   color: #2E2E2E;
   background-color: #d3d3d3;
 }
 .c.team .c-content-wrapper.naqi{
-  position: relative;
+  position: fixed;
   z-index: 1;
   grid-area: 1/1;
+  top: 0;
   color: #2E2E2E;
-  
   background-color: #d3d3d3;
 }
 .c.team .c-content-wrapper.saq{
-  position: relative;
-  color: #2E2E2E;
+  position: fixed;
   z-index: 1;
   grid-area: 1/1;
-  
+  top: 0;
+  color: #2E2E2E;
   background-color: #d3d3d3;
+}
+
+.close-c{
+  width: max-content;
+  height: min-content;
+  padding: 0.5em 1em;
+  color: #2E2E2E;
+  font-size: 5rem;
+  font-family: "AZONIX";
+  // box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.253);
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s ease-out 0.1s, text-shadow 0.2s ease-out 0.1s;
+  cursor: pointer;
+  @media screen and (max-width:1250px) {
+    font-size: 1.8rem;
+  }
+  @media screen and (max-width:900px) {
+    font-size: 1.5rem;
+  }
+}
+
+.close-c:hover{
+  color: #00f0ff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.473);
 }
 
 .disabled{

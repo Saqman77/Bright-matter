@@ -1,24 +1,28 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { GUI } from 'lil-gui';
 import { mouse } from "./amouse.js";
-import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 gsap.registerPlugin(ScrollTrigger);
-import Lenis from '@studio-freight/lenis';
-import gsap from 'gsap';
+import Lenis from "@studio-freight/lenis";
+import gsap from "gsap";
 // import generateGalaxyWorker from './generateGalaxyWorker.js';
-
+ScrollTrigger.defaults({
+  fastScrollEnd: true,
+  preventOverlaps: true,
+  // anticipatePin: 1
+});
 // const gui = new GUI();
 // Canvas
-const canvas = document.querySelector('canvas.webgl');
+const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
 
 //texture loader
-const loader = new THREE.TextureLoader()
-const startTexture = loader.load('./textures/particles/8.png')
-const subTexture = loader.load('./textures/particles/4.png')
+const loader = new THREE.TextureLoader();
+const startTexture = loader.load("./textures/particles/8.png");
+const subTexture = loader.load("./textures/particles/4.png");
 
 /**
  * Subparticles
@@ -28,68 +32,66 @@ const subcount = 500;
 const subpositions = new Float32Array(subcount * 3);
 
 for (let i = 0; i < subcount; i++) {
-    subpositions[i * 3 + 0] = (Math.random() - 0.5) * 10;
-    subpositions[i * 3 + 1] = 0.5 - Math.random() * 8;
-    subpositions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+  subpositions[i * 3 + 0] = (Math.random() - 0.5) * 10;
+  subpositions[i * 3 + 1] = 0.5 - Math.random() * 8;
+  subpositions[i * 3 + 2] = (Math.random() - 0.5) * 10;
 }
 
 const subparticleGeometry = new THREE.BufferGeometry();
-subparticleGeometry.setAttribute('position', new THREE.BufferAttribute(subpositions, 3));
+subparticleGeometry.setAttribute(
+  "position",
+  new THREE.BufferAttribute(subpositions, 3)
+);
 
 // Particles material
 const subparticleMaterial = new THREE.PointsMaterial({
-    color: '#ffffff',
-    size: 0.08,
-    blending: THREE.AdditiveBlending,
-    alphaMap:subTexture,
-    transparent:true,
-    depthWrite: false,
-    sizeAttenuation: true,
-    transparent: true
+  color: "#ffffff",
+  size: 0.08,
+  blending: THREE.AdditiveBlending,
+  alphaMap: subTexture,
+  transparent: true,
+  depthWrite: false,
+  sizeAttenuation: true,
+  transparent: true,
 });
 
 // Points
 const subparticle = new THREE.Points(subparticleGeometry, subparticleMaterial);
 
-
 /**
  * Galaxy Parameters
- * 
- * 
+ *
+ *
  */
 
 let parameters = {
-    count: 90000,
-    size: 0.01,
-    radius: 1.5,
-    branches: 3,
-    spin: 0,
-    randomness: 0.5,
-    randomnessPower: 10,
-    insideColor: '#312eff',
-    outsideColor: '#1b8360',
-    position:{x:0, y:2, z:0}
+  count: 90000,
+  size: 0.01,
+  radius: 1.5,
+  branches: 3,
+  spin: 0,
+  randomness: 0.5,
+  randomnessPower: 10,
+  insideColor: "#312eff",
+  outsideColor: "#1b8360",
+  position: { x: 0, y: 2, z: 0 },
 };
 
-
-if(window.innerWidth <= 768)
- {
-     parameters = {
-        count: 80000,
-        size: 0.005,
-        radius: 1,
-        branches: 3,
-        spin: 0,
-        randomness: 0.5,
-        randomnessPower: 10,
-        insideColor: '#312eff',
-        outsideColor: '#1b8360',
-        position:{x:0, y:2, z:0}
-    };
-    
- }
- else
-{ parameters = {
+if (window.innerWidth <= 768) {
+  parameters = {
+    count: 80000,
+    size: 0.005,
+    radius: 1,
+    branches: 3,
+    spin: 0,
+    randomness: 0.5,
+    randomnessPower: 10,
+    insideColor: "#312eff",
+    outsideColor: "#1b8360",
+    position: { x: 0, y: 2, z: 0 },
+  };
+} else {
+  parameters = {
     count: 90000,
     size: 0.01,
     radius: 1.5,
@@ -97,32 +99,27 @@ if(window.innerWidth <= 768)
     spin: 0,
     randomness: 0.5,
     randomnessPower: 10,
-    insideColor: '#312eff',
-    outsideColor: '#1b8360',
-    position:{x:0, y:2, z:0}
-};}
-
+    insideColor: "#312eff",
+    outsideColor: "#1b8360",
+    position: { x: 0, y: 2, z: 0 },
+  };
+}
 
 // Create an array for workers
 const workers = [];
 let workerCount = 4; // Number of workers
-if (window.innerWidth <= 768)
-{
-    workerCount = 2
+if (window.innerWidth <= 768) {
+  workerCount = 2;
+} else {
+  workerCount = 3;
 }
 
-else
-{
-    workerCount = 3
-}
-
-
-let xyz = {}
-import Worker from './zgenerateGalaxyWorker.js?worker';
+let xyz = {};
+import Worker from "./zgenerateGalaxyWorker.js?worker";
 
 for (let i = 0; i < workerCount; i++) {
-    // const worker = new Worker();
-    workers.push(new Worker());
+  // const worker = new Worker();
+  workers.push(new Worker());
 }
 
 let particlesGeometry = new THREE.BufferGeometry();
@@ -130,197 +127,200 @@ let particlesMaterial = null;
 let particles = null;
 
 const generateGalaxy = () => {
-    const cleanParams = {
-        count: parameters.count,
-        maxRadius: parameters.radius,
-        branches: parameters.branches,
-        spin: parameters.spin,
-        randomnessPower: parameters.randomnessPower,
-        insideColor: parameters.insideColor,
-        outsideColor: parameters.outsideColor
+  const cleanParams = {
+    count: parameters.count,
+    maxRadius: parameters.radius,
+    branches: parameters.branches,
+    spin: parameters.spin,
+    randomnessPower: parameters.randomnessPower,
+    insideColor: parameters.insideColor,
+    outsideColor: parameters.outsideColor,
+  };
+
+  let completedWorkers = 0; // Reset completed workers count
+  // const perf1 = performance.now();
+
+  const positionsArray = new Float32Array(parameters.count * 3);
+  const colorsArray = new Float32Array(parameters.count * 3);
+
+  particlesGeometry = new THREE.BufferGeometry();
+  particlesGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(positionsArray, 3)
+  );
+  particlesGeometry.setAttribute(
+    "color",
+    new THREE.BufferAttribute(colorsArray, 3)
+  );
+
+  workers.forEach((worker, index) => {
+    const startIndex = Math.floor((index * parameters.count) / workerCount);
+    const endIndex = Math.floor(((index + 1) * parameters.count) / workerCount);
+
+    const workerParams = {
+      ...cleanParams,
+      startIndex,
+      endIndex,
+      workerIndex: index,
     };
 
-    let completedWorkers = 0; // Reset completed workers count
-    // const perf1 = performance.now();
+    worker.postMessage(workerParams);
 
+    worker.onmessage = function (event) {
+      const data = event.data;
+      const positions = new Float32Array(data.positions);
+      const colors = new Float32Array(data.colors);
+      const workerIndex = data.workerIndex;
+      const startIndex =
+        Math.floor((workerIndex * parameters.count) / workerCount) * 3;
+      const length = positions.length;
 
-    const positionsArray = new Float32Array(parameters.count * 3);
-    const colorsArray = new Float32Array(parameters.count * 3);
+      if (checkForNaN(positions) || checkForNaN(colors)) {
+        console.error("NaN values detected in worker data.");
+        return;
+      }
 
-    particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positionsArray, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+      if (
+        startIndex + length <=
+        particlesGeometry.attributes.position.array.length
+      ) {
+        particlesGeometry.attributes.position.array.set(positions, startIndex);
+        particlesGeometry.attributes.color.array.set(colors, startIndex);
+      } else {
+        console.error("Data received from worker exceeds buffer size.");
+        console.error(
+          "Received:",
+          startIndex + length,
+          "Length accepted:",
+          particlesGeometry.attributes.position.array.length
+        );
+      }
 
-    workers.forEach((worker, index) => {
-        const startIndex = Math.floor((index * parameters.count) / workerCount);
-        const endIndex = Math.floor(((index + 1) * parameters.count) / workerCount);
+      particlesGeometry.attributes.position.needsUpdate = true;
+      particlesGeometry.attributes.color.needsUpdate = true;
 
-        const workerParams = {
-            ...cleanParams,
-            startIndex,
-            endIndex,
-            workerIndex: index
-        };
-
-        worker.postMessage(workerParams);
-
-        worker.onmessage = function(event) {
-
-            const data = event.data;
-            const positions = new Float32Array(data.positions);
-            const colors = new Float32Array(data.colors);
-            const workerIndex = data.workerIndex;
-            const startIndex = Math.floor((workerIndex * parameters.count) / workerCount) * 3;
-            const length = positions.length;
-
-            if (checkForNaN(positions) || checkForNaN(colors)) {
-                console.error("NaN values detected in worker data.");
-                return;
-            }
-
-            if (startIndex + length <= particlesGeometry.attributes.position.array.length) {
-                particlesGeometry.attributes.position.array.set(positions, startIndex);
-                particlesGeometry.attributes.color.array.set(colors, startIndex);
-            } else {
-                console.error("Data received from worker exceeds buffer size.");
-                console.error('Received:', startIndex + length, 'Length accepted:', particlesGeometry.attributes.position.array.length);
-            }
-
-            particlesGeometry.attributes.position.needsUpdate = true;
-            particlesGeometry.attributes.color.needsUpdate = true;
-
-            completedWorkers++;
-            if (completedWorkers === workerCount) {
-                if (particles !== null) {
-                    scene.remove(particles);
-                    particlesGeometry.dispose();
-                    particlesMaterial.dispose();
-                    particles = null;
-                }
-                if (window.innerWidth<= 768)
-                {
-                    particlesMaterial = new THREE.PointsMaterial({
-                        size: parameters.size,
-                        // alphaMap: startTexture,
-                        // transparent: true,
-                        sizeAttenuation: true,
-                        depthWrite: false,
-                        blending: THREE.AdditiveBlending,
-                        vertexColors: true
-                    });
-                }
-                else
-                {
-                    particlesMaterial = new THREE.PointsMaterial({
-                        size: parameters.size,
-                        alphaMap: startTexture,
-                        transparent: true,
-                        sizeAttenuation: true,
-                        depthWrite: false,
-                        blending: THREE.AdditiveBlending,
-                        vertexColors: true
-                    });
-                }
-
-                particles = new THREE.Points(particlesGeometry, particlesMaterial);
-                xyz = particles.position.set(parameters.position.x, parameters.position.y, parameters.position.z);
-                particles.rotation.y = 2
-                xyz.needsUpdate = true;
-                scene.add(particles);
-                
-                
-                // const perf2 = performance.now();
-                // console.log('time taken:', perf2 - perf1);
-                
-            }
-
-            
-        };
-    });
-
-    function checkForNaN(array) {
-        for (let i = 0; i < array.length; i++) {
-            if (isNaN(array[i])) {
-                return true;
-            }
+      completedWorkers++;
+      if (completedWorkers === workerCount) {
+        if (particles !== null) {
+          scene.remove(particles);
+          particlesGeometry.dispose();
+          particlesMaterial.dispose();
+          particles = null;
         }
-        return false;
+        if (window.innerWidth <= 768) {
+          particlesMaterial = new THREE.PointsMaterial({
+            size: parameters.size,
+            // alphaMap: startTexture,
+            // transparent: true,
+            sizeAttenuation: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            vertexColors: true,
+          });
+        } else {
+          particlesMaterial = new THREE.PointsMaterial({
+            size: parameters.size,
+            alphaMap: startTexture,
+            transparent: true,
+            sizeAttenuation: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            vertexColors: true,
+          });
+        }
+
+        particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        xyz = particles.position.set(
+          parameters.position.x,
+          parameters.position.y,
+          parameters.position.z
+        );
+        particles.rotation.y = 2;
+        xyz.needsUpdate = true;
+        scene.add(particles);
+
+        // const perf2 = performance.now();
+        // console.log('time taken:', perf2 - perf1);
+      }
+    };
+  });
+
+  function checkForNaN(array) {
+    for (let i = 0; i < array.length; i++) {
+      if (isNaN(array[i])) {
+        return true;
+      }
     }
+    return false;
+  }
 };
 
-
-
-
-
-
-
 generateGalaxy();
-
-
-
 
 /**
  * Sizes
  */
 const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
+  width: window.innerWidth,
+  height: window.innerHeight,
 };
-
 
 /**
  * Camera
- */// Define a function to check if the user is on a mobile device
+ */ // Define a function to check if the user is on a mobile device
 
+let camera = new THREE.PerspectiveCamera(
+  75,
+  sizes.width / sizes.height,
+  0.1,
+  100
+);
 
-let camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-
-if(window.innerWidth <= 768){camera = new THREE.PerspectiveCamera(55, sizes.width / sizes.height, 0.1, 50);}
+if (window.innerWidth <= 768) {
+  camera = new THREE.PerspectiveCamera(55, sizes.width / sizes.height, 0.1, 50);
+}
 camera.position.set(0, 6, 4);
-camera.rotation.set(-0.767, 0,0);
-subparticle.position.y = camera.position.y
-subparticle.position.x = camera.position.x
-subparticle.position.z = camera.position.z
+camera.rotation.set(-0.767, 0, 0);
+subparticle.position.y = camera.position.y;
+subparticle.position.x = camera.position.x;
+subparticle.position.z = camera.position.z;
 scene.add(subparticle);
 
 const cameraGroup = new THREE.Group();
 scene.add(cameraGroup);
 cameraGroup.add(camera);
 
-
-
-
 /**
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+  canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio));
 
-window.addEventListener('resize', () => {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
+window.addEventListener("resize", () => {
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
 
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
 
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio));
-    if(window.innerHeight>=1250){debounceGenerateGalaxy();} // Debounced galaxy generation on resize
+  renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio));
+  if (window.innerHeight >= 1250) {
+    debounceGenerateGalaxy();
+  } // Debounced galaxy generation on resize
 });
-
-
 
 let currentSection = 0;
 
 const debounce = (func, delay) => {
-    let timeout;
-    return function() {
-        clearTimeout(timeout);
-        timeout = setTimeout(func, delay);
-    };
+  let timeout;
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(func, delay);
+  };
 };
 
 // let isUpdating = false;
@@ -336,687 +336,477 @@ const debounce = (func, delay) => {
 // };
 
 const debounceGenerateGalaxy = debounce(generateGalaxy, 0.005);
-gsap.defaults({})
-const tl = gsap.timeline()
-let direction = 0;
+gsap.defaults({});
+const tl = gsap.timeline();
+let direction = "down";
 
 // let isScrollEventActive = true; // Flag to control the scroll event listener
 const lenis = new Lenis({
-    duration: 1,
-    lerp:0.05,
-    wheelMultiplier: 1,
-    easing: (t) => t * (1 - t), // Custom easing function
-    smooth: true,
-});
-let scrollY = 0;
-lenis.on('scroll', ({scroll}) => {
-     // Exit if the scroll event is disabled
-
-    // scrollY = window.scrollY;
-    // console.log('Scrolling at position:', scroll)
-    const newSection = Math.round(scroll / sizes.height);
-    // if(pageYOffset===0)
-    // {
-    //     generateGalaxy()
-    // }
-    if (newSection !== currentSection) { // Trigger only if section changes significantly
-        direction = newSection > currentSection ? 'down' : 'up';
-        currentSection = newSection;
-        // console.log(currentSection)
-        // if(currentSection <=1)
-        // {
-        //     generateGalaxy()
-        // }
-
-        // gsap.defaults({
-        //     onComplete:generateGalaxy()
-        // })
-        // Animate galaxy parameters with GSAP
-        if (currentSection == 0 ) {        gsap.to(camera.position,
-            {
-                x:0,
-                z:4,
-                y:6,
-                ease:'power1.inOut',
-                duration:1,
-            })
-        gsap.to(camera.rotation,
-            {
-                duration:1,
-                ease:"power1.inOut",
-                x:-0.767,
-                z:0,
-                y:0
-            })}
-        if (currentSection == 1 ) 
-        {
-            if(window.innerWidth <= 768)
-                {
-                    gsap.to(parameters, {
-                        radius:1.5,
-                        spin:0,
-                        randomnessPower:10,
-                        // duration:1.5,
-                        // branches: 4,
-                        onStart: () => {
-                            parameters.count =40000;
-                            parameters.size = 0.005
-                            parameters.randomnessPower = 20
-                            parameters.randomness = 0
-                            // parameters.branches = direction === 'down' ? 5 : 3;
-                            debounceGenerateGalaxy
-                        },            
-                        onComplete: () => {
-                            parameters.count = 80000;
-                            parameters.size =0.005;
-                            // parameters.branches = direction === 'down' ? 5 : 3;
-                            debounceGenerateGalaxy
-                        },
-                        onUpdate: debounceGenerateGalaxy
-                    });
-            
-                    gsap.to(camera.position,
-                        {
-                            x:0,
-                            z:4,
-                            y:6,
-                            ease:'power1.inOut',
-                            // duration:1,
-                        })
-            
-                    gsap.to(camera.rotation,
-                        {
-            
-                            ease:"power1.inOut",
-                            x:-0.767,
-                            z:0,
-                            y:0
-                        })
-                }
-            
-            else
-                {
-                    gsap.to(parameters, {
-                        radius:1.5,
-                        spin:0,
-                        randomnessPower:10,
-                        // duration:1.5,
-                        // branches: 4,
-                        onStart: () => {
-                            parameters.count =10000;
-                            parameters.size = 0.03
-                            parameters.randomnessPower = 20
-                            parameters.randomness = 0
-                            // parameters.branches = direction === 'down' ? 5 : 3;
-                            debounceGenerateGalaxy
-                        },            
-                        onComplete: () => {
-                            parameters.count = 40000;
-                            parameters.size =0.01;
-                            // parameters.branches = direction === 'down' ? 5 : 3;
-                            debounceGenerateGalaxy
-                        },
-                        onUpdate: debounceGenerateGalaxy
-                    });
-            
-                    gsap.to(camera.position,
-                        {
-                            x:0,
-                            z:4,
-                            y:6,
-                            ease:'power1.inOut',
-                            // duration:1,
-                        })
-            
-                    gsap.to(camera.rotation,
-                        {
-            
-                            ease:"power1.inOut",
-                            x:-0.767,
-                            z:0,
-                            y:0
-                        })
-                }
-        }
-        if (currentSection == 2 ) {
-            
-            if(window.innerWidth <= 768)
-                {
-                    gsap.to(parameters, {
-                        radius:1.4,
-                        spin:4,
-                        randomnessPower:6,
-                        duration:1.5,
-                        // branches: 4,
-                        onStart: () => {
-                            parameters.count = 30000;
-                            parameters.size = 0.005
-                            parameters.randomnessPower = 20
-                            parameters.randomness = 0
-                            // parameters.branches = direction === 'down' ? 5 : 3;
-                            debounceGenerateGalaxy
-                        },            
-                        onComplete: () => {
-                            parameters.count =60000;
-                            parameters.size = 0.005;
-                            // parameters.branches = direction === 'down' ? 5 : 3;
-                            debounceGenerateGalaxy
-                        },
-                        onUpdate: debounceGenerateGalaxy
-                    });
-            
-                    gsap.to(camera.position,
-                        {
-                            x: 0,
-                            z:2,
-                            y:3,
-                            ease:'power1.inOut',
-                            // duration:1,
-                        })
-                    gsap.to(camera.rotation,
-                        {
-                            ease:"power1.inOut",
-                            x:-0.3,
-                            z:0,
-                            y:0
-                        })
-                }
-        else{gsap.to(parameters, {
-            radius:4,
-            spin:1.5,
-            randomnessPower:4,
-            duration:1.5,
-            // branches: 4,
-            onStart: () => {
-                parameters.count =90000;
-                parameters.size = 0.01
-                parameters.randomnessPower = 20
-                parameters.randomness = 0
-                // parameters.branches = direction === 'down' ? 5 : 3;
-                debounceGenerateGalaxy
-            },            
-            onComplete: () => {
-                parameters.count =250000;
-                parameters.size = 0.01;
-                // parameters.branches = direction === 'down' ? 5 : 3;
-                debounceGenerateGalaxy
-            },
-            onUpdate: debounceGenerateGalaxy
-        });
-
-        gsap.to(camera.position,
-            {
-                x: 0,
-                z:4,
-                y:4,
-                ease:'power1.inOut',
-                // duration:1,
-            })
-        gsap.to(camera.rotation,
-            {
-                ease:"power1.inOut",
-                x:-0.3,
-                z:0,
-                y:0
-            })}
-    }
-
-
-
-    if(currentSection == 4)
-        {
-            if (window.innerWidth <= 768)
-                {
-            tl.to(camera.position,
-                {
-                    x:-.5,
-                    y:6,
-                    z:0.5,
-                    // duration:1,
-                    ease:'linear',
-                   
-                    
-                })
-            tl.to(camera.rotation,
-                {
-                    x:-1.6,
-                    y:0,
-                    z:0,
-                    // duration:1,
-                    ease:'linear'
-                })}
-    else
-{tl.to(camera.position,
-    {
-        x:-6,
-        y:12,
-        z:0.5,
-        // duration:1,
-        ease:'linear',
-       
-        
-    })
-tl.to(camera.rotation,
-    {
-        x:-1.6,
-        y:0,
-        z:0,
-        // duration:1,
-        ease:'linear'
-    })}}
-// }
-    if(currentSection == 5)
-        {
-            if (window.innerWidth <= 768)
-                {
-                    tl.to(camera.position,
-                        {
-                            x:.5,
-                            y:5,
-                            z:3.5,
-                            ease:'power1.inOut',
-                            // duration:1
-                        })
-                    tl.to(camera.rotation,
-                        {
-                            x:-0.93,
-                            y:0,
-                            z:0,
-                            ease:'power1.inOut'
-                        })
-                }
-else
-{
-    tl.to(camera.position,
-    {
-        x:3.5,
-        y:7,
-        z:6.5,
-        ease:'power1.inOut',
-        // duration:1
-    })
-    tl.to(camera.rotation,
-    {
-        x:-0.93,
-        y:0,
-        z:0,
-        ease:'power1.inOut'
-    })}}
-    if(currentSection == 6)
-        {
-            if (window.innerWidth <= 768)
-            {
-                tl.to(camera.position,
-                    {
-                        x:-1.5,
-                        y:3.5,
-                        z:1,
-                        ease:'power1.inOut'
-                    })
-                tl.to(camera.rotation,
-                    {
-                        x:- 0.895,
-                        y:- 0.455,
-                        z:- 0.347,
-                        ease:'power1.inOut',
-                        // duration:1,
-                    })
-            }
-
-            else
-            {
-                tl.to(camera.position,
-                    {
-                        x:-4.5,
-                        y:3.5,
-                        z:1,
-                        ease:'power1.inOut'
-                    })
-                tl.to(camera.rotation,
-                    {
-                        x:- 0.895,
-                        y:- 0.455,
-                        z:- 0.347,
-                        ease:'power1.inOut',
-                        // duration:1,
-                    })
-            }
-        }
-    if(currentSection == 7)
-        {
-tl.to(camera.position,
-    {
-        x:2,
-        y:2,
-        z:0,
-        ease:'power1.inOut'
-    })
-tl.to(camera.rotation,
-    {
-        x:0,
-        y:2,
-        z:0,
-        ease:'power1.inOut',
-        // duration:1,
-    })}
-
-    if(currentSection == 8)
-        // {
-            {
-                if (window.innerWidth <= 768)
-                
-                    {
-                        tl.to(camera.position,
-                            {
-                                x:-.5,
-                                y:2,
-                                z:2.5,
-                                ease:'power1.inOut',
-                                // duration:1,
-                            })
-                        tl.to(camera.rotation,
-                            {
-                                x:0,
-                                y:0,
-                                z:0,
-                                ease:'power1.inOut',
-                                // duration:1,
-                            })
-                    }
-
-                else 
-                {
-                    tl.to(camera.position,
-                        {
-                            x:-3.5,
-                            y:2,
-                            z:2.5,
-                            ease:'power1.inOut',
-                            // duration:1,
-                        })
-                    tl.to(camera.rotation,
-                        {
-                            x:0,
-                            y:0,
-                            z:0,
-                            ease:'power1.inOut',
-                            // duration:1,
-                        })
-                }
-            }
-
-        
-            
-    }
+  duration: 1,
+  lerp: 0.05,
+  wheelMultiplier: 1,
+  easing: (t) => t * (1 - t), // Custom easing function
+  smooth: true,
+  smoothWheel: true,
+  smoothTouch: true,
 });
 function raf(time) {
     lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
-
-lenis.on('scroll', () => {
     ScrollTrigger.update();
-});
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+  
+  lenis.on("scroll", ScrollTrigger.update);
+  
+  // Scene Variables
+ 
+ 
+  function getTotalHeight() {
+    return document.body.scrollHeight;
+  }
+  
+  // ScrollTrigger Section Detection
+  ScrollTrigger.create({
+    trigger: "body",
+    start: "top top",
+    end: () => `${getTotalHeight()}px`,
+    // markers: true,
+    onUpdate: (self) => {
+      const newSection = Math.round(self.scroll() / sizes.height);
+      if (newSection !== currentSection) {
+        direction = newSection > currentSection ? "down" : "up";
+        currentSection = newSection;
+        handleSectionChange(currentSection, direction);
+      }
+    },
+  });
+  
+  // Handle Section Animations
+  function handleSectionChange(section, direction) {
+    let duration = direction === "down" ? 1.5 : 0.8; // Slower down, faster up
+  
+    switch (section) {
+      case 0:
+        tl.to(camera.position, { x: 0, z: 4, y: 6, ease: "power1.inOut", duration: 1 });
+        tl.to(camera.rotation, { x: -0.767, z: 0, y: 0, ease: "power1.inOut", duration: 1 });
+        break;
+  
+      case 1:
+        animateGalaxy({
+         duration:duration,
+          radius: 1.5,
+          spin: 0,
+          randomnessPower: 10,
+          onStartValues: mobileCheck()
+            ? { count: 40000, size: 0.005, randomnessPower: 20, randomness: 0 }
+            : { count: 10000, size: 0.03, randomnessPower: 20, randomness: 0 },
+          onCompleteValues: mobileCheck()
+            ? { count: 80000, size: 0.005 }
+            : { count: 40000, size: 0.01 },
+        });
+  
+        tl.to(camera.position, { x: 0, z: 4, y: 6, ease: "power1.inOut" });
+        tl.to(camera.rotation, { x: -0.767, z: 0, y: 0, ease: "power1.inOut" });
+        break;
+  
+      case 2:
+        animateGalaxy({
+            duration:duration,
+          radius: mobileCheck() ? 1.4 : 4,
+          spin: mobileCheck() ? 4 : 1.5,
+          randomnessPower: mobileCheck() ? 6 : 4,
+          onStartValues: mobileCheck()
+            ? { count: 30000, size: 0.005, randomnessPower: 20, randomness: 0 }
+            : { count: 90000, size: 0.01, randomnessPower: 20, randomness: 0 },
+          onCompleteValues: mobileCheck()
+            ? { count: 60000, size: 0.005 }
+            : { count: 250000, size: 0.01 },
+        });
+  
+        gsap.to(camera.position, { x: 0, z: mobileCheck() ? 2 : 4, y: mobileCheck() ? 3 : 4, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.3, z: 0, y: 0, ease: "power1.inOut" });
+        break;
+  
+      case 3:
+        gsap.to(camera.position, { x: 0, y: 5, z: 3, ease: "power1.inOut", duration });
+        gsap.to(camera.rotation, { x: -0.5, y: 0, z: 0, ease: "power1.inOut", duration });
+        break;
+  
+      case 4:
+        tl.to(camera.position, { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5, ease: "linear" });
+        tl.to(camera.rotation, { x: -1.6, y: 0, z: 0, ease: "linear" });
+        break;
+  
+      case 5:
+        tl.to(camera.position, { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5, ease: "power1.inOut" });
+        tl.to(camera.rotation, { x: -0.93, y: 0, z: 0, ease: "power1.inOut" });
+        break;
+  
+      case 6:
+        tl.to(camera.position, { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1, ease: "power1.inOut" });
+        tl.to(camera.rotation, { x: -0.895, y: -0.455, z: -0.347, ease: "power1.inOut" });
+        break;
+  
+      case 7:
+        tl.to(camera.position, { x: 2, y: 2, z: 0, ease: "power1.inOut" });
+        tl.to(camera.rotation, { x: 0, y: 2, z: 0, ease: "power1.inOut" });
+        break;
+  
+      case 8:
+        tl.to(camera.position, { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5, ease: "power1.inOut" });
+        tl.to(camera.rotation, { x: 0, y: 0, z: 0, ease: "power1.inOut" });
+        break;
+  
+      default:
+        console.warn("No animation defined for section", section);
+    }
+  }
+  
+  // Galaxy Animation
+  function animateGalaxy(params) {
+    gsap.to(parameters, {
+      ...params,
+      onStart: () => {
+        Object.assign(parameters, params.onStartValues);
+        debounceGenerateGalaxy();
+      },
+      onComplete: () => {
+        Object.assign(parameters, params.onCompleteValues);
+        debounceGenerateGalaxy();
+      },
+      onUpdate: debounceGenerateGalaxy,
+    });
+  }
+  
+  // Mobile Check
+  function mobileCheck() {
+    return window.innerWidth <= 768;
+  }
 
 // Create a simple ScrollTrigger animation
-ScrollTrigger.defaults({
-    markers: false,
-    // preventOverlaps:true
+
+// preventOverlaps:true
+
+gsap.to(".hero", {
+  duration: 4,
+  opacity: 0,
+  ease: "power1.inOut",
+  // y:'50%',
+  scrollTrigger: {
+    trigger: "body",
+    start: "top top",
+    // preventOverlaps:true,
+    end: "+=50%",
+    // pin: true,
+    scrub: 2,
+    markers: false, // Set to false to hide debugging markers
+  },
+});
+
+const heros = document.querySelectorAll("#pin-hero");
+
+const tweenkleKhanna = gsap.timeline();
+heros.forEach((hero, i) => {
+  tweenkleKhanna.to(hero, {
+    duration: 4,
+    opacity: 0,
+    ease: "power1.inOut",
+    y: "100%",
+    // preventOverlaps:true,
+    scrollTrigger: {
+      trigger: hero,
+      pin: true,
+      start: "bottom 20%",
+      // preventOverlaps:true,
+      end: "+=50%",
+      scrub: true,
+      // markers: false  // Set to false to hide debugging markers
+    },
   });
+});
+const seconds = document.querySelectorAll("#pin-second");
 
-  gsap.to('.hero',
+seconds.forEach((second, i) => {
+  gsap.to(second, {
+    duration: 2,
+    opacity: 0,
+    ease: "power4.inOut",
+    backdropFilter: "blur(20px)",
+    scrollTrigger: {
+      trigger: second,
+      pin: true,
+      // pinSpacer:false,
+      start: "top top",
+      end: "center",
+      scrub: true,
+      // markers: true // Set to false to hide debugging markers
+    },
+  });
+});
+
+const section = document.querySelector("#team");
+const about = document.querySelector("#about");
+const horiSection = document.querySelectorAll("#services");
+const horizontal = document.querySelector(".services-container");
+const xWidth = horizontal.getBoundingClientRect().width;
+
+const tl2 = gsap.timeline();
+
+gsap.to(
+    about,
+
     {
-        duration:4,
-        opacity:0,
-        ease:'power1.inOut',
-        // y:'50%',
-        scrollTrigger:
-            {
-                trigger: 'body',
-                start: 'top top',
-                // preventOverlaps:true,
-                end: '+=50%',
-                // pin: true,
-                scrub:2,
-                markers: false// Set to false to hide debugging markers
-            }
-    })
-
-  const heros = document.querySelectorAll('#pin-hero')
-  
-  const tweenkleKhanna = gsap.timeline()
-  heros.forEach((hero, i) => 
-    {
-
-        tweenkleKhanna.to(hero,
-        {
-            duration:4,
+      duration: 1,
+      // webkitBackdropFilter:'blur(0px)',
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: about,
+        pin:true,
+        start: "top top",
+        end: "40%",
+        pinSpacer: true,
+        pinSpacing: true,
+        // preventOverlaps:true,
+        // markers: true,
+        // refreshPriority: 1,
+        // pinType: transform,
+        scrub: true,
+        onLeave: () => {
+          gsap.to(about, {
             opacity:0,
-            ease:'power1.inOut',
-            y:'100%',
-            // preventOverlaps:true,
-            scrollTrigger:
-                {
-                    trigger: hero,
-                    pin: true,
-                    start: 'bottom 20%',
-                    // preventOverlaps:true,
-                    end: '+=50%',
-                    scrub:true,
-                    // markers: false  // Set to false to hide debugging markers
-                }
-        })
-    });
-  const seconds = document.querySelectorAll('#pin-second')
-  
-
-  seconds.forEach((second, i) => 
-    {
-
-    gsap.to(second,
-        {
-            duration:2,
-            opacity:0,
-            ease:'power4.inOut',
-            backdropFilter:'blur(20px)',
-            scrollTrigger:
-                {
-                    trigger: second,
-                    pin: true,
-                    // pinSpacer:false,
-                    start: 'top top',
-                    end: 'center',
-                    scrub:true,
-                    // markers: true // Set to false to hide debugging markers
-                }
-        })
-    });
-
-  const sections = document.querySelectorAll('#pin-section');
-  const horiSection = document.querySelectorAll('#hori-section');
-  const horizontal = document.querySelector('.services-container');
-  const xWidth = horizontal.getBoundingClientRect().width;
-  
-  const tl2 = gsap.timeline()
-  ScrollTrigger.create({
-      trigger:horiSection,
-     
-      start:'top top',
-      end: window.innerWidth > 1250 ? "+=1500vh": '+=900vh',
-      pin:horiSection,
-    //   pinSpacer: true,
-      scrub: 1,
-      ease:'power2.out',
-    //   refresh:true,
-      markers: false,
-      onUpdate: (self)=>{
-          gsap.to(horizontal,{
-              x:`${-xWidth * self.progress}px`,
           });
-          gsap.to(horiSection,{
-              opacity: self.progress >= 0.95 ? 0 : 1 
-          })
-      }
-  });  
-  sections.forEach((section, i) => 
-    {
-        
-    tl2.to(section,
+          // ScrollTrigger.update()
+        },
+        onEnterBack: () => {
+          gsap.to(about, {
+            opacity:1,
+            backdropFilter:"blur(10px)",
+          });
+        },
+        // onEnter:()=>{
+        //     ScrollTrigger.update()
+        // },
 
-        {
-            duration:1,
-            opacity: window.innerWidth < 1250 ? (i >= sections.length - 1 ? 1 : 0) : 0,
-            backdropFilter:window.innerWidth < 1250 ? (i >= sections.length - 1 ? 'blur(10px)' : 'blur(0px)') : 'blur(0px)',
-            // webkitBackdropFilter:'blur(0px)',
-            ease:'power1.out',
-            scrollTrigger:
-                {
-                    trigger: section,
-                    pin:  window.innerWidth < 1250 ? (i >= sections.length - 1 ? false : true) : true,
-                    start: 'top top',
-                    end: '40%',
-                    pinSpacer:false,
-                    
-                    scrub: true,
-                    // markers:true
-                    // Set to false to hide debugging markers
-                }
-        })
+        // markers:true
+        // Set to false to hide debugging markers
+      },
+    }
+  );
+ 
+
+
+ScrollTrigger.create({
+  trigger: horiSection,
+  // preventOverlaps:true,
+  start: "top top",
+  end: window.innerWidth > 1250 ? "+=1500vh" : "+=900vh",
+  pin: horiSection,
+  scrub: 1,
+  pinSpacer: true,
+  pinSpacing: true,
+//   refreshPriority: 1,
+  ease: "power2.out",
+//   markers: true,
+  onLeave: () => {
+    gsap.to(horiSection, {
+      opacity: 0,
     });
-  
+  },
+  // onEnter:()=>{
+  //     ScrollTrigger.refresh()
+  // },
+  onEnterBack: () => {
+    gsap.to(horiSection, {
+      opacity: 1,
+    });
+  },
+  onUpdate: (self) => {
+    gsap.to(horizontal, {
+      x: `${-xWidth * self.progress}px`,
+    });
+  },
+});
 
+  gsap.to(
+    section,
 
+    {
+      duration: 1,
+      // webkitBackdropFilter:'blur(0px)',
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: section,
+        pin: window.innerWidth < 1250 ? false : true,
+        start: "top top",
+        end: "40%",
+        pinSpacer: true,
+        pinSpacing: true,
+        // preventOverlaps:true,
+        // markers: true,
+        // refreshPriority: 1,
+        // pinType: transform,
+        scrub: true,
+        onLeave: () => {
+          gsap.to(section, {
+            opacity:
+              window.innerWidth < 1250 ? 1 : 0,
+            backdropFilter:
+              window.innerWidth < 1250 ? "blur(10px)" : "blur(0px)",
+          });
+          // ScrollTrigger.update()
+        },
+        onEnterBack: () => {
+          gsap.to(section, {
+            opacity: 1,
+            backdropFilter: "blur(0px)" ,
+          });
+        },
+        // onEnter:()=>{
+        //     ScrollTrigger.update()
+        // },
 
- // This should not be undefined
-  // Cursor position object
-  const cursor = { x: 0, y: 0 };
-  let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  let orientation = { alpha: 0, beta: 0, gamma: 0 };
+        // markers:true
+        // Set to false to hide debugging markers
+      },
+    }
+  );
 
-  // Function to handle device orientation
-  function handleDeviceOrientation(event) {
-      orientation.alpha = event.alpha;  // Rotation around z-axis
-      orientation.beta = event.beta;    // Rotation around x-axis
-      orientation.gamma = event.gamma;  // Rotation around y-axis
-      console.log(`Orientation updated: alpha=${orientation.alpha}, beta=${orientation.beta}, gamma=${orientation.gamma}`);
-  }
+// This should not be undefined
+// Cursor position object
+const cursor = { x: 0, y: 0 };
+let isPhone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+let orientation = { alpha: 0, beta: 0, gamma: 0 };
 
-  // Request permission for iOS devices
-  function requestDeviceOrientationPermission() {
-      const statusDiv = document.getElementById('status');
-      const requestButton = document.getElementById('requestButton');
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-          console.log('Requesting device orientation permission...');
-          DeviceOrientationEvent.requestPermission()
-              .then(permissionState => {
-                  if (permissionState === 'granted') {
-                      console.log('Device orientation permission granted.');
-                      statusDiv.textContent = 'Device orientation permission granted.';
-                      window.addEventListener('deviceorientation', handleDeviceOrientation);
-                      statusDiv.remove();
-                      requestButton.remove();
-                  } else {
-                      console.log('Device orientation permission denied.');
-                      statusDiv.textContent = 'Device orientation permission denied.';
-                  }
-              })
-              .catch(error => {
-                  console.error('Error requesting device orientation permission:', error);
-                  statusDiv.textContent = 'Error requesting device orientation permission.';
-              });
-      } else {
-          console.log('Device orientation permission request not required.');
-          statusDiv.textContent = 'Device orientation permission request not required.';
-          window.addEventListener('deviceorientation', handleDeviceOrientation);
+// Function to handle device orientation
+function handleDeviceOrientation(event) {
+  orientation.alpha = event.alpha; // Rotation around z-axis
+  orientation.beta = event.beta; // Rotation around x-axis
+  orientation.gamma = event.gamma; // Rotation around y-axis
+  console.log(
+    `Orientation updated: alpha=${orientation.alpha}, beta=${orientation.beta}, gamma=${orientation.gamma}`
+  );
+}
+
+// Request permission for iOS devices
+function requestDeviceOrientationPermission() {
+  const statusDiv = document.getElementById("status");
+  const requestButton = document.getElementById("requestButton");
+  if (typeof DeviceOrientationEvent.requestPermission === "function") {
+    console.log("Requesting device orientation permission...");
+    DeviceOrientationEvent.requestPermission()
+      .then((permissionState) => {
+        if (permissionState === "granted") {
+          console.log("Device orientation permission granted.");
+          statusDiv.textContent = "Device orientation permission granted.";
+          window.addEventListener("deviceorientation", handleDeviceOrientation);
           statusDiv.remove();
           requestButton.remove();
-      }
+        } else {
+          console.log("Device orientation permission denied.");
+          statusDiv.textContent = "Device orientation permission denied.";
+        }
+      })
+      .catch((error) => {
+        console.error("Error requesting device orientation permission:", error);
+        statusDiv.textContent =
+          "Error requesting device orientation permission.";
+      });
+  } else {
+    console.log("Device orientation permission request not required.");
+    statusDiv.textContent =
+      "Device orientation permission request not required.";
+    window.addEventListener("deviceorientation", handleDeviceOrientation);
+    statusDiv.remove();
+    requestButton.remove();
   }
+}
 
-  // Add event listener to the button
-  document.getElementById('requestButton').addEventListener('click', requestDeviceOrientationPermission);
+// Add event listener to the button
+document
+  .getElementById("requestButton")
+  .addEventListener("click", requestDeviceOrientationPermission);
 
-  // Throttle function to limit the frequency of event handling
-  function throttle(func, limit) {
-      let lastFunc;
-      let lastRan;
-      return function() {
-          const context = this;
-          const args = arguments;
-          if (!lastRan) {
-              func.apply(context, args);
-              lastRan = Date.now();
-          } else {
-              clearTimeout(lastFunc);
-              lastFunc = setTimeout(function() {
-                  if ((Date.now() - lastRan) >= limit) {
-                      func.apply(context, args);
-                      lastRan = Date.now();
-                  }
-              }, limit - (Date.now() - lastRan));
-          }
-      };
-  }
+// Throttle function to limit the frequency of event handling
+function throttle(func, limit) {
+  let lastFunc;
+  let lastRan;
+  return function () {
+    const context = this;
+    const args = arguments;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function () {
+        if (Date.now() - lastRan >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  };
+}
 
-  // Add mousemove event listener for desktop
-  if (!isMobile) {
-      window.addEventListener('mousemove', (event) => {
-          cursor.x = mouse.x / sizes.width - 0.5;
-          cursor.y = mouse.y / sizes.height - 0.5;
-          
-          
-      });  
-  }
-  
+// Add mousemove event listener for desktop
+if (!isPhone) {
+  window.addEventListener("mousemove", (event) => {
+    cursor.x = mouse.x / sizes.width - 0.5;
+    cursor.y = mouse.y / sizes.height - 0.5;
+  });
+}
 
-  // Display status if not on a mobile device
-  if (window.innerWidth>1250) {
-      document.getElementById('status').textContent = 'Not a mobile device.';
-  }
+// Display status if not on a mobile device
+if (window.innerWidth > 1250) {
+  document.getElementById("status").textContent = "Not a mobile device.";
+}
 
-  /**
+/**
    * Animate
 html
 Copy code
    */
-  const clock = new THREE.Clock();
-  let previousTime = 0;
+const clock = new THREE.Clock();
+let previousTime = 0;
 
-  const tick = () => {
-      const elapsedTime = clock.getElapsedTime();
-      const deltaTime = elapsedTime - previousTime;
-      previousTime = elapsedTime;
+const tick = () => {
+  const elapsedTime = clock.getElapsedTime();
+  const deltaTime = elapsedTime - previousTime;
+  previousTime = elapsedTime;
 
-      if (particles) {
-          particles.rotation.y = elapsedTime * 0.05;
-      }
+  if (particles) {
+    particles.rotation.y = elapsedTime * 0.05;
+  }
 
-      subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x;
-      subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5;
-      subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y;
+  subparticle.position.x = Math.cos(elapsedTime) * 0.05 + camera.position.x;
+  subparticle.position.z = Math.sin(elapsedTime) * 0.05 + camera.position.z - 5;
+  subparticle.position.y = Math.sin(elapsedTime) * 0.05 + camera.position.y;
 
-      // Animate camera
-      if (isMobile) {
-          // Apply orientation data to camera group on mobile
-          const parallaxX = orientation.gamma / 90;  // Normalize gamma to [-1, 1]
-          const parallaxY = orientation.beta / 90;   // Normalize beta to [-1, 1]
+  // Animate camera
+  if (isPhone) {
+    // Apply orientation data to camera group on mobile
+    const parallaxX = orientation.gamma / 90; // Normalize gamma to [-1, 1]
+    const parallaxY = orientation.beta / 90; // Normalize beta to [-1, 1]
 
-          cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-          cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
-      } else {
-          // Apply cursor movement to camera group on desktop
-          const parallaxX = cursor.x * 0.5;
-          const parallaxY = -cursor.y * 0.5;
+    cameraGroup.position.x +=
+      (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+    cameraGroup.position.y +=
+      (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+  } else {
+    // Apply cursor movement to camera group on desktop
+    const parallaxX = cursor.x * 0.5;
+    const parallaxY = -cursor.y * 0.5;
 
-          cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
-          cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
-      }
-      
-      renderer.render(scene, camera);
-      window.requestAnimationFrame(tick);
-  };
+    cameraGroup.position.x +=
+      (parallaxX - cameraGroup.position.x) * 2 * deltaTime;
+    cameraGroup.position.y +=
+      (parallaxY - cameraGroup.position.y) * 2 * deltaTime;
+  }
 
-  // Start the animation
-  tick();
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(tick);
+};
+
+// Start the animation
+tick();
