@@ -217,6 +217,12 @@ document.addEventListener("DOMContentLoaded", function() {
     openBtns.forEach(function(openBtn) {
         openBtn.addEventListener("click", function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
+            event.stopPropagation(); // Stop bubbling up
+                    // Store the current scroll position
+            const scrollY = window.scrollY;
+
+        // Apply the no-scroll class and keep the user in the same position
+            document.body.style.top = `-${scrollY}px`;
             contactForm.style.display = "block"; // Show the form
             overlay.style.display = "block"; // Show the overlay
             document.body.classList.add("no-scroll"); // Disable scrolling
@@ -232,6 +238,10 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.classList.remove("no-scroll"); // Enable scrolling
             contactForm.classList.remove("form-success")
             contactForm.classList.add("form-default")
+                // Restore the scroll position
+            const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+            document.body.style.removeProperty("top");
+            window.scrollTo(0, scrollY);
         });
     });
 
@@ -241,6 +251,10 @@ document.addEventListener("DOMContentLoaded", function() {
         contactForm.style.display = "none"; // Hide the form
         overlay.style.display = "none"; // Hide the overlay
         document.body.classList.remove("no-scroll"); // Enable scrolling
+        // Restore the scroll position
+        const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+        document.body.style.removeProperty("top");
+        window.scrollTo(0, scrollY);
     });
     contactForm.addEventListener("submit", async function (event) {
         event.preventDefault();

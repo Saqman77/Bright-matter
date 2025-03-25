@@ -350,6 +350,7 @@ const lenis = new Lenis({
   smoothWheel: true,
   smoothTouch: true,
 });
+// RequestAnimationFrame for smoother updates
 function raf(time) {
     lenis.raf(time);
     ScrollTrigger.update();
@@ -359,42 +360,53 @@ function raf(time) {
   
   lenis.on("scroll", ScrollTrigger.update);
   
-  // Scene Variables
- 
- 
+  // Get total height dynamically
   function getTotalHeight() {
     return document.body.scrollHeight;
   }
   
-  // ScrollTrigger Section Detection
+  // Section Variables
+
+  
+  // ScrollTrigger Section Detection with GSAP's Velocity
   ScrollTrigger.create({
     trigger: "body",
     start: "top top",
     end: () => `${getTotalHeight()}px`,
-    // markers: true,
     onUpdate: (self) => {
+      const scrollSpeed = self.getVelocity(); // Scroll speed in pixels per second
+      const fastScrollThreshold = 2000; // Adjust for skipping sensitivity
+  
       const newSection = Math.round(self.scroll() / sizes.height);
       if (newSection !== currentSection) {
         direction = newSection > currentSection ? "down" : "up";
+  
+        // Skip animation if scrolling too fast
+        if (Math.abs(scrollSpeed) > fastScrollThreshold) {
+          console.log("Skipping animation due to high velocity:", scrollSpeed);
+          handleSectionJump(newSection);
+        } else {
+          handleSectionChange(newSection, direction);
+        }
+  
         currentSection = newSection;
-        handleSectionChange(currentSection, direction);
       }
     },
   });
   
-  // Handle Section Animations
+  // Handle Section Animations (Smooth Transitions)
   function handleSectionChange(section, direction) {
-    let duration = direction === "down" ? 1.5 : 0.8; // Slower down, faster up
+    let duration = direction === "down" ? 1.5 : 0.8;
   
     switch (section) {
       case 0:
-        tl.to(camera.position, { x: 0, z: 4, y: 6, ease: "power1.inOut", duration: 1 });
-        tl.to(camera.rotation, { x: -0.767, z: 0, y: 0, ease: "power1.inOut", duration: 1 });
+        gsap.to(camera.position, { x: 0, y: 6, z: 4, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.767, y: 0, z: 0, duration, ease: "power1.inOut" });
         break;
   
       case 1:
         animateGalaxy({
-         duration:duration,
+          duration,
           radius: 1.5,
           spin: 0,
           randomnessPower: 10,
@@ -406,13 +418,13 @@ function raf(time) {
             : { count: 40000, size: 0.01 },
         });
   
-        tl.to(camera.position, { x: 0, z: 4, y: 6, ease: "power1.inOut" });
-        tl.to(camera.rotation, { x: -0.767, z: 0, y: 0, ease: "power1.inOut" });
+        gsap.to(camera.position, { x: 0, y: 6, z: 4, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.767, y: 0, z: 0, duration, ease: "power1.inOut" });
         break;
   
       case 2:
         animateGalaxy({
-            duration:duration,
+          duration,
           radius: mobileCheck() ? 1.4 : 4,
           spin: mobileCheck() ? 4 : 1.5,
           randomnessPower: mobileCheck() ? 6 : 4,
@@ -424,43 +436,49 @@ function raf(time) {
             : { count: 250000, size: 0.01 },
         });
   
-        gsap.to(camera.position, { x: 0, z: mobileCheck() ? 2 : 4, y: mobileCheck() ? 3 : 4, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.3, z: 0, y: 0, ease: "power1.inOut" });
+        gsap.to(camera.position, { x: 0, y: mobileCheck() ? 3 : 4, z: mobileCheck() ? 2 : 4, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.3, y: 0, z: 0, duration, ease: "power1.inOut" });
         break;
   
       case 3:
-        gsap.to(camera.position, { x: 0, y: 5, z: 3, ease: "power1.inOut", duration });
-        gsap.to(camera.rotation, { x: -0.5, y: 0, z: 0, ease: "power1.inOut", duration });
+        gsap.to(camera.position, { x: 0, y: 5, z: 3, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.5, y: 0, z: 0, duration, ease: "power1.inOut" });
         break;
   
       case 4:
-        tl.to(camera.position, { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5, ease: "linear" });
-        tl.to(camera.rotation, { x: -1.6, y: 0, z: 0, ease: "linear" });
+        gsap.to(camera.position, { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5, duration, ease: "linear" });
+        gsap.to(camera.rotation, { x: -1.6, y: 0, z: 0, duration, ease: "linear" });
         break;
   
       case 5:
-        tl.to(camera.position, { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5, ease: "power1.inOut" });
-        tl.to(camera.rotation, { x: -0.93, y: 0, z: 0, ease: "power1.inOut" });
+        gsap.to(camera.position, { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.93, y: 0, z: 0, duration, ease: "power1.inOut" });
         break;
   
       case 6:
-        tl.to(camera.position, { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1, ease: "power1.inOut" });
-        tl.to(camera.rotation, { x: -0.895, y: -0.455, z: -0.347, ease: "power1.inOut" });
+        gsap.to(camera.position, { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: -0.895, y: -0.455, z: -0.347, duration, ease: "power1.inOut" });
         break;
   
       case 7:
-        tl.to(camera.position, { x: 2, y: 2, z: 0, ease: "power1.inOut" });
-        tl.to(camera.rotation, { x: 0, y: 2, z: 0, ease: "power1.inOut" });
+        gsap.to(camera.position, { x: 2, y: 2, z: 0, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: 0, y: 2, z: 0, duration, ease: "power1.inOut" });
         break;
   
       case 8:
-        tl.to(camera.position, { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5, ease: "power1.inOut" });
-        tl.to(camera.rotation, { x: 0, y: 0, z: 0, ease: "power1.inOut" });
+        gsap.to(camera.position, { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5, duration, ease: "power1.inOut" });
+        gsap.to(camera.rotation, { x: 0, y: 0, z: 0, duration, ease: "power1.inOut" });
         break;
   
       default:
         console.warn("No animation defined for section", section);
     }
+  }
+  
+  // Skip Animations When Scrolling Fast (Instant Jump to Position)
+  function handleSectionJump(section) {
+    camera.position.set(0, 6, 4);
+    camera.rotation.set(-0.767, 0, 0);
   }
   
   // Galaxy Animation
@@ -479,10 +497,11 @@ function raf(time) {
     });
   }
   
-  // Mobile Check
+  // Mobile Check Function
   function mobileCheck() {
     return window.innerWidth <= 768;
   }
+  
 
 // Create a simple ScrollTrigger animation
 
@@ -659,7 +678,7 @@ ScrollTrigger.create({
         onEnterBack: () => {
           gsap.to(section, {
             opacity: 1,
-            backdropFilter: "blur(0px)" ,
+            backdropFilter: "blur(10px)" ,
           });
         },
         // onEnter:()=>{
