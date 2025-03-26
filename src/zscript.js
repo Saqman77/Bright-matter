@@ -323,17 +323,7 @@ const debounce = (func, delay) => {
   };
 };
 
-// let isUpdating = false;
 
-// const updateGalaxy = () => {
-//     if (!isUpdating) {
-//         isUpdating = true;
-//         requestIdleCallback(() => {
-//             generateGalaxy();
-//             isUpdating = false;
-//         });
-//     }
-// };
 
 const debounceGenerateGalaxy = debounce(generateGalaxy, 0.005);
 gsap.defaults({});
@@ -345,167 +335,113 @@ const lenis = new Lenis({
   duration: 1,
   lerp: 0.05,
   wheelMultiplier: 1,
-  easing: (t) => t * (1 - t), // Custom easing function
+  easing: (t) => t * (1 - t),
   smooth: true,
   smoothWheel: true,
   smoothTouch: true,
 });
-// RequestAnimationFrame for smoother updates
+
 function raf(time) {
-    lenis.raf(time);
-    ScrollTrigger.update();
-    requestAnimationFrame(raf);
-  }
+  lenis.raf(time);
+  ScrollTrigger.update();
   requestAnimationFrame(raf);
-  
-  lenis.on("scroll", ScrollTrigger.update);
-  
-  // Get total height dynamically
-  function getTotalHeight() {
-    return document.body.scrollHeight;
-  }
-  
-  // Section Variables
+}
+requestAnimationFrame(raf);
+lenis.on("scroll", ScrollTrigger.update);
 
-  
-  // ScrollTrigger Section Detection with GSAP's Velocity
-  ScrollTrigger.create({
-    trigger: "body",
-    start: "top top",
-    end: () => `${getTotalHeight()}px`,
-    onUpdate: (self) => {
-      const scrollSpeed = self.getVelocity(); // Scroll speed in pixels per second
-      const fastScrollThreshold = 2000; // Adjust for skipping sensitivity
-  
-      const newSection = Math.round(self.scroll() / sizes.height);
-      if (newSection !== currentSection) {
-        direction = newSection > currentSection ? "down" : "up";
-  
-        // Skip animation if scrolling too fast
-        if (Math.abs(scrollSpeed) > fastScrollThreshold) {
-          console.log("Skipping animation due to high velocity:", scrollSpeed);
-          handleSectionJump(newSection);
-        } else {
-          handleSectionChange(newSection, direction);
-        }
-  
-        currentSection = newSection;
-      }
+const sections = [
+  {
+    id: "#main",
+    camera: { position: { x: 0, y: 6, z: 4 }, rotation: { x: -0.767, y: 0, z: 0 } },
+  },
+  {
+    id: "#tag-section",
+    galaxy: {
+      radius: 1.5,
+      spin: 0,
+      randomnessPower: 10,
+      onStartValues: mobileCheck()
+        ? { count: 40000, size: 0.005, randomnessPower: 20, randomness: 0 }
+        : { count: 10000, size: 0.03, randomnessPower: 20, randomness: 0 },
+      onCompleteValues: mobileCheck()
+        ? { count: 80000, size: 0.005 }
+        : { count: 40000, size: 0.01 },
     },
+    camera: { position: { x: 0, y: 6, z: 4 }, rotation: { x: -0.767, y: 0, z: 0 } },
+  },
+  {
+    id: "#pin-second",
+    galaxy: {
+      radius: mobileCheck() ? 1.4 : 4,
+      spin: mobileCheck() ? 4 : 1.5,
+      randomnessPower: mobileCheck() ? 6 : 4,
+      onStartValues: mobileCheck()
+        ? { count: 30000, size: 0.005, randomnessPower: 20, randomness: 0 }
+        : { count: 90000, size: 0.01, randomnessPower: 20, randomness: 0 },
+      onCompleteValues: mobileCheck()
+        ? { count: 60000, size: 0.005 }
+        : { count: 250000, size: 0.01 },
+    },
+    camera: { position: { x: 0, y: mobileCheck() ? 3 : 4, z: mobileCheck() ? 2 : 4 }, rotation: { x: -0.3, y: 0, z: 0 } },
+  },
+  {
+    id: "#expertise",
+    camera: { position: { x: 0, y: 5, z: 3 }, rotation: { x: -0.5, y: 0, z: 0 } },
+  },
+  {
+    id: "#about",
+    camera: { position: { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5 }, rotation: { x: -1.6, y: 0, z: 0 } },
+  },
+  {
+    id: "#services",
+    camera: { position: { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5 }, rotation: { x: -0.93, y: 0, z: 0 } },
+  },
+  {
+    id: "#team",
+    camera: { position: { x: 2, y: 2, z: 0 }, rotation: { x: 0, y: 2, z: 0 } },
+  },
+];
+
+sections.forEach((section) => {
+  ScrollTrigger.create({
+    trigger: section.id,
+    start: "top center",
+    end: "bottom center",
+    onEnter: () => animateSection(section),
+    onEnterBack: () => animateSection(section),
   });
-  
-  // Handle Section Animations (Smooth Transitions)
-  function handleSectionChange(section, direction) {
-    let duration = direction === "down" ? 1.5 : 0.8;
-  
-    switch (section) {
-      case 0:
-        gsap.to(camera.position, { x: 0, y: 6, z: 4, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.767, y: 0, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      case 1:
-        animateGalaxy({
-          duration,
-          radius: 1.5,
-          spin: 0,
-          randomnessPower: 10,
-          onStartValues: mobileCheck()
-            ? { count: 40000, size: 0.005, randomnessPower: 20, randomness: 0 }
-            : { count: 10000, size: 0.03, randomnessPower: 20, randomness: 0 },
-          onCompleteValues: mobileCheck()
-            ? { count: 80000, size: 0.005 }
-            : { count: 40000, size: 0.01 },
-        });
-  
-        gsap.to(camera.position, { x: 0, y: 6, z: 4, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.767, y: 0, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      case 2:
-        animateGalaxy({
-          duration,
-          radius: mobileCheck() ? 1.4 : 4,
-          spin: mobileCheck() ? 4 : 1.5,
-          randomnessPower: mobileCheck() ? 6 : 4,
-          onStartValues: mobileCheck()
-            ? { count: 30000, size: 0.005, randomnessPower: 20, randomness: 0 }
-            : { count: 90000, size: 0.01, randomnessPower: 20, randomness: 0 },
-          onCompleteValues: mobileCheck()
-            ? { count: 60000, size: 0.005 }
-            : { count: 250000, size: 0.01 },
-        });
-  
-        gsap.to(camera.position, { x: 0, y: mobileCheck() ? 3 : 4, z: mobileCheck() ? 2 : 4, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.3, y: 0, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      case 3:
-        gsap.to(camera.position, { x: 0, y: 5, z: 3, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.5, y: 0, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      case 4:
-        gsap.to(camera.position, { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5, duration, ease: "linear" });
-        gsap.to(camera.rotation, { x: -1.6, y: 0, z: 0, duration, ease: "linear" });
-        break;
-  
-      case 5:
-        gsap.to(camera.position, { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.93, y: 0, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      case 6:
-        gsap.to(camera.position, { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: -0.895, y: -0.455, z: -0.347, duration, ease: "power1.inOut" });
-        break;
-  
-      case 7:
-        gsap.to(camera.position, { x: 2, y: 2, z: 0, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: 0, y: 2, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      case 8:
-        gsap.to(camera.position, { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5, duration, ease: "power1.inOut" });
-        gsap.to(camera.rotation, { x: 0, y: 0, z: 0, duration, ease: "power1.inOut" });
-        break;
-  
-      default:
-        console.warn("No animation defined for section", section);
-    }
+});
+
+function animateSection(section) {
+  let duration = 1.2;
+  if (section.galaxy) {
+    animateGalaxy(section.galaxy);
   }
-  
-  // Skip Animations When Scrolling Fast (Instant Jump to Position)
-  function handleSectionJump(section) {
-    camera.position.set(0, 6, 4);
-    camera.rotation.set(-0.767, 0, 0);
-  }
-  
-  // Galaxy Animation
-  function animateGalaxy(params) {
-    gsap.to(parameters, {
-      ...params,
-      onStart: () => {
-        Object.assign(parameters, params.onStartValues);
-        debounceGenerateGalaxy();
-      },
-      onComplete: () => {
-        Object.assign(parameters, params.onCompleteValues);
-        debounceGenerateGalaxy();
-      },
-      onUpdate: debounceGenerateGalaxy,
-    });
-  }
-  
-  // Mobile Check Function
-  function mobileCheck() {
-    return window.innerWidth <= 768;
-  }
+  gsap.to(camera.position, { ...section.camera.position, duration, ease: "power1.inOut" });
+  gsap.to(camera.rotation, { ...section.camera.rotation, duration, ease: "power1.inOut" });
+}
+
+function animateGalaxy(params) {
+  gsap.to(parameters, {
+    ...params,
+    onStart: () => {
+      Object.assign(parameters, params.onStartValues);
+      debounceGenerateGalaxy();
+    },
+    onComplete: () => {
+      Object.assign(parameters, params.onCompleteValues);
+      debounceGenerateGalaxy();
+    },
+    onUpdate: debounceGenerateGalaxy,
+  });
+}
+
+function mobileCheck() {
+  return window.innerWidth <= 768;
+}
   
 
-// Create a simple ScrollTrigger animation
 
-// preventOverlaps:true
 
 gsap.to(".hero", {
   duration: 4,
@@ -652,7 +588,6 @@ ScrollTrigger.create({
 
     {
       duration: 1,
-      // webkitBackdropFilter:'blur(0px)',
       ease: "power1.out",
       scrollTrigger: {
         trigger: section,
@@ -661,10 +596,6 @@ ScrollTrigger.create({
         end: "40%",
         pinSpacer: true,
         pinSpacing: true,
-        // preventOverlaps:true,
-        // markers: true,
-        // refreshPriority: 1,
-        // pinType: transform,
         scrub: true,
         onLeave: () => {
           gsap.to(section, {
@@ -681,12 +612,7 @@ ScrollTrigger.create({
             backdropFilter: "blur(10px)" ,
           });
         },
-        // onEnter:()=>{
-        //     ScrollTrigger.update()
-        // },
 
-        // markers:true
-        // Set to false to hide debugging markers
       },
     }
   );
@@ -747,26 +673,6 @@ document
   .addEventListener("click", requestDeviceOrientationPermission);
 
 // Throttle function to limit the frequency of event handling
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function () {
-    const context = this;
-    const args = arguments;
-    if (!lastRan) {
-      func.apply(context, args);
-      lastRan = Date.now();
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(function () {
-        if (Date.now() - lastRan >= limit) {
-          func.apply(context, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
-    }
-  };
-}
 
 // Add mousemove event listener for desktop
 if (!isPhone) {
