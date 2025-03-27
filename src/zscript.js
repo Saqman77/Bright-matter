@@ -323,8 +323,6 @@ const debounce = (func, delay) => {
   };
 };
 
-
-
 const debounceGenerateGalaxy = debounce(generateGalaxy, 0.005);
 gsap.defaults({});
 const tl = gsap.timeline();
@@ -347,12 +345,15 @@ function raf(time) {
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
-lenis.on("scroll", ScrollTrigger.update);
+// lenis.on("scroll", ScrollTrigger.update);
 
 const sections = [
   {
     id: "#main",
-    camera: { position: { x: 0, y: 6, z: 4 }, rotation: { x: -0.767, y: 0, z: 0 } },
+    camera: {
+      position: { x: 0, y: 6, z: 4 },
+      rotation: { x: -0.767, y: 0, z: 0 },
+    },
   },
   {
     id: "#tag-section",
@@ -367,7 +368,10 @@ const sections = [
         ? { count: 80000, size: 0.005 }
         : { count: 40000, size: 0.01 },
     },
-    camera: { position: { x: 0, y: mobileCheck() ? 3 : 4, z: mobileCheck() ? 2 : 4 }, rotation: { x: -0.3, y: 0, z: 0 } },
+    camera: {
+      position: { x: 0, y: 6, z: 4 },
+      rotation: { x: -0.767, y: 0, z: 0 },
+    },
   },
   {
     id: "#pin-second",
@@ -382,45 +386,127 @@ const sections = [
         ? { count: 60000, size: 0.005 }
         : { count: 250000, size: 0.01 },
     },
-    camera: { position: { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5}, rotation: { x: -0.93, y: 0, z: 0 } },
+    camera: {
+      position: {
+        x: mobileCheck() ? 0 : 0,
+        y: mobileCheck() ? 3 : 4,
+        z: mobileCheck() ? 2 : 4,
+      },
+      rotation: { x: -0.3, y: 0, z: 0 },
+    },
   },
   {
     id: "#expertise",
-    camera: { position: { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5}, rotation: { x: -1.6, y: 0, z: 0 } },
+    camera: {
+      position: {
+        x: mobileCheck() ? -0.5 : -6,
+        y: mobileCheck() ? 6 : 12,
+        z: 0.5,
+      },
+      rotation: { x: -1.6, y: 0, z: 0 },
+    },
   },
   {
     id: "#about",
-    camera: { position: { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1 }, rotation: { x: -0.895, y: -0.455, z: -0.347 } },
+    camera: {
+      position: {
+        x: mobileCheck() ? 0.5 : 3.5,
+        y: mobileCheck() ? 5 : 7,
+        z: mobileCheck() ? 3.5 : 6.5,
+      },
+      rotation: { x: -0.93, y: 0, z: 0 },
+    },
   },
   {
     id: "#services",
-    camera: { position: { x: 2, y: 2, z: 0 }, rotation: { x: 0, y: 2, z: 0} },
+    camera: {
+      position: { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1 },
+      rotation: { x: -0.895, y: -0.455, z: -0.347 },
+    },
   },
   {
     id: "#team",
-    camera: { position: { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5 }, rotation: { x: 0, y: 0, z: 0 } },
+    camera: {
+      position: { x: 2, y: 2, z: 0 },
+      rotation: { x: 0, y: 2, z: 0 },
+    },
+  },
+  {
+    id: "#exit",
+    camera: {
+      position: { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5 },
+      rotation: { x: 0, y: 0, z: 0 },
+    },
   },
 ];
 
+// Function to hide scene smoothly
+const hideScene = () => {
+  scene.traverse((object) => {
+    if (object.material && object.material.opacity !== undefined) {
+      gsap.to(object.material, {
+        opacity: 0,
+        duration: 1,
+        onComplete: () => {
+          object.visible = false; // Hide objects after fade-out
+        },
+      });
+    }
+  });
+};
+
+// Function to show scene smoothly
+const showScene = () => {
+  scene.traverse((object) => {
+    if (object.material && object.material.opacity !== undefined) {
+      object.visible = true; // Show objects before fading in
+      gsap.to(object.material, {
+        opacity: 1,
+        duration: 1,
+      });
+    }
+  });
+};
+
+// ScrollTrigger for scene visibility
+ScrollTrigger.create({
+  trigger: "#exit",
+  start: "top top",
+  end: "top",
+  onLeave: hideScene, // Hide when leaving last section
+  onEnterBack: showScene, // Show when re-entering last section
+});
+
+// ScrollTrigger for sections
 sections.forEach((section) => {
   ScrollTrigger.create({
     trigger: section.id,
     start: "top top",
-    end: "bottom bottom",
+    end: "bottom ",
     onEnter: () => animateSection(section),
     onEnterBack: () => animateSection(section),
   });
 });
 
+// Function to animate section transitions
 function animateSection(section) {
   let duration = 1.5;
   if (section.galaxy) {
     animateGalaxy(section.galaxy);
   }
-  gsap.to(camera.position, { ...section.camera.position, duration, ease: "power1.inOut" });
-  gsap.to(camera.rotation, { ...section.camera.rotation, duration, ease: "power1.inOut" });
+  gsap.to(camera.position, {
+    ...section.camera.position,
+    duration,
+    ease: "power1.out",
+  });
+  gsap.to(camera.rotation, {
+    ...section.camera.rotation,
+    duration,
+    ease: "power1.out",
+  });
 }
 
+// Function to animate galaxy transitions
 function animateGalaxy(params) {
   gsap.to(parameters, {
     ...params,
@@ -436,12 +522,24 @@ function animateGalaxy(params) {
   });
 }
 
+// Mobile device check
 function mobileCheck() {
   return window.innerWidth <= 768;
 }
-  
 
+const teamS = document.querySelector("#team");
+const secondSection = document.querySelector("#expertise");
+const about = document.querySelector("#about");
+const horiSection = document.querySelector("#services");
+const horizontal = document.querySelector(".services-container");
+const bye = document.querySelector("#exit");
+const xWidth = horizontal.getBoundingClientRect().width;
 
+const tl2 = gsap.timeline({
+  scrollTrigger:{
+    refreshPriority:1
+  }
+});
 
 gsap.to(".hero", {
   duration: 4,
@@ -480,142 +578,236 @@ heros.forEach((hero, i) => {
     },
   });
 });
-const seconds = document.querySelectorAll("#pin-second");
+// const seconds = document.querySelector("#pin-second");
 
-seconds.forEach((second, i) => {
-  gsap.to(second, {
-    duration: 2,
-    opacity: 0,
-    ease: "power4.inOut",
-    backdropFilter: "blur(20px)",
+tl2.to(".a", {
+  opacity: 0,
+  // ease: "power4.inOut",
+  // backdropFilter: "blur(10px)",
+  scrollTrigger: {
+    trigger: ".a",
+    pin: true,
+    // pinSpacer:false,
+    start: "top top",
+    end: "bottom  ",
+    scrub: true,
+    // markers: true // Set to false to hide debugging markers
+  },
+});
+
+
+tl2.to(
+  secondSection,
+
+  {
+    backdropFilter: "blur(10px)",
+    backgroundColor:
+      "linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))",
+    ease: "power2.out",
+    // opacity:0,
+    // duration:1,
     scrollTrigger: {
-      trigger: second,
+      trigger: secondSection,
       pin: true,
-      // pinSpacer:false,
       start: "top top",
-      end: "center",
+      end: "40%",
       scrub: true,
-      // markers: true // Set to false to hide debugging markers
+      onLeave: () => {
+        gsap.to(secondSection, {
+          // backdropFilter:'blur(0px)',
+          // backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0))',
+          ease: "power2.out",
+          opacity: 0,
+        });
+        // ScrollTrigger.update()
+      },
+      onEnterBack: () => {
+        gsap.to(secondSection, {
+          backdropFilter: "blur(10px)",
+          backgroundColor:
+            "linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))",
+          ease: "power2.in",
+          opacity: 1,
+        });
+      },
     },
-  });
-});
+  }
+);
 
-const section = document.querySelector("#team");
-const about = document.querySelector("#about");
-const horiSection = document.querySelectorAll("#services");
-const horizontal = document.querySelector(".services-container");
-const xWidth = horizontal.getBoundingClientRect().width;
+tl2.fromTo(
+  about,{
+    backdropFilter:'blur(0px)',
+    // opacity: 0,
+  },
 
-const tl2 = gsap.timeline();
-
-gsap.to(
-    about,
-
-    {
-      duration: 1,
-      // webkitBackdropFilter:'blur(0px)',
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: about,
-        pin:true,
-        start: "top top",
-        end: "40%",
-        pinSpacer: true,
-        pinSpacing: true,
-        // preventOverlaps:true,
-        // markers: true,
-        // refreshPriority: 1,
-        // pinType: transform,
-        scrub: true,
-        onLeave: () => {
-          gsap.to(about, {
-            opacity:0,
-          });
-          // ScrollTrigger.update()
-        },
-        onEnterBack: () => {
-          gsap.to(about, {
-            opacity:1,
-            backdropFilter:"blur(10px)",
-          });
-        },
-        // onEnter:()=>{
-        //     ScrollTrigger.update()
-        // },
-
-        // markers:true
-        // Set to false to hide debugging markers
+  {
+    backdropFilter:'blur(20px)',
+    opacity: 1,
+    // webkitBackdropFilter:'blur(0px)',
+    ease: "power1.out",
+    scrollTrigger: {
+      trigger: about,
+      pin: true,
+      start: "top top",
+      end: "50%  ",
+      // pinSpacer: true,
+      // pinSpacing: true,
+      // preventOverlaps:true,
+      // markers: true,
+      // refreshPriority: 1,
+      // pinType: transform,
+      scrub: true,
+      onLeave: () => {
+        gsap.to(about, {
+          opacity: 0,
+          ease: "power1.out",
+        });},
+      //   // ScrollTrigger.update()
+      // },
+      onEnterBack: () => {
+        gsap.to(about, {
+          opacity: 1,
+          backdropFilter: "blur(20px)",
+          ease: "power1.in",
+        });
       },
-    }
-  );
- 
+      // onEnter:()=>{
+      //     ScrollTrigger.update()
+      // },
 
+      // markers:true
+      // Set to false to hide debugging markers
+    },
+  }
+);
+tl2.to(
+  horiSection,
 
-ScrollTrigger.create({
-  trigger: horiSection,
-  // preventOverlaps:true,
-  start: "top top",
-  end: window.innerWidth > 1250 ? "+=1500vh" : "+=900vh",
-  pin: horiSection,
-  scrub: 1,
-  pinSpacer: true,
-  pinSpacing: true,
-//   refreshPriority: 1,
-  ease: "power2.out",
-//   markers: true,
-  onLeave: () => {
-    gsap.to(horiSection, {
-      opacity: 0,
-    });
-  },
-  // onEnter:()=>{
-  //     ScrollTrigger.refresh()
-  // },
-  onEnterBack: () => {
-    gsap.to(horiSection, {
-      opacity: 1,
-    });
-  },
-  onUpdate: (self) => {
-    gsap.to(horizontal, {
-      x: `${-xWidth * self.progress}px`,
-    });
-  },
-});
-
-  gsap.to(
-    section,
-
-    {
-      duration: 1,
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: section,
-        pin: window.innerWidth < 1250 ? false : true,
-        start: "top top",
-        end: "40%",
-        pinSpacer: true,
-        pinSpacing: true,
-        scrub: true,
-        onLeave: () => {
-          gsap.to(section, {
-            opacity:
-              window.innerWidth < 1250 ? 1 : 0,
-            backdropFilter:
-              window.innerWidth < 1250 ? "blur(10px)" : "blur(0px)",
-          });
-          // ScrollTrigger.update()
-        },
-        onEnterBack: () => {
-          gsap.to(section, {
-            opacity: 1,
-            backdropFilter: "blur(10px)" ,
-          });
-        },
-
+  {
+    // backdropFilter:'blur(10px)',
+    // opacity:1,
+    // webkitBackdropFilter:'blur(0px)',
+    ease: "power1.out",
+    scrollTrigger: {
+      trigger: horiSection,
+      // preventOverlaps:true,
+      start: "top top",
+      end: window.innerWidth > 1250 ? "+=1500vh" : "+=900vh",
+      pin: true,
+      scrub: 1,
+      // pinSpacer: true,
+      // pinSpacing: true,
+      //   refreshPriority: 1,
+      ease: "power2.out",
+      //   markers: true,
+      onLeave: () => {
+        gsap.to(horiSection, {
+          opacity: 0,
+          ease: "power1.out",
+        });
       },
-    }
-  );
+      // onEnter:()=>{
+      //     ScrollTrigger.refresh()
+      // },
+      onEnterBack: () => {
+        gsap.to(horiSection, {
+          opacity: 1,
+          ease: "power1.in",
+        });
+      },
+      onUpdate: (self) => {
+        gsap.to(horizontal, {
+          x: `${-xWidth * self.progress}px`,
+        });
+      },
+    },
+  }
+);
+
+tl2.to(
+  teamS,
+
+  {
+    duration: 1,
+    ease: "power1.out",
+    scrollTrigger: {
+      trigger: teamS,
+      pin: window.innerWidth < 1250 ? false : true,
+      start: "top top",
+      end: "40%",
+      pinSpacer: false,
+      // pinSpacing: false,
+      scrub: true,
+      onLeave: () => {
+        gsap.to(teamS, {
+          opacity: window.innerWidth < 1250 ? 1 : 0,
+          backdropFilter: window.innerWidth < 1250 ? "blur(10px)" : "blur(0px)",
+        });
+        // ScrollTrigger.update()
+      },
+      onEnterBack: () => {
+        gsap.to(teamS, {
+          opacity: 1,
+          backdropFilter: "blur(10px)",
+        });
+      },
+    },
+  }
+);
+
+// tl2.to(bye,{
+//   // backdropFilter:'blur(20px)',
+//   // opacity: 0,
+//   // webkitBackdropFilter:'blur(0px)',
+//   color:"#2E2E2E",
+//   textShadow:'none',
+//   // background:'#d3d3d3',
+//   ease: "power1.out",
+//   scrollTrigger: {
+//     trigger: bye,
+//     pin: true,
+//     start: "center center",
+//     end: "+=100%",
+//     // pinSpacer: true,
+//     // pinSpacing: true,
+//     // preventOverlaps:true,
+//     // refreshPriority: 1,
+//     // pinType: transform,
+//     scrub: true,
+//     // onLeave: () => {
+//     //   // gsap.to('html, body', {
+//     //   //   backgroundColor:'#d3d3d3',
+//     //   //   color:'#2E2E2E',
+//     //   //   ease: "power1.out",
+//     //   // });
+//     //   gsap.to('.c-main-heading', {
+
+//     //     color:'#2E2E2E',
+//     //     ease: "power1.out",
+//     //   });
+//     // },
+//     // //   // ScrollTrigger.update()
+//     // // },
+//     // onEnterBack: () => {
+//     //   // gsap.to('html, body', {
+//     //   //   backgroundColor:'#2E2E2E',
+//     //   //   color:'#d3d3d3',
+//     //   //   ease: "power1.out",
+//     //   // });
+//     //   gsap.to('.c-main-heading', {
+
+//     //     color:'#d3d3d3',
+//     //     ease: "power1.out",
+//     //   });
+//     // },
+//     // onEnter:()=>{
+//     //     ScrollTrigger.update()
+//     // },
+
+//     // markers:true
+//     // Set to false to hide debugging markers
+//   },
+// })
 
 // This should not be undefined
 // Cursor position object

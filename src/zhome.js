@@ -376,21 +376,21 @@ if (scrollTop < lastScrollTop && body.classList.contains("scroll-down"))
     }
     lastScrollTop = scrollTop
 
-    if (newSection == 2)
-        {
-            gsap.fromTo('.a',
+    // if (newSection == 2)
+    //     {
+    //         gsap.fromTo('.a',
 
-                {
-                    backdropFilter:'blur(10px)',
-                    backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))',
-                    duration:1,
-                    delay:3,
+    //             {
+    //                 backdropFilter:'blur(10px)',
+    //                 backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))',
+    //                 duration:1,
+    //                 delay:3,
                     
-                },  {
-                    backdropFilter:'none',
-                    backgroundColor:'none',
-                })
-        }
+    //             },  {
+    //                 backdropFilter:'none',
+    //                 backgroundColor:'none',
+    //             })
+    //     }
 });
 
 const tl = gsap.timeline()
@@ -433,6 +433,8 @@ tl.from('.navbar',
                 duration: window.innerWidth < 1250 ? 10 : 6,
                 ease: "linear"
             });
+
+            
         });
 
 document.addEventListener("DOMContentLoaded", () => {
