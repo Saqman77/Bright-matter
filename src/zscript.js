@@ -367,7 +367,7 @@ const sections = [
         ? { count: 80000, size: 0.005 }
         : { count: 40000, size: 0.01 },
     },
-    camera: { position: { x: 0, y: 6, z: 4 }, rotation: { x: -0.767, y: 0, z: 0 } },
+    camera: { position: { x: 0, y: mobileCheck() ? 3 : 4, z: mobileCheck() ? 2 : 4 }, rotation: { x: -0.3, y: 0, z: 0 } },
   },
   {
     id: "#pin-second",
@@ -382,38 +382,38 @@ const sections = [
         ? { count: 60000, size: 0.005 }
         : { count: 250000, size: 0.01 },
     },
-    camera: { position: { x: 0, y: mobileCheck() ? 3 : 4, z: mobileCheck() ? 2 : 4 }, rotation: { x: -0.3, y: 0, z: 0 } },
+    camera: { position: { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5}, rotation: { x: -0.93, y: 0, z: 0 } },
   },
   {
     id: "#expertise",
-    camera: { position: { x: 0, y: 5, z: 3 }, rotation: { x: -0.5, y: 0, z: 0 } },
+    camera: { position: { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5}, rotation: { x: -1.6, y: 0, z: 0 } },
   },
   {
     id: "#about",
-    camera: { position: { x: mobileCheck() ? -0.5 : -6, y: mobileCheck() ? 6 : 12, z: 0.5 }, rotation: { x: -1.6, y: 0, z: 0 } },
+    camera: { position: { x: mobileCheck() ? -1.5 : -4.5, y: 3.5, z: 1 }, rotation: { x: -0.895, y: -0.455, z: -0.347 } },
   },
   {
     id: "#services",
-    camera: { position: { x: mobileCheck() ? 0.5 : 3.5, y: mobileCheck() ? 5 : 7, z: mobileCheck() ? 3.5 : 6.5 }, rotation: { x: -0.93, y: 0, z: 0 } },
+    camera: { position: { x: 2, y: 2, z: 0 }, rotation: { x: 0, y: 2, z: 0} },
   },
   {
     id: "#team",
-    camera: { position: { x: 2, y: 2, z: 0 }, rotation: { x: 0, y: 2, z: 0 } },
+    camera: { position: { x: mobileCheck() ? -0.5 : -3.5, y: 2, z: 2.5 }, rotation: { x: 0, y: 0, z: 0 } },
   },
 ];
 
 sections.forEach((section) => {
   ScrollTrigger.create({
     trigger: section.id,
-    start: "top center",
-    end: "bottom center",
+    start: "top top",
+    end: "bottom bottom",
     onEnter: () => animateSection(section),
     onEnterBack: () => animateSection(section),
   });
 });
 
 function animateSection(section) {
-  let duration = 1.2;
+  let duration = 1.5;
   if (section.galaxy) {
     animateGalaxy(section.galaxy);
   }
