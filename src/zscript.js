@@ -773,7 +773,7 @@ tl2.to(bye,{
       if(self.progress >= .5){
         bye.innerText = "we'll make sure you do.";
         gsap.fromTo(bye, {
-          opacity:0
+          opacity:1
         },{
           // textShadow:'none',
           opacity:1,
@@ -788,7 +788,7 @@ tl2.to(bye,{
       else{
         bye.innerText = "Struggling to stand out?";
         gsap.fromTo(bye, {
-          opacity:0
+          opacity:1
         },{
           // textShadow:'none',
           opacity:1,
