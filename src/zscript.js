@@ -470,9 +470,10 @@ const showScene = () => {
 
 // ScrollTrigger for scene visibility
 ScrollTrigger.create({
+  
   trigger: "#exit",
-  start: "top top",
-  end: "top",
+  start: "20% top",
+  end: "20%",
   onLeave: hideScene, // Hide when leaving last section
   onEnterBack: showScene, // Show when re-entering last section
 });
@@ -480,6 +481,7 @@ ScrollTrigger.create({
 // ScrollTrigger for sections
 sections.forEach((section) => {
   ScrollTrigger.create({
+    // refreshPriority:1,
     trigger: section.id,
     start: "top top",
     end: "bottom ",
@@ -532,13 +534,13 @@ const secondSection = document.querySelector("#expertise");
 const about = document.querySelector("#about");
 const horiSection = document.querySelector("#services");
 const horizontal = document.querySelector(".services-container");
-const bye = document.querySelector("#exit");
+const bye = document.querySelector(".e-main-heading");
 const xWidth = horizontal.getBoundingClientRect().width;
 
 const tl2 = gsap.timeline({
-  scrollTrigger:{
-    refreshPriority:1
-  }
+  // scrollTrigger:{
+  //   refreshPriority:1
+  // }
 });
 
 gsap.to(".hero", {
@@ -734,8 +736,8 @@ tl2.to(
       trigger: teamS,
       pin: window.innerWidth < 1250 ? false : true,
       start: "top top",
-      end: "40%",
-      pinSpacer: false,
+      end: "50%",
+      // pinSpacer: false,
       // pinSpacing: false,
       scrub: true,
       onLeave: () => {
@@ -755,59 +757,153 @@ tl2.to(
   }
 );
 
-// tl2.to(bye,{
-//   // backdropFilter:'blur(20px)',
-//   // opacity: 0,
-//   // webkitBackdropFilter:'blur(0px)',
-//   color:"#2E2E2E",
-//   textShadow:'none',
-//   // background:'#d3d3d3',
-//   ease: "power1.out",
-//   scrollTrigger: {
-//     trigger: bye,
-//     pin: true,
-//     start: "center center",
-//     end: "+=100%",
-//     // pinSpacer: true,
-//     // pinSpacing: true,
-//     // preventOverlaps:true,
-//     // refreshPriority: 1,
-//     // pinType: transform,
-//     scrub: true,
-//     // onLeave: () => {
-//     //   // gsap.to('html, body', {
-//     //   //   backgroundColor:'#d3d3d3',
-//     //   //   color:'#2E2E2E',
-//     //   //   ease: "power1.out",
-//     //   // });
-//     //   gsap.to('.c-main-heading', {
+tl2.to(bye,{
+  // color:"#2E2E2E",
+  // textShadow:'none',
+  // background:'#d3d3d3',
+  // ease: "power1.out",
+  scrollTrigger: {
+    trigger: bye,
+    pin: true,
+    start: "center center",
+    end: "+=400px",
+    // pinSpacing:true,
+    // markers:true,
+    onUpdate:(self)=>{
+      if(self.progress >= .5){
+        bye.innerText = "we'll make sure you do.";
+        gsap.fromTo(bye, {
+          opacity:0
+        },{
+          // textShadow:'none',
+          opacity:1,
+          color:'#2E2E2E',
+          ease: "power1.out"
+        });
+        gsap.to('#exit', {
+          background:'#d3d3d3',
+          ease: "power1.out",
+        });
+      }
+      else{
+        bye.innerText = "Struggling to stand out?";
+        gsap.fromTo(bye, {
+          opacity:0
+        },{
+          // textShadow:'none',
+          opacity:1,
+          color:'#d3d3d3',
+          ease: "power1.out",
+        });
+        gsap.to('#exit', {
+          background:'transparent',
+          ease: "power1.out",
+        });
+      }
+    },
+    scrub:1,
+    // onLeave: () => {
+    //   bye.innerText = "we'll make sure you do.";
+    //   gsap.to(bye, {
+    //     // textShadow:'none',
+    //     color:'#2E2E2E',
+    //     ease: "power1.out",
+    //   });
+    //   gsap.to('#exit', {
+    //     background:'#d3d3d3',
+    //     ease: "power1.out",
+    //   });
+    // },
+    // onEnterBack: () => {
+    //   bye.innerText = "Struggling to stand out?";
+    //   gsap.to(bye, {
+    //     // textShadow:'none',
+    //     color:'#d3d3d3',
+    //     ease: "power1.out",
+    //   });
+    //   gsap.to('#exit', {
+    //     background:'transparent',
+    //     ease: "power1.out",
+    //   });
+    // },
 
-//     //     color:'#2E2E2E',
-//     //     ease: "power1.out",
-//     //   });
-//     // },
-//     // //   // ScrollTrigger.update()
-//     // // },
-//     // onEnterBack: () => {
-//     //   // gsap.to('html, body', {
-//     //   //   backgroundColor:'#2E2E2E',
-//     //   //   color:'#d3d3d3',
-//     //   //   ease: "power1.out",
-//     //   // });
-//     //   gsap.to('.c-main-heading', {
+  },
+})
 
-//     //     color:'#d3d3d3',
-//     //     ease: "power1.out",
-//     //   });
-//     // },
-//     // onEnter:()=>{
-//     //     ScrollTrigger.update()
-//     // },
+let parentTl = gsap.timeline({
+  scrollTrigger: {
+      trigger: ".r-section",
+      start: "top top",
+      // refreshPriority:1,
+      end:"+=100%",
+      pin:true,
+      // pinSpacer:false,
+      scrub:2.5,
+      toggleActions: "play none none reverse",
+      // markers:true
+  }
+});
 
-//     // markers:true
-//     // Set to false to hide debugging markers
-//   },
-// })
+// Text animation
+let textTl = gsap.timeline();
+textTl.from(".worder", {
+  duration: 0.8,
+  y: -20,
+  opacity: 0,
+  ease: "power3.inOut",
+  stagger: 0.1
+});
+
+// Moving elements - Top sections
+let topSectionTl = gsap.timeline();
+topSectionTl.to(".top-left, .top-right", {
+  duration: 2,
+  top: "0",
+  ease: "power3.inOut"
+});
+
+// Moving elements - Bottom right
+let bottomRightTl = gsap.timeline();
+bottomRightTl.to(".bottom-right", {
+  duration: 2,
+  bottom: "0",
+  ease: "power3.inOut"
+});
+
+// Left & Right movements
+let sideMovementTl = gsap.timeline();
+sideMovementTl.to(".top-left", { left: "0", duration: 2, ease: "power3.inOut" })
+            .to(".top-right", { right: "0", duration: 2, ease: "power3.inOut" }, 0)
+            .to(".bottom-right", { right: "0", duration: 2, ease: "power3.inOut" }, 0);
+
+// Block animations
+let blockTl = gsap.timeline();
+blockTl.to(".block-left", { left: "-50%", duration: 2, ease: "power3.inOut" })
+     .to(".block-right", { right: "-50%", duration: 2, ease: "power3.inOut" }, 0);
+
+// Footer animation
+let footerTl = gsap.timeline();
+footerTl.from(".footer-container", { duration: 2, opacity: 0, ease: "power3.inOut" });
+
+// Fade out text
+let fadeOutTextTl = gsap.timeline();
+fadeOutTextTl.to(".worder", { duration: 0.8, opacity: 0, ease: "power3.inOut", stagger: 0.1 });
+
+// Add all child timelines to parent timeline in order
+parentTl.add(textTl)
+      .add(topSectionTl)
+      .add(bottomRightTl)
+      .add(sideMovementTl)
+      .add(blockTl)
+      .add(footerTl)
+      .add(fadeOutTextTl);
+
+let masterTl = gsap.timeline({
+  scrollTrigger:{
+    refreshPriority:1
+  }
+});
+masterTl.add(tl2).add(parentTl);
 
 // This should not be undefined
 // Cursor position object
