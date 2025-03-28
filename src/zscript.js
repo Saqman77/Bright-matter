@@ -872,9 +872,9 @@ bottomRightTl.to(".bottom-right", {
 
 // Left & Right movements
 let sideMovementTl = gsap.timeline();
-sideMovementTl.to(".top-left", { left: "0", duration: 2, ease: "power3.inOut" })
-            .to(".top-right", { right: "0", duration: 2, ease: "power3.inOut" }, 0)
-            .to(".bottom-right", { right: "0", duration: 2, ease: "power3.inOut" }, 0);
+sideMovementTl.to(".top-left", { left: "0", opacity:0, duration: 2, ease: "power3.inOut" })
+            .to(".top-right", { right: "0", opacity:0, duration: 2, ease: "power3.inOut" }, 0)
+            .to(".bottom-right", { right: "0", opacity:0,duration: 2, ease: "power3.inOut" }, 0);
 
 // Block animations
 let blockTl = gsap.timeline();
