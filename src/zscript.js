@@ -470,10 +470,10 @@ const showScene = () => {
 
 // ScrollTrigger for scene visibility
 ScrollTrigger.create({
-  
-  trigger: "#exit",
+  preventOverlaps:true,
+  trigger: ".e-space-content-wrapper",
   start: "20% top",
-  end: "20%",
+  end: "20% top",
   onLeave: hideScene, // Hide when leaving last section
   onEnterBack: showScene, // Show when re-entering last section
 });
@@ -763,12 +763,14 @@ tl2.to(bye,{
   // background:'#d3d3d3',
   // ease: "power1.out",
   scrollTrigger: {
-    trigger: bye,
+    trigger: '#exit',
     pin: true,
     start: "center center",
-    end: "+=400px",
+    endTrigger:'.r-section',
+    end: "bottom ",
+    preventOverlaps:true,
     // pinSpacing:true,
-    // markers:true,
+    markers:true,
     onUpdate:(self)=>{
       if(self.progress >= .5){
         bye.innerText = "we'll make sure you do.";
@@ -835,19 +837,19 @@ let parentTl = gsap.timeline({
       trigger: ".r-section",
       start: "top top",
       // refreshPriority:1,
-      end:"+=100%",
+      end:"bottom ",
       pin:true,
       // pinSpacer:false,
-      scrub:2.5,
+      scrub:1,
       toggleActions: "play none none reverse",
-      // markers:true
+      markers:true
   }
 });
 
 // Text animation
 let textTl = gsap.timeline();
 textTl.from(".worder", {
-  duration: 0.8,
+  duration: 2,
   y: -20,
   opacity: 0,
   ease: "power3.inOut",
