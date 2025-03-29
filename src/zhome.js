@@ -82,16 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const mouse = { x: 0, y: 0 };
 
-    document.addEventListener("mousemove", (e) => {
-        mouse.x = e.clientX + window.scrollX;
-        mouse.y = e.clientY + window.scrollY;
-
+    const handleInteraction = (x, y) => {
         const radius = 100;
         const maxDisplacement = 300;
 
         animatedElements.forEach((element) => {
-            const dx = element.originalX - mouse.x;
-            const dy = element.originalY - mouse.y;
+            const dx = element.originalX - x;
+            const dy = element.originalY - y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < radius && distance !== 0) {
@@ -103,7 +100,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 element.targetY = 0;
             }
         });
-    });
+    };
+
+    if (window.innerWidth >= 1250) {
+        document.addEventListener("mousemove", (e) => {
+            handleInteraction(e.clientX + window.scrollX, e.clientY + window.scrollY);
+        });
+    } else {
+        // Touch event handling for screens under 1250px
+        document.addEventListener("touchstart", (e) => {
+            const touch = e.touches[0];
+            handleInteraction(touch.clientX + window.scrollX, touch.clientY + window.scrollY);
+        });
+
+        document.addEventListener("touchend", () => {
+            animatedElements.forEach((element) => {
+                element.targetX = 0;
+                element.targetY = 0;
+            });
+        });
+    }
 
     const animate = () => {
         const lerpFactor = 0.1;
@@ -396,21 +412,6 @@ window.addEventListener('scroll', () => {
 
 const tl = gsap.timeline()
 
-tl.from('.navbar',
-        {
-            top: '-30%',
-            duration: 2
-        })
-
-        gsap.from('.logo',
-            {
-                // delay: .5,
-                scale: 0,
-                x: '5000%',
-                rotate: "150%",
-                duration: 2.5
-            }
-        )
 
         gsap.from('.content-frame',
             {
@@ -429,7 +430,7 @@ tl.from('.navbar',
             marqueeInner.innerHTML += marqueeContent; 
         
             gsap.to(".marquee__inner", {
-                xPercent: -100, // Moves by half its width
+                xPercent: -50, // Moves by half its width
                 repeat: -1,
                 duration: 6,
                 ease: "linear"

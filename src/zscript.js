@@ -891,9 +891,9 @@ blockTl.to(".block-left", { left: "-50%", duration: 5, ease: "power3.inOut" })
 let footerTl = gsap.timeline();
 footerTl.from(".footer-container", { duration: 2, opacity: 0, ease: "power3.inOut" });
 
-// Fade out text
-let fadeOutTextTl = gsap.timeline();
-fadeOutTextTl.to(".worder", { duration: 0.8, opacity: 0, ease: "power3.inOut", stagger: 0.1 });
+// // Fade out text
+// let fadeOutTextTl = gsap.timeline();
+// fadeOutTextTl.to(".worder", { duration: 0.8, opacity: 0, ease: "power3.inOut", stagger: 0.1 });
 
 // Add all child timelines to parent timeline in order
 parentTl.add(textTl)
@@ -902,7 +902,7 @@ parentTl.add(textTl)
       .add(sideMovementTl)
       .add(blockTl)
       .add(footerTl)
-      .add(fadeOutTextTl);
+      // .add(fadeOutTextTl);
 
 let masterTl = gsap.timeline({
   scrollTrigger:{
