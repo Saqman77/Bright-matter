@@ -8,8 +8,8 @@ import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 // import generateGalaxyWorker from './generateGalaxyWorker.js';
 ScrollTrigger.defaults({
-  fastScrollEnd: true,
-  preventOverlaps: true,
+  // fastScrollEnd: true,
+  // preventOverlaps: true,
   // anticipatePin: 1
 });
 // const gui = new GUI();
@@ -345,7 +345,13 @@ function raf(time) {
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
-// lenis.on("scroll", ScrollTrigger.update);
+lenis.on("scroll", ScrollTrigger.update);
+
+if (window.tl2) window.tl2.kill();
+if (window.parentTl) window.parentTl.kill();
+
+ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+ScrollTrigger.clearMatchMedia(); // Optional: Clears matchMedia-based triggers
 
 const sections = [
   {
@@ -537,380 +543,175 @@ const horizontal = document.querySelector(".services-container");
 const bye = document.querySelector(".e-main-heading");
 const xWidth = horizontal.getBoundingClientRect().width;
 
-const tl2 = gsap.timeline({
-  scrollTrigger:{
-    // refreshPriority:2,
-    // pinSpacing:false
-    // snap:1.42
+
+
+
+
+// ✅ Reinitialize timelines
+window.tl2 = gsap.timeline();
+window.parentTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".r-section",
+    start: "top top",
+    end: "+=200%",
+    pin: true,
+    scrub: 1,
+    toggleActions: "play none none reverse",
   }
 });
 
-gsap.to(".hero", {
+// ✅ Hero section fade-out
+tl2.to(".hero", {
   duration: 4,
   opacity: 0,
   ease: "power1.inOut",
-  // y:'50%',
   scrollTrigger: {
     trigger: "body",
     start: "top top",
-    // preventOverlaps:true,
     end: "+=50%",
-    // pin: true,
     scrub: 2,
-    markers: false, // Set to false to hide debugging markers
-  },
+    markers: false
+  }
 });
 
+// ✅ Animate multiple hero elements
 const heros = document.querySelectorAll("#pin-hero");
-
-const tweenkleKhanna = gsap.timeline();
-heros.forEach((hero, i) => {
-  tweenkleKhanna.to(hero, {
+heros.forEach((hero) => {
+  tl2.to(hero, {
     duration: 4,
     opacity: 0,
     ease: "power1.inOut",
     y: "100%",
-    // preventOverlaps:true,
     scrollTrigger: {
       trigger: hero,
       pin: true,
       start: "bottom 20%",
-      // preventOverlaps:true,
       end: "+=50%",
-      scrub: true,
-      // markers: false  // Set to false to hide debugging markers
+      scrub: true
     },
   });
 });
-// const seconds = document.querySelector("#pin-second");
 
+// ✅ Section ".a" opacity change
 tl2.to(".a", {
   opacity: 0,
-  // ease: "power4.inOut",
-  // backdropFilter: "blur(10px)",
   scrollTrigger: {
     trigger: ".a",
     pin: true,
-    // pinSpacer:false,
     start: "top top",
-    end: "bottom  ",
-    scrub: true,
-    // markers: true // Set to false to hide debugging markers
+    end: "bottom",
+    scrub: true
   },
 });
 
-
-tl2.to(
-  secondSection,
-
-  {
-    backdropFilter: "blur(10px)",
-    backgroundColor:
-      "linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))",
-    ease: "power2.out",
-    // opacity:0,
-    // duration:1,
-    scrollTrigger: {
-      trigger: secondSection,
-      pin: true,
-      start: "top top",
-      end: "40%",
-      scrub: true,
-      onLeave: () => {
-        gsap.to(secondSection, {
-          // backdropFilter:'blur(0px)',
-          // backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0))',
-          ease: "power2.out",
-          opacity: 0,
-        });
-        // ScrollTrigger.update()
-      },
-      onEnterBack: () => {
-        gsap.to(secondSection, {
-          backdropFilter: "blur(10px)",
-          backgroundColor:
-            "linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))",
-          ease: "power2.in",
-          opacity: 1,
-        });
-      },
-    },
-  }
-);
-
-tl2.fromTo(
-  about,{
-    backdropFilter:'blur(0px)',
-    // opacity: 0,
+// ✅ Background blur effect on scroll
+tl2.to(secondSection, {
+  backdropFilter: "blur(10px)",
+  backgroundColor: "linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))",
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: secondSection,
+    pin: true,
+    start: "top top",
+    end: "40%",
+    scrub: true,
+    onLeave: () => gsap.to(secondSection, { opacity: 0, ease: "power2.out" }),
+    onEnterBack: () => gsap.to(secondSection, { opacity: 1, ease: "power2.in" })
   },
+});
 
-  {
-    backdropFilter:'blur(20px)',
-    opacity: 1,
-    // webkitBackdropFilter:'blur(0px)',
-    ease: "power1.out",
+// ✅ About section fade-in and blur effect
+tl2.fromTo(about, 
+  { backdropFilter: "blur(0px)", opacity: 0 }, 
+  { backdropFilter: "blur(20px)", opacity: 1, ease: "power1.out", 
     scrollTrigger: {
       trigger: about,
       pin: true,
       start: "top top",
-      end: "50%  ",
-      // pinSpacer: true,
-      // pinSpacing: true,
-      // preventOverlaps:true,
-      // markers: true,
-      // refreshPriority: 1,
-      // pinType: transform,
-      scrub: true,
-      onLeave: () => {
-        gsap.to(about, {
-          opacity: 0,
-          ease: "power1.out",
-        });},
-      //   // ScrollTrigger.update()
-      // },
-      onEnterBack: () => {
-        gsap.to(about, {
-          opacity: 1,
-          backdropFilter: "blur(20px)",
-          ease: "power1.in",
-        });
-      },
-      // onEnter:()=>{
-      //     ScrollTrigger.update()
-      // },
-
-      // markers:true
-      // Set to false to hide debugging markers
-    },
-  }
-);
-tl2.to(
-  horiSection,
-
-  {
-    // backdropFilter:'blur(10px)',
-    // opacity:1,
-    // webkitBackdropFilter:'blur(0px)',
-    ease: "power1.out",
-    scrollTrigger: {
-      trigger: horiSection,
-      // preventOverlaps:true,
-      start: "top top",
-      end: window.innerWidth > 1250 ? "+=1500vh" : "+=900vh",
-      pin: true,
-      scrub: 1,
-      // pinSpacer: true,
-      // pinSpacing: true,
-      //   refreshPriority: 1,
-      ease: "power2.out",
-      //   markers: true,
-      onLeave: () => {
-        gsap.to(horiSection, {
-          opacity: 0,
-          ease: "power1.out",
-        });
-      },
-      // onEnter:()=>{
-      //     ScrollTrigger.refresh()
-      // },
-      onEnterBack: () => {
-        gsap.to(horiSection, {
-          opacity: 1,
-          ease: "power1.in",
-        });
-      },
-      onUpdate: (self) => {
-        gsap.to(horizontal, {
-          x: `${-xWidth * self.progress}px`,
-        });
-      },
-    },
-  }
-);
-
-tl2.to(
-  teamS,
-
-  {
-    duration: 1,
-    ease: "power1.out",
-    scrollTrigger: {
-      trigger: teamS,
-      pin: window.innerWidth < 1250 ? false : true,
-      start: "top top",
       end: "50%",
-      // pinSpacer: false,
-      // pinSpacing: false,
       scrub: true,
-      onLeave: () => {
-        gsap.to(teamS, {
-          opacity: window.innerWidth < 1250 ? 1 : 0,
-          backdropFilter: window.innerWidth < 1250 ? "blur(10px)" : "blur(0px)",
-        });
-        // ScrollTrigger.update()
-      },
-      onEnterBack: () => {
-        gsap.to(teamS, {
-          opacity: 1,
-          backdropFilter: "blur(10px)",
-        });
-      },
-    },
+      onLeave: () => gsap.to(about, { opacity: 0, ease: "power1.out" }),
+      onEnterBack: () => gsap.to(about, { opacity: 1, backdropFilter: "blur(20px)", ease: "power1.in" })
+    }
   }
 );
 
-tl2.to(bye,{
-  // color:"#2E2E2E",
-  // textShadow:'none',
-  // background:'#d3d3d3',
-  // ease: "power1.out",
+// ✅ Horizontal scrolling effect
+tl2.to(horiSection, {
+  ease: "power1.out",
+  scrollTrigger: {
+    trigger: horiSection,
+    start: "top top",
+    end: `+=${xWidth}px`,
+    pin: true,
+    scrub: 1,
+    onLeave: () => gsap.to(horiSection, { opacity: 0, ease: "power1.out" }),
+    onEnterBack: () => gsap.to(horiSection, { opacity: 1, ease: "power1.in" }),
+    onUpdate: (self) => gsap.to(horizontal, { x: `${-xWidth * self.progress}px` })
+  },
+});
+
+// ✅ Team section visibility based on screen size
+tl2.to(teamS, {
+  duration: 1,
+  ease: "power1.out",
+  scrollTrigger: {
+    trigger: teamS,
+    pin: window.innerWidth < 1250 ? false : true,
+    start: "top top",
+    end: "50%",
+    scrub: true,
+    onLeave: () => gsap.to(teamS, { opacity: window.innerWidth < 1250 ? 1 : 0, backdropFilter: "blur(0px)" }),
+    onEnterBack: () => gsap.to(teamS, { opacity: 1, backdropFilter: "blur(10px)" })
+  }
+});
+
+// ✅ Exit section text change on scroll
+tl2.to(bye, {
   scrollTrigger: {
     trigger: "#exit",
     pin: true,
     start: "center center",
-    // endTrigger:'.r-section',
-    end: "bottom center",
-    preventOverlaps:true,
-    // snap:1,
-    // pinSpacing:false,
-    // markers:true,
-    onUpdate:(self)=>{
-      if(self.progress >= .5){
+    endTrigger: ".r-section",
+    end: "bottom",
+    scrub: 2,
+    preventOverlaps: true,
+    onUpdate: (self) => {
+      if (self.progress >= 0.5) {
         bye.innerText = "we'll make sure you do.";
-        gsap.fromTo(bye, {
-          opacity:1
-        },{
-          // textShadow:'none',
-          opacity:1,
-          color:'#2E2E2E',
-          ease: "power1.out"
-        });
-        gsap.to('#exit', {
-          background:'#d3d3d3',
-          ease: "power1.out",
-        });
-      }
-      else{
+        gsap.to(bye, { color: "#2E2E2E", ease: "power1.out" });
+        gsap.to("#exit", { background: "#d3d3d3", ease: "power1.out" });
+      } else {
         bye.innerText = "Struggling to stand out?";
-        gsap.fromTo(bye, {
-          opacity:1
-        },{
-          // textShadow:'none',
-          opacity:1,
-          color:'#d3d3d3',
-          ease: "power1.out",
-        });
-        gsap.to('#exit', {
-          background:'transparent',
-          ease: "power1.out",
-        });
+        gsap.to(bye, { color: "#d3d3d3", ease: "power1.out" });
+        gsap.to("#exit", { background: "transparent", ease: "power1.out" });
       }
-    },
-    scrub:1,
-    // onLeave: () => {
-    //   bye.innerText = "we'll make sure you do.";
-    //   gsap.to(bye, {
-    //     // textShadow:'none',
-    //     color:'#2E2E2E',
-    //     ease: "power1.out",
-    //   });
-    //   gsap.to('#exit', {
-    //     background:'#d3d3d3',
-    //     ease: "power1.out",
-    //   });
-    // },
-    // onEnterBack: () => {
-    //   bye.innerText = "Struggling to stand out?";
-    //   gsap.to(bye, {
-    //     // textShadow:'none',
-    //     color:'#d3d3d3',
-    //     ease: "power1.out",
-    //   });
-    //   gsap.to('#exit', {
-    //     background:'transparent',
-    //     ease: "power1.out",
-    //   });
-    // },
-
-  },
-})
-
-let parentTl = gsap.timeline({
-  // stagger: 0.1,
-  scrollTrigger: {
-      trigger: ".r-section",
-      start: "top top",
-      // refreshPriority:1,
-      end:"bottom ",
-      pin:true,
-      // pinSpacer:false,
-      scrub:true,
-      toggleActions: "play none none reverse",
-      // markers:true
+    }
   }
 });
 
-// Text animation
-let textTl = gsap.timeline();
-textTl.from(".worder", {
-  duration: 2,
-  y: -20,
-  opacity: 0,
-  ease: "power3.inOut",
-  stagger: 0.1
-});
+// ✅ Parent timeline for structured animations
+window.parentTl.add(gsap.timeline().from(".worder", { duration: 2, y: -20, opacity: 0, ease: "power3.inOut", stagger: 0.1 }));
+window.parentTl.add(gsap.timeline().to(".top-left, .top-right", { duration: 2, top: "0", ease: "power3.inOut" }));
+window.parentTl.add(gsap.timeline().to(".bottom-right", { duration: 2, bottom: "0", ease: "power3.inOut" }));
+window.parentTl.add(gsap.timeline().to(".top-left", { left: "0", opacity: 0, duration: 2, ease: "power3.inOut" })
+.to(".top-right", { right: "0", opacity: 0, duration: 2, ease: "power3.inOut" }, 0));
+window.parentTl.add(gsap.timeline().to(".bottom-right", { right: "0", opacity: 0, duration: 2, ease: "power3.inOut" }, 0));
+window.parentTl.add(gsap.timeline().to(".block-left", { left: "-50%", duration: 5, ease: "power3.inOut" })
+.to(".block-right", { right: "-50%", duration: 5, ease: "power3.inOut" }, 0));
+window.parentTl.add(gsap.timeline().from(".footer-container", { duration: 2, opacity: 0, ease: "power3.inOut" }));
 
-// Moving elements - Top sections
-let topSectionTl = gsap.timeline();
-topSectionTl.to(".top-left, .top-right", {
-  duration: 2,
-  top: "0",
-  ease: "power3.inOut"
-});
-
-// Moving elements - Bottom right
-let bottomRightTl = gsap.timeline();
-bottomRightTl.to(".bottom-right", {
-  duration: 2,
-  bottom: "0",
-  ease: "power3.inOut"
-});
-
-// Left & Right movements
-let sideMovementTl = gsap.timeline();
-sideMovementTl.to(".top-left", { left: "0", opacity:0, duration: 2, ease: "power3.inOut" })
-            .to(".top-right", { right: "0", opacity:0, duration: 2, ease: "power3.inOut" }, 0)
-            .to(".bottom-right", { right: "0", opacity:0,duration: 2, ease: "power3.inOut" }, 0);
-
-// Block animations
-let blockTl = gsap.timeline();
-blockTl.to(".block-left", { left: "-50%", duration: 5, ease: "power3.inOut" })
-     .to(".block-right", { right: "-50%", duration: 5, ease: "power3.inOut" }, 0);
-
-// Footer animation
-let footerTl = gsap.timeline();
-footerTl.from(".footer-container", { duration: 2, opacity: 0, ease: "power3.inOut" });
-
-// // Fade out text
-// let fadeOutTextTl = gsap.timeline();
-// fadeOutTextTl.to(".worder", { duration: 0.8, opacity: 0, ease: "power3.inOut", stagger: 0.1 });
-
-// Add all child timelines to parent timeline in order
-parentTl.add(textTl)
-      .add(topSectionTl)
-      .add(bottomRightTl)
-      .add(sideMovementTl)
-      .add(blockTl)
-      .add(footerTl)
-      // .add(fadeOutTextTl);
-
+// ✅ Master timeline for full synchronization
 let masterTl = gsap.timeline({
-  scrollTrigger:{
-    refreshPriority:1,
-    anticipatePin:1
+  scrollTrigger: {
+    refreshPriority: 1,
+    anticipatePin: 1
   }
 });
-masterTl.add(tl2).add(parentTl);
+masterTl.add(window.tl2).add(window.parentTl);
+
+// ✅ Refresh ScrollTrigger after setup
+ScrollTrigger.refresh();
 
 // This should not be undefined
 // Cursor position object

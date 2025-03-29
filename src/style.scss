@@ -76,7 +76,10 @@ html,body {
   font-family: "espial";
   color: #f9f9f9;
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100svhs;
+  min-height: 100lvhvhl
+
+
 
   /* z-index: -1; */
 }
@@ -115,6 +118,9 @@ body.no-scroll {
   width: 100%;
   height: auto;
   position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100lvh;
   /* overflow-x: hidden; */
   /* overflow-y: scroll; */
 }
@@ -500,7 +506,7 @@ form {
     width: 200px;
   }
   @media screen and (max-width:900px) {
-    width: 150px;
+    // width: 150px;
   }
   @media screen and (max-width:600px) {
     // width: 100px;
@@ -667,6 +673,11 @@ form {
 
 section {
   width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100lvh;
+  height: 100vh;
+  height: 100svh;
   height: 100lvh;
   overflow: hidden;
 
@@ -690,6 +701,18 @@ section {
   font-size: 1rem;
   font-family: "azonix";
   color: #f9f9f9;
+}
+
+.a-space-center{
+  font-size: 1rem;
+  @media screen and (max-width:1250px) {
+    font-size: 1rem;
+    
+  }
+  @media screen and (max-width:900px) {
+    font-size: .8rem;
+    
+  }
 }
 .e-space {
   display: flex;
@@ -730,14 +753,16 @@ section {
   font-size: 5.25rem;
   font-family: "azonix";
   letter-spacing: 0.2em;
-  width: max-content;
+  width: fit-content;
   height: fit-content;
   user-select: none;
+  text-align: center;
   @media screen and (max-width:1250px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   @media screen and (max-width:900px) {
-    font-size: 1rem;
+    // font-size: 1rem;
+    letter-spacing: 0;
   }
 }
 
@@ -780,7 +805,8 @@ section {
   display: block;
   width: fit-content;
 }
-h1 {
+h1.c-main-heading {
+  user-select: none;
   font-size: 5.25rem;
   font-weight: 100;
   color: #f9f9f9;
@@ -882,6 +908,9 @@ h1 {
   /* justify-content: space-between; */
 }
 .right-hero-tag {
+  margin-right: 0;
+  margin-bottom: 0;
+  user-select: none;
   font-size: 5.25rem;
   font-weight: 100;
   font-family: "azonix";
@@ -906,7 +935,8 @@ h1 {
 
 .bright {
   width: 100%;
-  height: 10vh;
+  height: 10svh;
+  height: 10lvh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1108,7 +1138,12 @@ h2 {
 
 
 .c.hori{
-  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100lvh;
+  height: 100vh;
+  height: 100svh;
+  height: 100lvh;
 }
 .c.hori .c-main-heading{
   @media screen and (max-width:1250px) {
@@ -1137,6 +1172,7 @@ h2 {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
+  min-height: 100svh;
   min-height: 100lvh;
   max-height: auto;
   // z-index: 9999;
@@ -1158,6 +1194,7 @@ h2 {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
+  min-height: 100svh;
   min-height: 100lvh;
   max-height: auto;
   // z-index: 9999;
@@ -1170,7 +1207,11 @@ h2 {
   }
 }
 .hori-content-wrapper {
+  min-height: 100svh;
+  min-height: 100lvh;
+  height: 100vh;
   height: 100svh;
+  height: 100lvh;
   display: flex;
   align-items: start;
   padding: 5rem;
@@ -1186,6 +1227,7 @@ h2 {
   }
 }
 .hori-container{
+  height: 80lvh;
   height: 80svh;
   display: flex;
   flex-direction: column;
@@ -1290,7 +1332,7 @@ h2 {
   margin-bottom: 5em;
   @media screen and (max-width:1250px) {
     margin-bottom: 0;
-    width: 100%;
+    width: 80%;
   }
 }
 
@@ -1301,7 +1343,8 @@ h2 {
   flex-direction: column;
   @media screen and (max-width:1250px) {
     margin-bottom: 0;
-    width: 100%;
+    width: 80%;
+    align-items: center;
   }
   // align-items: start;
 }
@@ -1311,7 +1354,7 @@ h2 {
   @media screen and (max-width:1250px) {
     // font-size: 1.5rem;
     width: 30%;
-    // text-align: center;
+    text-align: center;
   }
 }
 
@@ -1321,7 +1364,15 @@ h2 {
   @media screen and (max-width:1250px) {
     font-size: 1.5rem;
     // width: 30%;
-    // text-align: center;
+    text-align: center;
+  }
+}
+
+.serv-top .serv-head{
+  @media screen and (max-width:1250px) {
+    font-size: 1.5rem;
+    // width: 30%;
+    text-align: left;
   }
 }
 
@@ -1329,7 +1380,7 @@ h2 {
   width: 50%;
   @media screen and (max-width:1250px) {
     width: 20%;
-    // text-align: center;
+    text-align: center;
     // height: 100%;
   }
   // margin: 0 2em;
@@ -1573,6 +1624,8 @@ row-gap: 10px;
   
 }
 .c-content-wrapper.raf,.c-content-wrapper.naqi,.c-content-wrapper.saq{
+  min-height: 100vh;
+  min-height: 100svh;
   min-height: 100lvh;
   height: 100%;
   position: fixed;
@@ -1683,7 +1736,9 @@ row-gap: 10px;
 }
 
 .footer{
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100lvh;
 }
 
 .footer-wrapper {
@@ -1988,8 +2043,8 @@ h3 {
 }
 .r-container{
   width: 100%;
-  height: 100svh;
-  height: 100lvh;
+  // height: 100svh;
+  // height: 100lvh;
 }
 
 .footer-container {
@@ -2075,13 +2130,14 @@ h3 {
     font-size: 2em;
   }
   @media screen and (max-width:500px) {
-    font-size: 1.5em;
+    // font-size: 1.5em;
   }
 }
 
 .row {
   width: 100%;
   height: 50vh;
+  height: 50lvh;
 }
 
 .top-left, .top-right, .bottom-right {
@@ -2673,6 +2729,9 @@ h3 {
   section {
     width: 100%;
     height: 100vh;
+    height: 100svh;
+    height: 100lvh;
+    
   }
 
   .a-space {
@@ -2713,7 +2772,8 @@ h3 {
     display: block;
     width: fit-content;
   }
-  h1 {
+  h1.c-main-heading {
+    user-select: none;
     font-size: 2.5rem;
     font-weight: 100;
     color: #f9f9f9;
@@ -2822,6 +2882,9 @@ h3 {
     /* justify-content: space-between; */
   }
   .right-hero-tag {
+  margin-right: 0;
+  margin-bottom: 0;
+    user-select: none;
     font-size: 3rem;
     font-weight: 100;
     font-family: "azonix";
@@ -2846,10 +2909,12 @@ h3 {
   .bright {
     width: 100%;
     height: 5vh;
+    height: 5svh;
+    height: 5lvh;
     /* position: relative; */
     /* background-color: #171717; */
-    overflow-x: hidden;
-    overflow-y: visible;
+    // overflow-x: hidden;
+    // overflow-y: visible;
     display: flex;
   }
   .marquee__inner {
@@ -3519,6 +3584,8 @@ h3 {
   section {
     width: 100%;
     height: 100vh;
+    height: 100svh;
+    height: 100lvh;
   }
 
   .a-space {
@@ -3558,7 +3625,8 @@ h3 {
     display: block;
     width: fit-content;
   }
-  h1 {
+  h1.c-main-heading {
+    user-select: none;
     font-size: 1.8rem;
     font-weight: 700;
     color: #f9f9f9;
@@ -3666,6 +3734,9 @@ h3 {
     /* justify-content: space-between; */
   }
   .right-hero-tag {
+  margin-right: 0;
+  margin-bottom: 0;
+    user-select: none;
     font-size: 2.7rem;
     font-weight: 700;
     font-family: "azonix";
@@ -3690,10 +3761,13 @@ h3 {
   .bright {
     width: 100%;
     height: 5vh;
+    height: 5svh;
+    height: 5lvh;
     /* position: relative; */
     /* background-color: #171717; */
-    overflow-x: hidden;
-    overflow-y: visible;
+    // overflow-x: hidden;
+    // overflow-y: visible;
+    padding: 2em;
     display: flex;
   }
   .marquee__inner {
