@@ -538,9 +538,11 @@ const bye = document.querySelector(".e-main-heading");
 const xWidth = horizontal.getBoundingClientRect().width;
 
 const tl2 = gsap.timeline({
-  // scrollTrigger:{
-  //   refreshPriority:1
-  // }
+  scrollTrigger:{
+    refreshPriority:1,
+    pinSpacing:false
+    // snap:1.42
+  }
 });
 
 gsap.to(".hero", {
@@ -766,11 +768,12 @@ tl2.to(bye,{
     trigger: '#exit',
     pin: true,
     start: "center center",
-    endTrigger:'.r-section',
+    // endTrigger:'.r-section',
     end: "bottom ",
-    preventOverlaps:true,
-    // pinSpacing:true,
-    markers:true,
+    // preventOverlaps:true,
+    // snap:1,
+    // pinSpacing:false,
+    // markers:true,
     onUpdate:(self)=>{
       if(self.progress >= .5){
         bye.innerText = "we'll make sure you do.";
@@ -833,6 +836,7 @@ tl2.to(bye,{
 })
 
 let parentTl = gsap.timeline({
+  // stagger: 0.1,
   scrollTrigger: {
       trigger: ".r-section",
       start: "top top",
@@ -840,7 +844,7 @@ let parentTl = gsap.timeline({
       end:"bottom ",
       pin:true,
       // pinSpacer:false,
-      scrub:1,
+      scrub:true,
       toggleActions: "play none none reverse",
       markers:true
   }
@@ -880,8 +884,8 @@ sideMovementTl.to(".top-left", { left: "0", opacity:0, duration: 2, ease: "power
 
 // Block animations
 let blockTl = gsap.timeline();
-blockTl.to(".block-left", { left: "-50%", duration: 2, ease: "power3.inOut" })
-     .to(".block-right", { right: "-50%", duration: 2, ease: "power3.inOut" }, 0);
+blockTl.to(".block-left", { left: "-50%", duration: 5, ease: "power3.inOut" })
+     .to(".block-right", { right: "-50%", duration: 5, ease: "power3.inOut" }, 0);
 
 // Footer animation
 let footerTl = gsap.timeline();
@@ -902,7 +906,8 @@ parentTl.add(textTl)
 
 let masterTl = gsap.timeline({
   scrollTrigger:{
-    refreshPriority:1
+    // refreshPriority:1,
+    
   }
 });
 masterTl.add(tl2).add(parentTl);

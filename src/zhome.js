@@ -437,49 +437,61 @@ tl.from('.navbar',
             
         });
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     const profiles = document.querySelectorAll(".profile");
+//     const contentWrappers = document.querySelectorAll(".c-content-wrapper");
+//     const cClose = document.querySelectorAll('.close-c')
+//     profiles.forEach(profile => {
+//         profile.addEventListener("click", () => {
+//             const profileClass = profile.classList[1]; // 'saq', 'raf', 'naqi'
+
+//             // Hide all wrappers
+//             contentWrappers.forEach(wrapper => {
+//                 wrapper.style.display = "none";
+//             });
+
+//             // Show the corresponding wrapper
+//             const targetWrapper = document.querySelector(`.c-content-wrapper.${profileClass}`);
+//             if (targetWrapper) {
+//                 targetWrapper.style.display = "flex";
+//             }
+//         });
+//     });
+
+//     // Reset to default state on scroll
+    
+//     cClose.forEach(close=>{close.addEventListener("click", (e) => {
+//         e.preventDefault()
+//         document.body.classList.remove("no-scroll");
+//         const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+//         document.body.style.removeProperty("top");
+//         body.classList.add("scroll-up")
+//         body.classList.remove("scroll-up-btn")
+//         body.classList.remove("scroll-down")
+//         window.scrollTo(0, scrollY);
+//             contentWrappers.forEach(wrapper => {
+//                 if (wrapper.classList.contains("saq") || 
+//                     wrapper.classList.contains("raf") || 
+//                     wrapper.classList.contains("naqi")) {
+//                     wrapper.style.display = "none";
+//                 } else {
+//                     wrapper.style.display = "flex"; // Show default content
+//                 }
+//             });
+        
+//     });})
+// });
 document.addEventListener("DOMContentLoaded", () => {
     const profiles = document.querySelectorAll(".profile");
     const contentWrappers = document.querySelectorAll(".c-content-wrapper");
     const cClose = document.querySelectorAll('.close-c')
     profiles.forEach(profile => {
-        profile.addEventListener("click", () => {
-            const profileClass = profile.classList[1]; // 'saq', 'raf', 'naqi'
+        profile.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            event.stopPropagation(); // Stop bubbling up
+            // Store the current scroll position
 
-            // Hide all wrappers
-            contentWrappers.forEach(wrapper => {
-                wrapper.style.display = "none";
-            });
-
-            // Show the corresponding wrapper
-            const targetWrapper = document.querySelector(`.c-content-wrapper.${profileClass}`);
-            if (targetWrapper) {
-                targetWrapper.style.display = "flex";
-            }
-        });
-    });
-
-    // Reset to default state on scroll
-    
-    cClose.forEach(close=>{close.addEventListener("click", (e) => {
-        e.preventDefault()
-            contentWrappers.forEach(wrapper => {
-                if (wrapper.classList.contains("saq") || 
-                    wrapper.classList.contains("raf") || 
-                    wrapper.classList.contains("naqi")) {
-                    wrapper.style.display = "none";
-                } else {
-                    wrapper.style.display = "flex"; // Show default content
-                }
-            });
-        
-    });})
-});
-document.addEventListener("DOMContentLoaded", () => {
-    const profiles = document.querySelectorAll(".profile");
-    const contentWrappers = document.querySelectorAll(".c-content-wrapper");
-
-    profiles.forEach(profile => {
-        profile.addEventListener("click", () => {
+            
             const profileClass = profile.classList[1]; // 'saq', 'raf', 'naqi'
 
             contentWrappers.forEach(wrapper => {
@@ -489,24 +501,54 @@ document.addEventListener("DOMContentLoaded", () => {
                     wrapper.classList.add("disable");
                 }
             });
+            const topY = window.scrollY;
+
+            // Apply the no-scroll class and keep the user in the same position
+                document.body.style.top = `-${topY}px`;
+                document.body.classList.add("no-scroll"); // Disable scrolling
+                body.classList.remove("scroll-up")
+                body.classList.add("scroll-up-btn")
+                body.classList.add("scroll-down")
         });
     });
 
     // Reset to default state on scroll
-    let isScrolling;
-    window.addEventListener("scroll", () => {
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-            contentWrappers.forEach(wrapper => {
-                wrapper.classList.add("disable"); // Disable all profiles
-            });
+    // let isScrolling;
+    // window.addEventListener("scroll", () => {
+    //     clearTimeout(isScrolling);
+    //     isScrolling = setTimeout(() => {
+    //         contentWrappers.forEach(wrapper => {
+    //             wrapper.classList.add("disable"); // Disable all profiles
+    //         });
 
-            const defaultWrapper = document.querySelector(".c-content-wrapper.default");
-            if (defaultWrapper) {
-                defaultWrapper.classList.remove("disable"); // Show default
-            }
-        }, 0);
-    });
+    //         const defaultWrapper = document.querySelector(".c-content-wrapper.default");
+    //         if (defaultWrapper) {
+    //             defaultWrapper.classList.remove("disable"); // Show default
+    //         }
+    //     }, 0);
+    // });
+
+    cClose.forEach(close=>{close.addEventListener("click", (e) => {
+        e.preventDefault()
+        document.body.classList.remove("no-scroll");
+        const topY = Math.abs(parseInt(document.body.style.top || "0"));
+        
+        document.body.style.removeProperty("top");
+        // body.classList.add("scroll-up")
+        // body.classList.remove("scroll-up-btn")
+        // body.classList.remove("scroll-down")
+        window.scrollTo(0, topY);
+            contentWrappers.forEach(wrapper => {
+                if (wrapper.classList.contains("saq") || 
+                    wrapper.classList.contains("raf") || 
+                    wrapper.classList.contains("naqi")) {
+                        wrapper.classList.add("disable");
+                } else {
+                    wrapper.classList.remove("disable"); // Show default content
+                }
+            });
+        
+    });})
 });
 // document.addEventListener("DOMContentLoaded", () => {
     

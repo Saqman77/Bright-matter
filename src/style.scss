@@ -1400,12 +1400,12 @@ row-gap: 10px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  position: relative;
+  // position: relative;
   height: auto;
 }
 
 .c.team .c-content-wrapper{
-  position: relative;
+  // position: relative;
   z-index: 1;
   grid-area: 1/1;
   display: flex;
@@ -1427,12 +1427,19 @@ row-gap: 10px;
   
 }
 .c-content-wrapper.raf,.c-content-wrapper.naqi,.c-content-wrapper.saq{
-  max-height: 100lvh;
-  
+  min-height: 100lvh;
+  height: 100%;
+  position: fixed;
+  z-index: 99999999;
+  top: 0;
+  color: #2E2E2E;
+  background-color: #d3d3d3;
+  contain: paint;
 }
 .c-content-wrapper.raf .profile,.c-content-wrapper.naqi .profile,.c-content-wrapper.saq .profile{
   background: none;
   pointer-events: none;
+  height: 100%;
   // width: 50%;
   // margin-left: auto;
   // margin-right: 0;
@@ -1443,45 +1450,41 @@ row-gap: 10px;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.c-content-wrapper.raf.disabled,.c-content-wrapper.naqi.disabled,.c-content-wrapper.saq.disabled{
+.c-content-wrapper.raf.disable,.c-content-wrapper.naqi.disable,.c-content-wrapper.saq.disable{
   display: none;
 }
 
 .c-content-wrapper.raf .team-grid .card,.c-content-wrapper.naqi .team-grid .card,.c-content-wrapper.saq .team-grid .card{
-  width: max-content;
-  height: fit-content;
+  // width: max-content;
+  height: 100%;
   margin-left: auto;
-  width: 30%;
+  width: 100%;
 }
 .c-content-wrapper.raf .team-grid .card-wrapper,.c-content-wrapper.naqi .team-grid .card-wrapper,.c-content-wrapper.saq .team-grid .card-wrapper{
   width: 100%;
-  height: max-content;
+  height: 100%;
   padding: 0;
+  margin: 0;
 }
-.c.team .c-content-wrapper.raf{
-  position: fixed;
-  z-index: 1;
-  grid-area: 1/1;
-  top: 0;
-  color: #2E2E2E;
-  background-color: #d3d3d3;
-}
-.c.team .c-content-wrapper.naqi{
-  position: fixed;
-  z-index: 1;
-  grid-area: 1/1;
-  top: 0;
-  color: #2E2E2E;
-  background-color: #d3d3d3;
-}
-.c.team .c-content-wrapper.saq{
-  position: fixed;
-  z-index: 1;
-  grid-area: 1/1;
-  top: 0;
-  color: #2E2E2E;
-  background-color: #d3d3d3;
-}
+// .c.team .c-content-wrapper.raf{
+
+// }
+// .c.team .c-content-wrapper.naqi{
+//   position: fixed;
+//   z-index: 99999;
+//   grid-area: 1/1;
+//   top: 0;
+//   color: #2E2E2E;
+//   background-color: #d3d3d3;
+// }
+// .c.team .c-content-wrapper.saq{
+//   position: fixed;
+//   z-index: 9999999;
+//   grid-area: 1/1;
+//   top: 0;
+//   color: #2E2E2E;
+//   background-color: #d3d3d3;
+// }
 
 .close-c{
   width: max-content;
