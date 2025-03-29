@@ -5,24 +5,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-@font-face {
-  font-family: "azonix";
-  // src: url("./assets/fontfs/Azonix.otf") format("otf");
-  // src: url("./assets/fontfs/AzonixRegular.ttf") format("ttf");
-  src: url("./assets/fontfs/AzonixRegular.woff") format("woff");
-  src: url("./assets/fontfs/AzonixRegular.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "espial";
-  // src: url("./assets/fontfs/Espial-Regular15.otf") format("otf");
-  // src: url("./assets/fontfs/EspialRegular15.ttf") format("ttf");
-  src: url("./assets/fontfs/EspialRegular15.woff") format("woff");
-  src: url("./assets/fontfs/EspialRegular15.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 .iti {
     --iti-path-flags-1x: url('./assets/images/flags.webp');
