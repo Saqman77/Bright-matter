@@ -213,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const sucessBtn = document.getElementsByClassName("success-text")[0];
     const failureBtn = document.getElementsByClassName("failure-text")[0];
 
+    body.classList.add("scroll-up-btn")
     // Open the form
     openBtns.forEach(function(openBtn) {
         openBtn.addEventListener("click", function(event) {
@@ -352,46 +353,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
 window.addEventListener('scroll', () => {
 
- const scrollTop = window.scrollY
- const newSection = Math.round(scrollTop / window.innerHeight);
- if (scrollTop <= 0) 
-    {
-        body.classList.remove("scroll-up")
-        body.classList.add("scroll-up-btn")
-        body.classList.remove("scroll-down-btn")
-    }
-if (scrollTop > lastScrollTop && !body.classList.contains("scroll-down"))
-    {
-        body.classList.remove("scroll-up")
-        body.classList.remove("scroll-up-btn")
-        body.classList.add("scroll-down")
-        body.classList.add("scroll-down-btn")
-    }
-if (scrollTop < lastScrollTop && body.classList.contains("scroll-down"))
-    {
-        body.classList.remove("scroll-down")
-        body.classList.remove("scroll-down-btn")
-        body.classList.add("scroll-up")
-        body.classList.add("scroll-up-btn")
-    }
-    lastScrollTop = scrollTop
-
-    // if (newSection == 2)
-    //     {
-    //         gsap.fromTo('.a',
-
-    //             {
-    //                 backdropFilter:'blur(10px)',
-    //                 backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))',
-    //                 duration:1,
-    //                 delay:3,
-                    
-    //             },  {
-    //                 backdropFilter:'none',
-    //                 backgroundColor:'none',
-    //             })
-    //     }
-});
+    const scrollTop = window.scrollY
+    const newSection = Math.round(scrollTop / window.innerHeight);
+    if (scrollTop == 0 && scrollTop > -1) 
+       {
+           body.classList.add("scroll-up")
+           body.classList.add("scroll-up-btn")
+           body.classList.remove("scroll-down-btn")
+       }
+   if (scrollTop > lastScrollTop && !body.classList.contains("scroll-down"))
+       {
+           body.classList.remove("scroll-up")
+           body.classList.remove("scroll-up-btn")
+           body.classList.add("scroll-down")
+           body.classList.add("scroll-down-btn")
+       }
+   if (scrollTop < lastScrollTop && body.classList.contains("scroll-down"))
+       {
+           body.classList.remove("scroll-down")
+           body.classList.remove("scroll-down-btn")
+           body.classList.add("scroll-up")
+           body.classList.add("scroll-up-btn")
+       }
+       lastScrollTop = scrollTop
+   
+       // if (newSection == 2)
+       //     {
+       //         gsap.fromTo('.a',
+   
+       //             {
+       //                 backdropFilter:'blur(10px)',
+       //                 backgroundColor:'linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0))',
+       //                 duration:1,
+       //                 delay:3,
+                       
+       //             },  {
+       //                 backdropFilter:'none',
+       //                 backgroundColor:'none',
+       //             })
+       //     }
+   });
 
 const tl = gsap.timeline()
 
@@ -428,9 +429,9 @@ tl.from('.navbar',
             marqueeInner.innerHTML += marqueeContent; 
         
             gsap.to(".marquee__inner", {
-                xPercent: window.innerWidth < 1250 ? -50 : -50, // Moves by half its width
+                xPercent: -100, // Moves by half its width
                 repeat: -1,
-                duration: window.innerWidth < 1250 ? 10 : 6,
+                duration: 6,
                 ease: "linear"
             });
 
@@ -485,30 +486,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const profiles = document.querySelectorAll(".profile");
     const contentWrappers = document.querySelectorAll(".c-content-wrapper");
     const cClose = document.querySelectorAll('.close-c')
+    const header = document.querySelector(".navbar")
     profiles.forEach(profile => {
         profile.addEventListener("click", (event) => {
             event.preventDefault(); // Prevent the default anchor click behavior
             event.stopPropagation(); // Stop bubbling up
             // Store the current scroll position
-
+ // Disable scrolling
+            // body.classList.remove("scroll-up")
             
             const profileClass = profile.classList[1]; // 'saq', 'raf', 'naqi'
 
             contentWrappers.forEach(wrapper => {
                 if (wrapper.classList.contains(profileClass)) {
                     wrapper.classList.remove("disable");
+                    
                 } else {
                     wrapper.classList.add("disable");
                 }
             });
             const topY = window.scrollY;
-
+            body.style.top = `-${topY}px`;
+            body.classList.add("no-scroll");
+            header.style.visibility = "hidden"
             // Apply the no-scroll class and keep the user in the same position
-                document.body.style.top = `-${topY}px`;
-                document.body.classList.add("no-scroll"); // Disable scrolling
-                body.classList.remove("scroll-up")
-                body.classList.add("scroll-up-btn")
-                body.classList.add("scroll-down")
+
+
         });
     });
 
@@ -532,7 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault()
         document.body.classList.remove("no-scroll");
         const topY = Math.abs(parseInt(document.body.style.top || "0"));
-        
+        header.style.visibility = "visible"
         document.body.style.removeProperty("top");
         // body.classList.add("scroll-up")
         // body.classList.remove("scroll-up-btn")

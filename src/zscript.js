@@ -539,8 +539,8 @@ const xWidth = horizontal.getBoundingClientRect().width;
 
 const tl2 = gsap.timeline({
   scrollTrigger:{
-    refreshPriority:1,
-    pinSpacing:false
+    // refreshPriority:2,
+    // pinSpacing:false
     // snap:1.42
   }
 });
@@ -765,12 +765,12 @@ tl2.to(bye,{
   // background:'#d3d3d3',
   // ease: "power1.out",
   scrollTrigger: {
-    trigger: '#exit',
+    trigger: "#exit",
     pin: true,
     start: "center center",
     // endTrigger:'.r-section',
-    end: "bottom ",
-    // preventOverlaps:true,
+    end: "bottom center",
+    preventOverlaps:true,
     // snap:1,
     // pinSpacing:false,
     // markers:true,
@@ -846,7 +846,7 @@ let parentTl = gsap.timeline({
       // pinSpacer:false,
       scrub:true,
       toggleActions: "play none none reverse",
-      markers:true
+      // markers:true
   }
 });
 
@@ -906,8 +906,8 @@ parentTl.add(textTl)
 
 let masterTl = gsap.timeline({
   scrollTrigger:{
-    // refreshPriority:1,
-    
+    refreshPriority:1,
+    anticipatePin:1
   }
 });
 masterTl.add(tl2).add(parentTl);
