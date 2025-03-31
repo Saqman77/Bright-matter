@@ -835,9 +835,9 @@ h1.c-main-heading {
   font-family: "azonix";
   letter-spacing: 0.2em;
   width: max-content;
-  // @media screen and (max-width:1250px) {
-  //   font-size: 2rem;
-  // }
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 .support-heading-left {
   font-size: 20px;
@@ -1024,9 +1024,9 @@ h1.c-main-heading {
   align-items: center;
   margin-right: 0.75em;
   margin-bottom: 0.5em;
-  // @media screen and (max-width:1250px) {
-  //   font-size: 2rem;
-  // }
+  @media screen and (max-width:1250px) {
+    font-size: 2rem;
+  }
 }
 
 .build__cta {
@@ -1056,7 +1056,7 @@ h1.c-main-heading {
     justify-content: space-between;
   }
   @media screen and (max-width:900px) {
-    padding: 60px .5em .5em;
+    padding: 60px 1em 1em;
     justify-content: space-between;
   }
 }
@@ -1072,18 +1072,20 @@ h1.c-main-heading {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+    margin-left: 0;
   }
 }
 .b-desc-main {
-  margin-left: auto;
+  // margin-left: auto;
   margin-bottom: auto;
   width: 60%;
   @media screen and (max-width:1250px) {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     flex-direction: column;
+    margin-top: auto;
   }
 }
 
@@ -1099,28 +1101,36 @@ h1.c-main-heading {
   font-size: 1rem;
   width: 100%;
   @media screen and (max-width:1250px) {
-    margin-top: 0;
+    font-size: 8px;
+    margin-top: 2em;
     width: 100%;
   }
 }
 .b-sup-head .c-main-heading{
-  // margin-bottom: 1em;
+  margin-bottom: 1em;
   font-size: 5.25rem;
+  @media screen and (max-width:1250px) {
+    margin-top: 0em;
+    width: 100%;
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 0;
+  }
 
 }
 .b-desc-main.oppo .b-sup.c-para{
   display: flex;
-  justify-content: start;
+  justify-content: left;
   flex-wrap: wrap;
 }
 .b-sup.c-para{
   display: flex;
-  justify-content: end;
+  justify-content: left;
   flex-wrap: wrap;
 }
 .b-desc-main.oppo .b-sup.c-para .word {
   font-size: 2rem;
-  font-family: "AZONIX";
+  font-family: "ESPIAL";
   margin-right: 0.2em;
   text-align: left;
   margin-bottom: 0.5em ;
@@ -1130,16 +1140,17 @@ h1.c-main-heading {
   text-shadow: 4px 5px 7px #000000;
   width: fit-content;
   @media screen and (max-width:1250px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 0;
+    margin-left: 0;
     margin-bottom: 0;
   }
 }
 .b-sup.c-para .word {
   font-size: 2rem;
-  font-family: "AZONIX";
-  margin-left: 0.2em;
-  text-align: right;
+  // font-family: "AZONIX";
+  margin-right: 0.2em;
+  text-align: left;
   margin-bottom: 0.5em ;
   // display: flex;
   // flex-wrap: nowrap;
@@ -1147,8 +1158,9 @@ h1.c-main-heading {
   text-shadow: 4px 5px 7px #000000;
   width: fit-content;
   @media screen and (max-width:1250px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 0;
+    margin-left: 0;
     margin-bottom: 0;
   }
 }
@@ -1157,8 +1169,8 @@ h1.c-main-heading {
   margin-top: auto;
   @media screen and (max-width:1250px) {
     font-size: 1.5rem;
-    // margin-top: 0;
-    // margin-bottom: 2em;
+    margin-top: auto;
+    margin-bottom: auto;
   }
 }
 
@@ -1175,25 +1187,25 @@ h2 {
 
 .b-bottom-bar {
   display: flex;
-  margin-top: 16px;
+  // margin-top: 16px;
 
   font-weight: 100;
 }
 
-.b-sup.c-para *, .b-sup .word{
-  font-size: 1.25rem;
-  margin-right: 0 ;
-  margin-bottom: 0 ;
-  font-weight: 100;
-  text-align: left;
-  @media screen and (max-width:1250px) {
-  font-size: 1rem;
-  margin-right: 0 ;
-  margin-bottom: 0 ;
-  font-weight: 100;
-  text-align: left;
-  }
-}
+// .b-sup.c-para *, .b-sup .word{
+//   font-size: 1.5rem;
+//   margin-right: 0 ;
+//   margin-bottom: 0 ;
+//   font-weight: 100;
+//   text-align: left;
+//   @media screen and (max-width:1250px) {
+//   font-size: 1rem;
+//   margin-right: 0 ;
+//   margin-bottom: 0 ;
+//   font-weight: 100;
+//   text-align: left;
+//   }
+// }
 
 .b-contact-btn {
   align-items: center;
@@ -1273,7 +1285,7 @@ h2 {
     // justify-content: space-between;
   }
   @media screen and (max-width:900px) {
-    padding: 60px .5em .5em;
+    padding: 60px 1em 1em;
     // justify-content: space-between;
   }
   // z-index: 9999;
@@ -1306,7 +1318,7 @@ h2 {
     justify-content: space-between;
   }
   @media screen and (max-width:900px) {
-    padding: 60px .5em .5em;
+    padding: 60px 1em 1em;
     justify-content: space-between;
   }
 }
@@ -1384,9 +1396,9 @@ h2 {
   letter-spacing: 0.2em;
   margin-bottom: .5em;
   position: relative;
-  text-align:center;
+  text-align:left;
   @media screen and (max-width:1250px) {
-    font-size: .5rem;
+    font-size: 1rem;
     width: 100%;
   }
 }
@@ -1428,12 +1440,12 @@ h2 {
 }
 
 .c-description .c-para{
-  margin-top: 0;
-  margin-bottom: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .c-para .word{
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 100;
   will-change: transform;
   user-select: none;
@@ -1460,11 +1472,17 @@ h2 {
   font-size: 2rem;
   margin-right: 0.45em;
   margin-bottom: 0.25em;
-  font-family: "AZONIX";
+  @media screen and (max-width:1250px) {
+    font-size: 1rem;
+  }
+  // font-family: "AZONIX";
 }
 .c-description .c-para.bot .word{
   font-size: 2rem;
-  font-family: "AZONIX";
+  // font-family: "AZONIX";
+  @media screen and (max-width:1250px) {
+    font-size: 1rem;
+  }
 }
 .services-container{
   display: flex;
@@ -1505,13 +1523,17 @@ h2 {
   border: 4px solid #00f0ff;
   box-shadow:inset 0 0 4px 4px #00000064;
   @media screen and (max-width:1250px) {
+    width: 320px;
+    height: 180px;
+    margin-bottom: 2em;
+    padding: 1em;
     // margin-bottom: 0;
     // width: 80%;
   }
 }
 
 .serv-bottom {
-  text-align: right;
+  text-align: left;
   justify-content: space-around;
   display: flex;
   align-items: end;
@@ -1525,6 +1547,10 @@ h2 {
   box-shadow:inset 0 0 4px 4px #00000064;
   margin-left: auto;
   @media screen and (max-width:1250px) {
+    width: 320px;
+    height: 180px;
+    // margin-bottom: 2em;
+    padding: 1em;
     // margin-bottom: 0;
     // width: 80%;
     // align-items: center;
@@ -1537,8 +1563,9 @@ h2 {
   
   @media screen and (max-width:1250px) {
     // font-size: 1.5rem;
-    width: 30%;
+    // width: 30%;
     // text-align: center;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -1549,7 +1576,7 @@ h2 {
   
   // border-bottom: 1px solid #000000;
   @media screen and (max-width:1250px) {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     // width: 30%;
     // text-align: center;
   }
@@ -1557,7 +1584,7 @@ h2 {
 
 .serv-top .serv-head{
   @media screen and (max-width:1250px) {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     // width: 30%;
     // text-align: left;
   }
@@ -1577,10 +1604,10 @@ h2 {
  font-size: 1.5rem;
  font-weight: 700;
  color: #2E2E2E;
- font-family: "azonix";
-  letter-spacing: 0.2em;
+//  font-family: "azonix";
+  // letter-spacing: 0.2em;
  @media screen and (max-width:1250px) {
-  font-size: 1rem;
+  font-size: 12px;
 }
 }
 
@@ -1872,6 +1899,13 @@ row-gap: 10px;
   height: 100px;
   margin-left: auto;
   width: 200px;
+}
+.c-content-wrapper.raf .c-description .c-para .word,.c-content-wrapper.naqi .c-description .c-para .word,.c-content-wrapper.saq .c-description .c-para .word{
+  // width: max-content;
+  font-size: 1.5rem;
+  @media screen and (max-width:1250px) {
+    font-size: 0.9rem;
+  }
 }
 .c-content-wrapper.raf .team-grid .card-wrapper,.c-content-wrapper.naqi .team-grid .card-wrapper,.c-content-wrapper.saq .team-grid .card-wrapper{
   width: 100%;
@@ -3214,16 +3248,13 @@ h3 {
 
   .b-bottom-bar {
     display: flex;
-    margin-top: 16px;
+    // margin-top: 16px;
     // height: 100%;
     /* width: 20%; */
     font-weight: 100;
   }
 
-  .b-sup {
-    font-size: 0.8rem;
-    margin-right: 0rem;
-  }
+ 
 
   .b-contact-btn {
     align-items: start;
@@ -4051,12 +4082,7 @@ h3 {
     font-weight: 700;
   }
 
-  .b-bottom-bar {
-    display: flex;
-    margin-top: 16px;
-    /* width: 20%; */
-    font-weight: 700;
-  }
+ 
 
  
 
