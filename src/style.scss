@@ -1062,7 +1062,8 @@ h1.c-main-heading {
 }
 
 .b-desc-main.oppo {
-  margin-left: right;
+  margin-top: auto;
+  margin-left: 0;
   margin-bottom: auto;
   width: 100%;
   margin-left: 1em;
@@ -1078,7 +1079,7 @@ h1.c-main-heading {
 .b-desc-main {
   // margin-left: auto;
   margin-bottom: auto;
-  width: 60%;
+  width: 100%;
   @media screen and (max-width:1250px) {
     width: 100%;
     height: 100%;
@@ -1091,6 +1092,7 @@ h1.c-main-heading {
 
 .b-content-wrapper .c-main-content{
   margin-top: 0;
+  margin-bottom: 0;
   @media screen and (max-width:1250px) {
     margin-top: 0;
   }
@@ -1107,7 +1109,7 @@ h1.c-main-heading {
   }
 }
 .b-sup-head .c-main-heading{
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
   font-size: 5.25rem;
   @media screen and (max-width:1250px) {
     margin-top: 0em;
@@ -1129,11 +1131,11 @@ h1.c-main-heading {
   flex-wrap: wrap;
 }
 .b-desc-main.oppo .b-sup.c-para .word {
-  font-size: 2rem;
-  font-family: "ESPIAL";
-  margin-right: 0.2em;
+  font-size: 1.5rem;
+  font-family: "azonix";
+  margin-right: 0.15em;
   text-align: left;
-  margin-bottom: 0.5em ;
+  margin-bottom: 0.15em ;
   // display: flex;
   // flex-wrap: nowrap;
   // flex-direction: column;
@@ -1149,9 +1151,9 @@ h1.c-main-heading {
 .b-sup.c-para .word {
   font-size: 2rem;
   // font-family: "AZONIX";
-  margin-right: 0.2em;
+  margin-right: 0.12em;
   text-align: left;
-  margin-bottom: 0.5em ;
+  margin-bottom: 0.15em ;
   // display: flex;
   // flex-wrap: nowrap;
   // flex-direction: column;
@@ -1440,8 +1442,8 @@ h2 {
 }
 
 .c-description .c-para{
-  margin-top: auto;
-  margin-bottom: auto;
+  // margin-top: auto;
+  // margin-bottom: auto;
 }
 
 .c-para .word{
@@ -1464,21 +1466,27 @@ h2 {
 .c-description{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.c-description .c-para{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .c-description .c-para .word{
-  font-size: 2rem;
-  margin-right: 0.45em;
-  margin-bottom: 0.25em;
+  font-size: 2.3rem;
+  margin-right: 0.15em;
+  margin-bottom: 0.15em;
   @media screen and (max-width:1250px) {
     font-size: 1rem;
   }
   // font-family: "AZONIX";
 }
 .c-description .c-para.bot .word{
-  font-size: 2rem;
+  font-size: 2.3rem;
   // font-family: "AZONIX";
   @media screen and (max-width:1250px) {
     font-size: 1rem;
@@ -1491,14 +1499,14 @@ h2 {
 }
 
 .c-description .c-para.bot{
-  margin-top: 0;
-  margin-bottom: 0;
+  // margin-top: auto;
+  // margin-bottom: auto;
 }
 
 .services{
   display: flex;
   flex-direction: column;
-  width: 150vw;
+  width: max-content;
   justify-content: space-evenly;
   padding: 3rem;
   @media screen and (max-width:1250px) {
@@ -1669,6 +1677,9 @@ h2 {
 .c-main-content.members{
   text-align: center;
   margin: auto;
+  @media screen and (max-width:1250px) {
+    margin-bottom: 60px;
+  }
 }
 
 .card{
@@ -1981,12 +1992,12 @@ row-gap: 10px;
   padding: 3em 5em;
   border-top: 2px solid black;
   @media screen and (max-width:1250px) {
-    padding: 2em 2em;
+    padding: 3em 2em;
     justify-content: space-between;
     
   }
   @media screen and (max-width:900px) {
-    padding: 1em 0.5em;
+    padding: 2em 1em;
     justify-content: space-between;
   }
 }
@@ -2013,7 +2024,7 @@ row-gap: 10px;
   padding: 2em;
   @media screen and (max-width:1250px) {
     padding: 1em;
-    
+    margin-bottom: 2em;
   }
   @media screen and (max-width:900px) {
     padding: 0em;
@@ -2030,7 +2041,7 @@ row-gap: 10px;
   padding: 2em;
   @media screen and (max-width:1250px) {
     padding: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
   @media screen and (max-width:900px) {
     padding: 0em;
@@ -2091,7 +2102,7 @@ row-gap: 10px;
   padding: 2em;
   @media screen and (max-width:1250px) {
     padding: 1em;
-    
+    margin-bottom: 2em;
   }
   @media screen and (max-width:900px) {
     padding: 0em;
