@@ -1073,9 +1073,11 @@ h1.c-main-heading {
   margin-bottom: auto;
   width: 100%;
   // margin-left: 1em;
-  @media screen and (max-width:1250px) {
+  @media screen and (max-width:900px) {
     width: 100%;
     // height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -1101,7 +1103,7 @@ h1.c-main-heading {
   // margin-bottom: auto;
   @media screen and (max-width:1250px) {
     width: 100%;
-    height: 100%;
+    // height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1117,7 +1119,7 @@ h1.c-main-heading {
   width: 100%;
   @media screen and (max-width:1250px) {
     width: 100%;
-    height: 100%;
+    // height: 100%;
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -1151,8 +1153,15 @@ h1.c-main-heading {
 .b-sup-head .c-main-heading.letter{
   // margin-bottom: 1em;
   font-size: 5.25rem;
-  margin-right: 0.2em;
+  margin-right: 0.25em;
   @media screen and (max-width:1250px) {
+    margin-top: 0em;
+    width: 100%;
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 0;
+  }
+  @media screen and (max-width:900px) {
     margin-top: 0em;
     width: 100%;
     font-size: 2rem;
@@ -1164,21 +1173,24 @@ h1.c-main-heading {
 .carousel-heading{
 
 }
-.carousel-heading.c-main-heading {
+.carousel-heading{
   display: flex;
+  // flex-wrap: nowrap;
   width: 100%;
-  justify-content: center;
-  text-align: center;
+  // justify-content: center;
+  // text-align: center;
   // margin-bottom: .5em;
   font-size: 3.5rem;
-  font-weight: 500;
-  margin-right: 0.5em;
+  font-weight: 100;
+  // margin-right: 0.85em;
   mix-blend-mode: difference;
+  font-family: "azonix";
   @media screen and (max-width:1250px) {
-    margin-top: 0em;
+    margin-top: auto;
     width: 100%;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     text-align: left;
+    justify-content: left;
     // margin-bottom: 0;
   }
 
@@ -1194,13 +1206,15 @@ h1.c-main-heading {
   flex-wrap: wrap;
 }
 .glide__slide {
-  background: #333;
-  color: white;
+  background: #d3d3d3;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 300px;
-  font-size: 24px;
+  // font-size: 24px;
+  width: 100%;
+  border: 2px solid #00f7ff;
 }
 
 .slide-wrapper{
@@ -1209,7 +1223,7 @@ h1.c-main-heading {
   padding: 2em 1em;
   
   @media screen and (max-width:1250px) {
-    padding: 1em 1em;
+    padding: 2em 1em;
   }
 }
 
@@ -1222,21 +1236,50 @@ h1.c-main-heading {
 }
 
 .slide-heading h3{
-  font-size: 1.5rem;
-
+  font-size: 2rem;
+  font-weight: 400;
+  @media screen and (max-width:1250px) {
+    font-size: 1rem;
+    
+  }
 }
 
-// .glide__slide {
-//   transition: transform 0.6s ease-in-out;
-// }
+.slide-list{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  // align-items: center;
+}
 
-// .glide__slide--active {
-//   transform: scale(1.05);
-// }
+.slide-list > li{
+  font-size: 2rem;
+  color: #008c7a;
+  font-family: "azonix";
+  margin-bottom: 0.5em;
+  list-style: none;
+  // font-weight: 700;
+  // text-align: center;
+  @media screen and (max-width:1250px) {
+    font-size: 1rem;
+    margin-bottom: 0.2em;
+  }
+}
 
+.glide__slide {
+  filter: blur(5px);
+  opacity: 0.5;
+  transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.glide__slide--active {
+  filter: blur(0);
+  opacity: 1;
+}
 .b-desc-main.oppo .b-sup.c-para .word {
   font-size: 1.5rem;
-  // font-family: "azonix";
+  font-family: "azonix";
   margin-right: 0.35em;
   text-align: left;
   margin-bottom: 0.15em ;
@@ -1246,10 +1289,16 @@ h1.c-main-heading {
   text-shadow: 4px 5px 7px #000000;
   width: fit-content;
   @media screen and (max-width:1250px) {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-right: .3em;
+    margin-bottom: .4em;
+  }
+  @media screen and (max-width:900px) {
     font-size: 12px;
     margin-top: 0;
     margin-right: .3em;
-    margin-bottom: .2em;
+    margin-bottom: .4em;
   }
 }
 .b-sup.c-para .word {
@@ -1263,7 +1312,7 @@ h1.c-main-heading {
   // flex-direction: column;
   text-shadow: 4px 5px 7px #000000;
   width: fit-content;
-  @media screen and (max-width:1250px) {
+  @media screen and (max-width:900px) {
     font-size: 1rem;
     margin-top: 0;
     // margin-left: 0;
@@ -1504,7 +1553,7 @@ h2 {
   margin-bottom: .5em;
   position: relative;
   text-align:left;
-  @media screen and (max-width:1250px) {
+  @media screen and (max-width:900px) {
     font-size: 1rem;
     width: 100%;
   }
@@ -1518,7 +1567,7 @@ h2 {
   letter-spacing: 0.2em;
   margin-bottom: .5em;
   position: relative;
-  @media screen and (max-width:1250px) {
+  @media screen and (max-width:900px) {
     font-size: .5rem;
     width: 100%;
   }
@@ -1533,6 +1582,9 @@ h2 {
   text-shadow: 4px 5px 7px #000000;;
   user-select: none;
   @media screen and (max-width:1250px) {
+    font-size: 3rem;
+  }
+  @media screen and (max-width:900px) {
     font-size: 1.8rem;
   }
 }
@@ -1559,6 +1611,10 @@ h2 {
   text-align: left;
   margin-bottom: 0;
   @media screen and (max-width:1250px) {
+    font-size: 2.1rem;
+    margin-bottom: 0;
+  }
+  @media screen and (max-width:900px) {
     font-size: .8rem;
     margin-bottom: 0;
   }
@@ -1586,6 +1642,9 @@ h2 {
   margin-right: 0.15em;
   margin-bottom: 0.15em;
   @media screen and (max-width:1250px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width:900px) {
     font-size: 1rem;
   }
   // font-family: "AZONIX";
@@ -1594,6 +1653,9 @@ h2 {
   font-size: 2.3rem;
   // font-family: "AZONIX";
   @media screen and (max-width:1250px) {
+    font-size: 1.8rem;
+  }
+  @media screen and (max-width:900px) {
     font-size: 1rem;
   }
 }
@@ -1721,7 +1783,7 @@ h2 {
  color: #2E2E2E;
 //  font-family: "azonix";
   // letter-spacing: 0.2em;
- @media screen and (max-width:1250px) {
+ @media screen and (max-width:900px) {
   font-size: 12px;
 }
 }
@@ -3124,7 +3186,7 @@ h3 {
   }
   h1.c-main-heading {
     user-select: none;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 100;
     color: #f9f9f9;
     font-family: "azonix";
@@ -3440,7 +3502,7 @@ h3 {
     // margin-right: auto;
   }
   .c-main-heading {
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     margin-left: 0;
     font-family: "azonix";
     letter-spacing: 0.2em;

@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   new Glide(".glide", {
     type: "carousel", // Options: 'carousel', 'slider'
      // Index of first slide
-    perView: 1,
+    perView: 3,
+    startAt: 0, // Index of first slide
+    focusAt: "center", // Center the active slide
     breakpoints: {
-      1024: { perView: 2 },
+      1250: { perView: 2 },
       768: { perView: 1 },
     }, // Number of slides visible
     autoplay: 3000, // Auto-slide every 3 seconds (set to false to disable)
