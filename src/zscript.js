@@ -569,8 +569,8 @@ tl2.to(".hero", {
   scrollTrigger: {
     trigger: "body",
     start: "top top",
-    end: "+=50%",
-    scrub: 2,
+    end: "+=100%",
+    scrub: 1,
     markers: false
   }
 });
@@ -600,7 +600,7 @@ tl2.to(".a", {
     trigger: ".a",
     pin: true,
     start: "top top",
-    end: "bottom",
+    end: "+=200%",
     scrub: true
   },
 });
@@ -614,7 +614,7 @@ tl2.to(secondSection, {
     trigger: secondSection,
     pin: true,
     start: "top top",
-    end: "40%",
+    end: "+=200%",
     scrub: true,
     onLeave: () => gsap.to(secondSection, { opacity: 0, ease: "power2.out" }),
     onEnterBack: () => gsap.to(secondSection, { opacity: 1, ease: "power2.in" })
@@ -629,7 +629,7 @@ tl2.fromTo(about,
       trigger: about,
       pin: true,
       start: "top top",
-      end: "50%",
+      end: "+=200%",
       scrub: true,
       onLeave: () => gsap.to(about, { opacity: 0, ease: "power1.out" }),
       onEnterBack: () => gsap.to(about, { opacity: 1, backdropFilter: "blur(20px)", ease: "power1.in" })

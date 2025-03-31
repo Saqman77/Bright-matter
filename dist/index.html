@@ -1,82 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./assets/favicon-7c19f85b.svg" sizes="16x16">
-    <link rel="icon" type="image/png" href="./assets/favicon-7c19f85b.svg" sizes="32x32">
-    <link rel="icon" type="image/png" href="./assets/favicon-7c19f85b.svg" sizes="96x96">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon-7c19f85b.svg"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon-7c19f85b.svg"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon-7c19f85b.svg"
+      sizes="96x96"
+    />
     <title>Bright-Mattr.</title>
     
     
-  <script type="module" crossorigin src="./assets/index-99017c1d.js"></script>
-  <link rel="stylesheet" href="./assets/index-6433797e.css">
-</head>
-<body>
+    
+    <script type="module" crossorigin src="./assets/index-426c7ac7.js"></script>
+    <link rel="stylesheet" href="./assets/index-c7afd12e.css">
+  </head>
+  <body>
+    
+    
     <canvas class="webgl"></canvas>
     
     <div class="main-container">
-        <div id="overlay" class="overlay"></div>
-        <div class="contact-form form-default" id="contact-form">
-            <div class="contact-form-wrapper">
-                <div class="form-header">
-                    <h4>Connect With Us</h4>
-                    <p>Schedule a free consultation to see how you can transform your digital presence</p>
-                    <button class="close-btn">&times;</button>
-                </div>
-                <form id="contact-form-element">  <!-- Added ID for JS targeting -->
-                    <input type="text" name="name" placeholder="Name *" class="form-input" id="name" required>
-                    <input type="email" name="email" placeholder="Email *" class="form-input" id="email" required>
-                    <div class="phone-wrapper" data-lenis-prevent>
-                        <input type="text" name="phone" class="form-input" id="phone" required>
-                    </div>
-                    <textarea name="message" placeholder="Message" class="form-input message" id="message"></textarea>
-                    <div class="submit-wrapper">
-                        <button type="submit" class="submit-btn" id="submit-btn">  <!-- Added ID for JS targeting -->
-                            <p class="default-text">Get in Touch</p>
-                            <p class="success-text">Success!</p>
-                            <p class="failure-text">Oops..! An error occurred</p>
-                        </button>
-                    </div>
-                </form>
+      <div id="overlay" class="overlay"></div>
+      <div class="contact-form form-default" id="contact-form">
+        <div class="contact-form-wrapper">
+          <div class="form-header">
+            <h4>Connect With Us</h4>
+            <p>
+              Schedule a free consultation to see how you can transform your
+              digital presence
+            </p>
+            <button class="close-btn">&times;</button>
+          </div>
+          <form id="contact-form-element">
+            <!-- Added ID for JS targeting -->
+            <input
+              type="text"
+              name="name"
+              placeholder="Name *"
+              class="form-input"
+              id="name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email *"
+              class="form-input"
+              id="email"
+              required
+            />
+            <div class="phone-wrapper" data-lenis-prevent>
+              <input
+                type="text"
+                name="phone"
+                class="form-input"
+                id="phone"
+                required
+              />
             </div>
+            <textarea
+              name="message"
+              placeholder="Message"
+              class="form-input message"
+              id="message"
+            ></textarea>
+            <div class="submit-wrapper">
+              <button type="submit" class="submit-btn" id="submit-btn">
+                <!-- Added ID for JS targeting -->
+                <p class="default-text">Get in Touch</p>
+                <p class="success-text">Success!</p>
+                <p class="failure-text">Oops..! An error occurred</p>
+              </button>
+            </div>
+          </form>
         </div>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo" href="#">
-                    <img src="./assets/new-light-145e594d.svg" alt="">
-                </div>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#main">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#team">Team</a></li>
-                        <li><a href="#contact" id="contact-btn">Contact</a></li>
-                    </ul> 
-                </nav>
-                <div id="opn-contact" class="contact-us" href="">
-                    <img src="./assets/message-icon-812f1db3.svg" alt="">
-                    <p>contact&nbsp;us</p>
-                </div>
-            </div>
-        </nav>
-        <div id="opn-contact" class="contact-btn  scroll-up-btn" href="">
-            <img src="./assets/message-icon-812f1db3.svg" class="static" alt="">
-            <img src="./assets/message-icon.hover-8bc18597.svg" class="hover" alt="">
-            <img src="./assets/message-icon-clicked-bdd97c2f.svg" class="clicked" alt="">
+      </div>
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo" href="#">
+            <img src="./assets/new-light-145e594d.svg" alt="" />
+          </div>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#main">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#contact" id="contact-btn">Contact</a></li>
+            </ul>
+          </nav>
+          <div id="opn-contact" class="contact-us" href="">
+            <img src="./assets/message-icon-812f1db3.svg" alt="" />
             <p>contact&nbsp;us</p>
+          </div>
         </div>
-        <section id="main" class="hero">
-            <div class="hero-wrapper">
-                <div class="content-frame">
-                    <div class="left-hero-content">
-                        <div class="heading-wrapper" id="pin-hero">
-                            <h1 class="c-main-heading">Bright-mattr.</h1>
-                            <div class="support-heading-left"> Digital studios.</div>
-                        </div>
-                        <div class="bot-content-wrapper">
-                            <div class="bot-card">
+      </nav>
+      <div id="opn-contact" class="contact-btn scroll-up-btn" href="">
+        <img
+          src="./assets/message-icon-812f1db3.svg"
+          class="static"
+          alt=""
+        />
+        <img
+          src="./assets/message-icon.hover-8bc18597.svg"
+          class="hover"
+          alt=""
+        />
+        <img
+          src="./assets/message-icon-clicked-bdd97c2f.svg"
+          class="clicked"
+          alt=""
+        />
+        <p>contact&nbsp;us</p>
+      </div>
+      <section id="main" class="hero">
+        <div class="hero-wrapper">
+          <div class="content-frame">
+            <div class="left-hero-content">
+              <div class="heading-wrapper" id="pin-hero">
+                <div class="heading">
+                  <h1 class="c-main-heading">Bright-mattr.</h1>
+                </div>
+                <div class="support-heading-left">Digital studios.</div>
+              </div>
+              <div class="bot-content-wrapper">
+                <!-- <div class="bot-card">
                                 <div class="bot-card-heading">
                                     What We Offer
                                 </div>
@@ -86,591 +148,811 @@
                             </div>
                             <div id="opn-contact" href="" class="bot-contact-cta">
                                 <div class="bot-contact-desc">connect&nbsp;with<br/>the&nbsp;experts!</div>
-                                <img src="./assets/Arrow up-right-9bbd850a.svg" class="contact-cta" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-hero-content">
-                        <div class="container-right">
-                            <div class=" right-hero-tag  ">
-                            websites <br/>into living <br/>worlds.
-                            </div>
-                            <div class="right-sup-tag">
-                                Creating dynamic, interactive 3D environments that engage and inspire. 
-                            </div>
-                            <div class="right-sup-tag-2">
-                                Where Imagination Meets Innovation.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bright">
-                        <div class="marquee__inner">
-                        <div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div><div class="marquee__part">
-                            <div class="marquee-img">
-                                <img src="./assets/new-light-145e594d.svg" alt="">
-                            </div>
-                        </div>
-                        </div>
-                </div>
+                                <img src="./assets/images/icons/Arrow up-right.svg" class="contact-cta" alt="">
+                            </div> -->
+              </div>
             </div>
-        </section>
-        <section id="tag-section" class="a-space" >
-            <div id="status">
-                <p class="gyro">
-                    We use your device's gyroscopic sensor for an enhanced User Experience.
-                </p>
-                <button id="requestButton">Activate dynamic pov</button>
-            </div>
-            <div class="a-space-content-wrapper">
-                <p class="a-space-center display-desktop"> move your cursor for dynamic pov</p>
-                <p class="a-space-center display-mobile">move and tilt your device for dynamic pov</p>
-            </div>
-        </section>
-        <section id="pin-second" class="a" >
-            <div class="a__content" >
-                <div class="main__tagline" >
-                    <p class="main-p c-main-heading" > Experience the Future of the Web</p>
+            <div class="right-hero-content">
+              <div class="container-right">
+                <div class="right-hero-tag">
+                  websites <br />into living <br />worlds.
                 </div>
-                <div id="opn-contact" href="" class="build__cta">
-                    <p>build&nbsp;your&nbsp;own&nbsp;team!</p>
-                    <img src="./assets/Arrow up-right-9bbd850a.svg" class="contact-cta" alt="">
+                <div class="right-sup-tag">
+                  Creating dynamic, interactive 3D environments that engage and
+                  inspire.
                 </div>
+                <div class="right-sup-tag-2">
+                  Where Imagination Meets Innovation.
+                </div>
+              </div>
             </div>
-        </section>
-
-        <section id="expertise" class="b">
-          <div class="b-content-wrapper">
-                <div class="b-desc-main" >
-                    <div class="c-main-content">
-                        <div class="c-sup-heading">Why us?</div>
-                        <div class="b-sup-head"><p class="c-para">Pixel-Perfect, Immersive Experiences That Drive Business Growth</p></div>
-                    </div>
-                    <div class="b-bottom-bar" >
-                            <div class="b-left-sup">
-                                
-                                <p class="b-sup c-para">
-                                    We craft high-performance, visually stunning websites that go beyond aesthetics—delivering seamless, immersive experiences that captivate your audience. Our pixel-perfect approach ensures precision, while our strategic design fuels engagement and business growth. Let’s build something extraordinary.
-                                 </p>
-                            </div>
-
-                    </div>
-                </div>
-
           </div>
-        </section>
-        <section id="about" class="c">
-            <div  class="about-content-wrapper">
-                <div class="c-main-content">
-                    <div class="c-sup-heading">About</div>
-                    <div class="c-main-heading">BRIGHT-MATTR</div>
+          <div class="bright">
+            <div class="marquee__inner">
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
                 </div>
-                <div class="c-description">
-                    <p class="c-para">
-                        At Bright Mattr, we blend technology, creativity, and strategy to craft immersive digital experiences and cutting-edge IT solutions.
-                        From sleek web and app development to 3D web design, branding, and cloud solutions, we help businesses transform ideas into reality.
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        Our team thrives on innovation—whether it’s building seamless user interfaces, 
-                        developing scalable cloud infrastructures, or designing visually stunning digital experiences. We don’t just create solutions; we create impact.
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        Your brand deserves more than just functionality. It deserves a bold, future-ready presence that stands out in a crowded digital world. Let’s build it together.
-                    </p>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
                 </div>
-                <div id="opn-contact" href="" class="c-contact-cta">
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+              <div class="marquee__part">
+                <div class="marquee-img">
+                  <img src="./assets/new-light-145e594d.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="tag-section" class="a-space">
+        <div id="status">
+          <p class="gyro">
+            We use your device's gyroscopic sensor for an enhanced User
+            Experience.
+          </p>
+          <button id="requestButton">Activate dynamic pov</button>
+        </div>
+        <div class="a-space-content-wrapper">
+          <p class="a-space-center display-desktop">
+            move your cursor for dynamic pov
+          </p>
+          <p class="a-space-center display-mobile">
+            move and tilt your device for dynamic pov
+          </p>
+        </div>
+      </section>
+      <section id="pin-second" class="a">
+        <div class="a__content">
+          <div class="main__tagline">
+            <div class="heading">
+              <p class="main-p c-main-heading">Experience</p>
+            </div>
+            <div class="heading">
+              <p class="main-p c-main-heading">the</p>
+              <p class="main-p c-main-heading">Future</p>
+            </div>
+            <div class="heading">
+              <p class="main-p c-main-heading">of</p>
+              <p class="main-p c-main-heading">the</p>
+              <p class="main-p c-main-heading">Web</p>
+            </div>
+          </div>
+          <div id="opn-contact" href="" class="build__cta">
+            <p>build&nbsp;your&nbsp;own&nbsp;team!</p>
+            <img
+              src="./assets/Arrow up-right-9bbd850a.svg"
+              class="contact-cta"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="expertise" class="b">
+        <div class="b-content-wrapper">
+          <div class="c-main-content">
+            <!-- <div class="b-sup-head"><p class="c-main-heading">Why Bright-Mattr?</p></div> -->
+            <div class="c-sup-heading c-para">Why Bright-Mattr?</div>
+            <!-- <span class="space"></span> -->
+          </div>
+
+          <div class="b-desc-main oppo">
+            <div class="b-bottom-bar">
+              <div class="b-left-sup">
+                <p class="b-sup c-para">
+                  Your digital presence should do more than exist—it should
+                  engage, convert, and set you apart. At Bright Mattr, we create
+                  immersive, high-performance experiences that drive real
+                  business growth.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-container">
+            <div class="carousel-heading"><h2>What You Gain:</h2></div>
+            <!-- <span class="space"></span> -->
+            <div class="carousel-wrapper">
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                      <ul class="glide__slides">
+                        <li class="glide__slide">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="slide-heading"><h3>Standout Digital Experiences</h3></div>
+                                    <ul class="slide-list">
+                                        <li class="slide-sup">Pixel-perfect design.</li>
+                                        <li class="slide-sup">Seamless UI.</li>
+                                        <li class="slide-sup">Immersive 3D.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="slide-heading"><h3>Higher-Conversions</h3></div>
+                                    <ul class="slide-list">
+                                        <li class="slide-sup">Intuitive.</li>
+                                        <li class="slide-sup">High-performance platforms.</li>
+                                        <li class="slide-sup">Turning visitors into customers.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="slide-heading"><h3>Future-Proof Solutions</h3></div>
+                                    <ul class="slide-list">
+                                        <li class="slide-sup">Scalable cloud</li>
+                                        <li class="slide-sup">AI, and secure web apps.</li>
+                                        <li class="slide-sup">built to grow with you.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="slide-heading"><h3>Speed and Security</h3></div>
+                                    <ul class="slide-list">
+                                        <li class="slide-sup">Fast.</li>
+                                        <li class="slide-sup">Enterprise-grade solutions</li>
+                                        <li class="slide-sup">Flawless performance.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="slide-heading"><h3>Custom-Tailored Strategy</h3></div>
+                                    <ul class="slide-list">
+                                        <li class="slide-sup">Every project is built to fit your unique brand and goals.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="slide-heading"><h3>Cutting-Edge Innovation</h3></div>
+                                    <ul class="slide-list">
+                                        <li class="slide-sup">AI-driven insights.</li>
+                                        <li class="slide-sup">next-level design.</li>
+                                        <li class="slide-sup">User-Heatmaps</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        
+
+                      </ul>
+                    </div>
+                
+                    <!-- Navigation (Optional) -->
+                    <div class="glide__arrows" data-glide-el="controls">
+                      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">←</button>
+                      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">→</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          <div class="b-desc-main">
+            <div class="b-bottom-bar">
+              <div class="b-left-sup">
+                <p class="b-sup c-para">
+                    At Bright Mattr, we don’t just build—we elevate. Ready to transform your digital presence? Let’s make it happen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="about" class="c">
+        <div class="about-content-wrapper">
+          <div class="c-main-content">
+            <!-- <div class="c-sup-heading"></div> -->
+            <div class="c-main-heading">About us</div>
+            <!-- <div class="c-sup-heading-bot "><p>At Bright Mattr, we blend technology, creativity, and strategy to craft immersive digital experiences and cutting-edge IT solutions.</p></div>
+                    <div class="c-sup-heading c-para">From sleek web and app development to 3D web design, branding, and cloud solutions, we help businesses transform ideas into reality.</div> -->
+          </div>
+          <div class="c-description">
+            <p class="c-para">
+              At Bright Mattr, we blend technology, creativity, and strategy to
+              craft immersive digital experiences and cutting-edge IT
+              solutions.&nbsp; From sleek web and app development to 3D web
+              design, branding, and cloud solutions, we help businesses
+              transform ideas into reality.
+            </p>
+            <!-- <span class="space"></span> -->
+            <p class="c-para">
+              Our team thrives on innovation—whether it’s building seamless user
+              interfaces, developing scalable cloud infrastructures, or
+              designing visually stunning digital experiences. We don’t just
+              create solutions; we create impact.
+            </p>
+            <!-- <span class="space"></span> -->
+            <p class="c-para bot">
+              Your brand deserves more than just functionality. It deserves a
+              bold, future-ready presence that stands out in a crowded digital
+              world. Let’s build it together.
+            </p>
+          </div>
+          <!-- <div id="opn-contact" href="" class="c-contact-cta">
                     <p class="c-contact-p">Get&nbsp;Started</p>
-                    <img src="./assets/Arrow up-right-9bbd850a.svg" alt="" class="c-contact">
-                </div>
+                    <img src="./assets/images/icons/Arrow up-right.svg" alt="" class="c-contact">
+                </div> -->
+        </div>
+      </section>
+      <section id="services" class="c hori" data-special="true">
+        <div class="hori-content-wrapper">
+          <div class="hori-container">
+            <div class="c-main-content">
+              <!-- <div class="c-sup-heading">Our Services</div> -->
+              <div class="c-main-heading">What We Do</div>
             </div>
-        </section >
-        <section id="services" class="c hori" data-special="true">
-            <div  class="hori-content-wrapper">
-                <div class="hori-container">
-                    <div class="c-main-content">
-                        <!-- <div class="c-sup-heading">Our Services</div> -->
-                        <div class="c-main-heading">What We Do</div>
+            <div class="services-container">
+              <div class="services">
+                <div class="serv-bottom">
+                  <div class="serv-heading">
+                    <p class="serv-head">UI/UX Design</p>
+                  </div>
+                  <div class="serv-desc">
+                    <p class="serv-text">
+                      Seamless, intuitive, and conversion-driven interfaces
+                      designed for engagement.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="services">
+                <div class="serv-top">
+                    <div class="serv-heading">
+                      <p class="serv-head">Web & App Development</p>
                     </div>
-                    <div class="services-container">
-                        <div class="services">
-                            <div class="serv-top">
-                                <div class="serv-heading">
-                                    <p class="serv-head">
-                                        UI/UX Design
-                                    </p>
-                                </div>
-                                <div class="serv-desc">
-                                    <p class="serv-text">
-                                        Great design isn’t just about aesthetics—it’s about experience. We craft intuitive, engaging, and conversion-focused interfaces that keep users coming back.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="serv-bottom">
-                                <div class="serv-heading">
-                                    <p class="serv-head">
-                                        Web Development
-                                    </p>
-                                </div>
-                                <div class="serv-desc">
-                                    <p class="serv-text">
-                                        Your website is your digital storefront. We develop high-performance, responsive websites that are as visually stunning as they are functional.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="services">
-                            <div class="serv-top">
-                                <div class="serv-heading">
-                                    <p class="serv-head">
-                                        Web App Development
-                                    </p>
-                                </div>
-                                <div class="serv-desc">
-                                    <p class="serv-text">
-                                        From interactive dashboards to full-scale enterprise solutions, we build fast, scalable, and secure web applications tailored to your needs.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="serv-bottom">
-                                <div class="serv-heading">
-                                    <p class="serv-head">
-                                        3D Web Design & Development
-                                    </p>
-                                </div>
-                                <div class="serv-desc">
-                                    <p class="serv-text">
-                                        Why settle for flat when you can go immersive? Our 3D web solutions create interactive, visually striking experiences that captivate and engage.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="services">
-                            <div class="serv-top">
-                                <div class="serv-heading">
-                                    <p class="serv-head">
-                                        Branding
-                                    </p>
-                                </div>
-                                <div class="serv-desc">
-                                    <p class="serv-text">
-                                        Your brand is more than just a logo—it’s a story. We develop bold, strategic branding that captures your identity and makes a lasting impression.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="serv-bottom">
-                                <div class="serv-heading">
-                                    <p class="serv-head">
-                                        Cloud & Server-Based Solutions
-                                    </p>
-                                </div>
-                                <div class="serv-desc">
-                                    <p class="serv-text">
-                                        Speed. Security. Scalability. We optimize cloud infrastructure to ensure your business runs smoothly, securely, and without limits.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="serv-text">
+                    <div class="serv-desc">
+                      <p class="serv-text">
+                        High-performance websites, scalable web apps, and
+                        immersive 3D experiences.
+                      </p>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="services">
+                <div class="serv-bottom">
+                    <div class="serv-heading">
+                      <p class="serv-head">Branding</p>
+                    </div>
+                    <div class="serv-desc">
+                      <p class="serv-text">
+                        Bold, strategic identities that make a lasting impact.
+                      </p>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="services">
+
+                <div class="serv-top">
+                    <div class="serv-heading">
+                      <p class="serv-head">Graphics & Digital Design</p>
+                    </div>
+                    <div class="serv-desc">
+                      <p class="serv-text">
+                        Stunning visuals that enhance recognition and engagement.
+                      </p>
+                    </div>
+                  </div>
+              </div>
+              <!-- <div class="services">
+
+                <div class="serv-top">
+                    <div class="serv-heading">
+                      <p class="serv-head">Graphics & Digital Design</p>
+                    </div>
+                    <div class="serv-desc">
+                      <p class="serv-text">
+                        Stunning visuals that enhance recognition and engagement.
+                      </p>
+                    </div>
+                  </div>
+              </div> -->
+              <div class="services">
+
+                <div class="serv-bottom">
+                  <div class="serv-heading">
+                    <p class="serv-head">Cloud & Server-Based Solutions</p>
+                  </div>
+                  <div class="serv-desc">
+                    <p class="serv-text">
+                      Scalable, secure, and future-proof digit
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- <p class="serv-text">
                             Let’s build something unforgettable. Your vision, powered by Bright Mattr.
-                        </p>
-                    </div>
-                    
-                    <div id="opn-contact" href="" class="c-contact-cta">
-                        <p class="c-contact-p">Get&nbsp;Started</p>
-                        <img src="./assets/Arrow up-right-9bbd850a.svg" alt="" class="c-contact">
-                    </div>
-                </div>
+                        </p> -->
             </div>
-        </section >
-        <section id="team" class="c team">
-            <div  class="c-content-wrapper">
-                <div class="c-main-content">
-                    <div class="c-sup-heading">Our Founders</div>
-                    <div class="c-main-heading">Meet the team</div>
-                </div> 
 
-                <div class="team-grid">
-                    <div class="card">
-                        <div class="card-wrapper">
-                            <div id="saq-prof" class="profile saq">
-                                <img src="./assets/saqlain-c1c52df5.jpg" alt="">
-                            </div>
-                            <div class="card-header">
-                                <div class="name">
-                                    <h2>
-                                        Saqlain Haider
-                                    </h2>
-                                </div>
-                                <div class="role">
-                                    <p>
-                                        Co-Founder/CEO/CTO
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="social">
-                                <a href="mailto:saqlain@brightmattr.com">saqlain@brightmattr.com</a>
-                                <ul>
-                                    <li><a href="https://www.linkedin.com/in/saqlainhaider77"><img src="./assets/linkedin-d117b9a3.svg" alt=""></a></li>
-                                    <li><a href="https://www.behance.net/saqlainhaider77"><img src="./assets/pngegg-904e5601.png" alt=""></a></li>
-                                    <li><a href="https://github.com/Saqman77"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAL2SURBVHgBzZmNdZswEICPLFA6QbVB6AZkgroThA3iDexO4GQC3AncDfAGTibAG5BOcL2zoOEpQjphEP7euyQvOp3u9HsSCUwAIqb0a0VyT6JIMpK0lY5zK68kbyTHJEnOsBTsNMmapMLxnEgKEgWxaB3fkDQ4LeXsgczkuMkGpoZ7BvVwx6LGqUaDDK1w/l63wW2u4BrIwBMuz7gphbfhfMc61PkV3h7W6ZRYnFf0qwJ9IN0S7yTfzcPvzqLocv6BDHDQDyS/QZ+sUzj2Yti2waf6wWkJ3fO+sejz9ro19VBvg5UhJ/y8mz2jTkNMu65dbz3kvGobHqJyBM51RSkB6WStbubQOTj8aGxBc6US3VQQCWpr7/Fl2+netRU4ohxuh2+e8qduFLpFzFuU8lTKIB6poLzgP7oAHkGAde7NgxLo/Lj8bBeghAIiQW3lQp9S6akbbQH3gqgEfhU8hXKBvReIzy+BTiaKFBYC/Wn8Hx4B38J8heU4e8rvOQDlUXqH5XjzlKeSEViSL57y9A5uG2/nSgJQsBzeABJayTX4nfxKqXr0tSDYAc88AhLHYuZBF8j3XKB2CcC30pnrnjfGIcnP/nIAkn3+EeMlct29vBCoHrsbkoQDRAL9l6uOrKsgfXmb/t3ys/MboS91v9IW5exgBlC/eu8C/Cj7lW35N78ilGi/6PP/+GJ+9brAj+8MNYahTEOVobDrlbGzQ9Ps0DqQo+xVgh1e4cfHkTEPx5XN8NAoKEd5n0YYgMLrX7uzIeO295hTr/zZYbQEIRi25uTt4HDvrNtyHv5qwHAOQlB+5zWp0TfKqOe7SWPRObTBlBj4IaLtiDEU0gZsUyXsjd7fRijbEPtD62GyIDCMwSwgcTTAezxvV+aKP4N+pejnUIrS7T0EBiBUPZL8HJ3Oo3vn+Q8EgjL2MAUo2PYgEL/v06457/cDCMThOB+eOcwF6i20niGAZvJe9zjQD6QeUb+rW6HOi5Z53kF9IQpuHPVhpuBK/gFBW5r1cVpkDQAAAABJRU5ErkJggg==" alt=""></a></li>
-                                </ul>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-wrapper">
-                            <div id="naqi-prof" class="profile naqi">
-                                <img src="./assets/naqi-4c64fea4.jpeg" alt="">
-                            </div>
-                            <div class="card-header">
-                                <div class="name"><h2>Naqi Zaidi</h2></div>
-                                <div class="role">
-                                    <p>Co-Founder/CFO</p>
-                                </div>
-                            </div>
-                            <div class="social">
-                                <a href="mailto:naqi@brightmattr.com">
-                                    naqi@brightmattr.com
-                                </a>
-                                <ul>
-                                    <li><a href="https://www.linkedin.com/in/mohammad-naqi-zaidi-302682326/"><img src="./assets/linkedin-d117b9a3.svg" alt=""></a></li>
-                                    <!-- <li><a href="https://www.behance.net/saqlainhaider77"></a><img src="./assets/images/socials/pngegg.png" alt=""></li> -->
-                                    <!-- <li><a href="https://github.com/Saqman77"></a><img src="./assets/images/socials/github.png" alt=""></li> -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-wrapper">
-                            <div id="raf-prof" class="profile raf">
-                                <img src="./assets/raf-b929fb45.jpg" alt="">
-                            </div>
-                            <div class="card-header">
-                                <div class="name">
-                                    <h2>
-                                        Rafael Chandna
-                                    </h2>
-                                </div>
-                                <div class="role">
-                                    <p>Lead UX/Product Designer</p>
-                                </div>
-                            </div>
-                            <div class="social">
-                                <a href="mailto:rafael.chandna25@gmail.com ">rafael.chandna25@gmail.com </a>
-                                <ul>
-                                    <li><a href="https://www.linkedin.com/in/rafael-chandna25"><img src="./assets/linkedin-d117b9a3.svg" alt=""></a></li>
-                                    <!-- <li><a href="https://www.behance.net/saqlainhaider77"></a><img src="./assets/images/socials/pngegg.png" alt=""></li>
+            <div id="opn-contact" href="" class="c-contact-cta">
+              <p class="c-contact-p">Get&nbsp;Started</p>
+              <img
+                src="./assets/Arrow up-right-9bbd850a.svg"
+                alt=""
+                class="c-contact"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="team" class="c team">
+        <div class="c-content-wrapper">
+          <div class="c-main-content members">
+            <!-- <div class="c-sup-heading">Our Founders</div> -->
+            <div class="c-main-heading members">Meet the team</div>
+          </div>
+
+          <div class="team-grid">
+            <div class="card">
+              <div class="card-wrapper">
+                <div id="saq-prof" class="profile saq">
+                  <img src="./assets/saqlain-c1c52df5.jpg" alt="" />
+                </div>
+                <div class="card-header">
+                  <div class="name">
+                    <h2>Saqlain Haider</h2>
+                  </div>
+                  <div class="role">
+                    <p>Co-Founder/CEO/CTO</p>
+                  </div>
+                </div>
+                <div class="social">
+                  <a href="mailto:saqlain@brightmattr.com"
+                    >saqlain@brightmattr.com</a
+                  >
+                  <ul>
+                    <li>
+                      <a href="https://www.linkedin.com/in/saqlainhaider77"
+                        ><img src="./assets/linkedin-d117b9a3.svg" alt=""
+                      /></a>
+                    </li>
+                    <li>
+                      <a href="https://www.behance.net/saqlainhaider77"
+                        ><img src="./assets/pngegg-904e5601.png" alt=""
+                      /></a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/Saqman77"
+                        ><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAL2SURBVHgBzZmNdZswEICPLFA6QbVB6AZkgroThA3iDexO4GQC3AncDfAGTibAG5BOcL2zoOEpQjphEP7euyQvOp3u9HsSCUwAIqb0a0VyT6JIMpK0lY5zK68kbyTHJEnOsBTsNMmapMLxnEgKEgWxaB3fkDQ4LeXsgczkuMkGpoZ7BvVwx6LGqUaDDK1w/l63wW2u4BrIwBMuz7gphbfhfMc61PkV3h7W6ZRYnFf0qwJ9IN0S7yTfzcPvzqLocv6BDHDQDyS/QZ+sUzj2Yti2waf6wWkJ3fO+sejz9ro19VBvg5UhJ/y8mz2jTkNMu65dbz3kvGobHqJyBM51RSkB6WStbubQOTj8aGxBc6US3VQQCWpr7/Fl2+netRU4ohxuh2+e8qduFLpFzFuU8lTKIB6poLzgP7oAHkGAde7NgxLo/Lj8bBeghAIiQW3lQp9S6akbbQH3gqgEfhU8hXKBvReIzy+BTiaKFBYC/Wn8Hx4B38J8heU4e8rvOQDlUXqH5XjzlKeSEViSL57y9A5uG2/nSgJQsBzeABJayTX4nfxKqXr0tSDYAc88AhLHYuZBF8j3XKB2CcC30pnrnjfGIcnP/nIAkn3+EeMlct29vBCoHrsbkoQDRAL9l6uOrKsgfXmb/t3ys/MboS91v9IW5exgBlC/eu8C/Cj7lW35N78ilGi/6PP/+GJ+9brAj+8MNYahTEOVobDrlbGzQ9Ps0DqQo+xVgh1e4cfHkTEPx5XN8NAoKEd5n0YYgMLrX7uzIeO295hTr/zZYbQEIRi25uTt4HDvrNtyHv5qwHAOQlB+5zWp0TfKqOe7SWPRObTBlBj4IaLtiDEU0gZsUyXsjd7fRijbEPtD62GyIDCMwSwgcTTAezxvV+aKP4N+pejnUIrS7T0EBiBUPZL8HJ3Oo3vn+Q8EgjL2MAUo2PYgEL/v06457/cDCMThOB+eOcwF6i20niGAZvJe9zjQD6QeUb+rW6HOi5Z53kF9IQpuHPVhpuBK/gFBW5r1cVpkDQAAAABJRU5ErkJggg==" alt=""
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-wrapper">
+                <div id="naqi-prof" class="profile naqi">
+                  <img src="./assets/naqi-4c64fea4.jpeg" alt="" />
+                </div>
+                <div class="card-header">
+                  <div class="name"><h2>Naqi Zaidi</h2></div>
+                  <div class="role">
+                    <p>Co-Founder/CFO</p>
+                  </div>
+                </div>
+                <div class="social">
+                  <a href="mailto:naqi@brightmattr.com">
+                    naqi@brightmattr.com
+                  </a>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://www.linkedin.com/in/mohammad-naqi-zaidi-302682326/"
+                        ><img src="./assets/linkedin-d117b9a3.svg" alt=""
+                      /></a>
+                    </li>
+                    <!-- <li><a href="https://www.behance.net/saqlainhaider77"></a><img src="./assets/images/socials/pngegg.png" alt=""></li> -->
+                    <!-- <li><a href="https://github.com/Saqman77"></a><img src="./assets/images/socials/github.png" alt=""></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-wrapper">
+                <div id="raf-prof" class="profile raf">
+                  <img src="./assets/raf-b929fb45.jpg" alt="" />
+                </div>
+                <div class="card-header">
+                  <div class="name">
+                    <h2>Rafael Chandna</h2>
+                  </div>
+                  <div class="role">
+                    <p>Lead UX/Product Designer</p>
+                  </div>
+                </div>
+                <div class="social">
+                  <a href="mailto:rafael.chandna25@gmail.com "
+                    >rafael.chandna25@gmail.com
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="https://www.linkedin.com/in/rafael-chandna25"
+                        ><img src="./assets/linkedin-d117b9a3.svg" alt=""
+                      /></a>
+                    </li>
+                    <!-- <li><a href="https://www.behance.net/saqlainhaider77"></a><img src="./assets/images/socials/pngegg.png" alt=""></li>
                                     <li><a href="https://github.com/Saqman77"></a><img src="./assets/images/socials/github.png" alt=""></li> -->
-                                </ul>
-                                
-                            </div>
-                        </div>
-                    </div>
+                  </ul>
                 </div>
-
+              </div>
             </div>
-
-        </section >
-        <div  class="c-content-wrapper saq disable">
-            <button class="close-c">back</button>
-            <div class="c-main-content saq">
-                <div class="c-sup-heading">Co-Founder/CEO/CTO</div>
-                <div class="c-main-heading">Saqlain Haider</div>
-            </div> 
-
-
-            <div class="team-grid">
-                <div class="c-description">
-                    <p class="c-para">
-                        Award-winning creative developer, former COO of Contive, and now CEO & CTO of Bright Mattr. 
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        "I take my clients' businesses seriously—maximizing their revenue and crafting hypnotic, immersive web experiences. Every client I've worked with has seen exponential growth through high-performance, visually stunning digital solutions.
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        As a CEO, I lead with vision, strategy, and innovation, ensuring every project not only meets but exceeds business goals."
-                    </p>
-                    
-                </div>
-                <div class="card">
-                    <div class="card-wrapper">
-                        <div class="profile saq">
-                            <img src="./assets/whitebg-7c49a0e9.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="opn-contact" href="" class="c-contact-cta">
-                <p class="c-contact-p">Get&nbsp;Started</p>
-                <img src="./assets/Arrow up-right-9bbd850a.svg" alt="" class="c-contact">
-            </div>
+          </div>
         </div>
-        <div  class="c-content-wrapper naqi disable">
-            <button class="close-c">back</button>
-            <div class="c-main-content naqi">
-                <div class="c-sup-heading">Co-Founder/CFO</div>
-                <div class="c-main-heading">Naqi Zaidi</div>
-            </div> 
-
-            <div class="team-grid">
-                <div class="c-description">
-                    <p class="c-para">
-                        AI Engineering Student | CFA Level I Candidate | Co-Founder at Bright Mattr | Former Med Student Passionate About Tech & Finance
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        As co-founder of Bright Mattr, I focus on cybersecurity, cloud solutions, and financial strategy, ensuring businesses operate securely and efficiently in an increasingly digital world. My role involves implementing robust security measures, optimizing cloud infrastructure, and managing financial operations to support our company’s growth and innovation.
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        Let’s connect and explore how cybersecurity, cloud solutions, and AI-driven technology can drive innovation and success.
-                    </p>
-                </div>
-                <div class="card">
-                    <div class="card-wrapper">
-                        <div class="profile saq">
-                            <img src="./assets/whitebg-7c49a0e9.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="opn-contact" href="" class="c-contact-cta">
-                <p class="c-contact-p">Get&nbsp;Started</p>
-                <img src="./assets/Arrow up-right-9bbd850a.svg" alt="" class="c-contact">
-            </div>
+      </section>
+      <div class="c-content-wrapper saq disable">
+        <button class="close-c">back</button>
+        <div class="c-main-content saq">
+          <!-- <div class="c-sup-heading">Co-Founder/CEO/CTO</div> -->
+          <div class="c-main-heading">Saqlain Haider</div>
         </div>
-        <div  class="c-content-wrapper raf disable">
-            <button class="close-c">back</button>
-            <div class="c-main-content raf">
-                <div class="c-sup-heading">Lead UX/Product Designer</div>
-                <div class="c-main-heading">Rafael Chandna</div>
-            </div> 
 
-            <div class="team-grid">
-                <div class="c-description">
-                    <p class="c-para">
-                        Product Design | UX | Research
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        Interaction Design graduate currently exploring the realm of service and product design. I am deeply interested in using design as a problem solving tool with a human centered approach.
-                    </p>
-                    <span class="space"></span>
-                    <p class="c-para">
-                        Hands on experience with Design thinking, Research methodologies and Wireframing.
-                    </p>
-                </div>
-                <div class="card">
-                    <div class="card-wrapper">
-                        <div class="profile saq">
-                            <img src="./assets/whitebg-7c49a0e9.svg" alt="">
-                        </div>
-                    </div>
-                </div>
+        <div class="team-grid">
+          <div class="c-description">
+            <p class="c-para">
+              Award-winning creative developer, former COO of Contive, and now
+              CEO & CTO of Bright Mattr.
+            </p>
+            <span class="space"></span>
+            <p class="c-para">
+              "I take my clients' businesses seriously—maximizing their revenue
+              and crafting hypnotic, immersive web experiences. Every client
+              I've worked with has seen exponential growth through
+              high-performance, visually stunning digital solutions.
+            </p>
+            <span class="space"></span>
+            <p class="c-para">
+              As a CEO, I lead with vision, strategy, and innovation, ensuring
+              every project not only meets but exceeds business goals."
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-wrapper">
+              <div class="profile saq">
+                <img src="./assets/whitebg-7c49a0e9.svg" alt="" />
+              </div>
             </div>
-            <div id="opn-contact" href="" class="c-contact-cta">
-                <p class="c-contact-p">Get&nbsp;Started</p>
-                <img src="./assets/Arrow up-right-9bbd850a.svg" alt="" class="c-contact">
-            </div>
+          </div>
         </div>
-        <section id="exit" class="e-space">
+        <div id="opn-contact" href="" class="c-contact-cta">
+          <p class="c-contact-p">Get&nbsp;Started</p>
+          <img
+            src="./assets/Arrow up-right-9bbd850a.svg"
+            alt=""
+            class="c-contact"
+          />
+        </div>
+      </div>
+      <div class="c-content-wrapper naqi disable">
+        <button class="close-c">back</button>
+        <div class="c-main-content naqi">
+          <!-- <div class="c-sup-heading">Co-Founder/CFO</div> -->
+          <div class="c-main-heading">Naqi Zaidi</div>
+        </div>
 
-            <div class="e-space-content-wrapper">
-                <div class="e-main-heading">Struggling to stand out?</div>
-                <!-- <p class="a-space-center display-mobile">move and tilt your device for dynamic pov</p> -->
+        <div class="team-grid">
+          <div class="c-description">
+            <p class="c-para">
+              AI Engineering Student | CFA Level I Candidate | Co-Founder at
+              Bright Mattr | Former Med Student Passionate About Tech & Finance
+            </p>
+            <span class="space"></span>
+            <p class="c-para">
+              As co-founder of Bright Mattr, I focus on cybersecurity, cloud
+              solutions, and financial strategy, ensuring businesses operate
+              securely and efficiently in an increasingly digital world. My role
+              involves implementing robust security measures, optimizing cloud
+              infrastructure, and managing financial operations to support our
+              company’s growth and innovation.
+            </p>
+            <span class="space"></span>
+            <p class="c-para">
+              Let’s connect and explore how cybersecurity, cloud solutions, and
+              AI-driven technology can drive innovation and success.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-wrapper">
+              <div class="profile saq">
+                <img src="./assets/whitebg-7c49a0e9.svg" alt="" />
+              </div>
             </div>
-        </section>
-        <section class="r-section">
-            <div class="r-container">
-                <div class="footer-container">
-                    <div class="marquee">
-                        <div class="bright">
-                            <div class="marquee__inner">
-                            <div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div><div class="marquee__part">
-                                <div class="marquee-img">
-                                    <img src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+          </div>
+        </div>
+        <div id="opn-contact" href="" class="c-contact-cta">
+          <p class="c-contact-p">Get&nbsp;Started</p>
+          <img
+            src="./assets/Arrow up-right-9bbd850a.svg"
+            alt=""
+            class="c-contact"
+          />
+        </div>
+      </div>
+      <div class="c-content-wrapper raf disable">
+        <button class="close-c">back</button>
+        <div class="c-main-content raf">
+          <!-- <div class="c-sup-heading">Lead UX/Product Designer</div> -->
+          <div class="c-main-heading">Rafael Chandna</div>
+        </div>
+
+        <div class="team-grid">
+          <div class="c-description">
+            <p class="c-para">Product Design | UX | Research</p>
+            <span class="space"></span>
+            <p class="c-para">
+              Interaction Design graduate currently exploring the realm of
+              service and product design. I am deeply interested in using design
+              as a problem solving tool with a human centered approach.
+            </p>
+            <span class="space"></span>
+            <p class="c-para">
+              Hands on experience with Design thinking, Research methodologies
+              and Wireframing.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-wrapper">
+              <div class="profile saq">
+                <img src="./assets/whitebg-7c49a0e9.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="opn-contact" href="" class="c-contact-cta">
+          <p class="c-contact-p">Get&nbsp;Started</p>
+          <img
+            src="./assets/Arrow up-right-9bbd850a.svg"
+            alt=""
+            class="c-contact"
+          />
+        </div>
+      </div>
+      <section id="exit" class="e-space">
+        <div class="e-space-content-wrapper">
+          <div class="e-main-heading">Struggling to stand out?</div>
+          <!-- <p class="a-space-center display-mobile">move and tilt your device for dynamic pov</p> -->
+        </div>
+      </section>
+      <section class="r-section">
+        <div class="r-container">
+          <div class="footer-container">
+            <div class="marquee">
+              <div class="bright">
+                <div class="marquee__inner">
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
                     </div>
-                    <div class="footer-wrapper">
-                        <div class="footer-center-row">
-                            <div class="left-logo-wrapper">
-                                <div class="head-row">
-                                    <img class="footer-logo" src="./assets/new-dark-1f108514.svg" alt="">
-                                </div>
-                                <div class="row-container">
-                                    <div class="footer-row">
-                                        <a href="mailto:info@brightmattr.com" ><p class="mail">info@brightmattr.com </p></a>
-                                    </div>
-                                    <div class="footer-row">
-                                    </div>
-                                    <div class="footer-row">
-                                        <div class="social-icon-row">
-                                            <div class="social-icon">
-                                                <a href="" class="icon-a"><img class="social-img" src="./assets/linkedin-d117b9a3.svg" alt=""></a>
-                                            </div>
-                                            <div class="social-icon">
-                                                <a href="" class="icon-a"><img class="social-img" src="./assets/facebook-bcd2f399.svg" alt=""></a>
-                                            </div>
-                                            <div class="social-icon">
-                                                <a href="" class="icon-a"><img class="social-img" src="./assets/Instagram-2da7abaf.svg" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="middle-container">
-                                <div class="head-row">
-                                    <div class="footer-contact-heading">
-                                        <h3>links</h3>
-                                    </div>
-                                </div>
-                                <div class="row-container">
-                                    <div class="footer-row">
-                                        <ul class="footer-nav">
-                                            <li><a href="#main">Home</a></li>
-                                            <li><a href="#about">About</a></li>
-                                            <li><a href="#team">Team</a></li>
-                                            <li><a href="#services">Services</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- <div class="footer-row">
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="marquee__part">
+                    <div class="marquee-img">
+                      <img src="./assets/new-dark-1f108514.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer-wrapper">
+              <div class="footer-center-row">
+                <div class="left-logo-wrapper">
+                  <div class="head-row">
+                    <img
+                      class="footer-logo"
+                      src="./assets/new-dark-1f108514.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="row-container">
+                    <div class="footer-row">
+                      <a href="mailto:info@brightmattr.com"
+                        ><p class="mail">info@brightmattr.com</p></a
+                      >
+                    </div>
+                    <div class="footer-row"></div>
+                    <div class="footer-row">
+                      <div class="social-icon-row">
+                        <div class="social-icon">
+                          <a href="https://www.linkedin.com/company/bright-mattr/" class="icon-a"
+                            ><img
+                              class="social-img"
+                              src="./assets/linkedin-d117b9a3.svg"
+                              alt=""
+                          /></a>
+                        </div>
+                        <div class="social-icon">
+                          <a href="https://www.facebook.com/share/14zxLD6Qby/?mibextid=wwXIfr" class="icon-a"
+                            ><img
+                              class="social-img"
+                              src="./assets/facebook-bcd2f399.svg"
+                              alt=""
+                          /></a>
+                        </div>
+                        <div class="social-icon">
+                          <a href="https://www.instagram.com/brightmattr?igsh=NzgxbXVwbjJkNW5w" class="icon-a"
+                            ><img
+                              class="social-img"
+                              src="./assets/Instagram-2da7abaf.svg"
+                              alt=""
+                          /></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="middle-container">
+                  <div class="head-row">
+                    <div class="footer-contact-heading">
+                      <h3>links</h3>
+                    </div>
+                  </div>
+                  <div class="row-container">
+                    <div class="footer-row">
+                      <ul class="footer-nav">
+                        <li><a href="#main">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#services">Services</a></li>
+                      </ul>
+                    </div>
+                    <!-- <div class="footer-row">
                                     </div>
                                     <div class="footer-row">
                                     </div> -->
-                                </div>
-                            </div>
-                            <div class="right-footer-contact">
-                                <div class="head-row">
-                                    <div class="footer-contact-heading">
-                                        <h3>CONTACT&nbsp;US!</h3>
-                                    </div>
-                                </div>
-                                <div class="row-container">
-                                    <div class="footer-row">
-                                        <div id="opn-contact" class="footer-contact-btn" href="">
-                                            <img src="./assets/message-icon-812f1db3.svg" class="static" alt="">
-                                            <img src="./assets/message-icon.hover-8bc18597.svg" class="hover" alt="">
-                                            <img src="./assets/message-icon-clicked-bdd97c2f.svg" class="clicked" alt="">
-                                            <p>contact&nbsp;us</p>
-                                        </div>
-                                    </div>
-                                    <div class="footer-row">
-                                    </div>
-                                    <div class="footer-row">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer-bottom-row">
-                            <div class="copyright">
-                                <p> © Copyright 2024 Bright-Mattr, All rights reserved</p>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <div class="r-wrapper">
-                    <!-- <div class="copy"> -->
-                        <!-- <p>LA 3435, <br> TYO 98234</p>
+                <div class="right-footer-contact">
+                  <div class="head-row">
+                    <div class="footer-contact-heading">
+                      <h3>CONTACT&nbsp;US!</h3>
+                    </div>
+                  </div>
+                  <div class="row-container">
+                    <div class="footer-row">
+                      <div id="opn-contact" class="footer-contact-btn" href="">
+                        <img
+                          src="./assets/message-icon-812f1db3.svg"
+                          class="static"
+                          alt=""
+                        />
+                        <img
+                          src="./assets/message-icon.hover-8bc18597.svg"
+                          class="hover"
+                          alt=""
+                        />
+                        <img
+                          src="./assets/message-icon-clicked-bdd97c2f.svg"
+                          class="clicked"
+                          alt=""
+                        />
+                        <p>contact&nbsp;us</p>
+                      </div>
+                    </div>
+                    <div class="footer-row"></div>
+                    <div class="footer-row"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-bottom-row">
+                <div class="copyright">
+                  <p>© Copyright 2024 Bright-Mattr, All rights reserved</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="r-wrapper">
+            <!-- <div class="copy"> -->
+            <!-- <p>LA 3435, <br> TYO 98234</p>
                         <p>thinking about the future</p>
                         <p>enter <br> terminal&reg;</p>
                         <p></p> -->
-                    <!-- </div> -->
-                </div>
-                <div class="blocks">
-                    <div class="block block-left"></div>
-                    <div class="block block-right"></div>
-                </div>
-                <div class="worders">
-                    <div class="row">
-                        <div class="worder top-left">Let's</div>
-                        <div class="worder top-right">talk</div>
-                    </div>
-                    <div class="row">
-                        <div class="worder bottom-right"></div>
-                    </div>
-                </div>
+            <!-- </div> -->
+          </div>
+          <div class="blocks">
+            <div class="block block-left"></div>
+            <div class="block block-right"></div>
+          </div>
+          <div class="worders">
+            <div class="row">
+              <div class="worder top-left">Let's</div>
+              <div class="worder top-right">talk</div>
             </div>
-        </section>
+            <div class="row">
+              <div class="worder bottom-right"></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     
-</body>
+    
+  </body>
 </html>
