@@ -1119,7 +1119,7 @@ h1.c-main-heading {
   flex-wrap: wrap;
 }
 .b-desc-main.oppo .b-sup.c-para .word {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: "AZONIX";
   margin-right: 0.2em;
   text-align: left;
@@ -1259,14 +1259,7 @@ h2 {
   display: flex;
   flex-direction: column;
   padding: 9rem 3em 3em;
-  @media screen and (max-width:1250px) {
-    padding: 60px 1em 1em;
-    // justify-content: space-between;
-  }
-  @media screen and (max-width:900px) {
-    padding: 60px .5em .5em;
-    // justify-content: space-between;
-  }
+
   justify-content: end;
   opacity: 1;
   backdrop-filter: blur(10px);
@@ -1275,6 +1268,14 @@ h2 {
   min-height: 100svh;
   min-height: 100lvh;
   max-height: auto;
+  @media screen and (max-width:1250px) {
+    padding: 60px 1em 1em;
+    // justify-content: space-between;
+  }
+  @media screen and (max-width:900px) {
+    padding: 60px .5em .5em;
+    // justify-content: space-between;
+  }
   // z-index: 9999;
   // @media screen and (max-width:1250px) {
   //   padding: 3em 2em 2em 2em;
@@ -1427,8 +1428,8 @@ h2 {
 }
 
 .c-description .c-para{
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
 .c-para .word{
@@ -1437,6 +1438,7 @@ h2 {
   will-change: transform;
   user-select: none;
   text-align: left;
+  margin-bottom: 0;
   @media screen and (max-width:1250px) {
     font-size: .8rem;
     margin-bottom: 0;
@@ -1455,7 +1457,9 @@ h2 {
   height: 100%;
 }
 .c-description .c-para .word{
-  font-size: 2.5rem;
+  font-size: 2rem;
+  margin-right: 0.45em;
+  margin-bottom: 0.25em;
   font-family: "AZONIX";
 }
 .c-description .c-para.bot .word{
@@ -1469,7 +1473,7 @@ h2 {
 }
 
 .c-description .c-para.bot{
-  margin-top: auto;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -1491,42 +1495,63 @@ h2 {
   display: flex;
   align-items: start;
   flex-direction: column;
+  justify-content: space-around;
   margin-bottom: 5em;
+  background-color: #f9f9f9;
+  width: 50%;
+  height: 200px;
+  padding: 2em;
+  border-radius: 20px;
+  border: 4px solid #00f0ff;
+  box-shadow:inset 0 0 4px 4px #00000064;
   @media screen and (max-width:1250px) {
-    margin-bottom: 0;
-    width: 80%;
+    // margin-bottom: 0;
+    // width: 80%;
   }
 }
 
 .serv-bottom {
   text-align: right;
+  justify-content: space-around;
   display: flex;
   align-items: end;
   flex-direction: column;
+  background-color: #f9f9f9;
+  width: 50%;
+  height: 200px;
+  padding: 2em;
+  border-radius: 20px;
+  border: 4px solid #00f0ff;
+  box-shadow:inset 0 0 4px 4px #00000064;
+  margin-left: auto;
   @media screen and (max-width:1250px) {
-    margin-bottom: 0;
-    width: 80%;
-    align-items: center;
+    // margin-bottom: 0;
+    // width: 80%;
+    // align-items: center;
   }
   // align-items: start;
 }
 
 .serv-heading{
   margin-bottom: 1em;
+  
   @media screen and (max-width:1250px) {
     // font-size: 1.5rem;
     width: 30%;
-    text-align: center;
+    // text-align: center;
   }
 }
 
 .serv-head{
   font-family: "azonix";
-  font-size: 4rem;
+  font-size: 2rem;
+  color: #00f0ff;
+  
+  // border-bottom: 1px solid #000000;
   @media screen and (max-width:1250px) {
     font-size: 1.5rem;
     // width: 30%;
-    text-align: center;
+    // text-align: center;
   }
 }
 
@@ -1534,22 +1559,26 @@ h2 {
   @media screen and (max-width:1250px) {
     font-size: 1.5rem;
     // width: 30%;
-    text-align: left;
+    // text-align: left;
   }
 }
 
 .serv-desc{
-  width: 50%;
+  // width: 50%;
   @media screen and (max-width:1250px) {
-    width: 20%;
-    text-align: center;
+    // width: 20%;
+    // text-align: center;
     // height: 100%;
   }
   // margin: 0 2em;
 }
 
 .serv-text{
- font-size: 2rem;
+ font-size: 1.5rem;
+ font-weight: 700;
+ color: #2E2E2E;
+ font-family: "azonix";
+  letter-spacing: 0.2em;
  @media screen and (max-width:1250px) {
   font-size: 1rem;
 }
@@ -1610,6 +1639,11 @@ h2 {
   }
 }
 
+.c-main-content.members{
+  text-align: center;
+  margin: auto;
+}
+
 .card{
   width: 100%;
   height: 100%;
@@ -1618,6 +1652,7 @@ h2 {
 .card-wrapper{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
   padding: 1em;
