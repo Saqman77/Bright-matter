@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 gsap.registerPlugin(ScrollTrigger);
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
+
 // import generateGalaxyWorker from './generateGalaxyWorker.js';
 ScrollTrigger.defaults({
   // fastScrollEnd: true,
