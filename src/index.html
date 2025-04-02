@@ -21,10 +21,26 @@
       href="./assets/images/icons/favicon.svg"
       sizes="96x96"
     />
-    <title>Bright-Mattr.</title>
+    <title>BrightMattr – Creative Web Development & Design</title>
+    <meta name="description" content="BrightMattr creates immersive, high-performance websites blending creativity and technology. Award-winning designs built with precision.">
+    <meta name="keywords" content="creative web development, immersive websites, high-performance websites, UI/UX design, front-end development">
+    <meta name="author" content="BrightMattr">
+    <meta name="robots" content="index, follow"> <!-- Allows search engines to index -->
+
+    <!-- Open Graph Meta Tags (for social sharing) -->
+    <meta property="og:title" content="BrightMattr – Creative Web Development & Design">
+    <meta property="og:description" content="BrightMattr creates immersive, high-performance websites blending creativity and technology.">
+    <meta property="og:image" content="https://brightmattr.com/assets/images/icons/favicon.svg"> <!-- Update with your actual image -->
+    <meta property="og:url" content="https://brightmattr.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BrightMattr – Creative Web Development & Design">
+    <meta name="twitter:description" content="Award-winning web development blending art, code, and technology.">
+    <meta name="twitter:image" content="https://brightmattr.com/assets/images/icons/favicon.svg"> <!-- Update with your actual image -->
     <link rel="stylesheet" href="./fonts.scss" />
     <link rel="stylesheet" href="./style.scss" />
-    
   </head>
   <body>
     
@@ -41,7 +57,7 @@
               Schedule a free consultation to see how you can transform your
               digital presence
             </p>
-            <button class="close-btn">&times;</button>
+            <button class="close-btn" aria-label="× button">&times;</button>
           </div>
           <form id="contact-form-element">
             <!-- Added ID for JS targeting -->
@@ -51,6 +67,7 @@
               placeholder="Name *"
               class="form-input"
               id="name"
+              aria-label="Name input field"
               required
             />
             <input
@@ -59,6 +76,7 @@
               placeholder="Email *"
               class="form-input"
               id="email"
+              aria-label="Email input field"
               required
             />
             <div class="phone-wrapper" data-lenis-prevent>
@@ -67,6 +85,7 @@
                 name="phone"
                 class="form-input"
                 id="phone"
+                aria-label="Phone number input field"
                 required
               />
             </div>
@@ -75,9 +94,10 @@
               placeholder="Message"
               class="form-input message"
               id="message"
+              aria-label="Message input field"
             ></textarea>
             <div class="submit-wrapper">
-              <button type="submit" class="submit-btn" id="submit-btn">
+              <button type="submit" class="submit-btn" id="submit-btn" aria-label="Get in Touch button">
                 <!-- Added ID for JS targeting -->
                 <p class="default-text">Get in Touch</p>
                 <p class="success-text">Success!</p>
@@ -90,19 +110,19 @@
       <nav class="navbar">
         <div class="nav-container">
           <div class="logo" href="#">
-            <img src="./assets/images/icons/new-light.svg" alt="" />
+            <img src="./assets/images/icons/new-light.svg" alt="White version of main logo" />
           </div>
           <nav>
             <ul class="nav-links">
-              <li><a href="#main">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#team">Team</a></li>
-              <li><a href="#contact" id="contact-btn">Contact</a></li>
+              <li><a href="#main" aria-label="Home link">Home</a></li>
+              <li><a href="#about" aria-label="About link">About</a></li>
+              <li><a href="#services" aria-label="Services link">Services</a></li>
+              <li><a href="#team" aria-label="Team link">Team</a></li>
+              <li><a href="#contact" id="contact-btn" aria-label="Contact link">Contact</a></li>
             </ul>
           </nav>
           <div id="opn-contact" class="contact-us" href="">
-            <img src="./assets/images/icons/message-icon.svg" alt="" />
+            <img src="./assets/images/icons/message-icon.svg" alt="Message icon" />
             <p>contact&nbsp;us</p>
           </div>
         </div>
@@ -116,12 +136,12 @@
         <img
           src="./assets/images/icons/message-icon.hover.svg"
           class="hover"
-          alt=""
+          alt="Hovered message icon"
         />
         <img
           src="./assets/images/icons/message-icon-clicked.svg"
           class="clicked"
-          alt=""
+          alt="Clicked message icon"
         />
         <p>contact&nbsp;us</p>
       </div>
@@ -227,7 +247,7 @@
             We use your device's gyroscopic sensor for an enhanced User
             Experience.
           </p>
-          <button id="requestButton">Activate dynamic pov</button>
+          <button id="requestButton" aria-label="Activate dynamic pov button">Activate dynamic pov</button>
         </div>
         <div class="a-space-content-wrapper">
           <p class="a-space-center display-desktop">
@@ -259,7 +279,7 @@
             <img
               src="./assets/images/icons/Arrow up-right.svg"
               class="contact-cta"
-              alt=""
+              alt="Arrow up-right icon"
             />
           </div>
         </div>
@@ -370,8 +390,8 @@
                 
                     <!-- Navigation (Optional) -->
                     <div class="glide__arrows" data-glide-el="controls">
-                      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">←</button>
-                      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">→</button>
+                      <button class="glide__arrow glide__arrow--left" aria-label="Previous slide button" data-glide-dir="<">←</button>
+                      <button class="glide__arrow glide__arrow--right" aria-label="Next slide button" data-glide-dir=">">→</button>
                     </div>
                   </div>
             </div>
@@ -520,7 +540,7 @@
               <p class="c-contact-p">Get&nbsp;Started</p>
               <img
                 src="./assets/images/icons/Arrow up-right.svg"
-                alt=""
+                alt="Arrow up-right icon"
                 class="c-contact"
               />
             </div>
@@ -538,7 +558,7 @@
             <div class="card">
               <div class="card-wrapper">
                 <div id="saq-prof" class="profile saq">
-                  <img src="./assets/images/team/saqlain.jpg" alt="" />
+                  <img src="./assets/images/team/saqlain.jpg" alt="Portrait of Saqlain" />
                 </div>
                 <div class="card-header">
                   <div class="name">
@@ -549,23 +569,23 @@
                   </div>
                 </div>
                 <div class="social">
-                  <a href="mailto:saqlain@brightmattr.com"
+                  <a href="mailto:saqlain@brightmattr.com" aria-label="Email saqlain@brightmattr.com link"
                     >saqlain@brightmattr.com</a
                   >
                   <ul>
                     <li>
-                      <a href="https://www.linkedin.com/in/saqlainhaider77"
-                        ><img src="./assets/images/socials/linkedin.svg" alt=""
+                      <a href="https://www.linkedin.com/in/saqlainhaider77" aria-label="LinkedIn profile link"
+                        ><img src="./assets/images/socials/linkedin.svg" alt="LinkedIn logo"
                       /></a>
                     </li>
                     <li>
-                      <a href="https://www.behance.net/saqlainhaider77"
+                      <a href="https://www.behance.net/saqlainhaider77" aria-label="Behance profile link"
                         ><img src="./assets/images/socials/pngegg.png" alt=""
                       /></a>
                     </li>
                     <li>
-                      <a href="https://github.com/Saqman77"
-                        ><img src="./assets/images/socials/github.png" alt=""
+                      <a href="https://github.com/Saqman77" aria-label="GitHub profile link"
+                        ><img src="./assets/images/socials/github.png" alt="GitHub logo"
                       /></a>
                     </li>
                   </ul>
@@ -575,7 +595,7 @@
             <div class="card">
               <div class="card-wrapper">
                 <div id="naqi-prof" class="profile naqi">
-                  <img src="./assets/images/team/naqi.jpeg" alt="" />
+                  <img src="./assets/images/team/naqi.jpeg" alt="Portrait of Naqi" />
                 </div>
                 <div class="card-header">
                   <div class="name"><h2>Naqi Zaidi</h2></div>
@@ -584,14 +604,14 @@
                   </div>
                 </div>
                 <div class="social">
-                  <a href="mailto:naqi@brightmattr.com">
+                  <a href="mailto:naqi@brightmattr.com" aria-label="Email naqi@brightmattr.com link">
                     naqi@brightmattr.com
                   </a>
                   <ul>
                     <li>
                       <a
-                        href="https://www.linkedin.com/in/mohammad-naqi-zaidi-302682326/"
-                        ><img src="./assets/images/socials/linkedin.svg" alt=""
+                        href="https://www.linkedin.com/in/mohammad-naqi-zaidi-302682326/" aria-label="LinkedIn profile link"
+                        ><img src="./assets/images/socials/linkedin.svg" alt="LinkedIn logo"
                       /></a>
                     </li>
                     <!-- <li><a href="https://www.behance.net/saqlainhaider77"></a><img src="./assets/images/socials/pngegg.png" alt=""></li> -->
@@ -603,7 +623,7 @@
             <div class="card">
               <div class="card-wrapper">
                 <div id="raf-prof" class="profile raf">
-                  <img src="./assets/images/team/raf.jpg" alt="" />
+                  <img src="./assets/images/team/raf.jpg" alt="Portrait of Rafael" />
                 </div>
                 <div class="card-header">
                   <div class="name">
@@ -614,13 +634,13 @@
                   </div>
                 </div>
                 <div class="social">
-                  <a href="mailto:rafael.chandna25@gmail.com "
+                  <a href="mailto:rafael.chandna25@gmail.com" aria-label="Email rafael.chandna25@gmail.com link"
                     >rafael.chandna25@gmail.com
                   </a>
                   <ul>
                     <li>
-                      <a href="https://www.linkedin.com/in/rafael-chandna25"
-                        ><img src="./assets/images/socials/linkedin.svg" alt=""
+                      <a href="https://www.linkedin.com/in/rafael-chandna25" aria-label="LinkedIn profile link"
+                        ><img src="./assets/images/socials/linkedin.svg" alt="LinkedIn logo"
                       /></a>
                     </li>
                     <!-- <li><a href="https://www.behance.net/saqlainhaider77"></a><img src="./assets/images/socials/pngegg.png" alt=""></li>
@@ -633,7 +653,7 @@
         </div>
       </section>
       <div class="c-content-wrapper saq disable">
-        <button class="close-c">back</button>
+        <button class="close-c" aria-label="Back button">back</button>
         <div class="c-main-content saq">
           <!-- <div class="c-sup-heading">Co-Founder/CEO/CTO</div> -->
           <div class="c-main-heading">Saqlain Haider</div>
@@ -661,7 +681,7 @@
           <div class="card">
             <div class="card-wrapper">
               <div class="profile saq">
-                <img src="./assets/images/team/whitebg.svg" alt="" />
+                <img src="./assets/images/team/whitebg.svg" alt="White background image" />
               </div>
             </div>
           </div>
@@ -670,13 +690,13 @@
           <p class="c-contact-p">Get&nbsp;Started</p>
           <img
             src="./assets/images/icons/Arrow up-right.svg"
-            alt=""
+            alt="Arrow up-right icon"
             class="c-contact"
           />
         </div>
       </div>
       <div class="c-content-wrapper naqi disable">
-        <button class="close-c">back</button>
+        <button class="close-c" aria-label="Back button">back</button>
         <div class="c-main-content naqi">
           <!-- <div class="c-sup-heading">Co-Founder/CFO</div> -->
           <div class="c-main-heading">Naqi Zaidi</div>
@@ -715,13 +735,13 @@
           <p class="c-contact-p">Get&nbsp;Started</p>
           <img
             src="./assets/images/icons/Arrow up-right.svg"
-            alt=""
+            alt="Arrow up-right icon"
             class="c-contact"
           />
         </div>
       </div>
       <div class="c-content-wrapper raf disable">
-        <button class="close-c">back</button>
+        <button class="close-c" aria-label="Back button">back</button>
         <div class="c-main-content raf">
           <!-- <div class="c-sup-heading">Lead UX/Product Designer</div> -->
           <div class="c-main-heading">Rafael Chandna</div>
@@ -754,7 +774,7 @@
           <p class="c-contact-p">Get&nbsp;Started</p>
           <img
             src="./assets/images/icons/Arrow up-right.svg"
-            alt=""
+            alt="Arrow up-right icon"
             class="c-contact"
           />
         </div>
@@ -831,7 +851,7 @@
                   </div>
                   <div class="row-container">
                     <div class="footer-row">
-                      <a href="mailto:info@brightmattr.com"
+                      <a href="mailto:info@brightmattr.com" aria-label="Email info@brightmattr.com link"
                         ><p class="mail">info@brightmattr.com</p></a
                       >
                     </div>
@@ -839,15 +859,15 @@
                     <div class="footer-row">
                       <div class="social-icon-row">
                         <div class="social-icon">
-                          <a href="https://www.linkedin.com/company/bright-mattr/" class="icon-a"
+                          <a href="https://www.linkedin.com/company/bright-mattr/" class="icon-a" aria-label="LinkedIn profile link"
                             ><img
                               class="social-img"
                               src="./assets/images/socials/linkedin.svg"
-                              alt=""
+                              alt="LinkedIn logo"
                           /></a>
                         </div>
                         <div class="social-icon">
-                          <a href="https://www.facebook.com/share/14zxLD6Qby/?mibextid=wwXIfr" class="icon-a"
+                          <a href="https://www.facebook.com/share/14zxLD6Qby/?mibextid=wwXIfr" class="icon-a" ar
                             ><img
                               class="social-img"
                               src="./assets/images/socials/facebook.svg"
@@ -859,7 +879,7 @@
                             ><img
                               class="social-img"
                               src="./assets/images/socials/Instagram.svg"
-                              alt=""
+                              alt="Instagram logo"
                           /></a>
                         </div>
                       </div>
@@ -875,10 +895,10 @@
                   <div class="row-container">
                     <div class="footer-row">
                       <ul class="footer-nav">
-                        <li><a href="#main">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#team">Team</a></li>
-                        <li><a href="#services">Services</a></li>
+                        <li><a href="#main" aria-label="Home link">Home</a></li>
+                        <li><a href="#about" aria-label="About link">About</a></li>
+                        <li><a href="#team" aria-label="Team link">Team</a></li>
+                        <li><a href="#services" aria-label="Services link">Services</a></li>
                       </ul>
                     </div>
                     <!-- <div class="footer-row">
